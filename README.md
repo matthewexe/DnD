@@ -83,3 +83,11 @@ To learn more about React Native, take a look at the following resources:
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
 
 # Dnd
+
+Il progetto consiste nella creazione di schede personaggio per un famoso gioco di strategia "Dungeons & Dragons". \
+Le schede giocatore vengono inizializzate da un'API. Possono essere modificate, seguendo le regole del gioco, per poi successivamente poter essere salvate e raggruppate in locale. \
+Ogni salvataggio in locale corrisponde ad una partita.
+In ogni partita salvata sono presenti:
+
+- schede giocatore
+- lista personalizzata di mostri predefiniti
