@@ -1,16 +1,65 @@
-// export type CharacterData =
-//   //ability score--------------------------
-//   | ''
+export type CharacterData =
+  //ability score--------------------------
+  | 'cha'
+  | 'con'
+  | 'dex'
+  | 'int'
+  | 'str'
+  | 'wis'
 
-//   //alignment------------------------------
+  //alignment------------------------------
+  | 'chaotic-neutral'
+  | 'chaotic-evil'
+  | 'chaotic-good'
+  | 'lawful-neutral'
+  | 'lawful-evil'
+  | 'lawful-good'
+  | 'neutral'
+  | 'neutral-evil'
+  | 'neutral-good'
 
-//   //background------------------------------
+  //background-----------------------------
+  | 'acolyte'
 
-//   //language------------------------------
+  //language-------------------------------
+  | 'abyssal'
+  | 'celestial'
+  | 'common'
+  | 'deep-speech'
+  | 'draconic'
+  | 'dwarvish'
+  | 'elvish'
+  | 'giant'
+  | 'gnomish'
+  | 'goblin'
+  | 'halfling'
+  | 'infernal'
+  | 'orc'
+  | 'primordial'
+  | 'sylvan'
+  | 'undercommon'
 
-//   //proficiency------------------------------
+  //proficiency----------------------------
 
-//   //skill------------------------------
+  //skill----------------------------------
+  | 'acrobatics'
+  | 'animal-handling'
+  | 'arcana'
+  | 'athletics'
+  | 'deception'
+  | 'history'
+  | 'insight'
+  | 'intimidation'
+  | 'investigation'
+  | 'medicine'
+  | 'nature'
+  | 'perception'
+  | 'performance'
+  | 'persuasion'
+  | 'religion'
+  | 'sleight-of-hand'
+  | 'stealth'
+  | 'survival'
 
 export type ClassIndex =
   | 'barbarian'
