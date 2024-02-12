@@ -1,11 +1,20 @@
 // Responses types of API https://5e-bits.github.io/docs/api/
 
 // Standard Types
-type APIReference = {
+
+type APILevelReference = {
   index?: string;
   url?: string;
   level?: number;
 };
+
+type APINameReference = {
+  index?: string;
+  name?: string;
+  url?: string;
+};
+
+type APIReference = APILevelReference | APINameReference;
 
 type Choice = {
   desc?: string;
@@ -308,10 +317,52 @@ export type SpellResponse = APIReference & {
   url?: string;
 };
 
-export type SubclassResponse = APIReference & {
+export type SubclassByIndexResponse = APIReference & {
   desc?: string;
   class?: APIReference;
   subclass_flavor?: string;
   subclass_levels?: string;
   spells?: {prerequisites: APIReference & {type: string}; spell: APIReference};
+};
+
+export type SubclassFeatureResponse = ResourceListResponse;
+
+export type SubclassAllLevelResourceResponse = APIReference & {
+  features?: APIReference[];
+  class?: APIReference;
+  subclass?: APIReference;
+};
+
+export type SubclassLevelResourceResponse = APIReference & {
+  ability_score_bonuses?: number;
+  prof_bonus?: number;
+  features?: APIReference[];
+  spellcasting?: SpellCastingLevel;
+  classspecific?: any;
+};
+
+export type SubclassFeatureSpellLevelResposne = ResourceListResponse;
+
+export type SubraceIndexResponse = APIReference & {
+  desc?: string;
+  race?: APIReference;
+  ability_score?: {bonus?: number; ability_score?: APIReference};
+  starting_proficiencies?: APIReference[];
+  languages?: APIReference[];
+  language_options?: Choice[];
+  racial_traits?: APIReference[];
+};
+
+export type SubraceProficienciesResponse = ResourceListResponse;
+
+export type SubraceTraitsResponse = ResourceListResponse;
+
+export type TraitsIndex = APIReference & {
+  desc?: string;
+  races?: APIReference[];
+  subraces?: APIReference[];
+  proficiencies?: APIReference[];
+  proficiency_choices?: Choice[];
+  languages_options?: Choice[];
+  trait_specific?: any;
 };
