@@ -59,7 +59,7 @@ export type CharacterData =
   | 'religion'
   | 'sleight-of-hand'
   | 'stealth'
-  | 'survival'
+  | 'survival';
 
 export type ClassIndex =
   | 'barbarian'
@@ -84,9 +84,9 @@ export type ClassResourceListRequest = ClassRequest;
 export type ClassLevelsRequest = ClassRequest &
   ({subclass?: string} | {class_level: number} | {spell_level: number});
 
-export type GameMechanicsRequest = 
+export type GameMechanicsRequest =
   //condition------------------------------
-  | 'blinded' 
+  | 'blinded'
   | 'charmed'
   | 'deafened'
   | 'exhaustion'
@@ -127,15 +127,15 @@ export type GameMechanicsRequest =
   | 'necromancy'
   | 'trasmutation';
 
-export type EquipmentRequest = 
+export type EquipmentRequest =
   //equipment item-------------------------
-  | ''  //non li trovo, vuole il nome dell'item
+  | '' //non li trovo, vuole il nome dell'item
 
   //equipment category---------------------
-  | ''   //non li trovo, vuole il nome
+  | '' //non li trovo, vuole il nome
 
   //magic item-----------------------------
-  | ''   //non li trovo, vuole il nome
+  | '' //non li trovo, vuole il nome
 
   //weapon property------------------------
   | 'ammunition'
@@ -150,15 +150,13 @@ export type EquipmentRequest =
   | 'two-handed'
   | 'versatile';
 
-  export type FeatsRequest = 'grappler';
+export type FeatsRequest = 'grappler';
 
-  export type FeaturesRequest = 
-  | '' //non le trovo, vuole il nome
+export type FeaturesRequest = ''; //non le trovo, vuole il nome
 
-  export type MonstersRequest = 
-  {index:string} | {challenge_rating?:number[]}  // list of monsters
+export type MonstersRequest = {index: string} | {challenge_rating?: number[]}; // list of monsters
 
-  export type RacesRequest =
+export type RacesRequest =
   | 'dragonborn'
   | 'dwarf'
   | 'elf'
@@ -169,7 +167,7 @@ export type EquipmentRequest =
   | 'human'
   | 'tiefling';
 
-  export type RulesRequest = 
+export type RulesRequest =
   //rule section---------------------------
   | 'ability-checks'
   | 'ability-scores-and-modifiers'
@@ -211,65 +209,66 @@ export type EquipmentRequest =
   | 'combat'
   | 'equipment'
   | 'spellcasting'
-  | 'using-ability-scores'
+  | 'using-ability-scores';
 
-  export type SpellsRequest = 
+export type SpellsRequest =
   //list of spells-------------------------
-  ({level?:number[]} & {school?:string[]}) | 
+  | ({level?: number[]} & {school?: string[]})
 
   //spell----------------------------------
-  {index:
-  | 'ability-scores'
-  | 'alignments'
-  | 'backgrounds'
-  | 'classes'
-  | 'conditions'
-  | 'damage-types'
-  | 'equipment'
-  | 'equipment-categories'
-  | 'feats'
-  | 'features'
-  | 'languages'
-  | 'magic-items'
-  | 'magic-schools'
-  | 'monsters'
-  | 'proficiencies'
-  | 'races'
-  | 'rule-sections'
-  | 'rules'
-  | 'skills'
-  | 'spells'
-  | 'subclasses'
-  | 'subraces'
-  | 'traites'
-  | 'weapon-properties'
-  }
+  | {
+      index:
+        | 'ability-scores'
+        | 'alignments'
+        | 'backgrounds'
+        | 'classes'
+        | 'conditions'
+        | 'damage-types'
+        | 'equipment'
+        | 'equipment-categories'
+        | 'feats'
+        | 'features'
+        | 'languages'
+        | 'magic-items'
+        | 'magic-schools'
+        | 'monsters'
+        | 'proficiencies'
+        | 'races'
+        | 'rule-sections'
+        | 'rules'
+        | 'skills'
+        | 'spells'
+        | 'subclasses'
+        | 'subraces'
+        | 'traites'
+        | 'weapon-properties';
+    };
 
-  export type SubclassesRequest = 
+export type SubclassesRequest =
   //subclass/ features/ level resources----
-  {index: 
-  | 'berserker'
-  | 'champion'
-  | 'devotion'
-  | 'draconic'
-  | 'evocation'
-  | 'fiend'
-  | 'hunter'
-  | 'land'
-  | 'life'
-  | 'lore'
-  | 'open-hand'
-  | 'thief'
-  }
-  & {subclass_level:number}  //subclasses level & features of a spell level of a class---
+  {
+    index:
+      | 'berserker'
+      | 'champion'
+      | 'devotion'
+      | 'draconic'
+      | 'evocation'
+      | 'fiend'
+      | 'hunter'
+      | 'land'
+      | 'life'
+      | 'lore'
+      | 'open-hand'
+      | 'thief';
+  } & {subclass_level: number}; //subclasses level & features of a spell level of a class---
 
-  export type SubracesRequest =
+export type SubracesRequest =
   | 'high-elf'
   | 'hill-dwarf'
   | 'lightfoot-halfling'
-  | 'rock-gnome'
+  | 'rock-gnome';
 
-  export type TraitsRequest = 
+export type TraitsRequest =
   | 'artificers-lore'
   | 'brave'
   | 'breath-weapon'
