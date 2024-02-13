@@ -1,3 +1,5 @@
+import {useGetClassByIndexQuery} from '../services/api';
+
 // CharacterData
 export type AbilityScoreRequest = 'cha' | 'con' | 'dex' | 'int' | 'str' | 'wis';
 
@@ -379,10 +381,19 @@ export type WeaponPropertyRequest =
 
 export type FeatsRequest = 'grappler';
 
-export type FeaturesRequest = ''; //non le trovo, vuole il nome
+//export type FeaturesRequest = ''; //non le trovo, vuole il nome
+//inizio
+export type FeaturesRequest = {
+  index: ClassIndexRequest;
+};
+export type ProficiencyByRaceRequest = {
+  index: ClassIndexRequest;
+};
 
+//fine
 export type MonstersRequest = {index: string} | {challenge_rating?: number[]}; // list of monsters
 
+/*
 export type RacesRequest =
   | 'dragonborn'
   | 'dwarf'
@@ -393,6 +404,24 @@ export type RacesRequest =
   | 'halfling'
   | 'human'
   | 'tiefling';
+
+  */
+// inizio
+export type RaceIndexRequest =
+  | 'dragonborn'
+  | 'dwarf'
+  | 'elf'
+  | 'gnome'
+  | 'half-elf'
+  | 'half-orc'
+  | 'halfling'
+  | 'human'
+  | 'tiefling';
+
+export type RacesRequest = {
+  index: RaceIndexRequest;
+};
+//fine
 
 //Rules
 export type RuleSectionRequest =
@@ -438,6 +467,11 @@ export type RuleRequest =
   | 'spellcasting'
   | 'using-ability-scores';
 
+//inizio
+export type SpellCastingForClass = {
+  index: ClassIndexRequest;
+};
+//fine
 export type SpellsRequest =
   //per list of spells-------------------------
   | {level?: number[]; school?: string[]}
@@ -496,6 +530,11 @@ export type SubracesRequest =
   | 'lightfoot-halfling'
   | 'rock-gnome';
 
+//inizio
+export type TraitsByIndexRequest = {
+  index: ClassIndexRequest;
+};
+//fine
 export type TraitsRequest =
   | 'artificers-lore'
   | 'brave'
