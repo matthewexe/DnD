@@ -564,7 +564,7 @@ export type SubraceTraitsResponse = ResourceListResponse;
 /**
  * @link https://5e-bits.github.io/docs/api/get-a-trait-by-index
  */
-export type TraitsIndex = APIReference & {
+export type TraitsIndexResponse = APIReference & {
   desc?: string;
   races?: APIReference[];
   subraces?: APIReference[];
