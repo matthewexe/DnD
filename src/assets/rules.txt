@@ -1,0 +1,151 @@
+
+PUNTEGGI CARATTERISTICA:
+
+Più varianti, in uso la più "forte" ovvero con limite punteggi piu elevati:
+Lanci 4 D6, scarti il più basso e tieni i 3 rimanenti.
+
+Al massimo 18 per ogni caratteristica,minimo(dado medio 9).TOT 108 punti
+
+
+__________________________________________________________________________________
+COMPETENZA CLASSI:
+
+GUERRIERO:
+Forza,Costituzione,Destrezza
+
+LADRO:
+Destrezza,Carisma,Intelligenza
+
+MAGO:
+Intelligenza,Destrezza,Costituzione
+
+CHIERICO:
+Saggezza,Costituzione,Destrezza
+
+DRUIDO:
+Saggezza,Costituzione,Destrezza
+
+STREGONE:
+Carisma,Costituzione,Destrezza
+
+BARDO:
+Carisma,Destrezza,Costituzione
+
+PALADINO:
+Forza,Carisma,Costituzione
+
+RANGER:
+Destrezza,Saggezza,Costituzione
+
+BARBARO:
+Forza,Costituzione,Destrezza
+
+MONACO:
+Destrezza,Saggezza,Costituzione
+
+ARCIERE:
+Destrezza,Costituzione
+
+MAGO GUERRIERO:
+Intelligenza,Forza,Destrezza
+
+______________________________________________________________________________________
+BACKGROUND:
+
+sono vari, una stringa.
+Menu a tendina delle tipologie, se possibile la descrizione compare passandoci con il cursore.
+
+________________________________________________________________________________________________
+LIVELLI:
+
+1 -> 0-------------------------+2 competenza
+2 -> 300
+3 -> 900
+4 -> 2.700------------------- +2 punti
+5 -> 6.500-------------------- +3 competenza
+6 -> 14.000
+7 -> 23.000
+8 -> 34.000----------------------+2punti
+9 -> 48.000-----------------------+4 competenza
+10-> 64.000
+11->85.000
+12->100.000-----------------------+2punti
+13->120.000------------------------+5 competenza
+14->140.000
+15->165.000
+16->195.000------------------------+2punti
+17->225.000-------------------------+6 competenza
+18->265.000
+19->305.000------------------------+2punti
+20->355.000
+
+________________________________________________________________________________________________-
+COMPETENZE
+
+al maaaaaaaaaaaaassimo 8
+in genere siamo sui 3 ma controlli troppo lunghi e difficili quindi non si fa.
+
+_____________________________________________________________________________________________
+VELOCITA
+
+dipede dalla specie e dalla classe e dal livello,dalla mossa ... troppo lungo. Lasciamo libero 
+
+___________________________________________________________________________________________
+PUNTI FERITA
+
+spero api faccia qualcosa...
+dipende dalla classe principalmente: 
+ogni classe ha un determinato dado generico D?
+liv 1 hai il massimo del D? + costituzione
+ad ogni livello si tira il D? e si prende il punteggio + mod costituzione.
+
+__________________________________________________________________________________________
+PERCEZIONE PASSIVA
+
+Standard=10
+Max=20
+____________________________________________________________________________________________
+TS CONTRO MORTE
+
+3 slot SUCCESSI
+3 slot MORTE
+
+(caselle selezionabili)
+
+_______________________________________________________________________________________________
+*************************************************************************************************
+*************************************************************************************************
+SLOT GENERICI
+
+slot generici(vedi immagine) per ulteriori dettagli.
+
+IDEE:
+
+	DA PAGINA PERSONAGGIO:
+	1)
+	
+	link pagina CARATTERISTICHE: tutte le caratteristiche del personaggio.
+	
+	2)
+	
+	link pagina INVENTARIO
+	pagina generica con 
+	MP(amount)
+	MO(amount)->Spawn 10
+	ME(amount)
+	MA(amount)
+	MR(amount)
+	
+	endless list ->Spawn(equip di base) ->vedi Classe ,(eqip da Background)api?
+	<	OGGETTO		><	QUANTITA	>
+
+	3)
+	
+	In genere si prendono sempre monete oro, io farei scorciatoia da vedere sempre le M? 
+	attuali, slot a lato con: bottone (+ o -),bottone che se premuto switcha tra (MR e MP) 
+	e slot da inserire interi, gestione rapida ed efficacie.
+	NB lasciare in vista il valore PRE-MODIFICA, se uno sbaglia è fottuto
+	altrimenti.SAREBBE MOLTO BELLO avere lo storico di tutti i movimenti.
+	
+
+
