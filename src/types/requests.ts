@@ -1,7 +1,14 @@
 import {useGetClassByIndexQuery} from '../services/api';
 
 // CharacterData
+
 export type AbilityScoreRequest = 'cha' | 'con' | 'dex' | 'int' | 'str' | 'wis';
+
+//inizio
+export type AbilityScoreRequestByIndex = {
+  index: AbilityScoreRequest;
+};
+//fine
 
 export type AlignmentRequest =
   | 'chaotic-neutral'
@@ -14,7 +21,19 @@ export type AlignmentRequest =
   | 'neutral-evil'
   | 'neutral-good';
 
+//inizio
+export type AlignamentRequestByIndex = {
+  index: AlignmentRequest;
+};
+//fine
+
 export type BackgroundRequest = 'acolyte';
+
+//inizio
+export type BackgroundRequestByIndex = {
+  index: BackgroundRequest;
+};
+//fine
 
 export type LanguageRequest =
   | 'abyssal'
@@ -34,6 +53,11 @@ export type LanguageRequest =
   | 'sylvan'
   | 'undercommon';
 
+//inizio
+export type LanguageRequestByIndex = {
+  index: LanguageRequest;
+};
+//fine
 //proficiency----------------------------
 
 export type SkillRequest =
@@ -56,6 +80,12 @@ export type SkillRequest =
   | 'stealth'
   | 'survival';
 
+//inizio
+export type SkillRequestByIndex = {
+  index: SkillRequest;
+};
+//fine
+
 export type ClassIndexRequest =
   | 'barbarian'
   | 'bard'
@@ -76,8 +106,11 @@ export type ClassRequest = {
 
 export type ClassResourceListRequest = ClassRequest;
 
-export type ClassLevelsRequest = ClassRequest &
-  ({subclass?: string} | {class_level: number} | {spell_level: number});
+//MODIFICATO
+export type ClassLevelsRequest = ClassRequest & {class_level: number};
+//({subclass?: string} | {class_level: number} | {spell_level: number});
+
+//FINE MODIFICA
 
 // GameMechanics
 export type ConditionRequest =
@@ -362,6 +395,11 @@ export type EquipmentItemRequest =
   | 'Wooden staff'
   | 'Yew wand';
 
+//inizio
+export type EquipmentItemRequestByIndex = {
+  index: EquipmentItemRequest;
+};
+//fine
 export type EquipmentCategoryRequest = ''; //non li trovo, vuole il nome
 
 export type MagicItemRequest = ''; //non li trovo, vuole il nome
@@ -379,6 +417,11 @@ export type WeaponPropertyRequest =
   | 'two-handed'
   | 'versatile';
 
+//inizio
+export type WeaponPropertyRequestByIndex = {
+  index: WeaponPropertyRequest;
+};
+//fine
 export type FeatsRequest = 'grappler';
 
 //export type FeaturesRequest = ''; //non le trovo, vuole il nome
@@ -392,6 +435,13 @@ export type ProficiencyByRaceRequest = {
 
 //fine
 export type MonstersRequest = {index: string} | {challenge_rating?: number[]}; // list of monsters
+
+//inizio
+export type MonstersRequestByIndex = {index: string};
+export type MonstersRequestByLevel = {index: string} & {
+  challenge_rating?: number[];
+};
+//fine
 
 /*
 export type RacesRequest =
@@ -421,6 +471,11 @@ export type RaceIndexRequest =
 export type RacesRequest = {
   index: RaceIndexRequest;
 };
+export type SubraceIndexRequest =
+  | 'high-elf'
+  | 'hill-dwarf'
+  | 'lightfoot-halfling';
+
 //fine
 
 //Rules
@@ -468,8 +523,11 @@ export type RuleRequest =
   | 'using-ability-scores';
 
 //inizio
-export type SpellCastingForClass = {
+export type SpellCastingForClassRequest = {
   index: ClassIndexRequest;
+};
+export type SpellCastingForClassByLevelRequest = {
+  Index: ClassIndexRequest & {class_level: number};
 };
 //fine
 export type SpellsRequest =
