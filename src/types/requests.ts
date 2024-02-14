@@ -1,5 +1,3 @@
-import {useGetClassByIndexQuery} from '../services/api';
-
 // CharacterData
 
 export type AbilityScoreRequest = 'cha' | 'con' | 'dex' | 'int' | 'str' | 'wis';
@@ -107,8 +105,17 @@ export type ClassRequest = {
 export type ClassResourceListRequest = ClassRequest;
 
 //MODIFICATO
-export type ClassLevelsRequest = ClassRequest & {class_level: number};
-//({subclass?: string} | {class_level: number} | {spell_level: number});
+export type ClassLevelAllResourceRequest = ClassRequest & {
+  subclass?: string;
+};
+
+export type ClassLevelResourceRequest = ClassRequest & {
+  class_level: number;
+};
+
+export type ClassLevelSpellRequest = ClassRequest & {
+  spell_level: number;
+};
 
 //FINE MODIFICA
 
