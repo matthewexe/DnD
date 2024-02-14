@@ -53,7 +53,7 @@ import {
   WeaponPropertyRequestByIndex,
   MonstersRequest,
   MonstersRequestByIndex,
-  MonstersRequestByIndexAndLevel,
+  MonstersRequestByLevel,
 } from '../types/requests';
 
 export const api = createApi({
@@ -300,11 +300,12 @@ export const api = createApi({
       providesTags: (result, error, {index}) => [{type: 'Monsters', id: index}],
     }),
 
+    //non sono sicuro
     getMonsterByLevel: builder.query<
       MonsterResourceListResponse,
       MonstersRequestByLevel
     >({
-      query: ({index, challenge_rating}) => `weapon-properties/${index}`,
+      query: ({challenge_rating}) => `monsters/${challenge_rating}`,
       providesTags: (result, error, {index}) => [{type: 'Monsters', id: index}],
     }),
 
@@ -315,4 +316,27 @@ export const api = createApi({
   }),
 });
 
-export const {useGetEndpointResourceQuery, useGetClassByIndexQuery} = api;
+export const {
+  useGetRacesByIndexQuery,
+  useGetSubRacesByIndexQuery,
+  useGetTraitsByIndexQuery,
+  useGetClassByIndexQuery,
+  useGetSpellCastingByIndexQuery,
+  useGetSubClassesAvilableByIndexQuery,
+  useGetSpellAvailableByIndexQuery,
+  useGetFeaturesForClassByIndexQuery,
+  useGetProficienciesForClassByIndexQuery,
+  useGetAllLevelResourcesByIndexQuery,
+  useGetLevelResourcesByIndexByLevelQuery,
+  useGetFeaturesByIndexByLevelQuery,
+  useGetAbilitiesScoreByIndexQuery,
+  useGetAlignmentByIndexQuery,
+  useGetBackgroundByIndexQuery,
+  useGetLanguageByIndexQuery,
+  useGetSkillByIndexQuery,
+  useGetEquipmentByIndexQuery,
+  useGetWeaponPropertyByIndexQuery,
+  useGetMonsterByIndexQuery,
+  useGetMonsterByLevelQuery,
+  useGetEndpointResourceQuery,
+} = api;
