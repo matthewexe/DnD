@@ -1,0 +1,9 @@
+overwrite: true
+generates:
+  src/generated/graphql.ts:
+    schema: src/types/schema.graphql
+    plugins:
+      - 'typescript'
+    config:
+      sort: false
+      namingConvention: change-case#CamelCase
