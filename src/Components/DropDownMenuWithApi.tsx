@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // Assumi che getRaces sia la funzione importata da api.ts che effettua la chiamata API
-import { getRacesByIndex } from '../services/api';
+import { useGetRacesByIndexQuery } from '../services/api';
 
 const DropdownMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +10,7 @@ const DropdownMenu = () => {
     const fetchRaces = async () => {
       try {
         // Assumi che getRaces() restituisca un array di razze
-        const response = await getRaces();
+        const response = await useGetRacesByIndexQuery();
         if (response.ok) {
           const data = await response.json();
           setOptions(data.results); // o adatta in base al formato della risposta

@@ -33,12 +33,9 @@ import {
   EquipmentItemRequestByIndex,
   WeaponPropertyRequestByIndex,
   MonstersRequestByIndex,
-<<<<<<< HEAD
-=======
   ClassLevelSpellRequest,
   ClassLevelAllResourceRequest,
   ClassLevelResourceRequest,
->>>>>>> origin/mattia_smanetta
   MonstersRequestByLevel,
 } from '../types/requests';
 
@@ -296,11 +293,7 @@ export const api = createApi({
       MonsterResourceListResponse,
       MonstersRequestByLevel
     >({
-<<<<<<< HEAD
       query: ({challenge_rating}) => `monsters/${challenge_rating}`,
-=======
-      query: ({index}) => `weapon-properties/${index}`,
->>>>>>> origin/mattia_smanetta
       providesTags: (result, error, {index}) => [{type: 'Monsters', id: index}],
     }),
 
