@@ -8,6 +8,7 @@ import { HomeScreen } from './src/screens/HomeScreen';
 import { MyTabs } from './src/screens/BottomNavigator';
 import { MyButton } from './src/screens/MyButton';
 import { Counter } from './src/screens/Counter';
+import ExportDwarf from './src/screens/prova';
 
 
 
@@ -20,6 +21,7 @@ function App() {
 
       <HomeScreen/>
       <MyButton title='Test'/>
+      <ExportDwarf>Aggiornamento</ExportDwarf>
     </NavigationContainer>
   );
 }
