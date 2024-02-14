@@ -5,6 +5,7 @@ import {
   BackgroundResponse,
   ClassLevelResourceResponse,
   ClassLevelSpellResponse,
+  ClassResourceListResponse,
   ClassResponse,
   EquipmentResponse,
   FeatureResponse,
@@ -33,12 +34,9 @@ import {
   EquipmentItemRequestByIndex,
   WeaponPropertyRequestByIndex,
   MonstersRequestByIndex,
-<<<<<<< HEAD
-=======
   ClassLevelSpellRequest,
   ClassLevelAllResourceRequest,
   ClassLevelResourceRequest,
->>>>>>> origin/mattia_smanetta
   MonstersRequestByLevel,
 } from '../types/requests';
 
@@ -144,17 +142,16 @@ export const api = createApi({
       },
     ),
 
-    /* Questa se vuoi la facciamo insieme perchè ti devo far vedere una roba
+    // Questa se vuoi la facciamo insieme perchè ti devo far vedere una roba
     getProficienciesForClassByIndex: builder.query<
-      ProficiencyByRaceResponse,
-      ProficiencyByRaceRequest
+      ClassResourceListResponse,
+      ClassRequest
     >({
       query: ({index}) => `classes/${index}/proficiencies`,
       providesTags: (result, error, {index}) => [
         {type: 'ProficienciesForClass', id: index},
       ],
     }),
-    */
 
     //LIVELLI PER LE CLASSI
     getAllLevelResourcesByIndex: builder.query<
@@ -296,11 +293,7 @@ export const api = createApi({
       MonsterResourceListResponse,
       MonstersRequestByLevel
     >({
-<<<<<<< HEAD
       query: ({challenge_rating}) => `monsters/${challenge_rating}`,
-=======
-      query: ({index}) => `weapon-properties/${index}`,
->>>>>>> origin/mattia_smanetta
       providesTags: (result, error, {index}) => [{type: 'Monsters', id: index}],
     }),
 
