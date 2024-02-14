@@ -1,12 +1,92 @@
-// CharacterData
-
-export type AbilityScoreRequest = 'cha' | 'con' | 'dex' | 'int' | 'str' | 'wis';
+//GorlokTheDestroyer
 
 //inizio
+export type TraitsByIndexRequest = {
+  index: ClassIndexRequest;
+};
+
+export type WeaponPropertyRequestByIndex = {
+  index: WeaponPropertyRequest;
+};
+
 export type AbilityScoreRequestByIndex = {
   index: AbilityScoreRequest;
 };
+
+export type AlignamentRequestByIndex = {
+  index: AlignmentRequest;
+};
+
+export type BackgroundRequestByIndex = {
+  index: BackgroundRequest;
+};
+
+export type LanguageRequestByIndex = {
+  index: LanguageRequest;
+};
+
+export type SkillRequestByIndex = {
+  index: SkillRequest;
+};
+//MODIFICATO
+export type ClassLevelAllResourceRequest = ClassRequest & {
+  subclass?: string;
+};
+
+export type ClassLevelResourceRequest = ClassRequest & {
+  class_level: number;
+};
+
+export type ClassLevelSpellRequest = ClassRequest & {
+  spell_level: number;
+};
+
+//FINE MODIFICA
+
+export type EquipmentItemRequestByIndex = {
+  index: EquipmentItemRequest;
+};
+export type FeaturesRequestByIndex = {
+  index: ClassIndexRequest;
+};
+export type ProficiencyByRaceRequest = {
+  index: ClassIndexRequest;
+};
+export type MonstersRequestByIndex = {index: string};
+export type MonstersRequestByLevel = {index: string} & {
+  challenge_rating?: number[];
+};
+export type RaceIndexRequest =
+  | 'dragonborn'
+  | 'dwarf'
+  | 'elf'
+  | 'gnome'
+  | 'half-elf'
+  | 'half-orc'
+  | 'halfling'
+  | 'human'
+  | 'tiefling';
+
+export type RacesRequestByIndex = {
+  index: RaceIndexRequest;
+};
+export type SubraceIndexRequest =
+  | 'high-elf'
+  | 'hill-dwarf'
+  | 'lightfoot-halfling';
+
+export type SpellCastingForClassRequest = {
+  index: ClassIndexRequest;
+};
+export type SpellCastingForClassByLevelRequest = {
+  Index: ClassIndexRequest & {class_level: number};
+};
 //fine
+
+//END GorlokTheDestroyer
+
+// CharacterData
+export type AbilityScoreRequest = 'cha' | 'con' | 'dex' | 'int' | 'str' | 'wis';
 
 export type AlignmentRequest =
   | 'chaotic-neutral'
@@ -19,19 +99,7 @@ export type AlignmentRequest =
   | 'neutral-evil'
   | 'neutral-good';
 
-//inizio
-export type AlignamentRequestByIndex = {
-  index: AlignmentRequest;
-};
-//fine
-
 export type BackgroundRequest = 'acolyte';
-
-//inizio
-export type BackgroundRequestByIndex = {
-  index: BackgroundRequest;
-};
-//fine
 
 export type LanguageRequest =
   | 'abyssal'
@@ -51,11 +119,6 @@ export type LanguageRequest =
   | 'sylvan'
   | 'undercommon';
 
-//inizio
-export type LanguageRequestByIndex = {
-  index: LanguageRequest;
-};
-//fine
 //proficiency----------------------------
 
 export type SkillRequest =
@@ -78,12 +141,6 @@ export type SkillRequest =
   | 'stealth'
   | 'survival';
 
-//inizio
-export type SkillRequestByIndex = {
-  index: SkillRequest;
-};
-//fine
-
 export type ClassIndexRequest =
   | 'barbarian'
   | 'bard'
@@ -104,20 +161,8 @@ export type ClassRequest = {
 
 export type ClassResourceListRequest = ClassRequest;
 
-//MODIFICATO
-export type ClassLevelAllResourceRequest = ClassRequest & {
-  subclass?: string;
-};
-
-export type ClassLevelResourceRequest = ClassRequest & {
-  class_level: number;
-};
-
-export type ClassLevelSpellRequest = ClassRequest & {
-  spell_level: number;
-};
-
-//FINE MODIFICA
+export type ClassLevelsRequest = ClassRequest &
+  ({subclass?: string} | {class_level: number} | {spell_level: number});
 
 // GameMechanics
 export type ConditionRequest =
@@ -402,14 +447,411 @@ export type EquipmentItemRequest =
   | 'Wooden staff'
   | 'Yew wand';
 
-//inizio
-export type EquipmentItemRequestByIndex = {
-  index: EquipmentItemRequest;
-};
-//fine
-export type EquipmentCategoryRequest = ''; //non li trovo, vuole il nome
+export type EquipmentCategoryRequest =
+  | 'adventuring-gear'
+  | 'ammunition'
+  | 'arcane-foci'
+  | 'armor'
+  | 'artisans-tools'
+  | 'druidic-foci'
+  | 'equipment-packs'
+  | 'gaming-sets'
+  | 'heavy-armor'
+  | 'holy-symbols'
+  | 'kits'
+  | 'land-vehicles'
+  | 'light-armor'
+  | 'martial-melee-weapons'
+  | 'martial-ranged-weapons'
+  | 'martial-weapons'
+  | 'medium-armor'
+  | 'melee-weapons'
+  | 'mounts-and-other-animals'
+  | 'mounts-and-vehicles'
+  | 'musical-instruments'
+  | 'other-tools'
+  | 'potion'
+  | 'ranged-weapons'
+  | 'ring'
+  | 'rod'
+  | 'scroll'
+  | 'shields'
+  | 'simple-melee-weapons'
+  | 'simple-ranged-weapons'
+  | 'simple-weapons'
+  | 'staff'
+  | 'standard-gear'
+  | 'tack-harness-and-drawn-vehicles'
+  | 'tools'
+  | 'wand'
+  | 'waterborne-vehicles'
+  | 'weapon'
+  | 'wondrous-items'
+  | 'action-surge-1-use';
 
-export type MagicItemRequest = ''; //non li trovo, vuole il nome
+export type MagicItemRequest =
+  | 'adamantine-armor'
+  | 'ammunition'
+  | 'ammunition-1'
+  | 'ammunition-2'
+  | 'ammunition-3'
+  | 'amulet-of-health'
+  | 'amulet-of-proof-against-detection-and-location'
+  | 'amulet-of-the-planes'
+  | 'animated-shield'
+  | 'apparatus-of-the-crab'
+  | 'armor'
+  | 'armor-1'
+  | 'armor-2'
+  | 'armor-3'
+  | 'armor-of-invulnerability'
+  | 'armor-of-resistance'
+  | 'armor-of-vulnerability'
+  | 'arrow-catching-shield'
+  | 'arrow-of-slaying'
+  | 'bag-of-beans'
+  | 'bag-of-devouring'
+  | 'bag-of-holding'
+  | 'bag-of-tricks'
+  | 'bag-of-tricks-gray'
+  | 'bag-of-tricks-rust'
+  | 'bag-of-tricks-tan'
+  | 'bead-of-force'
+  | 'belt-of-dwarvenkind'
+  | 'belt-of-giant-strength'
+  | 'belt-of-giant-strength-cloud'
+  | 'belt-of-giant-strength-fire'
+  | 'belt-of-giant-strength-frost'
+  | 'belt-of-giant-strength-hill'
+  | 'belt-of-giant-strength-stone'
+  | 'belt-of-giant-strength-storm'
+  | 'berserker-axe'
+  | 'boots-of-elvenkind'
+  | 'boots-of-levitation'
+  | 'boots-of-speed'
+  | 'boots-of-striding-and-springing'
+  | 'boots-of-the-winterlands'
+  | 'bowl-of-commanding-water-elementals'
+  | 'bracers-of-archery'
+  | 'bracers-of-defense'
+  | 'brazier-of-commanding-fire-elementals'
+  | 'brooch-of-shielding'
+  | 'broom-of-flying'
+  | 'candle-of-invocation'
+  | 'cape-of-the-mountebank'
+  | 'carpet-of-flying'
+  | 'carpet-of-flying-3x5'
+  | 'carpet-of-flying-4x6'
+  | 'carpet-of-flying-5x7'
+  | 'carpet-of-flying-6x9'
+  | 'censer-of-controlling-air-elementals'
+  | 'chime-of-opening'
+  | 'circlet-of-blasting'
+  | 'cloak-of-arachnida'
+  | 'cloak-of-displacement'
+  | 'cloak-of-elvenkind'
+  | 'cloak-of-protection'
+  | 'cloak-of-the-bat'
+  | 'cloak-of-the-manta-ray'
+  | 'crystal-ball'
+  | 'crystal-ball-of-mind-reading'
+  | 'crystal-ball-of-telepathy'
+  | 'crystal-ball-of-true-seeing'
+  | 'cube-of-force'
+  | 'cubic-gate'
+  | 'dagger-of-venom'
+  | 'dancing-sword'
+  | 'decanter-of-endless-water'
+  | 'deck-of-illusions'
+  | 'deck-of-many-things'
+  | 'defender'
+  | 'demon-armor'
+  | 'dimensional-shackles'
+  | 'dragon-scale-mail'
+  | 'dragon-scale-mail-black'
+  | 'dragon-scale-mail-blue'
+  | 'dragon-scale-mail-brass'
+  | 'dragon-scale-mail-bronze'
+  | 'dragon-scale-mail-copper'
+  | 'dragon-scale-mail-gold'
+  | 'dragon-scale-mail-green'
+  | 'dragon-scale-mail-red'
+  | 'dragon-scale-mail-silver'
+  | 'dragon-scale-mail-white'
+  | 'dragon-slayer'
+  | 'dust-of-disappearance'
+  | 'dust-of-dryness'
+  | 'dust-of-sneezing-and-choking'
+  | 'dwarven-plate'
+  | 'dwarven-thrower'
+  | 'efficient-quiver'
+  | 'efreeti-bottle'
+  | 'elemental-gem'
+  | 'elemental-gem-air'
+  | 'elemental-gem-earth'
+  | 'elemental-gem-fire'
+  | 'elemental-gem-water'
+  | 'elven-chain'
+  | 'eversmoking-bottle'
+  | 'eyes-of-charming'
+  | 'eyes-of-minute-seeing'
+  | 'eyes-of-the-eagle'
+  | 'feather-token'
+  | 'feather-token-anchor'
+  | 'feather-token-bird'
+  | 'feather-token-fan'
+  | 'feather-token-swan-boat'
+  | 'feather-token-tree'
+  | 'feather-token-whip'
+  | 'figurine-of-wondrous-power'
+  | 'figurine-of-wondrous-power-bronze-griffon'
+  | 'figurine-of-wondrous-power-ebony-fly'
+  | 'figurine-of-wondrous-power-golden-lions'
+  | 'figurine-of-wondrous-power-ivory-goats'
+  | 'figurine-of-wondrous-power-marble-elephant'
+  | 'figurine-of-wondrous-power-obsidian-steed'
+  | 'figurine-of-wondrous-power-onyx-dog'
+  | 'figurine-of-wondrous-power-serpentine-owl'
+  | 'figurine-of-wondrous-power-silver-raven'
+  | 'flame-tongue'
+  | 'folding-boat'
+  | 'frost-brand'
+  | 'gauntlets-of-ogre-power'
+  | 'gem-of-brightness'
+  | 'gem-of-seeing'
+  | 'giant-slayer'
+  | 'glamoured-studded-leather-armor'
+  | 'gloves-of-missile-snaring'
+  | 'gloves-of-swimming-and-climbing'
+  | 'goggles-of-night'
+  | 'hammer-of-thunderbolts'
+  | 'handy-haversack'
+  | 'hat-of-disguise'
+  | 'headband-of-intellect'
+  | 'helm-of-brilliance'
+  | 'helm-of-comprehending-languages'
+  | 'helm-of-telepathy'
+  | 'helm-of-teleportation'
+  | 'holy-avenger'
+  | 'horn-of-blasting'
+  | 'horn-of-valhalla'
+  | 'horn-of-valhalla-brass'
+  | 'horn-of-valhalla-bronze'
+  | 'horn-of-valhalla-iron'
+  | 'horn-of-valhalla-silver'
+  | 'horseshoes-of-a-zephyr'
+  | 'horseshoes-of-speed'
+  | 'immovable-rod'
+  | 'instant-fortress'
+  | 'ioun-stone'
+  | 'ioun-stone-of-absorption'
+  | 'ioun-stone-of-agility'
+  | 'ioun-stone-of-awareness'
+  | 'ioun-stone-of-fortitude'
+  | 'ioun-stone-of-greater-absorption'
+  | 'ioun-stone-of-insight'
+  | 'ioun-stone-of-intellect'
+  | 'ioun-stone-of-leadership'
+  | 'ioun-stone-of-mastery'
+  | 'ioun-stone-of-protection'
+  | 'ioun-stone-of-regeneration'
+  | 'ioun-stone-of-reserve'
+  | 'ioun-stone-of-strength'
+  | 'ioun-stone-of-sustenance'
+  | 'iron-bands-of-binding'
+  | 'iron-flask'
+  | 'javelin-of-lightning'
+  | 'lantern-of-revealing'
+  | 'luck-blade'
+  | 'mace-of-disruption'
+  | 'mace-of-smiting'
+  | 'mace-of-terror'
+  | 'mantle-of-spell-resistance'
+  | 'manual-of-bodily-health'
+  | 'manual-of-gainful-exercise'
+  | 'manual-of-golems'
+  | 'manual-of-golems-clay'
+  | 'manual-of-golems-flesh'
+  | 'manual-of-golems-iron'
+  | 'manual-of-golems-stone'
+  | 'manual-of-quickness-of-action'
+  | 'marvelous-pigments'
+  | 'medallion-of-thoughts'
+  | 'mirror-of-life-trapping'
+  | 'mithral-armor'
+  | 'necklace-of-adaptation'
+  | 'necklace-of-fireballs'
+  | 'necklace-of-prayer-beads'
+  | 'nine-lives-stealer'
+  | 'oathbow'
+  | 'oil-of-etherealness'
+  | 'oil-of-sharpness'
+  | 'oil-of-slipperiness'
+  | 'orb-of-dragonkind'
+  | 'pearl-of-power'
+  | 'periapt-of-health'
+  | 'periapt-of-proof-against-poison'
+  | 'periapt-of-wound-closure'
+  | 'philter-of-love'
+  | 'pipes-of-haunting'
+  | 'pipes-of-the-sewers'
+  | 'plate-armor-of-etherealness'
+  | 'portable-hole'
+  | 'potion-of-animal-friendship'
+  | 'potion-of-clairvoyance'
+  | 'potion-of-climbing'
+  | 'potion-of-diminution'
+  | 'potion-of-flying'
+  | 'potion-of-gaseous-form'
+  | 'potion-of-giant-strength'
+  | 'potion-of-giant-strength-cloud'
+  | 'potion-of-giant-strength-fire'
+  | 'potion-of-giant-strength-frost'
+  | 'potion-of-giant-strength-hill'
+  | 'potion-of-giant-strength-stone'
+  | 'potion-of-giant-strength-storm'
+  | 'potion-of-growth'
+  | 'potion-of-healing'
+  | 'potion-of-healing-common'
+  | 'potion-of-healing-greater'
+  | 'potion-of-healing-superior'
+  | 'potion-of-healing-supreme'
+  | 'potion-of-heroism'
+  | 'potion-of-invisibility'
+  | 'potion-of-mind-reading'
+  | 'potion-of-poison'
+  | 'potion-of-resistance'
+  | 'potion-of-resistance-acid'
+  | 'potion-of-resistance-cold'
+  | 'potion-of-resistance-fire'
+  | 'potion-of-resistance-force'
+  | 'potion-of-resistance-lightning'
+  | 'potion-of-resistance-necrotic'
+  | 'potion-of-resistance-poison'
+  | 'potion-of-resistance-psychic'
+  | 'potion-of-resistance-radiant'
+  | 'potion-of-resistance-thunder'
+  | 'potion-of-speed'
+  | 'potion-of-water-breathing'
+  | 'restorative-ointment'
+  | 'ring-of-animal-influence'
+  | 'ring-of-djinni-summoning'
+  | 'ring-of-elemental-command'
+  | 'ring-of-elemental-command-air'
+  | 'ring-of-elemental-command-earth'
+  | 'ring-of-elemental-command-fire'
+  | 'ring-of-elemental-command-water'
+  | 'ring-of-evasion'
+  | 'ring-of-feather-falling'
+  | 'ring-of-free-action'
+  | 'ring-of-invisibility'
+  | 'ring-of-jumping'
+  | 'ring-of-mind-shielding'
+  | 'ring-of-protection'
+  | 'ring-of-regeneration'
+  | 'ring-of-resistance'
+  | 'ring-of-resistance-acid'
+  | 'ring-of-resistance-cold'
+  | 'ring-of-resistance-fire'
+  | 'ring-of-resistance-force'
+  | 'ring-of-resistance-lightning'
+  | 'ring-of-resistance-necrotic'
+  | 'ring-of-resistance-poison'
+  | 'ring-of-resistance-psychic'
+  | 'ring-of-resistance-radiant'
+  | 'ring-of-resistance-thunder'
+  | 'ring-of-shooting-stars'
+  | 'ring-of-spell-storing'
+  | 'ring-of-spell-turning'
+  | 'ring-of-swimming'
+  | 'ring-of-telekinesis'
+  | 'ring-of-the-ram'
+  | 'ring-of-three-wishes'
+  | 'ring-of-warmth'
+  | 'ring-of-water-walking'
+  | 'ring-of-x-ray-vision'
+  | 'robe-of-eyes'
+  | 'robe-of-scintillating-colors'
+  | 'robe-of-stars'
+  | 'robe-of-the-archmagi'
+  | 'robe-of-useful-items'
+  | 'rod-of-absorption'
+  | 'rod-of-alertness'
+  | 'rod-of-lordly-might'
+  | 'rod-of-rulership'
+  | 'rod-of-security'
+  | 'rope-of-climbing'
+  | 'rope-of-entanglement'
+  | 'scarab-of-protection'
+  | 'scimitar-of-speed'
+  | 'shield-of-missile-attraction'
+  | 'slippers-of-spider-climbing'
+  | 'sovereign-glue'
+  | 'spell-scroll'
+  | 'spell-scroll-1st'
+  | 'spell-scroll-2nd'
+  | 'spell-scroll-3rd'
+  | 'spell-scroll-4th'
+  | 'spell-scroll-5th'
+  | 'spell-scroll-6th'
+  | 'spell-scroll-7th'
+  | 'spell-scroll-8th'
+  | 'spell-scroll-9th'
+  | 'spell-scroll-cantrip'
+  | 'spellguard-shield'
+  | 'sphere-of-annihilation'
+  | 'staff-of-charming'
+  | 'staff-of-fire'
+  | 'staff-of-frost'
+  | 'staff-of-healing'
+  | 'staff-of-power'
+  | 'staff-of-striking'
+  | 'staff-of-swarming-insects'
+  | 'staff-of-the-magi'
+  | 'staff-of-the-python'
+  | 'staff-of-the-woodlands'
+  | 'staff-of-thunder-and-lightning'
+  | 'staff-of-withering'
+  | 'stone-of-controlling-earth-elementals'
+  | 'stone-of-good-luck-luckstone'
+  | 'sun-blade'
+  | 'sword-of-life-stealing'
+  | 'sword-of-sharpness'
+  | 'sword-of-wounding'
+  | 'talisman-of-pure-good'
+  | 'talisman-of-the-sphere'
+  | 'talisman-of-ultimate-evil'
+  | 'tome-of-clear-thought'
+  | 'tome-of-leadership-and-influence'
+  | 'tome-of-understanding'
+  | 'trident-of-fish-command'
+  | 'universal-solvent'
+  | 'vicious-weapon'
+  | 'vorpal-sword'
+  | 'wand-of-binding'
+  | 'wand-of-enemy-detection'
+  | 'wand-of-fear'
+  | 'wand-of-fireballs'
+  | 'wand-of-lightning-bolts'
+  | 'wand-of-magic-detection'
+  | 'wand-of-magic-missiles'
+  | 'wand-of-paralysis'
+  | 'wand-of-polymorph'
+  | 'wand-of-secrets'
+  | 'wand-of-the-war-mage'
+  | 'wand-of-the-war-mage-1'
+  | 'wand-of-the-war-mage-2'
+  | 'wand-of-the-war-mage-3'
+  | 'wand-of-web'
+  | 'wand-of-wonder'
+  | 'weapon'
+  | 'weapon-1'
+  | 'weapon-2'
+  | 'weapon-3'
+  | 'well-of-many-worlds'
+  | 'wind-fan'
+  | 'winged-boots'
+  | 'wings-of-flying';
 
 export type WeaponPropertyRequest =
   | 'ammunition'
@@ -424,33 +866,382 @@ export type WeaponPropertyRequest =
   | 'two-handed'
   | 'versatile';
 
-//inizio
-export type WeaponPropertyRequestByIndex = {
-  index: WeaponPropertyRequest;
-};
-//fine
 export type FeatsRequest = 'grappler';
 
-//export type FeaturesRequest = ''; //non le trovo, vuole il nome
-//inizio
-export type FeaturesRequest = {
-  index: ClassIndexRequest;
-};
-export type ProficiencyByRaceRequest = {
-  index: ClassIndexRequest;
-};
+export type FeaturesRequest =
+  | 'action-surge-1-use'
+  | 'action-surge-2-uses'
+  | 'additional-fighting-style'
+  | 'additional-magical-secrets'
+  | 'arcane-recovery'
+  | 'arcane-tradition'
+  | 'archdruid'
+  | 'aura-improvements'
+  | 'aura-of-courage'
+  | 'aura-of-devotion'
+  | 'aura-of-protection'
+  | 'barbarian-ability-score-improvement-1'
+  | 'barbarian-ability-score-improvement-2'
+  | 'barbarian-ability-score-improvement-3'
+  | 'barbarian-ability-score-improvement-4'
+  | 'barbarian-ability-score-improvement-5'
+  | 'barbarian-extra-attack'
+  | 'barbarian-unarmored-defense'
+  | 'bard-ability-score-improvement-1'
+  | 'bard-ability-score-improvement-2'
+  | 'bard-ability-score-improvement-3'
+  | 'bard-ability-score-improvement-4'
+  | 'bard-ability-score-improvement-5'
+  | 'bard-college'
+  | 'bard-expertise-1'
+  | 'bard-expertise-2'
+  | 'bardic-inspiration-d10'
+  | 'bardic-inspiration-d12'
+  | 'bardic-inspiration-d6'
+  | 'bardic-inspiration-d8'
+  | 'beast-spells'
+  | 'blessed-healer'
+  | 'blindsense'
+  | 'bonus-cantrip'
+  | 'bonus-proficiencies'
+  | 'bonus-proficiency'
+  | 'brutal-critical-1-die'
+  | 'brutal-critical-2-dice'
+  | 'brutal-critical-3-dice'
+  | 'channel-divinity'
+  | 'channel-divinity-1-rest'
+  | 'channel-divinity-2-rest'
+  | 'channel-divinity-3-rest'
+  | 'channel-divinity-preserve-life'
+  | 'channel-divinity-sacred-weapon'
+  | 'channel-divinity-turn-the-unholy'
+  | 'channel-divinity-turn-undead'
+  | 'circle-of-the-land'
+  | 'circle-of-the-land-arctic'
+  | 'circle-of-the-land-coast'
+  | 'circle-of-the-land-desert'
+  | 'circle-of-the-land-forest'
+  | 'circle-of-the-land-grassland'
+  | 'circle-of-the-land-mountain'
+  | 'circle-of-the-land-swamp'
+  | 'circle-spells-1'
+  | 'circle-spells-2'
+  | 'circle-spells-3'
+  | 'circle-spells-4'
+  | 'cleansing-touch'
+  | 'cleric-ability-score-improvement-1'
+  | 'cleric-ability-score-improvement-2'
+  | 'cleric-ability-score-improvement-3'
+  | 'cleric-ability-score-improvement-4'
+  | 'cleric-ability-score-improvement-5'
+  | 'countercharm'
+  | 'cunning-action'
+  | 'cutting-words'
+  | 'danger-sense'
+  | 'dark-ones-blessing'
+  | 'dark-ones-own-luck'
+  | 'defensive-tactics'
+  | 'defensive-tactics-escape-the-horde'
+  | 'defensive-tactics-multiattack-defense'
+  | 'defensive-tactics-steel-will'
+  | 'deflect-missiles'
+  | 'destroy-undead-cr-1-2-or-below'
+  | 'destroy-undead-cr-1-or-below'
+  | 'destroy-undead-cr-2-or-below'
+  | 'destroy-undead-cr-3-or-below'
+  | 'destroy-undead-cr-4-or-below'
+  | 'diamond-soul'
+  | 'disciple-of-life'
+  | 'divine-domain'
+  | 'divine-health'
+  | 'divine-intervention'
+  | 'divine-intervention-improvement'
+  | 'divine-sense'
+  | 'divine-smite'
+  | 'divine-strike'
+  | 'domain-spells-1'
+  | 'domain-spells-2'
+  | 'domain-spells-3'
+  | 'domain-spells-4'
+  | 'domain-spells-5'
+  | 'draconic-presence'
+  | 'draconic-resilience'
+  | 'dragon-ancestor'
+  | 'dragon-ancestor-black---acid-damage'
+  | 'dragon-ancestor-blue---lightning-damage'
+  | 'dragon-ancestor-brass---fire-damage'
+  | 'dragon-ancestor-bronze---lightning-damage'
+  | 'dragon-ancestor-copper---acid-damage'
+  | 'dragon-ancestor-gold---fire-damage'
+  | 'dragon-ancestor-green---poison-damage'
+  | 'dragon-ancestor-red---fire-damage'
+  | 'dragon-ancestor-silver---cold-damage'
+  | 'dragon-ancestor-white---cold-damage'
+  | 'dragon-wings'
+  | 'druid-ability-score-improvement-1'
+  | 'druid-ability-score-improvement-2'
+  | 'druid-ability-score-improvement-3'
+  | 'druid-ability-score-improvement-4'
+  | 'druid-ability-score-improvement-5'
+  | 'druid-circle'
+  | 'druid-lands-stride'
+  | 'druid-timeless-body'
+  | 'druidic'
+  | 'eldritch-invocation-agonizing-blast'
+  | 'eldritch-invocation-armor-of-shadows'
+  | 'eldritch-invocation-ascendant-step'
+  | 'eldritch-invocation-beast-speech'
+  | 'eldritch-invocation-beguiling-influence'
+  | 'eldritch-invocation-bewitching-whispers'
+  | 'eldritch-invocation-book-of-ancient-secrets'
+  | 'eldritch-invocation-chains-of-carceri'
+  | 'eldritch-invocation-devils-sight'
+  | 'eldritch-invocation-dreadful-word'
+  | 'eldritch-invocation-eldritch-sight'
+  | 'eldritch-invocation-eldritch-spear'
+  | 'eldritch-invocation-eyes-of-the-rune-keeper'
+  | 'eldritch-invocation-fiendish-vigor'
+  | 'eldritch-invocation-gaze-of-two-minds'
+  | 'eldritch-invocation-lifedrinker'
+  | 'eldritch-invocation-mask-of-many-faces'
+  | 'eldritch-invocation-master-of-myriad-forms'
+  | 'eldritch-invocation-minions-of-chaos'
+  | 'eldritch-invocation-mire-the-mind'
+  | 'eldritch-invocation-misty-visions'
+  | 'eldritch-invocation-one-with-shadows'
+  | 'eldritch-invocation-otherworldly-leap'
+  | 'eldritch-invocation-repelling-blast'
+  | 'eldritch-invocation-sculptor-of-flesh'
+  | 'eldritch-invocation-sign-of-ill-omen'
+  | 'eldritch-invocation-thief-of-five-fates'
+  | 'eldritch-invocation-thirsting-blade'
+  | 'eldritch-invocation-visions-of-distant-realms'
+  | 'eldritch-invocation-voice-of-the-chain-master'
+  | 'eldritch-invocation-whispers-of-the-grave'
+  | 'eldritch-invocation-witch-sight'
+  | 'eldritch-invocations'
+  | 'eldritch-master'
+  | 'elemental-affinity'
+  | 'elusive'
+  | 'empowered-evocation'
+  | 'empty-body'
+  | 'evocation-savant'
+  | 'extra-attack-1'
+  | 'extra-attack-2'
+  | 'extra-attack-3'
+  | 'fast-hands'
+  | 'fast-movement'
+  | 'favored-enemy-1-type'
+  | 'favored-enemy-2-types'
+  | 'favored-enemy-3-enemies'
+  | 'feral-instinct'
+  | 'feral-senses'
+  | 'fiendish-resilience'
+  | 'fighter-ability-score-improvement-1'
+  | 'fighter-ability-score-improvement-2'
+  | 'fighter-ability-score-improvement-3'
+  | 'fighter-ability-score-improvement-4'
+  | 'fighter-ability-score-improvement-5'
+  | 'fighter-ability-score-improvement-6'
+  | 'fighter-ability-score-improvement-7'
+  | 'fighter-fighting-style'
+  | 'fighter-fighting-style-archery'
+  | 'fighter-fighting-style-defense'
+  | 'fighter-fighting-style-dueling'
+  | 'fighter-fighting-style-great-weapon-fighting'
+  | 'fighter-fighting-style-protection'
+  | 'fighter-fighting-style-two-weapon-fighting'
+  | 'fighting-style-defense'
+  | 'fighting-style-dueling'
+  | 'fighting-style-great-weapon-fighting'
+  | 'fighting-style-protection'
+  | 'flexible-casting-converting-spell-slot'
+  | 'flexible-casting-creating-spell-slots'
+  | 'flurry-of-blows'
+  | 'foe-slayer'
+  | 'font-of-inspiration'
+  | 'font-of-magic'
+  | 'frenzy'
+  | 'hide-in-plain-sight'
+  | 'holy-nimbus'
+  | 'hunters-prey'
+  | 'hunters-prey-colossus-slayer'
+  | 'hunters-prey-giant-killer'
+  | 'hunters-prey-horde-breaker'
+  | 'hurl-through-hell'
+  | 'improved-critical'
+  | 'improved-divine-smite'
+  | 'indomitable-1-use'
+  | 'indomitable-2-uses'
+  | 'indomitable-3-uses'
+  | 'indomitable-might'
+  | 'intimidating-presence'
+  | 'jack-of-all-trades'
+  | 'ki'
+  | 'ki-empowered-strikes'
+  | 'lay-on-hands'
+  | 'magical-secrets-1'
+  | 'magical-secrets-2'
+  | 'magical-secrets-3'
+  | 'martial-archetype'
+  | 'martial-arts'
+  | 'metamagic-1'
+  | 'metamagic-2'
+  | 'metamagic-3'
+  | 'metamagic-careful-spell'
+  | 'metamagic-distant-spell'
+  | 'metamagic-empowered-spell'
+  | 'metamagic-extended-spell'
+  | 'metamagic-heightened-spell'
+  | 'metamagic-quickened-spell'
+  | 'metamagic-subtle-spell'
+  | 'metamagic-twinned-spell'
+  | 'mindless-rage'
+  | 'monastic-tradition'
+  | 'monk-ability-score-improvement-1'
+  | 'monk-ability-score-improvement-2'
+  | 'monk-ability-score-improvement-3'
+  | 'monk-ability-score-improvement-4'
+  | 'monk-ability-score-improvement-5'
+  | 'monk-evasion'
+  | 'monk-extra-attack'
+  | 'monk-timeless-body'
+  | 'monk-unarmored-defense'
+  | 'multiattack'
+  | 'multiattack-volley'
+  | 'multiattack-whirlwind-attack'
+  | 'mystic-arcanum-6th-level'
+  | 'mystic-arcanum-7th-level'
+  | 'mystic-arcanum-8th-level'
+  | 'mystic-arcanum-9th-level'
+  | 'natural-explorer-1-terrain-type'
+  | 'natural-explorer-2-terrain-types'
+  | 'natural-explorer-3-terrain-types'
+  | 'natural-recovery'
+  | 'natures-sanctuary'
+  | 'natures-ward'
+  | 'oath-spells'
+  | 'open-hand-technique'
+  | 'otherworldly-patron'
+  | 'overchannel'
+  | 'pact-boon'
+  | 'pact-magic'
+  | 'pact-of-the-blade'
+  | 'pact-of-the-chain'
+  | 'pact-of-the-tome'
+  | 'paladin-ability-score-improvement-1'
+  | 'paladin-ability-score-improvement-2'
+  | 'paladin-ability-score-improvement-3'
+  | 'paladin-ability-score-improvement-4'
+  | 'paladin-ability-score-improvement-5'
+  | 'paladin-extra-attack'
+  | 'paladin-fighting-style'
+  | 'patient-defense'
+  | 'peerless-skill'
+  | 'perfect-self'
+  | 'persistent-rage'
+  | 'potent-cantrip'
+  | 'primal-champion'
+  | 'primal-path'
+  | 'primeval-awareness'
+  | 'purity-of-body'
+  | 'purity-of-spirit'
+  | 'quivering-palm'
+  | 'rage'
+  | 'ranger-ability-score-improvement-1'
+  | 'ranger-ability-score-improvement-2'
+  | 'ranger-ability-score-improvement-3'
+  | 'ranger-ability-score-improvement-4'
+  | 'ranger-ability-score-improvement-5'
+  | 'ranger-archetype'
+  | 'ranger-extra-attack'
+  | 'ranger-fighting-style'
+  | 'ranger-fighting-style-archery'
+  | 'ranger-fighting-style-defense'
+  | 'ranger-fighting-style-dueling'
+  | 'ranger-fighting-style-two-weapon-fighting'
+  | 'ranger-lands-stride'
+  | 'reckless-attack'
+  | 'relentless-rage'
+  | 'reliable-talent'
+  | 'remarkable-athlete'
+  | 'retaliation'
+  | 'rogue-ability-score-improvement-1'
+  | 'rogue-ability-score-improvement-2'
+  | 'rogue-ability-score-improvement-3'
+  | 'rogue-ability-score-improvement-4'
+  | 'rogue-ability-score-improvement-5'
+  | 'rogue-ability-score-improvement-6'
+  | 'rogue-evasion'
+  | 'rogue-expertise-1'
+  | 'rogue-expertise-2'
+  | 'roguish-archetype'
+  | 'sacred-oath'
+  | 'sculpt-spells'
+  | 'second-story-work'
+  | 'second-wind'
+  | 'signature-spell'
+  | 'slippery-mind'
+  | 'slow-fall'
+  | 'sneak-attack'
+  | 'song-of-rest-d10'
+  | 'song-of-rest-d12'
+  | 'song-of-rest-d6'
+  | 'song-of-rest-d8'
+  | 'sorcerer-ability-score-improvement-1'
+  | 'sorcerer-ability-score-improvement-2'
+  | 'sorcerer-ability-score-improvement-3'
+  | 'sorcerer-ability-score-improvement-4'
+  | 'sorcerer-ability-score-improvement-5'
+  | 'sorcerous-origin'
+  | 'sorcerous-restoration'
+  | 'spell-mastery'
+  | 'spellcasting-bard'
+  | 'spellcasting-cleric'
+  | 'spellcasting-druid'
+  | 'spellcasting-paladin'
+  | 'spellcasting-ranger'
+  | 'spellcasting-sorcerer'
+  | 'spellcasting-wizard'
+  | 'step-of-the-wind'
+  | 'stillness-of-mind'
+  | 'stroke-of-luck'
+  | 'stunning-strike'
+  | 'superior-critical'
+  | 'superior-hunters-defense'
+  | 'superior-hunters-defense-evasion'
+  | 'superior-hunters-defense-stand-against-the-tide'
+  | 'superior-hunters-defense-uncanny-dodge'
+  | 'superior-inspiration'
+  | 'supreme-healing'
+  | 'supreme-sneak'
+  | 'survivor'
+  | 'thiefs-reflexes'
+  | 'thieves-cant'
+  | 'tongue-of-the-sun-and-moon'
+  | 'tranquility'
+  | 'unarmored-movement-1'
+  | 'unarmored-movement-2'
+  | 'uncanny-dodge'
+  | 'use-magic-device'
+  | 'vanish'
+  | 'warlock-ability-score-improvement-1'
+  | 'warlock-ability-score-improvement-2'
+  | 'warlock-ability-score-improvement-3'
+  | 'warlock-ability-score-improvement-4'
+  | 'warlock-ability-score-improvement-5'
+  | 'wholeness-of-body'
+  | 'wild-shape-cr-1-2-or-below-no-flying-speed'
+  | 'wild-shape-cr-1-4-or-below-no-flying-or-swim-speed'
+  | 'wild-shape-cr-1-or-below'
+  | 'wizard-ability-score-improvement-1'
+  | 'wizard-ability-score-improvement-2'
+  | 'wizard-ability-score-improvement-3'
+  | 'wizard-ability-score-improvement-4'
+  | 'wizard-ability-score-improvement-5';
 
-//fine
 export type MonstersRequest = {index: string} | {challenge_rating?: number[]}; // list of monsters
 
-//inizio
-export type MonstersRequestByIndex = {index: string};
-export type MonstersRequestByLevel = {index: string} & {
-  challenge_rating?: number[];
-};
-//fine
-
-/*
 export type RacesRequest =
   | 'dragonborn'
   | 'dwarf'
@@ -461,29 +1252,6 @@ export type RacesRequest =
   | 'halfling'
   | 'human'
   | 'tiefling';
-
-  */
-// inizio
-export type RaceIndexRequest =
-  | 'dragonborn'
-  | 'dwarf'
-  | 'elf'
-  | 'gnome'
-  | 'half-elf'
-  | 'half-orc'
-  | 'halfling'
-  | 'human'
-  | 'tiefling';
-
-export type RacesRequest = {
-  index: RaceIndexRequest;
-};
-export type SubraceIndexRequest =
-  | 'high-elf'
-  | 'hill-dwarf'
-  | 'lightfoot-halfling';
-
-//fine
 
 //Rules
 export type RuleSectionRequest =
@@ -529,14 +1297,6 @@ export type RuleRequest =
   | 'spellcasting'
   | 'using-ability-scores';
 
-//inizio
-export type SpellCastingForClassRequest = {
-  index: ClassIndexRequest;
-};
-export type SpellCastingForClassByLevelRequest = {
-  Index: ClassIndexRequest & {class_level: number};
-};
-//fine
 export type SpellsRequest =
   //per list of spells-------------------------
   | {level?: number[]; school?: string[]}
@@ -595,11 +1355,6 @@ export type SubracesRequest =
   | 'lightfoot-halfling'
   | 'rock-gnome';
 
-//inizio
-export type TraitsByIndexRequest = {
-  index: ClassIndexRequest;
-};
-//fine
 export type TraitsRequest =
   | 'artificers-lore'
   | 'brave'

@@ -38,6 +38,8 @@ import {
   ClassLevelAllResourceRequest,
   ClassLevelResourceRequest,
   MonstersRequestByLevel,
+  FeaturesRequestByIndex,
+  RacesRequestByIndex,
 } from '../types/requests';
 
 export const api = createApi({
@@ -71,7 +73,7 @@ export const api = createApi({
     //TUTTO IL RESTO
 
     //Razze--Tratti_delle_razze
-    getRacesByIndex: builder.query<RaceResponse, RacesRequest>({
+    getRacesByIndex: builder.query<RaceResponse, RacesRequestByIndex>({
       query: ({index}) => `races/${index}`,
       providesTags: (result, error, {index}) => [{type: 'Race', id: index}],
     }),
@@ -133,14 +135,15 @@ export const api = createApi({
     }),
 
     //manca la request->fatta io controllare
-    getFeaturesForClassByIndex: builder.query<FeatureResponse, FeaturesRequest>(
-      {
-        query: ({index}) => `classes/${index}/features`,
-        providesTags: (result, error, {index}) => [
-          {type: 'FeaturesForClass', id: index},
-        ],
-      },
-    ),
+    getFeaturesForClassByIndex: builder.query<
+      FeatureResponse,
+      FeaturesRequestByIndex
+    >({
+      query: ({index}) => `classes/${index}/features`,
+      providesTags: (result, error, {index}) => [
+        {type: 'FeaturesForClass', id: index},
+      ],
+    }),
 
     // Questa se vuoi la facciamo insieme perchè ti devo far vedere una roba
     getProficienciesForClassByIndex: builder.query<
