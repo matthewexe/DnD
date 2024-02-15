@@ -53,7 +53,8 @@ export type ProficiencyByRaceRequest = {
   index: ClassIndexRequest;
 };
 export type MonstersRequestByIndex = {index: string};
-export type MonstersRequestByLevel = {index: string} & {
+export type MonstersRequestByLevel = {
+  index: string;
   challenge_rating?: number[];
 };
 export type RaceIndexRequest =
