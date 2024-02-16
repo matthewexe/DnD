@@ -5,6 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@react-native-community/cli-platform-android':
+    specifier: ^12.3.5
+    version: 12.3.5
+  '@react-native/gradle-plugin':
+    specifier: ^0.73.4
+    version: 0.73.4
   '@react-navigation/bottom-tabs':
     specifier: ^6.5.12
     version: 6.5.12(@react-navigation/native@6.1.10)(react-native-safe-area-context@4.9.0)(react-native-screens@3.29.0)(react-native@0.73.3)(react@18.2.0)
@@ -1880,6 +1886,19 @@ packages:
       - encoding
     dev: false
 
+  /@react-native-community/cli-platform-android@12.3.5:
+    resolution: {integrity: sha512-vkoEoP2qKwdf8jxkrL2b35k+9eTNRFO9J6QhkVJS8AgSDcwLDvSEUCHoDBNCHaohFHP1wDWixYG4QwDOx+GfFw==}
+    dependencies:
+      '@react-native-community/cli-tools': 12.3.5
+      chalk: 4.1.2
+      execa: 5.1.1
+      fast-xml-parser: 4.3.4
+      glob: 7.2.3
+      logkitty: 0.7.1
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /@react-native-community/cli-platform-ios@12.3.2:
     resolution: {integrity: sha512-OcWEAbkev1IL6SUiQnM6DQdsvfsKZhRZtoBNSj9MfdmwotVZSOEZJ+IjZ1FR9ChvMWayO9ns/o8LgoQxr1ZXeg==}
     dependencies:
@@ -1918,6 +1937,23 @@ packages:
 
   /@react-native-community/cli-tools@12.3.2:
     resolution: {integrity: sha512-nDH7vuEicHI2TI0jac/DjT3fr977iWXRdgVAqPZFFczlbs7A8GQvEdGnZ1G8dqRUmg+kptw0e4hwczAOG89JzQ==}
+    dependencies:
+      appdirsjs: 1.2.7
+      chalk: 4.1.2
+      find-up: 5.0.0
+      mime: 2.6.0
+      node-fetch: 2.7.0
+      open: 6.4.0
+      ora: 5.4.1
+      semver: 7.5.4
+      shell-quote: 1.8.1
+      sudo-prompt: 9.2.1
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /@react-native-community/cli-tools@12.3.5:
+    resolution: {integrity: sha512-Q7LKvu9pt3dR8XngcMfqo42XVEKzOad+4vaqRkpBUkKkZwXv41UFDxeK16NmUP87rDpHQNBbgCjJcpSq57hWsw==}
     dependencies:
       appdirsjs: 1.2.7
       chalk: 4.1.2
