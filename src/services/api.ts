@@ -1,28 +1,22 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {
-  AbilityScoreResponse,
-  AlignmentResponse,
-  BackgroundResponse,
-  ClassLevelResourceResponse,
-  ClassLevelSpellResponse,
-  ClassResourceListResponse,
-  ClassResponse,
-  EquipmentResponse,
-  FeatureResponse,
-  LanguageResponse,
-  MonsterResourceListResponse,
-  RaceResponse,
-  ResourceListResponse,
-  SkillResponse,
-  SpellResourceListResponse,
-  SubclassByIndexResponse,
-  TraitsIndexResponse,
-  WeaponResponse,
+  AbilityScore as AbilityScoreResponse,
+  Alignment as AlignmentResponse,
+  Background as BackgroundResponse,
+  Class as ClassResponse,
+  ProficiencyReference as EquipmentResponse,
+  Feature as FeatureResponse,
+  Language as LanguageResponse,
+  Race as RaceResponse,
+  ResourceList,
+  Skill as SkillResponse,
+  Subclass as SubclassResponse,
+  Trait as TraitResponse,
+  Weapon as WeaponResponse,
 } from '../types/responses';
+
 import {
   ClassRequest,
-  FeaturesRequest,
-  RacesRequest,
   SpellCastingForClassRequest,
   SubclassRequest,
   TraitsByIndexRequest,
@@ -78,19 +72,15 @@ export const api = createApi({
       providesTags: (result, error, {index}) => [{type: 'Race', id: index}],
     }),
 
-    getSubRacesByIndex: builder.query<SubclassByIndexResponse, SubclassRequest>(
-      {
-        query: ({index}) => `subraces/${index}`,
-        providesTags: (result, error, {index}) => [
-          {type: 'Subrace', id: index},
-        ],
-      },
-    ),
+    getSubRacesByIndex: builder.query<SubclassResponse, SubclassRequest>({
+      query: ({index}) => `subraces/${index}`,
+      providesTags: (result, error, {index}) => [{type: 'Subrace', id: index}],
+    }),
 
     //getProficiencies:LESS?
 
-    getTraitsByIndex: builder.query<TraitsIndexResponse, TraitsByIndexRequest>({
-      query: ({index}) => `races/${index}/traits`,
+    getTraitByIndex: builder.query<TraitResponse, TraitsByIndexRequest>({
+      query: ({index}) => `races/${index}/Trait`,
       providesTags: (result, error, {index}) => [{type: 'Trait', id: index}],
     }),
 
@@ -102,7 +92,7 @@ export const api = createApi({
     }),
 
     getSpellCastingByIndex: builder.query<
-      SpellResourceListResponse,
+      ResourceList,
       SpellCastingForClassRequest
     >({
       query: ({index}) => `classes/${index}/spellcasting`,
@@ -114,7 +104,7 @@ export const api = createApi({
     //getMulticlassing   --->manca lo mettiamo?
 
     getSubClassesAvilableByIndex: builder.query<
-      SubclassByIndexResponse,
+      SubclassResponse,
       SubclassRequest
     >({
       query: ({index}) => `classes/${index}/subclasses`,
@@ -125,7 +115,7 @@ export const api = createApi({
 
     //manca la response?
     getSpellAvailableByIndex: builder.query<
-      SpellResourceListResponse,
+      ResourceList,
       SpellCastingForClassRequest
     >({
       query: ({index}) => `classes/${index}/spells`,
@@ -146,10 +136,7 @@ export const api = createApi({
     }),
 
     // Questa se vuoi la facciamo insieme perchè ti devo far vedere una roba
-    getProficienciesForClassByIndex: builder.query<
-      ClassResourceListResponse,
-      ClassRequest
-    >({
+    getProficienciesForClassByIndex: builder.query<ResourceList, ClassRequest>({
       query: ({index}) => `classes/${index}/proficiencies`,
       providesTags: (result, error, {index}) => [
         {type: 'ProficienciesForClass', id: index},
@@ -158,7 +145,7 @@ export const api = createApi({
 
     //LIVELLI PER LE CLASSI
     getAllLevelResourcesByIndex: builder.query<
-      ClassLevelResourceResponse,
+      ClassLevelResourceRequest,
       ClassLevelAllResourceRequest
     >({
       query: ({index}) => `classes/${index}/levels`,
@@ -168,7 +155,7 @@ export const api = createApi({
     }),
     //Check, ho mantenuto lo stesso tipo della richiesta qui sopra, credo vada bene
     getLevelResourcesByIndexByLevel: builder.query<
-      ClassLevelResourceResponse,
+      ClassLevelResourceRequest,
       ClassLevelResourceRequest
     >({
       query: ({index, class_level}) => `classes/${index}/levels/${class_level}`,
@@ -192,7 +179,7 @@ export const api = createApi({
     //NON RIESCO, manca Response?
 
     getSpellsByClassIndexBySpellLevel: builder.query<
-      ClassLevelSpellResponse,
+      ClassLevelSpellRequest,
       ClassLevelSpellRequest
     >({
       query: ({index, spell_level}) =>
@@ -283,24 +270,18 @@ export const api = createApi({
     }),
 
     //MONSTERS
-    getMonsterByIndex: builder.query<
-      MonsterResourceListResponse,
-      MonstersRequestByIndex
-    >({
+    getMonsterByIndex: builder.query<ResourceList, MonstersRequestByIndex>({
       query: ({index}) => `monsters/${index}`,
       providesTags: (result, error, {index}) => [{type: 'Monsters', id: index}],
     }),
 
     //non sono sicuro
-    getMonsterByLevel: builder.query<
-      MonsterResourceListResponse,
-      MonstersRequestByLevel
-    >({
+    getMonsterByLevel: builder.query<ResourceList, MonstersRequestByLevel>({
       query: ({challenge_rating}) => `monsters/${challenge_rating}`,
       providesTags: (result, error, {index}) => [{type: 'Monsters', id: index}],
     }),
 
-    getEndpointResource: builder.query<ResourceListResponse, string>({
+    getEndpointResource: builder.query<ResourceList, string>({
       query: str => `/${str}/`,
       providesTags: (result, error, str) => [{type: 'ResourceList', id: str}],
     }),
@@ -310,7 +291,7 @@ export const api = createApi({
 export const {
   useGetRacesByIndexQuery,
   useGetSubRacesByIndexQuery,
-  useGetTraitsByIndexQuery,
+  useGetTraitByIndexQuery,
   useGetClassByIndexQuery,
   useGetSpellCastingByIndexQuery,
   useGetSubClassesAvilableByIndexQuery,
