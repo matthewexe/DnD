@@ -35,6 +35,7 @@ import {
   FeaturesRequestByIndex,
   RacesRequestByIndex,
 } from '../types/requests';
+import {SubraceIndexResponse} from '../types/old_responses';
 
 export const api = createApi({
   reducerPath: 'api',
@@ -71,17 +72,37 @@ export const api = createApi({
       query: ({index}) => `races/${index}`,
       providesTags: (result, error, {index}) => [{type: 'Race', id: index}],
     }),
+    //                                                              ALERT
+    //OCCHIO QUESTA é SBAGLIATISSIMA SECONDO ME
+    // getSubRacesByIndex: builder.query<SubclassResponse, SubclassRequest>({
+    //   query: ({index}) => `subraces/${index}`,
+    //   providesTags: (result, error, {index}) => [{type: 'Subrace', id: index}],
+    // }),
 
-    getSubRacesByIndex: builder.query<SubclassResponse, SubclassRequest>({
-      query: ({index}) => `subraces/${index}`,
+    //                                                             ALERT
+    getCheckSubRacesByIndexByRace: builder.query<
+      ResourceList,
+      RacesRequestByIndex
+    >({
+      query: ({index}) => `races/${index}/subraces'`,
+      providesTags: (result, error, {index}) => [{type: 'Subrace', id: index}],
+    }),
+    getSubRacesByIndexByRace: builder.query<
+      SubraceIndexResponse,
+      RacesRequestByIndex
+    >({
+      query: ({index}) => `races/${index}/subraces'`,
       providesTags: (result, error, {index}) => [{type: 'Subrace', id: index}],
     }),
 
     //getProficiencies:LESS?
 
-    getTraitByIndex: builder.query<TraitResponse, TraitsByIndexRequest>({
-      query: ({index}) => `races/${index}/Trait`,
-      providesTags: (result, error, {index}) => [{type: 'Trait', id: index}],
+    //EDITED By_Mattia
+    getTraitByIndex: builder.query<ResourceList, RacesRequestByIndex>({
+      query: ({index}) => `races/${index}/traits`,
+      providesTags: (result, error, {index}) => [
+        {type: 'ResourceList', id: index},
+      ],
     }),
 
     //Classi-Multiclassi?-Sottoclassi
@@ -290,7 +311,9 @@ export const api = createApi({
 
 export const {
   useGetRacesByIndexQuery,
-  useGetSubRacesByIndexQuery,
+  //useGetSubRacesByIndexQuery,
+  useGetSubRacesByIndexByRaceQuery,
+  useGetCheckSubRacesByIndexByRaceQuery,
   useGetTraitByIndexQuery,
   useGetClassByIndexQuery,
   useGetSpellCastingByIndexQuery,
