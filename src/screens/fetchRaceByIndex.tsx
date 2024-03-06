@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+//import {useEffect, useState} from 'react';
 import {Text} from 'react-native';
 import {useGetRacesByIndexQuery} from '../services/api';
 import {RaceIndexRequest} from '../types/requests';

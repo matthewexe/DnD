@@ -11,5 +11,11 @@ export default function ExportRace(input: RaceIndexRequest) {
   if (isLoading) return <Text>loading...</Text>;
   //se il result precedente non va bene
   if (isFetching) <Text>attendi risposta dal server</Text>;
-  return <>{/* <Text>{data?.results?.}</Text> */}</>;
+  return (
+    <>
+      {data?.results.map((Name, index) => (
+        <Text key={index}>{Name.name}</Text>
+      ))}
+    </>
+  );
 }
