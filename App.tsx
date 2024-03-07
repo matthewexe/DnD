@@ -8,7 +8,7 @@ import {HomeScreen} from './src/screens/HomeScreen';
 import {MyTabs} from './src/screens/BottomNavigator';
 import {MyButton} from './src/screens/MyButton';
 import {Counter} from './src/screens/Counter';
-import ExportDwarf from './src/screens/prova';
+import RaceComponent from './src/screens/fetchRaceByIndex';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +19,7 @@ function App() {
 
       <HomeScreen />
       <MyButton title="Test" />
-      <ExportDwarf></ExportDwarf>
+      <RaceComponent index="dragonborn"></RaceComponent>
     </NavigationContainer>
   );
 }

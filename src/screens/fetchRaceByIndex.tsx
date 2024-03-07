@@ -2,10 +2,9 @@
 import {Text} from 'react-native';
 import {useGetRacesByIndexQuery} from '../services/api';
 import {RaceIndexRequest} from '../types/requests';
-import {AbilityBonus, Race} from '../types/responses';
-import {options} from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
+import {AbilityBonus, ProficiencyReferenceOption} from '../types/responses';
 
-export default function ExportRace(input: RaceIndexRequest) {
+export default function RaceComponent(input: RaceIndexRequest) {
   // const [race, setRace] = useState<RaceIndexRequest>(input);
 
   const {data, error, isLoading, isFetching} = useGetRacesByIndexQuery({
@@ -57,14 +56,11 @@ export default function ExportRace(input: RaceIndexRequest) {
       {/*porcodue non vaaaaaaaa item mi da problemi.....*/}
       <Text>Opzioni disponibili:</Text>
       {data?.starting_proficiency_options?.from.options.map((option, index) => (
-        <Text key={index}>{option?.item.name}</Text>
+        <Text key={index}>
+          {(option as ProficiencyReferenceOption).item.name}
+        </Text>
       )) ?? <Text>Proficiency options non disponibili</Text>}
-      {/* */}
-      {/* */}
-      {/* */}
-      {/* */}
-      {/* */}
-      {/* */}
+
       {/*INIZIO DESCRIZIONE (STRINGHE) la parte meno importante a livello implementativo. */}
       <Text>Descrizione della razza:</Text>
       <Text>Linguaggio:</Text>

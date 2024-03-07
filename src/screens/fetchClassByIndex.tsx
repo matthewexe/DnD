@@ -1,8 +1,7 @@
 import {Text} from 'react-native';
 import {useGetClassByIndexQuery} from '../services/api';
 import {ClassIndexRequest} from '../types/requests';
-import {Class} from '../types/responses';
-import {options} from '@react-native-community/cli-platform-android/build/commands/buildAndroid';
+import {Class, EquipmentOptionSet} from '../types/responses';
 
 export default function ExportRace(input: ClassIndexRequest) {
   const {data, error, isLoading, isFetching} = useGetClassByIndexQuery({
@@ -45,12 +44,14 @@ export default function ExportRace(input: ClassIndexRequest) {
       ))}
       <Text>Scegli ulteriore equipaggiamento:</Text>
       {data?.starting_equipment_options?.map((choice, index) => (
-        <Text key={index}>
-          {choice.desc} quantità:{choice.choose}
-          {/* {choice.from.options.map((option, optionIndex) => (
-            <Text key={optionIndex}>{option.item.name}</Text>
-          ))} */}
-        </Text>
+        <>
+          <Text key={index}>
+            {choice.desc} quantità:{choice.choose}
+          </Text>
+          {(choice.from as EquipmentOptionSet).options.map((option, index) => (
+
+          ))}
+        </>
       ))}
       {/* ulteriore test per prendere quel pezzo di opzioni ma non va... 
       {data?.starting_equipment_options?.map((option, index) => (
