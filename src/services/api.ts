@@ -13,6 +13,7 @@ import {
   Subclass as SubclassResponse,
   Trait as TraitResponse,
   Weapon as WeaponResponse,
+  ResourceList as SubclassByClassResponse,
 } from '../types/responses';
 
 import {
@@ -125,8 +126,8 @@ export const api = createApi({
     //getMulticlassing   --->manca lo mettiamo?
 
     getSubClassesAvilableByIndex: builder.query<
-      SubclassResponse,
-      SubclassRequest
+      SubclassByClassResponse,
+      ClassRequest
     >({
       query: ({index}) => `classes/${index}/subclasses`,
       providesTags: (result, error, {index}) => [

@@ -3,7 +3,7 @@ import {useGetClassByIndexQuery} from '../services/api';
 import {ClassIndexRequest} from '../types/requests';
 import {Class, EquipmentOptionSet} from '../types/responses';
 
-export default function ExportRace(input: ClassIndexRequest) {
+export default function ClassComponent(input: ClassIndexRequest) {
   const {data, error, isLoading, isFetching} = useGetClassByIndexQuery({
     index: input,
   });

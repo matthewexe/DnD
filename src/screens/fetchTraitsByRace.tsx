@@ -2,7 +2,7 @@ import {Text} from 'react-native';
 import {useGetTraitByIndexQuery} from '../services/api';
 import {RaceIndexRequest} from '../types/requests';
 
-export default function ExportRace(input: RaceIndexRequest) {
+export default function TraitsComponent(input: RaceIndexRequest) {
   const {data, error, isLoading, isFetching} = useGetTraitByIndexQuery({
     index: input,
   });
