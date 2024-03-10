@@ -19,7 +19,7 @@ function App() {
 
       <HomeScreen />
       <MyButton title="Test" />
-      <RaceComponent index="dragonborn"></RaceComponent>
+      <RaceComponent input="dragonborn"></RaceComponent>
     </NavigationContainer>
   );
 }
