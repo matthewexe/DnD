@@ -1,10 +1,11 @@
 //import {useEffect, useState} from 'react';
+import React from 'react';
 import {Text} from 'react-native';
 import {useGetRacesByIndexQuery} from '../services/api';
 import {RaceIndexRequest} from '../types/requests';
 import {AbilityBonus, ProficiencyReferenceOption} from '../types/responses';
 
-export default function RaceComponent(input: RaceIndexRequest) {
+export default function RaceComponent({input}: {input: RaceIndexRequest}) {
   // const [race, setRace] = useState<RaceIndexRequest>(input);
 
   const {data, error, isLoading, isFetching} = useGetRacesByIndexQuery({
