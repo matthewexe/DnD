@@ -1,17 +1,17 @@
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Text, TouchableHighlight, View} from 'react-native';
-import {TabParamList} from '../routes/routes';
-import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
+import {HomeStackScreenProps} from '../routes/HomeParamList';
 
-export const GameCard = () => {
-  const nav =
-    useNavigation<BottomTabNavigationProp<TabParamList, 'GameDetails'>>();
+export type GameCardProps = HomeStackScreenProps<'ListGame'> & {
+  gameId: string;
+};
+
+export const GameCard = ({gameId, navigation}: GameCardProps) => {
   return (
     <View>
       <TouchableHighlight
         onPress={() => {
-          nav.navigate({name: 'GameDetails', params: {id: '1'}});
+          navigation.navigate('GameDetail', {gameId: gameId});
         }}>
         <Text id="title-card">Game Title</Text>
       </TouchableHighlight>

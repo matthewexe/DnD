@@ -28,7 +28,7 @@ Mystical Ember (#FF6E4A):
 
 A vibrant but balanced orange for highlighting magical elements and effects.
  */
-import {DefaultTheme} from '@react-navigation/native';
+import {DefaultTheme, Theme} from '@react-navigation/native';
 
 export const theme1 = {
   colors: {
@@ -130,8 +130,9 @@ export const theme6 = {
 
 const theme = theme6;
 
-export const customTheme2 = {
+export const customTheme2: Theme = {
   ...DefaultTheme,
+  dark: true,
   colors: {
     ...DefaultTheme.colors,
     primary: theme.colors.primary,

@@ -3,7 +3,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootTabParamList, RootTabScreenProps} from './RootParamList';
 
 export type HomeStackParamList = {
-  Home: undefined;
+  ListGame: undefined;
   GameDetail: {gameId: string};
 };
 

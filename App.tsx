@@ -42,37 +42,33 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer theme={customTheme2}>
       <Tabs.Navigator screenOptions={screenOptions}>
-        <Tabs.Group key={'home'}>
-          <Tabs.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              tabBarIcon: tabsIcon.home,
-            }}
-          />
-          <Tabs.Screen
-            name="new"
-            component={NewPLayerScreen}
-            options={{
-              tabBarIcon: tabsIcon.plus,
-              tabBarLabel: ({}) => {
-                return '';
-              },
-            }}
-          />
-        </Tabs.Group>
-        <Tabs.Group key={'home2'}>
-          <Tabs.Screen
-            name="new2"
-            component={NewPLayerScreen}
-            options={{
-              tabBarIcon: tabsIcon.plus,
-              tabBarLabel: ({}) => {
-                return '';
-              },
-            }}
-          />
-        </Tabs.Group>
+        <Tabs.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            tabBarIcon: tabsIcon.home,
+          }}
+        />
+        <Tabs.Screen
+          name="new"
+          component={NewPLayerScreen}
+          options={{
+            tabBarIcon: tabsIcon.plus,
+            tabBarLabel: ({}) => {
+              return '';
+            },
+          }}
+        />
+        <Tabs.Screen
+          name="new2"
+          component={NewPLayerScreen}
+          options={{
+            tabBarIcon: tabsIcon.plus,
+            tabBarLabel: ({}) => {
+              return '';
+            },
+          }}
+        />
       </Tabs.Navigator>
     </NavigationContainer>
   );

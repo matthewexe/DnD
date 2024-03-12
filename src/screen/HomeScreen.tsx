@@ -1,17 +1,16 @@
-import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import {Button, SafeAreaView, Text} from 'react-native';
-// import Icon from 'react-native-vector-icons/FontAwesome6';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {HomeStackParamList} from '../routes/HomeParamList';
+import {Home} from '../components/Home';
+import {GameDetailsScreen} from './GameDetailsScreen';
+
+const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 
 export const HomeScreen = ({}) => {
-  const {colors} = useTheme();
-
   return (
-    <SafeAreaView>
-      <Text>Home</Text>
-      <Text>Home</Text>
-      <Button title="Go to Details" onPress={() => {}} color={colors.primary} />
-      {/* <Icon name="house" size={35} color="#000" /> */}
-    </SafeAreaView>
+    <HomeStack.Navigator screenOptions={{headerShown: false}}>
+      <HomeStack.Screen name="ListGame" component={Home} />
+      <HomeStack.Screen name="GameDetail" component={GameDetailsScreen} />
+    </HomeStack.Navigator>
   );
 };
