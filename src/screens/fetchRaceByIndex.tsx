@@ -2,8 +2,9 @@
 import React from 'react';
 import {Text} from 'react-native';
 import {useGetRacesByIndexQuery} from '../services/api';
-import {RaceIndexRequest} from '../types/requests';
+import {RaceIndexRequest, TraitsRequest} from '../types/requests';
 import {AbilityBonus, ProficiencyReferenceOption} from '../types/responses';
+import ExportTrait from './fetchtrait';
 
 export default function RaceComponent({input}: {input: RaceIndexRequest}) {
   // const [race, setRace] = useState<RaceIndexRequest>(input);
@@ -30,7 +31,10 @@ export default function RaceComponent({input}: {input: RaceIndexRequest}) {
       ))}
       <Text>Tratti:</Text>
       {data?.traits?.map((traits, index) => (
-        <Text key={index}>{traits.name}</Text>
+        <>
+          <Text key={index}>{traits.name}</Text>
+          <ExportTrait input={traits.index as TraitsRequest} />
+        </>
       ))}
       {/* complessa da rivedere... non sono sicuro--------------------------------------------------- */}
       <Text>Bonus della razza:</Text>

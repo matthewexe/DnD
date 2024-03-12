@@ -1,7 +1,8 @@
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 import {useGetClassByIndexQuery} from '../services/api';
 import {ClassIndexRequest} from '../types/requests';
-import {Class, EquipmentOptionSet} from '../types/responses';
+import {ProficiencyComponent} from '../Components/ProficiencyComponent';
+import {LabeledValue} from '../Components/LabeledValue';
 
 export default function ClassComponent(input: ClassIndexRequest) {
   const {data, error, isLoading, isFetching} = useGetClassByIndexQuery({
@@ -14,19 +15,20 @@ export default function ClassComponent(input: ClassIndexRequest) {
   if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
     <>
-      (<Text>Nome:</Text>
-      <Text>{data?.name ?? 'classe non disponibile'}</Text>
-      <Text>Dado Vita:</Text>
-      <Text>{data?.hit_die}</Text>
+      <LabeledValue
+        label="Nome"
+        value={data?.name ?? 'classe non disponibile'}
+      />
+      <LabeledValue label={'Dado Vita:'} value={data?.hit_die ?? 'mancante'} />
       <Text>Scegli le tue Abilità:</Text>
       {data?.proficiency_choices?.map((choice, index) => (
-        <Text key={index}>
+        <View>
           <Text>Scegli al massimo {choice.choose} abilità</Text>
           <Text>{choice.desc}</Text>
           {choice.from.options.map((option, optionIndex) => (
-            <Text key={optionIndex}>{option.item.name}</Text>
+            <ProficiencyComponent option={option} />
           ))}
-        </Text>
+        </View>
       ))}
       <Text>Abilità di base:</Text>
       {data?.proficiencies?.map((choice, index) => (
@@ -39,48 +41,13 @@ export default function ClassComponent(input: ClassIndexRequest) {
       <Text>Equipaggiamento iniziale:</Text>
       {data?.starting_equipment?.map((choice, index) => (
         <Text key={index}>
-          {choice.equipment.name}quantità:{choice.quantity}
+          {choice.equipment.name} quantità:{choice.quantity}
         </Text>
       ))}
-      <Text>Scegli ulteriore equipaggiamento:</Text>
+      {/*<Text>Scegli ulteriore equipaggiamento:</Text>
       {data?.starting_equipment_options?.map((choice, index) => (
-        <>
-          <Text key={index}>
-            {choice.desc} quantità:{choice.choose}
-          </Text>
-          {(choice.from as EquipmentOptionSet).options.map((option, index) => (
-
-          ))}
-        </>
-      ))}
-      {/* ulteriore test per prendere quel pezzo di opzioni ma non va... 
-      {data?.starting_equipment_options?.map((option, index) => (
-        <Text key={index}>
-          <Text>{option.desc}</Text>
-          {option.type === 'equipment' &&
-            option.choose === 1 &&
-            option.from.options.map((equipOption, equipIndex) => {
-              if (equipOption.option_type === 'counted_reference') {
-                return (
-                  <Text key={equipIndex}>
-                    {equipOption.count} x {equipOption.of.name}
-                  </Text>
-                );
-              } else if (equipOption.option_type === 'choice') {
-                // Qui gestiamo il caso 'choice' diversamente
-                return (
-                  <Text key={equipIndex}>
-                    Choose {equipOption.choice.choose}:{' '}
-                    {equipOption.choice.desc}
-                  </Text>
-                );
-              }
-              return null; // Per sicurezza, anche se ogni opzione dovrebbe essere o 'counted_reference' o 'choice'
-            })}
-        </Text>
-      ))}
-      */}
-      )
+        <EquipmentOptionComponent choice={choice} />
+      ))} */}
     </>
   );
 }

@@ -938,6 +938,7 @@ export type Subrace = ProficiencyRace & {
   ability_bonuses: AbilityBonus[];
   desc: string;
   index: string;
+  languages: APIReference[];
   language_options?: LanguageChoice | null;
   name: string;
   race: Race;

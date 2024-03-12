@@ -35,8 +35,11 @@ import {
   MonstersRequestByLevel,
   FeaturesRequestByIndex,
   RacesRequestByIndex,
+  SubraceByIndexRequest,
+  TraitRequestByIndex,
 } from '../types/requests';
 import {SubraceIndexResponse} from '../types/old_responses';
+import {Subrace} from '../types/responses';
 
 export const api = createApi({
   reducerPath: 'api',
@@ -73,14 +76,12 @@ export const api = createApi({
       query: ({index}) => `races/${index}`,
       providesTags: (result, error, {index}) => [{type: 'Race', id: index}],
     }),
-    //                                                              ALERT
-    //OCCHIO QUESTA é SBAGLIATISSIMA SECONDO ME
-    // getSubRacesByIndex: builder.query<SubclassResponse, SubclassRequest>({
-    //   query: ({index}) => `subraces/${index}`,
-    //   providesTags: (result, error, {index}) => [{type: 'Subrace', id: index}],
-    // }),
 
-    //                                                             ALERT
+    getSubRacesByIndex: builder.query<Subrace, SubraceByIndexRequest>({
+      query: ({index}) => `subraces/${index}`,
+      providesTags: (result, error, {index}) => [{type: 'Subrace', id: index}],
+    }),
+
     getCheckSubRacesByIndexByRace: builder.query<
       ResourceList,
       RacesRequestByIndex
@@ -101,6 +102,12 @@ export const api = createApi({
     //EDITED By_Mattia
     getTraitByIndex: builder.query<ResourceList, RacesRequestByIndex>({
       query: ({index}) => `races/${index}/traits`,
+      providesTags: (result, error, {index}) => [
+        {type: 'ResourceList', id: index},
+      ],
+    }),
+    getTrait: builder.query<TraitResponse, TraitRequestByIndex>({
+      query: ({index}) => `traits/${index}`,
       providesTags: (result, error, {index}) => [
         {type: 'ResourceList', id: index},
       ],
@@ -311,8 +318,10 @@ export const {
   useGetRacesByIndexQuery,
   //useGetSubRacesByIndexQuery,
   useGetSubRacesByIndexByRaceQuery,
+  useGetSubRacesByIndexQuery,
   useGetCheckSubRacesByIndexByRaceQuery,
   useGetTraitByIndexQuery,
+  useGetTraitQuery,
   useGetClassByIndexQuery,
   useGetSpellCastingByIndexQuery,
   useGetSubClassesAvilableByIndexQuery,

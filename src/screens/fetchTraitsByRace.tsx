@@ -1,8 +1,10 @@
 import {Text} from 'react-native';
 import {useGetTraitByIndexQuery} from '../services/api';
-import {RaceIndexRequest} from '../types/requests';
+import {RaceIndexRequest, TraitsRequest} from '../types/requests';
+import React from 'react';
+import ExportTrait from './fetchtrait';
 
-export default function TraitsComponent(input: RaceIndexRequest) {
+export default function TraitsComponent({input}: {input: RaceIndexRequest}) {
   const {data, error, isLoading, isFetching} = useGetTraitByIndexQuery({
     index: input,
   });
@@ -14,7 +16,10 @@ export default function TraitsComponent(input: RaceIndexRequest) {
   return (
     <>
       {data?.results.map((Name, index) => (
-        <Text key={index}>{Name.name}</Text>
+        <>
+          <Text key={index}>{Name.name}</Text>
+          <ExportTrait input={Name.index as TraitsRequest} />
+        </>
       ))}
     </>
   );
