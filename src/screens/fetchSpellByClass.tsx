@@ -1,12 +1,15 @@
 import {Text} from 'react-native';
-import {useGetSubClassesAvilableByIndexQuery} from '../services/api';
+import {useGetSpellCastingByIndexQuery} from '../services/api';
 import {ClassIndexRequest} from '../types/requests';
 
-export default function SubclassComponent({input}: {input: ClassIndexRequest}) {
-  const {data, error, isLoading, isFetching} =
-    useGetSubClassesAvilableByIndexQuery({
-      index: input,
-    });
+export default function SpellAvailableByClassComponent({
+  input,
+}: {
+  input: ClassIndexRequest;
+}) {
+  const {data, error, isLoading, isFetching} = useGetSpellCastingByIndexQuery({
+    index: input,
+  });
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
@@ -14,13 +17,11 @@ export default function SubclassComponent({input}: {input: ClassIndexRequest}) {
   if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
     <>
-      <Text>Sottoclasse:</Text>
-      <Text>Possibili scelte: {data?.count}</Text>
+      <Text>Hai disponibili {data?.count} spell</Text>
       {data?.results.map((choice, index) => (
         <Text key={index}>{choice.name}</Text>
       ))}
     </>
   );
 }
-
-//NB: Non so ancora come utilizzare il campo url della map
+//vedi url se fare api

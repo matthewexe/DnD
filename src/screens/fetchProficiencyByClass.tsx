@@ -1,10 +1,14 @@
 import {Text} from 'react-native';
-import {useGetSubClassesAvilableByIndexQuery} from '../services/api';
+import {useGetProficienciesForClassByIndexQuery} from '../services/api';
 import {ClassIndexRequest} from '../types/requests';
 
-export default function SubclassComponent({input}: {input: ClassIndexRequest}) {
+export default function ProficiencyComponent({
+  input,
+}: {
+  input: ClassIndexRequest;
+}) {
   const {data, error, isLoading, isFetching} =
-    useGetSubClassesAvilableByIndexQuery({
+    useGetProficienciesForClassByIndexQuery({
       index: input,
     });
 
@@ -14,13 +18,11 @@ export default function SubclassComponent({input}: {input: ClassIndexRequest}) {
   if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
     <>
-      <Text>Sottoclasse:</Text>
-      <Text>Possibili scelte: {data?.count}</Text>
+      <Text>Hai {data?.count} competenze:</Text>
       {data?.results.map((choice, index) => (
         <Text key={index}>{choice.name}</Text>
       ))}
     </>
   );
 }
-
 //NB: Non so ancora come utilizzare il campo url della map

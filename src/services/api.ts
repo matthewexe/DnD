@@ -147,10 +147,7 @@ export const api = createApi({
     }),
 
     //manca la request->fatta io controllare
-    getFeaturesForClassByIndex: builder.query<
-      FeatureResponse,
-      FeaturesRequestByIndex
-    >({
+    getFeaturesForClassByIndex: builder.query<ResourceList, ClassRequest>({
       query: ({index}) => `classes/${index}/features`,
       providesTags: (result, error, {index}) => [
         {type: 'FeaturesForClass', id: index},
