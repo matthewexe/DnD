@@ -16,6 +16,8 @@ import {
   ResourceList as SubclassByClassResponse,
   ClassSpellcasting,
   Weapon,
+  EquipmentCategory,
+  Armor,
 } from '../types/responses';
 
 import {
@@ -288,8 +290,22 @@ export const api = createApi({
         {type: 'EquipmentItem', id: index},
       ],
     }),
-    getEquipmentWeapon: builder.query<Weapon, EquipmentItemRequestByIndex>({
+    getEquipmentWeapon: builder.query<EquipmentCategory, undefined>({
       query: () => `equipment-categories/weapon`,
+      providesTags: (result, error) => [{type: 'EquipmentItem', id: 'LIST'}],
+    }),
+    getEquipmentArmor: builder.query<EquipmentCategory, undefined>({
+      query: () => `equipment-categories/armor`,
+      providesTags: (result, error) => [{type: 'EquipmentItem', id: 'LIST'}],
+    }),
+    getWeapon: builder.query<Weapon, EquipmentItemRequestByIndex>({
+      query: ({index}) => `equipment/${index}`,
+      providesTags: (result, error, {index}) => [
+        {type: 'EquipmentItem', id: index},
+      ],
+    }),
+    getArmor: builder.query<Armor, EquipmentItemRequestByIndex>({
+      query: ({index}) => `equipment/${index}`,
       providesTags: (result, error, {index}) => [
         {type: 'EquipmentItem', id: index},
       ],
@@ -354,7 +370,11 @@ export const {
   useGetLanguageByIndexQuery,
   useGetSkillByIndexQuery,
   useGetEquipmentByIndexQuery,
+  useGetEquipmentWeaponQuery,
+  useGetEquipmentArmorQuery,
+  useGetArmorQuery,
   useGetWeaponPropertyByIndexQuery,
+  useGetWeaponQuery,
   useGetMonsterByIndexQuery,
   useGetMonsterByLevelQuery,
   useGetEndpointResourceQuery,

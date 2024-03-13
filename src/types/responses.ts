@@ -231,7 +231,7 @@ export type ArmorClass = {
 export type Armor = IEquipment &
   IEquipmentBase & {
     __typename?: 'Armor';
-    armor_category: EquipmentCategory;
+    armor_category: string; //EDITED era   EquipmentCategory
     armor_class: ArmorClass;
     cost: Cost;
     desc?: string[] | null;

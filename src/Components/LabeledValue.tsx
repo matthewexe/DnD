@@ -9,7 +9,7 @@ type Props = {
 export const LabeledValue = ({label, value}: Props) => {
   return (
     <>
-      <Text>{label}:</Text>
+      <Text>{label}</Text>
       <Text>{value}</Text>
     </>
   );

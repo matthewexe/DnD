@@ -6,7 +6,7 @@ import ExportTrait from './fetchtrait';
 import {TraitsRequest} from '../types/requests';
 
 //Serve per verificare se ci sono sottorazze disponibili si continua la ricerca, altrimenti si ignora
-export default function ExportSubraceByIndex({
+export default function SubraceByIndexComponent({
   input,
 }: {
   input: SubraceIndexRequest;

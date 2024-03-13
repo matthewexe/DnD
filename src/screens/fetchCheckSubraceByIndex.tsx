@@ -1,19 +1,11 @@
 import React from 'react';
 import {Text} from 'react-native';
 import {useGetCheckSubRacesByIndexByRaceQuery} from '../services/api';
-import {
-  RaceIndexRequest,
-  SubraceIndexRequest,
-  SubracesRequest,
-} from '../types/requests';
-import ExportSubraceByIndex from './fetchSubraceByIndex';
+import {RaceIndexRequest, SubraceIndexRequest} from '../types/requests';
+import SubraceByIndexComponent from './fetchSubraceByIndex';
 
 //Serve per verificare se ci sono sottorazze disponibili si continua la ricerca, altrimenti si ignora
-export default function ExportSubraceByRace({
-  input,
-}: {
-  input: RaceIndexRequest;
-}) {
+export default function SubraceByRace({input}: {input: RaceIndexRequest}) {
   const {data, error, isLoading, isFetching} =
     useGetCheckSubRacesByIndexByRaceQuery({
       index: input,
@@ -35,7 +27,9 @@ export default function ExportSubraceByRace({
         {data?.results?.map((choice, index) => (
           <>
             <Text key={index}>{choice.name}</Text>
-            <ExportSubraceByIndex input={choice.index as SubraceIndexRequest} />
+            <SubraceByIndexComponent
+              input={choice.index as SubraceIndexRequest}
+            />
           </>
         ))}
       </>
