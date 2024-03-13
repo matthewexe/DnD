@@ -9,15 +9,15 @@ export type NewPlayerParamList = {
     class: ClassIndexRequest;
     race: RacesRequest;
     level: number;
-    userData: undefined;
+    userData: any;
   };
   Race: {
     class: ClassIndexRequest;
     race: RacesRequest;
     level: number;
-    userData: undefined;
+    userData: any;
   };
-  End: {userData: undefined};
+  End: {userData: any};
 };
 
 export type NewPlayerNavigationProps<T extends keyof NewPlayerParamList> =

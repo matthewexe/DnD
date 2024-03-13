@@ -1,11 +1,16 @@
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
-import {Text} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {NewPlayerParamList} from '../routes/NewPlayerParamList';
+import {BasicInfo} from '../components/BasicInfo';
+
+const NewPlayerNavigator = createNativeStackNavigator<NewPlayerParamList>();
 
 export const NewPLayerScreen = () => {
   return (
-    <SafeAreaView>
-      <Text>New Player</Text>
-    </SafeAreaView>
+    <NewPlayerNavigator.Navigator>
+      <NewPlayerNavigator.Screen name="BasicInfo" component={BasicInfo} />
+      {/* <NewPlayerNavigator.Screen name="Class" component={BasicInfo} />
+      <NewPlayerNavigator.Screen name="Race" component={BasicInfo} /> */}
+    </NewPlayerNavigator.Navigator>
   );
 };

@@ -6,17 +6,18 @@ type Props = PropsWithChildren<{
    * The text to display
    */
   label: string;
+  placeholder: string;
   /**
    * The color of the text
    */
   disabled?: boolean;
 }>;
 
-export const InputText = ({label, disabled = false}: Props) => {
+export const InputText = ({label, placeholder, disabled = false}: Props) => {
   return (
     <View>
       <Text disabled={disabled}>{label}</Text>
-      <TextInput placeholder="Enter your name" aria-disabled={disabled} />
+      <TextInput placeholder={placeholder} aria-disabled={disabled} />
     </View>
   );
 };

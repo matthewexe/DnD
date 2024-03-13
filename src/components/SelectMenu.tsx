@@ -1,14 +1,24 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
+import {APIReference} from '../types/responses';
 
-export const SelectMenu = () => {
+type Props = {
+  label: string;
+  data: APIReference[];
+};
+
+export const SelectMenu = ({label, data}: Props) => {
   return (
     <View>
+      <Text>{label}</Text>
       <SelectDropdown
-        data={['Banana', 'Mango', 'Pear', 'Apple']}
+        data={data}
         onSelect={item => {
           console.log(item);
+        }}
+        rowTextForSelection={item => {
+          return item.name;
         }}
         search={true}
       />
