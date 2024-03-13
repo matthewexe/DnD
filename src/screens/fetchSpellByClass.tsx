@@ -17,7 +17,7 @@ export default function SpellAvailableByClassComponent({
   if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
     <>
-      <Text>Hai disponibili {data?.count} spell</Text>
+      <Text>Hai disponibili {data?.count} Incantesimi:</Text>
       {data?.results.map((choice, index) => (
         <Text key={index}>{choice.name}</Text>
       ))}

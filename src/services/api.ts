@@ -14,6 +14,8 @@ import {
   Trait as TraitResponse,
   Weapon as WeaponResponse,
   ResourceList as SubclassByClassResponse,
+  ClassSpellcasting,
+  Weapon,
 } from '../types/responses';
 
 import {
@@ -120,10 +122,18 @@ export const api = createApi({
       providesTags: (result, error, {index}) => [{type: 'Class', id: index}],
     }),
 
+    //QUESTA CREDO NON SERVA/SBAGLIATA, QUELLA DOPO È GIUSTA
     getSpellCastingByIndex: builder.query<
       ResourceList,
       SpellCastingForClassRequest
     >({
+      query: ({index}) => `classes/${index}/spellcasting`,
+      providesTags: (result, error, {index}) => [
+        {type: 'SpellForClass', id: index},
+      ],
+    }),
+
+    getSpellCastingByClass: builder.query<ClassSpellcasting, ClassRequest>({
       query: ({index}) => `classes/${index}/spellcasting`,
       providesTags: (result, error, {index}) => [
         {type: 'SpellForClass', id: index},
@@ -278,6 +288,12 @@ export const api = createApi({
         {type: 'EquipmentItem', id: index},
       ],
     }),
+    getEquipmentWeapon: builder.query<Weapon, EquipmentItemRequestByIndex>({
+      query: () => `equipment-categories/weapon`,
+      providesTags: (result, error, {index}) => [
+        {type: 'EquipmentItem', id: index},
+      ],
+    }),
 
     //manca la request
     //getEquipmentCategoryByIndex:
@@ -324,6 +340,7 @@ export const {
   useGetTraitQuery,
   useGetClassByIndexQuery,
   useGetSpellCastingByIndexQuery,
+  useGetSpellCastingByClassQuery,
   useGetSubClassesAvilableByIndexQuery,
   useGetSpellAvailableByIndexQuery,
   useGetFeaturesForClassByIndexQuery,

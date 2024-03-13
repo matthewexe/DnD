@@ -31,6 +31,7 @@ export default function ExportSubraceByRace({
   } else {
     return (
       <>
+        <Text>Hai a disposizione:</Text>
         {data?.results?.map((choice, index) => (
           <>
             <Text key={index}>{choice.name}</Text>

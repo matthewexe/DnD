@@ -5,6 +5,7 @@ import {useGetRacesByIndexQuery} from '../services/api';
 import {RaceIndexRequest, TraitsRequest} from '../types/requests';
 import {AbilityBonus, ProficiencyReferenceOption} from '../types/responses';
 import ExportTrait from './fetchtrait';
+import {LabeledValue} from '../Components/LabeledValue';
 
 export default function RaceComponent({input}: {input: RaceIndexRequest}) {
   // const [race, setRace] = useState<RaceIndexRequest>(input);
@@ -19,12 +20,18 @@ export default function RaceComponent({input}: {input: RaceIndexRequest}) {
   if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
     <>
-      <Text>Nome:</Text>
-      <Text>{data?.name ?? 'razza non disponibile'}</Text>
-      <Text>Velocità:</Text>
-      <Text>{data?.speed ?? 'velocità non disponibile'}</Text>
-      <Text>Statura:</Text>
-      <Text>{data?.size ?? 'dimensione non disponibile'}</Text>
+      <LabeledValue
+        label="Nome:"
+        value={data?.name ?? 'razza non disponibile'}
+      />
+      <LabeledValue
+        label="Velocità:"
+        value={data?.speed ?? 'velocità non disponibile'}
+      />
+      <LabeledValue
+        label="Statura:"
+        value={data?.size ?? 'dimensione non disponibile'}
+      />
       <Text>Linguaggi:</Text>
       {data?.languages?.map((language, index) => (
         <Text key={index}>{language.name}</Text>
@@ -68,18 +75,24 @@ export default function RaceComponent({input}: {input: RaceIndexRequest}) {
 
       {/*INIZIO DESCRIZIONE (STRINGHE) la parte meno importante a livello implementativo. */}
       <Text>Descrizione della razza:</Text>
-      <Text>Linguaggio:</Text>
-      <Text>
-        {data?.language_desc ?? 'Descrizione del linguaggio non disponibile'}
-      </Text>
-      <Text>Il tuo allineamento razziale:</Text>
-      <Text>{data?.alignment ?? 'Allineamento non disponibile'}</Text>
-      <Text>La tendenza della tua specie:</Text>
-      <Text>{data?.age ?? 'Descrizione età non disponibile'}</Text>
-      <Text>Le dimensioni della tua specie:</Text>
-      <Text>
-        {data?.size_description ?? 'Descrizione statura non disponibile'}
-      </Text>
+      <LabeledValue
+        label="Linguaggio:"
+        value={
+          data?.language_desc ?? 'Descrizione del linguaggio non disponibile'
+        }
+      />
+      <LabeledValue
+        label="Il tuo allineamento razziale:"
+        value={data?.alignment ?? 'Allineamento non disponibile'}
+      />
+      <LabeledValue
+        label="La tendenza della tua specie:"
+        value={data?.age ?? 'Descrizione età non disponibile'}
+      />
+      <LabeledValue
+        label="Le dimensioni della tua specie:"
+        value={data?.size_description ?? 'Descrizione statura non disponibile'}
+      />
     </>
   );
 }
