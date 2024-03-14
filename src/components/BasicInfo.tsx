@@ -4,6 +4,7 @@ import {Button, Text} from 'react-native';
 import {NewPlayerNavigationProps} from '../routes/NewPlayerParamList';
 import {SelectMenu} from './SelectMenu';
 import {useGetEndpointResourceQuery} from '../services/api';
+import {ClassIndexRequest, RaceIndexRequest} from '../types/requests';
 
 type Props = NewPlayerNavigationProps<'BasicInfo'>;
 
@@ -13,8 +14,8 @@ export const BasicInfo = ({navigation}: Props) => {
   const {data: raceData, isLoading: isLoadingRace} =
     useGetEndpointResourceQuery('races');
 
-  const [classState, setClass] = useState('');
-  const [raceState, setRace] = useState('');
+  const [classState, setClass] = useState<ClassIndexRequest>('barbarian');
+  const [raceState, setRace] = useState<RaceIndexRequest>('dragonborn');
 
   if (isLoadingClass || isLoadingRace) {
     return <Text>Loading...</Text>;
