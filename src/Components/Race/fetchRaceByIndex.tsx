@@ -1,10 +1,10 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {useGetRacesByIndexQuery} from '../services/api';
-import {RaceIndexRequest, RacesRequest, TraitsRequest} from '../types/requests';
-import {AbilityBonus, ProficiencyReferenceOption} from '../types/responses';
+import {useGetRacesByIndexQuery} from '../../services/api';
+import {RaceIndexRequest, TraitsRequest} from '../../types/requests';
+import {ProficiencyReferenceOption} from '../../types/responses';
 import ExportTrait from './fetchtrait';
-import {LabeledValue} from '../Components/LabeledValue';
+import {LabeledValue} from '../LabeledValue';
 import SubraceByRace from './fetchCheckSubraceByIndex';
 import TraitsComponent from './fetchTraitsByRace';
 
@@ -25,10 +25,10 @@ export default function RaceComponent({input}: {input: RaceIndexRequest}) {
         label="Nome:"
         value={data?.name ?? 'razza non disponibile'}
       />
-      <LabeledValue
-        label="Velocità:"
-        value={data?.speed ?? 'velocità non disponibile'}
-      />
+      <Text>Velocità:</Text>
+      <Text>{data?.speed ?? 'velocità non disponibile'} piedi</Text>
+      <Text>{convertiPiediInMetri(data?.speed ?? 0)} metri</Text>
+
       <LabeledValue
         label="Statura:"
         value={data?.size ?? 'dimensione non disponibile'}

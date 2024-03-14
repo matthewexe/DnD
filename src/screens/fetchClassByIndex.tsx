@@ -38,6 +38,7 @@ export default function ClassComponent(input: ClassIndexRequest) {
       {data?.saving_throws?.map((choice, index) => (
         <Text key={index}>{choice.name}</Text>
       ))}
+      {/*Da Spostare nella pagina successiva */}
       <Text>Equipaggiamento iniziale:</Text>
       {data?.starting_equipment?.map((choice, index) => (
         <Text key={index}>

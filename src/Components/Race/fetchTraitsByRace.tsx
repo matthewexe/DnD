@@ -1,6 +1,6 @@
 import {Text} from 'react-native';
-import {useGetTraitByIndexQuery} from '../services/api';
-import {RaceIndexRequest, TraitsRequest} from '../types/requests';
+import {useGetTraitByIndexQuery} from '../../services/api';
+import {RaceIndexRequest, TraitsRequest} from '../../types/requests';
 import React from 'react';
 import ExportTrait from './fetchtrait';
 

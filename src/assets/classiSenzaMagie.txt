@@ -1,0 +1,4 @@
+barbarian
+fighter
+monk
+rogue

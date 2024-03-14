@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {useGetCheckSubRacesByIndexByRaceQuery} from '../services/api';
-import {RaceIndexRequest, SubraceIndexRequest} from '../types/requests';
+import {useGetCheckSubRacesByIndexByRaceQuery} from '../../services/api';
+import {RaceIndexRequest, SubraceIndexRequest} from '../../types/requests';
 import SubraceByIndexComponent from './fetchSubraceByIndex';
 
 //Serve per verificare se ci sono sottorazze disponibili si continua la ricerca, altrimenti si ignora
