@@ -18,6 +18,8 @@ import {
   Weapon,
   EquipmentCategory,
   Armor,
+  Level,
+  Spell,
 } from '../types/responses';
 
 import {
@@ -57,6 +59,7 @@ export const api = createApi({
     'SpellForClass',
     'SubClassesAvailable',
     'FeaturesForClass',
+    'ResourcesByClassByLevel',
     'ProficienciesForClass',
     'LevelResources',
     'LevelFeatures',
@@ -141,6 +144,22 @@ export const api = createApi({
         {type: 'SpellForClass', id: index},
       ],
     }),
+    getSpellCastingByClassByClasslevel: builder.query<
+      ResourceList,
+      ClassLevelResourceRequest
+    >({
+      query: ({index, class_level}) =>
+        `classes/${index}/levels/${class_level}/spells`,
+      providesTags: (result, error, {index}) => [
+        {type: 'SpellForClass', id: index},
+      ],
+    }),
+    getSpells: builder.query<Spell, any>({
+      query: ({index}) => `spells/${index}`,
+      providesTags: (result, error, {index}) => [
+        {type: 'SpellForClass', id: index},
+      ],
+    }),
 
     //getMulticlassing   --->manca lo mettiamo?
 
@@ -172,6 +191,15 @@ export const api = createApi({
         {type: 'FeaturesForClass', id: index},
       ],
     }),
+    getResourcesByClassByLevel: builder.query<Level, ClassLevelResourceRequest>(
+      {
+        query: ({index, class_level}) =>
+          `classes/${index}/levels/${class_level}`,
+        providesTags: (result, error, {index}) => [
+          {type: 'ResourcesByClassByLevel', id: index},
+        ],
+      },
+    ),
 
     // Questa se vuoi la facciamo insieme perchè ti devo far vedere una roba
     getProficienciesForClassByIndex: builder.query<ResourceList, ClassRequest>({
@@ -359,7 +387,9 @@ export const {
   useGetSpellCastingByClassQuery,
   useGetSubClassesAvilableByIndexQuery,
   useGetSpellAvailableByIndexQuery,
+  useGetSpellCastingByClassByClasslevelQuery,
   useGetFeaturesForClassByIndexQuery,
+  useGetResourcesByClassByLevelQuery,
   useGetProficienciesForClassByIndexQuery,
   useGetAllLevelResourcesByIndexQuery,
   useGetLevelResourcesByIndexByLevelQuery,
@@ -377,5 +407,6 @@ export const {
   useGetWeaponQuery,
   useGetMonsterByIndexQuery,
   useGetMonsterByLevelQuery,
+  useGetSpellsQuery,
   useGetEndpointResourceQuery,
 } = api;

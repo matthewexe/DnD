@@ -14,7 +14,7 @@ export default function Armors({input}: {input: EquipmentItemRequest}) {
   //se il result precedente non va bene
   if (isFetching) <Text>attendi risposta dal server</Text>;
 
-  //GREADY
+  //GREEDY
   // Verifica diretta se dex_bonus è true, tenendo conto che potrebbe essere anche undefined
   const dexBonusIsTrue = !!data?.armor_class.dex_bonus;
 
