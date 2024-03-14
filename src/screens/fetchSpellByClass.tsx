@@ -1,6 +1,8 @@
+import React from 'react';
 import {Text} from 'react-native';
 import {useGetSpellCastingByIndexQuery} from '../services/api';
-import {ClassIndexRequest} from '../types/requests';
+import {ClassIndexRequest, SpellRequest} from '../types/requests';
+import SpellsComponent from './fetchSpell';
 
 export default function SpellAvailableByClassComponent({
   input,
@@ -19,7 +21,10 @@ export default function SpellAvailableByClassComponent({
     <>
       <Text>Hai disponibili {data?.count} Incantesimi:</Text>
       {data?.results.map((choice, index) => (
-        <Text key={index}>{choice.name}</Text>
+        <>
+          <Text key={index}>{choice.name}</Text>
+          <SpellsComponent input={choice.index as SpellRequest} />
+        </>
       ))}
     </>
   );

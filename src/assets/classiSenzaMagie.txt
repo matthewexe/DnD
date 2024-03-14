@@ -5,3 +5,11 @@ rogue
 
 LINK DIZIONARIO:
 https://dungeonsdragons.forumfree.it/?t=19058677
+
+
+
+
+X MATTEO:
+fetchSpell il range da tenere solo cifre e convertire in metri e scrivere m a lato.
+fetchSpell DamageType
+fetchResourseByClassByLevel la classe
