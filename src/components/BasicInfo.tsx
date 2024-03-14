@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {InputText} from './InputText';
 import {Button, Text} from 'react-native';
 import {NewPlayerNavigationProps} from '../routes/NewPlayerParamList';
@@ -8,8 +8,13 @@ import {useGetEndpointResourceQuery} from '../services/api';
 type Props = NewPlayerNavigationProps<'BasicInfo'>;
 
 export const BasicInfo = ({navigation}: Props) => {
-  const {classData, isLoadingClass} = useGetEndpointResourceQuery('classes');
-  const {raceData, isLoadingRace} = useGetEndpointResourceQuery('races');
+  const {data: classData, isLoading: isLoadingClass} =
+    useGetEndpointResourceQuery('classes');
+  const {data: raceData, isLoading: isLoadingRace} =
+    useGetEndpointResourceQuery('races');
+
+  const [classState, setClass] = useState('');
+  const [raceState, setRace] = useState('');
 
   if (isLoadingClass || isLoadingRace) {
     return <Text>Loading...</Text>;
@@ -21,16 +26,28 @@ export const BasicInfo = ({navigation}: Props) => {
       <InputText label="Character Name" placeholder="Enter Character Name" />
       <InputText label="Character Level" placeholder="Enter Character Level" />
       <InputText label="Character XP" placeholder="Enter Character XP" />
-      <SelectMenu label="Character Class" data={classData} />
-      <SelectMenu label="Character Race" data={raceData} />
+      <SelectMenu
+        label="Character Class"
+        onSelect={item => {
+          setClass(item.index);
+        }}
+        data={classData?.results ?? []}
+      />
+      <SelectMenu
+        label="Character Race"
+        onSelect={item => {
+          setRace(item.index);
+        }}
+        data={raceData?.results ?? []}
+      />
       <Button
         title="Next"
         onPress={() => {
           navigation.navigate('Class', {
-            class: 'barbarian',
-            race: 'human',
+            class: classState,
+            race: raceState,
             level: 1,
-            userData: {},
+            userData: {class: classState, race: raceState},
           });
         }}
       />

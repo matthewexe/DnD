@@ -1,19 +1,19 @@
 import {CompositeScreenProps} from '@react-navigation/native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {ClassIndexRequest, RacesRequest} from '../types/requests';
 import {RootTabParamList, RootTabScreenProps} from './RootParamList';
+import {ClassIndexRequest, RaceIndexRequest} from '../types/requests';
 
 export type NewPlayerParamList = {
   BasicInfo: undefined;
   Class: {
     class: ClassIndexRequest;
-    race: RacesRequest;
+    race: RaceIndexRequest;
     level: number;
     userData: any;
   };
   Race: {
     class: ClassIndexRequest;
-    race: RacesRequest;
+    race: RaceIndexRequest;
     level: number;
     userData: any;
   };

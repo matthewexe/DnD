@@ -8,6 +8,8 @@ import {HomeScreen} from './src/screen/HomeScreen';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import {customTheme2} from './src/constants/theme';
 import {NewPLayerScreen} from './src/screen/NewPlayerScreen';
+import {Provider} from 'react-redux';
+import {store} from './src/store/';
 
 const Tabs = createBottomTabNavigator();
 const screenOptions: BottomTabNavigationOptions = {
@@ -40,37 +42,39 @@ const tabsIcon = {
 
 function App(): React.JSX.Element {
   return (
-    <NavigationContainer theme={customTheme2}>
-      <Tabs.Navigator screenOptions={screenOptions}>
-        <Tabs.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            tabBarIcon: tabsIcon.home,
-          }}
-        />
-        <Tabs.Screen
-          name="new"
-          component={NewPLayerScreen}
-          options={{
-            tabBarIcon: tabsIcon.plus,
-            tabBarLabel: ({}) => {
-              return '';
-            },
-          }}
-        />
-        <Tabs.Screen
-          name="new2"
-          component={NewPLayerScreen}
-          options={{
-            tabBarIcon: tabsIcon.plus,
-            tabBarLabel: ({}) => {
-              return '';
-            },
-          }}
-        />
-      </Tabs.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer theme={customTheme2}>
+        <Tabs.Navigator screenOptions={screenOptions}>
+          <Tabs.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              tabBarIcon: tabsIcon.home,
+            }}
+          />
+          <Tabs.Screen
+            name="new"
+            component={NewPLayerScreen}
+            options={{
+              tabBarIcon: tabsIcon.plus,
+              tabBarLabel: ({}) => {
+                return '';
+              },
+            }}
+          />
+          <Tabs.Screen
+            name="new2"
+            component={NewPLayerScreen}
+            options={{
+              tabBarIcon: tabsIcon.plus,
+              tabBarLabel: ({}) => {
+                return '';
+              },
+            }}
+          />
+        </Tabs.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

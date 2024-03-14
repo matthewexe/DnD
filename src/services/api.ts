@@ -10,7 +10,6 @@ import {
   Race as RaceResponse,
   ResourceList,
   Skill as SkillResponse,
-  Subclass as SubclassResponse,
   Trait as TraitResponse,
   Weapon as WeaponResponse,
   ResourceList as SubclassByClassResponse,
@@ -23,8 +22,6 @@ import {
 import {
   ClassRequest,
   SpellCastingForClassRequest,
-  SubclassRequest,
-  TraitsByIndexRequest,
   AbilityScoreRequestByIndex,
   AlignamentRequestByIndex,
   BackgroundRequestByIndex,

@@ -1,23 +1,26 @@
-import React, {PropsWithChildren} from 'react';
-import {Text, TextInput, View} from 'react-native';
+import React from 'react';
+import {Text, TextInput, TextInputProps, View} from 'react-native';
 
-type Props = PropsWithChildren<{
+type Props = TextInputProps & {
   /**
    * The text to display
    */
   label: string;
-  placeholder: string;
   /**
    * The color of the text
    */
   disabled?: boolean;
-}>;
+};
 
-export const InputText = ({label, placeholder, disabled = false}: Props) => {
+export const InputText = (props: Props) => {
   return (
     <View>
-      <Text disabled={disabled}>{label}</Text>
-      <TextInput placeholder={placeholder} aria-disabled={disabled} />
+      <Text disabled={props.disabled ?? false}>{props.label}</Text>
+      <TextInput
+        placeholder={props.placeholder}
+        aria-disabled={props.disabled ?? false}
+        {...props}
+      />
     </View>
   );
 };
