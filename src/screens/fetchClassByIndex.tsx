@@ -1,8 +1,9 @@
+import React from 'react';
 import {Text, View} from 'react-native';
 import {useGetClassByIndexQuery} from '../services/api';
 import {ClassIndexRequest} from '../types/requests';
-import {ProficiencyComponent} from '../Components/ProficiencyComponent';
-import {LabeledValue} from '../Components/LabeledValue';
+import {ProficiencyComponent} from '../components/ProficiencyComponent';
+import {LabeledValue} from '../components/LabeledValue';
 
 export default function ClassComponent(input: ClassIndexRequest) {
   const {data, error, isLoading, isFetching} = useGetClassByIndexQuery({

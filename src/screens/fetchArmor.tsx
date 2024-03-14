@@ -1,7 +1,7 @@
 import {Text} from 'react-native';
 import {useGetArmorQuery, useGetWeaponQuery} from '../services/api';
 import React from 'react';
-import {LabeledValue} from '../Components/LabeledValue';
+import {LabeledValue} from '../components/LabeledValue';
 import {EquipmentItemRequest} from '../types/requests';
 
 export default function Armors({input}: {input: EquipmentItemRequest}) {

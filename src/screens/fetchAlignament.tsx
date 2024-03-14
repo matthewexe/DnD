@@ -2,7 +2,7 @@ import {Text} from 'react-native';
 import {useGetAlignmentByIndexQuery} from '../services/api';
 import {AlignmentRequest} from '../types/requests';
 import React from 'react';
-import {LabeledValue} from '../Components/LabeledValue';
+import {LabeledValue} from '../components/LabeledValue';
 
 export default function SpellAvailableByClassComponent({
   input,

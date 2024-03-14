@@ -8,7 +8,7 @@ import {HomeScreen} from './src/screens/HomeScreen';
 import {MyTabs} from './src/screens/BottomNavigator';
 import {MyButton} from './src/screens/MyButton';
 import {Counter} from './src/screens/Counter';
-import RaceComponent from './src/Components/Race/fetchRaceByIndex';
+import RaceComponent from './src/components/race/fetchRaceByIndex';
 import {ApiProvider} from '@reduxjs/toolkit/query/react';
 
 const Stack = createNativeStackNavigator();
