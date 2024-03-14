@@ -143,3 +143,5 @@ export const customTheme2: Theme = {
     notification: theme.colors.accent,
   },
 };
+
+export default theme;
