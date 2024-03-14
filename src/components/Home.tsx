@@ -1,7 +1,7 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {SafeAreaView, Text, Button} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome6';
+// import Icon from 'react-native-vector-icons/FontAwesome6';
 import {GameCard} from './GameCard';
 import {HomeStackScreenProps} from '../routes/HomeParamList';
 
@@ -23,11 +23,17 @@ export const Home = (props: Props) => {
       <StyledTextInput>input</StyledTextInput>
 
       <StyledText>text</StyledText>
-      <StyledCheckBox text="test" />
-      <StyledButton text="Prosegui" />
+      <StyledCheckBox lineWidth={6} text="test" />
+      <Text />
+      <StyledButton
+        text="Prosegui"
+        onPress={() => {
+          //props.navigation.navigate();
+        }}
+      />
 
-      <Icon name="house" size={35} color={colors.text} />
-      <GameCard gameId="1" {...props} />
+      {/* <Icon name="house" size={35} color={colors.text} /> */}
+      {/* <GameCard gameId="1" {...props} /> */}
     </SafeAreaView>
   );
 };

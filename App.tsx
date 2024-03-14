@@ -38,6 +38,9 @@ const tabsIcon = {
   plus: ({color, size}: {focused: boolean; color: string; size: number}) => (
     <Icon name="plus" color={color} size={size} />
   ),
+  gear: ({color, size}: {focused: boolean; color: string; size: number}) => (
+    <Icon name="gear" color={color} size={size} />
+  ),
 };
 
 function App(): React.JSX.Element {
@@ -53,23 +56,20 @@ function App(): React.JSX.Element {
             }}
           />
           <Tabs.Screen
-            name="new"
+            name="New"
             component={NewPLayerScreen}
             options={{
               tabBarIcon: tabsIcon.plus,
-              tabBarLabel: ({}) => {
-                return '';
-              },
+              // tabBarLabel: ({}) => {
+              //   return '';
+              // },
             }}
           />
           <Tabs.Screen
-            name="new2"
+            name="Settings"
             component={NewPLayerScreen}
             options={{
-              tabBarIcon: tabsIcon.plus,
-              tabBarLabel: ({}) => {
-                return '';
-              },
+              tabBarIcon: tabsIcon.gear,
             }}
           />
         </Tabs.Navigator>

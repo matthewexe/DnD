@@ -9,6 +9,7 @@ export const StyledTextInput = (props: Props) => {
   const {colors} = useTheme();
   return (
     <TextInput
+      {...props}
       placeholderTextColor={colors.text}
       selectionColor={colors.background}
       style={styles.inputBox}>
@@ -20,7 +21,7 @@ export const StyledTextInput = (props: Props) => {
 const styles = StyleSheet.create({
   inputBox: {
     borderBottomRightRadius: 10,
-    borderBottomLeftRadius: 5,
+    borderBottomLeftRadius: 4,
     borderTopRightRadius: 10,
     backgroundColor: Theme.colors.background,
     borderLeftColor: Theme.colors.primary,

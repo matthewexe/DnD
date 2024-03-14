@@ -1,5 +1,6 @@
 import React, {PropsWithChildren} from 'react';
-import {Text, TextInput, View} from 'react-native';
+import {Text, View} from 'react-native';
+import {StyledTextInput} from './ui/StyledTextInput';
 
 type Props = PropsWithChildren<{
   /**
@@ -17,7 +18,7 @@ export const InputText = ({label, placeholder, disabled = false}: Props) => {
   return (
     <View>
       <Text disabled={disabled}>{label}</Text>
-      <TextInput placeholder={placeholder} aria-disabled={disabled} />
+      <StyledTextInput placeholder={placeholder} aria-disabled={disabled} />
     </View>
   );
 };
