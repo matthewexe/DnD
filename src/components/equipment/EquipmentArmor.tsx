@@ -2,7 +2,7 @@ import {Text} from 'react-native';
 import {useGetEquipmentArmorQuery} from '../../services/api';
 import React from 'react';
 import {LabeledValue} from '../LabeledValue';
-import Armors from './fetchArmor';
+import Armors from './Armor';
 import {EquipmentItemRequest} from '../../types/requests';
 
 export default function EquipmentTypeArmors() {

@@ -2,7 +2,7 @@ import React from 'react';
 import {Text} from 'react-native';
 import {useGetSubClassesAvilableByIndexQuery} from '../../services/api';
 import {ClassIndexRequest, Subclasstypes} from '../../types/requests';
-import SubclassForLevel from './subclassForLevel';
+import SubclassForLevel from './SubclassForLevel';
 
 type Props = {
   input: ClassIndexRequest;

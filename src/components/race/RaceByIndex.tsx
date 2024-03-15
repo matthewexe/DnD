@@ -6,7 +6,7 @@ import {ProficiencyReferenceOption} from '../../types/responses';
 import ExportTrait from './Trait';
 import {LabeledValue} from '../LabeledValue';
 import SubraceByRace from './CheckSubraceByIndex';
-import TraitsComponent from './fetchTraitsByRace';
+import TraitsComponent from './TraitsByRace';
 
 export default function RaceComponent({input}: {input: RaceIndexRequest}) {
   const {data, error, isLoading, isFetching} = useGetRacesByIndexQuery({

@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {useGetResourcesByClassByLevelQuery} from '../../services/api';
 import {ClassIndexRequest} from '../../types/requests';
-import FeaturesByClassByLevelComponent from './fetchFeaturesByClassByLevel';
+import FeaturesByClassByLevelComponent from './FeaturesByClassByLevel';
 import {LabeledValue} from '../LabeledValue';
 import {classSpecificToString} from '../../helper/classSpecific';
 
