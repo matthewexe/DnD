@@ -2,17 +2,17 @@
 
 import * as React from 'react';
 import {SafeAreaView} from 'react-native';
-import {HomeScreen} from './src/screens/HomeScreen';
-import {MyButton} from './src/screens/MyButton';
-import RaceComponent from './src/components/race/fetchRaceByIndex';
+import {TestClassSpecific} from './src/components/test/TestClassSpecific';
+import {Provider} from 'react-redux';
+import {store} from './src/store';
 
 function App() {
   return (
-    <SafeAreaView>
-      <HomeScreen />
-      <MyButton title="Test" />
-      <RaceComponent input="dragonborn" />
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView>
+        <TestClassSpecific classIndex="barbarian" level={1} />
+      </SafeAreaView>
+    </Provider>
   );
 }
 
