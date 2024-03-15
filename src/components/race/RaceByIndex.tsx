@@ -52,14 +52,21 @@ export default function RaceComponent({input}: {input: RaceIndexRequest}) {
       ))}
       {/*NB: per ogni razza ci sono ipoteticamente dei bonus da aggiungere su determinate caratteriistiche "index"  di un certo amount "bonus". */}
 
-      <Text>StarterKit:</Text>
+      <Text>Privilegi:</Text>
       {data?.starting_proficiencies?.map((proficiency, index) => (
         <Text key={index}>{proficiency.name}</Text>
       )) ?? <Text>Proficienze iniziali non disponibili</Text>}
 
       <Text>I tratti della razza:</Text>
       <TraitsComponent input={input} />
-      <Text>Opzioni disponibili:</Text>
+      <Text>
+        Opzioni disponibili: {data && data.starting_proficiency_options?.choose}
+      </Text>
+      <LabeledValue
+        label={'Opzioni disponibili:'}
+        value={data?.starting_proficiency_options?.choose ?? 0}
+      />
+      {data && data.starting_proficiency_options?.desc}
       {data?.starting_proficiency_options?.from.options.map((option, index) => (
         <Text key={index}>
           {(option as ProficiencyReferenceOption).item.name}
