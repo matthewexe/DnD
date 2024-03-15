@@ -3,9 +3,9 @@ import {Text} from 'react-native';
 import {useGetRacesByIndexQuery} from '../../services/api';
 import {RaceIndexRequest, TraitsRequest} from '../../types/requests';
 import {ProficiencyReferenceOption} from '../../types/responses';
-import ExportTrait from './fetchtrait';
+import ExportTrait from './Trait';
 import {LabeledValue} from '../LabeledValue';
-import SubraceByRace from './fetchCheckSubraceByIndex';
+import SubraceByRace from './CheckSubraceByIndex';
 import TraitsComponent from './fetchTraitsByRace';
 
 export default function RaceComponent({input}: {input: RaceIndexRequest}) {

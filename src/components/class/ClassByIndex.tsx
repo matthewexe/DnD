@@ -1,11 +1,17 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {useGetClassByIndexQuery} from '../services/api';
-import {ClassIndexRequest} from '../types/requests';
-import {ProficiencyComponent} from '../components/ProficiencyComponent';
-import {LabeledValue} from '../components/LabeledValue';
+import {useGetClassByIndexQuery} from '../../services/api';
+import {ClassIndexRequest} from '../../types/requests';
+import {ProficiencyComponent} from '../ProficiencyComponent';
+import {LabeledValue} from '../LabeledValue';
+import FeaturesByClassComponent from './FeaturesByClass';
+import ProficiencyByClassComponent from './ProficiencyByClass';
+import SubclassComponent from './SubclassByClass';
 
-export default function ClassComponent(input: ClassIndexRequest) {
+type Props = {
+  input: ClassIndexRequest;
+};
+export default function ClassComponent({input}: Props) {
   const {data, error, isLoading, isFetching} = useGetClassByIndexQuery({
     index: input,
   });
@@ -38,6 +44,12 @@ export default function ClassComponent(input: ClassIndexRequest) {
       {data?.saving_throws?.map((choice, index) => (
         <Text key={index}>{choice.name}</Text>
       ))}
+
+      <FeaturesByClassComponent input={input} />
+      <ProficiencyByClassComponent input={input} />
+      <Text>Sottoclassi:</Text>
+      <SubclassComponent input={input} />
+
       {/*Da Spostare nella pagina successiva */}
       <Text>Equipaggiamento iniziale:</Text>
       {data?.starting_equipment?.map((choice, index) => (

@@ -1,8 +1,8 @@
 import {Text} from 'react-native';
-import {useGetSpellCastingByClassQuery} from '../services/api';
-import {ClassIndexRequest} from '../types/requests';
+import {useGetSpellCastingByClassQuery} from '../../services/api';
+import {ClassIndexRequest} from '../../types/requests';
 import React from 'react';
-import {LabeledValue} from '../components/LabeledValue';
+import {LabeledValue} from '../LabeledValue';
 
 export default function SpellAvailableByClassComponent({
   input,
@@ -15,7 +15,6 @@ export default function SpellAvailableByClassComponent({
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  //se il result precedente non va bene
   if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
     <>

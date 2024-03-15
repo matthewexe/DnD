@@ -1,15 +1,19 @@
+import React from 'react';
 import {Text} from 'react-native';
-import {useGetFeaturesForClassByIndexQuery} from '../services/api';
-import {ClassIndexRequest} from '../types/requests';
+import {useGetSpellCastingByClassByClasslevelQuery} from '../../services/api';
+import {ClassIndexRequest} from '../../types/requests';
 
-export default function FeaturesByClassComponent({
+export default function SpellByClassByClasslevelComponent({
   input,
+  level,
 }: {
   input: ClassIndexRequest;
+  level: number;
 }) {
   const {data, error, isLoading, isFetching} =
-    useGetFeaturesForClassByIndexQuery({
+    useGetSpellCastingByClassByClasslevelQuery({
       index: input,
+      class_level: level,
     });
 
   if (error) return <Text>error in fetching</Text>;
@@ -17,11 +21,10 @@ export default function FeaturesByClassComponent({
   if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
     <>
-      <Text>Hai disponibili {data?.count} caratteristiche</Text>
+      <Text>Hai:{data?.count} incantesimi:</Text>
       {data?.results.map((choice, index) => (
-        <Text key={index}>{choice.name}</Text>
+        <Text>{choice.name}</Text>
       ))}
     </>
   );
 }
-//url x il fatch?

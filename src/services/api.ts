@@ -20,6 +20,8 @@ import {
   Armor,
   Level,
   Spell,
+  Subclass,
+  Feature,
 } from '../types/responses';
 
 import {
@@ -43,6 +45,11 @@ import {
   RacesRequestByIndex,
   SubraceByIndexRequest,
   TraitRequestByIndex,
+  SpellIndexRequest,
+  Subclasstypes,
+  SubclasstypesByIndex,
+  FeaturesRequest,
+  FeaturesRequestForIndex,
 } from '../types/requests';
 import {SubraceIndexResponse} from '../types/old_responses';
 import {Subrace} from '../types/responses';
@@ -154,7 +161,7 @@ export const api = createApi({
         {type: 'SpellForClass', id: index},
       ],
     }),
-    getSpells: builder.query<Spell, any>({
+    getSpells: builder.query<Spell, SpellIndexRequest>({
       query: ({index}) => `spells/${index}`,
       providesTags: (result, error, {index}) => [
         {type: 'SpellForClass', id: index},
@@ -172,6 +179,12 @@ export const api = createApi({
         {type: 'SubClassesAvailable', id: index},
       ],
     }),
+    getSubClassesforLevel: builder.query<Level, SubclasstypesByIndex>({
+      query: ({index}) => `subclasses/${index}/levels`,
+      providesTags: (result, error, {index}) => [
+        {type: 'SubClassesAvailable', id: index},
+      ],
+    }),
 
     //manca la response?
     getSpellAvailableByIndex: builder.query<
@@ -185,7 +198,15 @@ export const api = createApi({
     }),
 
     //manca la request->fatta io controllare
-    getFeaturesForClassByIndex: builder.query<ResourceList, ClassRequest>({
+    getFeaturesForClassByIndex: builder.query<Feature, FeaturesRequestForIndex>(
+      {
+        query: ({index}) => `features/${index}`,
+        providesTags: (result, error, {index}) => [
+          {type: 'FeaturesForClass', id: index},
+        ],
+      },
+    ),
+    getFeaturesByClass: builder.query<ResourceList, ClassRequest>({
       query: ({index}) => `classes/${index}/features`,
       providesTags: (result, error, {index}) => [
         {type: 'FeaturesForClass', id: index},
@@ -386,8 +407,10 @@ export const {
   useGetSpellCastingByIndexQuery,
   useGetSpellCastingByClassQuery,
   useGetSubClassesAvilableByIndexQuery,
+  useGetSubClassesforLevelQuery,
   useGetSpellAvailableByIndexQuery,
   useGetSpellCastingByClassByClasslevelQuery,
+  useGetFeaturesByClassQuery,
   useGetFeaturesForClassByIndexQuery,
   useGetResourcesByClassByLevelQuery,
   useGetProficienciesForClassByIndexQuery,

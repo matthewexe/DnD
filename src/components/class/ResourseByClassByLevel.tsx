@@ -1,9 +1,10 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {useGetResourcesByClassByLevelQuery} from '../services/api';
-import {ClassIndexRequest} from '../types/requests';
+import {useGetResourcesByClassByLevelQuery} from '../../services/api';
+import {ClassIndexRequest} from '../../types/requests';
 import FeaturesByClassByLevelComponent from './fetchFeaturesByClassByLevel';
-import {LabeledValue} from '../components/LabeledValue';
+import {LabeledValue} from '../LabeledValue';
+import {classSpecificToString} from '../../helper/classSpecific';
 
 export default function ResourceByClassByLevelComponent({
   input,
@@ -108,7 +109,9 @@ export default function ResourceByClassByLevelComponent({
         </View>
       )}
       {/*ASPETTO MATTEO PER LA CLASSE IN BASE ALLA CLASSE DEL GIOCO */}
-      {data?.class_specific}
+      {data &&
+        data.class_specific &&
+        classSpecificToString(data.class_specific)}
     </>
   );
 }

@@ -1,8 +1,8 @@
 import {Text} from 'react-native';
-import {useGetArmorQuery, useGetWeaponQuery} from '../services/api';
+import {useGetArmorQuery, useGetWeaponQuery} from '../../services/api';
 import React from 'react';
-import {LabeledValue} from '../components/LabeledValue';
-import {EquipmentItemRequest} from '../types/requests';
+import {LabeledValue} from '../LabeledValue';
+import {EquipmentItemRequest} from '../../types/requests';
 
 export default function Armors({input}: {input: EquipmentItemRequest}) {
   const {data, error, isLoading, isFetching} = useGetArmorQuery({

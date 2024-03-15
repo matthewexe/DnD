@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {useGetFeaturesByIndexByLevelQuery} from '../services/api';
-import {ClassIndexRequest} from '../types/requests';
+import {useGetFeaturesByIndexByLevelQuery} from '../../services/api';
+import {ClassIndexRequest} from '../../types/requests';
 
 export default function FeaturesByClassByLevelComponent({
   input,

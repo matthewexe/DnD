@@ -1,8 +1,8 @@
 import {Text} from 'react-native';
-import {useGetProficienciesForClassByIndexQuery} from '../services/api';
-import {ClassIndexRequest} from '../types/requests';
+import {useGetProficienciesForClassByIndexQuery} from '../../services/api';
+import {ClassIndexRequest} from '../../types/requests';
 
-export default function ProficiencyComponent({
+export default function ProficiencyByClassComponent({
   input,
 }: {
   input: ClassIndexRequest;

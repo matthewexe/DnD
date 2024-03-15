@@ -1240,6 +1240,9 @@ export type FeaturesRequest =
   | 'wizard-ability-score-improvement-3'
   | 'wizard-ability-score-improvement-4'
   | 'wizard-ability-score-improvement-5';
+export type FeaturesRequestForIndex = {
+  index: FeaturesRequest;
+};
 
 export type MonstersRequest = {index: string} | {challenge_rating?: number[]}; // list of monsters
 
@@ -1331,7 +1334,7 @@ export type SpellsRequest =
     };
 
 //Subclasses
-export type Subclass =
+export type Subclasstypes =
   | 'berserker'
   | 'champion'
   | 'devotion'
@@ -1344,9 +1347,12 @@ export type Subclass =
   | 'lore'
   | 'open-hand'
   | 'thief';
+export type SubclasstypesByIndex = {
+  index: Subclasstypes;
+};
 
 export type SubclassRequest = {
-  index: Subclass;
+  index: Subclasstypes;
   subclass_level: number;
 }; //subclasses level & features of a spell level of a class---
 

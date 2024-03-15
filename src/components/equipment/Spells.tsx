@@ -1,10 +1,11 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {useGetSpellsQuery} from '../services/api';
-import {SpellRequest} from '../types/requests';
-import {LabeledValue} from '../components/LabeledValue';
+import {useGetSpellsQuery} from '../../services/api';
+import {SpellRequest} from '../../types/requests';
+import {LabeledValue} from '../LabeledValue';
+import {rangeFieldToMeterField} from '../../helper/fieldConverter';
 
-export default function SpellsComponent({input}: {input: SpellRequest}) {
+export default function Spells({input}: {input: SpellRequest}) {
   const {data, error, isLoading, isFetching} = useGetSpellsQuery({
     index: input,
   });
@@ -24,7 +25,12 @@ export default function SpellsComponent({input}: {input: SpellRequest}) {
         value={data?.casting_time ?? 'Non specificato'}
       />
       {/*RANGE da matteo*/}
-      {/*<Text>Gittata: {data?.range}</Text> */}
+      {data && data.range && (
+        <LabeledValue
+          label={'Gittata:'}
+          value={`${rangeFieldToMeterField(data.range)}`}
+        />
+      )}
       <LabeledValue
         label={'Componenti'}
         value={`${data?.components?.join(',') ?? ' '} 
@@ -49,14 +55,37 @@ export default function SpellsComponent({input}: {input: SpellRequest}) {
         />
       )}
       {/*MATTEO FIX*/}
-      {/*
-      {data && data.damage && <LabeledValue label={'Danno incrementato ai livelli:'} value={data?.damage.damage_at_slot_level} />}
-      IDEM PER {data?.damage?.damage_at_character_level}
-      */}
+      {/*rangeFieldToMeterField({data.damage.damage_at_slot_level})*/}
+
+      {data && data.damage && data.damage.damage_at_slot_level && (
+        <LabeledValue
+          label={'Danno incrementato ai livelli:'}
+          value={`${data.damage.damage_at_slot_level.map((key, index) => (
+            <Text>
+              {key.level}
+              {key.damage}
+            </Text>
+          ))}`}
+        />
+      )}
+      {data && data.damage && data.damage.damage_at_character_level && (
+        <LabeledValue
+          label={'Danno incrementato ai livelli del personaggio:'}
+          value={`${data.damage.damage_at_character_level.map((key, index) => (
+            <Text>
+              {key.level}
+              {key.damage}
+            </Text>
+          ))}`}
+        />
+      )}
+
       {data && data.dc && (
         <LabeledValue
           label={'Tiro salvezza su:'}
-          value={`${data?.dc.type.name} Se superi: ${data?.dc.success}`}
+          value={`${data?.dc.type.name} Se superi: ${
+            data?.dc.success ?? 'non specificato'
+          }`}
         />
       )}
       <LabeledValue

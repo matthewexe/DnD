@@ -1,8 +1,13 @@
+import React from 'react';
 import {Text} from 'react-native';
-import {useGetSubClassesAvilableByIndexQuery} from '../services/api';
-import {ClassIndexRequest} from '../types/requests';
+import {useGetSubClassesAvilableByIndexQuery} from '../../services/api';
+import {ClassIndexRequest, Subclasstypes} from '../../types/requests';
+import SubclassForLevel from './subclassForLevel';
 
-export default function SubclassComponent({input}: {input: ClassIndexRequest}) {
+type Props = {
+  input: ClassIndexRequest;
+};
+export default function SubclassComponent({input}: Props) {
   const {data, error, isLoading, isFetching} =
     useGetSubClassesAvilableByIndexQuery({
       index: input,
@@ -10,17 +15,17 @@ export default function SubclassComponent({input}: {input: ClassIndexRequest}) {
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  //se il result precedente non va bene
   if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
     <>
       <Text>Sottoclasse:</Text>
       <Text>Possibili scelte: {data?.count}</Text>
       {data?.results.map((choice, index) => (
-        <Text key={index}>{choice.name}</Text>
+        <>
+          <Text key={index}>{choice.name}</Text>
+          <SubclassForLevel input={choice.index as Subclasstypes} />
+        </>
       ))}
     </>
   );
 }
-
-//NB: Non so ancora come utilizzare il campo url della map
