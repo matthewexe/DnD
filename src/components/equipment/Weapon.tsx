@@ -28,7 +28,7 @@ export default function Weapons({input}: {input: EquipmentItemRequest}) {
         {data?.cost.quantity} {data?.cost.unit}
       </Text>
       <Text>
-        Danno: {data?.damage?.damage_dice} tipo:{' '}
+        Danno: {data?.damage?.damage_dice} tipo:
         {data?.damage?.damage_type.name}
       </Text>
       <Text>
