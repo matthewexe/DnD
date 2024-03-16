@@ -1,23 +1,28 @@
-import React from 'react';
-import {useTheme} from '@react-navigation/native';
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, {useState} from 'react';
+
 import CheckBox from '@react-native-community/checkbox';
 import {StyleSheet, Text, View} from 'react-native';
 import {CheckBoxProps} from '@react-native-community/checkbox';
-import Theme from '../../constants/theme';
+import customTheme2 from '../../constants/theme';
 
 type Props = CheckBoxProps & {
   text: string;
 };
 
+const [selected, setSelection] = useState(false);
+
 export const StyledCheckBox = (props: Props) => {
-  const {colors} = useTheme();
   return (
     <View style={styles.container}>
       <CheckBox
         {...props}
-        onFillColor={colors.notification}
-        onCheckColor={colors.background}
-        style={styles.checkBox}
+        value={selected}
+        onTouchStart={value => setSelection(!value)}
+        // onValueChange={}
+        onFillColor={customTheme2.colors.accent}
+        onCheckColor={customTheme2.colors.primary}
+        //style={styles.checkBox}
       />
       <Text>{props.text}</Text>
     </View>
@@ -28,7 +33,7 @@ const styles = StyleSheet.create({
   checkBox: {
     borderRadius: 10,
     borderWidth: 4,
-    borderColor: Theme.colors.primary,
+    borderColor: customTheme2.colors.primary,
   },
   container: {
     alignItems: 'flex-start',

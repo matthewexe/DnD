@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {HomeStackParamList} from '../routes/HomeParamList';
-import {Home} from '../components/Home';
+import {Home} from '../components/pages/Home';
 import {GameDetailsScreen} from './GameDetailsScreen';
 
 const HomeStack = createNativeStackNavigator<HomeStackParamList>();

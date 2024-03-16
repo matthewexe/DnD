@@ -8,10 +8,13 @@ import {Provider} from 'react-redux';
 import {HomeScreen} from './src/screen/HomeScreen';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import {customTheme2} from './src/constants/theme';
-import {NewPLayerScreen} from './src/screen/NewPlayerScreen';
+import {NewPlayerScreen} from './src/screen/NewPlayerScreen';
 import {store} from './src/store';
+import {View} from 'react-native';
+import {Settings} from './src/components/pages/Settings';
 
 const Tabs = createBottomTabNavigator();
+
 const screenOptions: BottomTabNavigationOptions = {
   headerShown: false,
   tabBarStyle: {
@@ -35,8 +38,37 @@ const tabsIcon = {
   home: ({color, size}: {focused: boolean; color: string; size: number}) => (
     <Icon name="house" color={color} size={size} />
   ),
-  plus: ({color, size}: {focused: boolean; color: string; size: number}) => (
-    <Icon name="plus" color={color} size={size} />
+  plus: ({
+    color,
+    focused,
+    size,
+  }: {
+    focused: boolean;
+    color: string;
+    size: number;
+  }) => (
+    <View
+      // eslint-disable-next-line react-native/no-inline-styles
+      style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: size * 3.1,
+        height: size * 3.1,
+        borderRadius: 50,
+        borderWidth: 7,
+        borderColor: customTheme2.colors.background,
+        backgroundColor: focused ? customTheme2.colors.primary : '#555555',
+        // borderWidth: 5,
+        // borderColor: '#353535',
+        // backgroundColor: customTheme2.colors.border,
+        top: -29,
+      }}>
+      <Icon
+        name="plus"
+        color={focused ? customTheme2.colors.background : color}
+        size={size}
+      />
+    </View>
   ),
   gear: ({color, size}: {focused: boolean; color: string; size: number}) => (
     <Icon name="gear" color={color} size={size} />
@@ -56,18 +88,16 @@ function App(): React.JSX.Element {
             }}
           />
           <Tabs.Screen
-            name="New"
-            component={NewPLayerScreen}
+            name=" "
+            component={NewPlayerScreen}
             options={{
               tabBarIcon: tabsIcon.plus,
-              // tabBarLabel: ({}) => {
-              //   return '';
-              // },
             }}
           />
+
           <Tabs.Screen
             name="Settings"
-            component={NewPLayerScreen}
+            component={Settings}
             options={{
               tabBarIcon: tabsIcon.gear,
             }}

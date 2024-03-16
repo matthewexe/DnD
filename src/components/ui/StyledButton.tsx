@@ -19,11 +19,12 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
   text: {
-    borderRadius: 4,
-    borderColor: Theme.colors.primary,
-    borderWidth: 2,
-    backgroundColor: Theme.colors.secondary,
-    width: 70,
+    borderRadius: 6,
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: Theme.colors.primary,
+    width: 240,
     height: 36,
   },
 });
