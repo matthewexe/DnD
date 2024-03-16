@@ -1,7 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {NewPlayerParamList} from '../routes/NewPlayerParamList';
-import {BasicInfo} from '../components/BasicInfo';
+import {BasicInfo} from '../components/ui/BasicInfo';
 
 const NewPlayerNavigator = createNativeStackNavigator<NewPlayerParamList>();
 

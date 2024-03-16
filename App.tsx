@@ -5,10 +5,10 @@ import {
   BottomTabNavigationOptions,
 } from '@react-navigation/bottom-tabs';
 import {Provider} from 'react-redux';
-import {HomeScreen} from './src/screen/HomeScreen';
+import {HomeScreen} from './src/screens/HomeScreen';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import {customTheme2} from './src/constants/theme';
-import {NewPLayerScreen} from './src/screen/NewPlayerScreen';
+import {NewPLayerScreen} from './src/screens/NewPlayerScreen';
 import {store} from './src/store';
 
 const Tabs = createBottomTabNavigator();
