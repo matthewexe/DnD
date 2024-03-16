@@ -10,16 +10,20 @@ import {MyButton} from './src/screens/MyButton';
 import {Counter} from './src/screens/Counter';
 import RaceComponent from './src/components/race/RaceByIndex';
 import {ApiProvider} from '@reduxjs/toolkit/query/react';
+import {Provider} from 'react-redux';
+import {store} from './src/store';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-    <SafeAreaView>
-      <HomeScreen />
-      <MyButton title="Test" />
-      <RaceComponent input="dragonborn"></RaceComponent>
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView>
+        <HomeScreen />
+        <MyButton title="Test" />
+        <RaceComponent input="dragonborn"></RaceComponent>
+      </SafeAreaView>
+    </Provider>
   );
 }
 
