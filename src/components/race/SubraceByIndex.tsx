@@ -25,7 +25,7 @@ export default function SubraceByIndexComponent({
       <Text>Le tue abilità:</Text>
       {data?.ability_bonuses.map((choice, ability_score) => (
         <>
-          <Text key={ability_score}>{choice.bonus} Scelta:</Text>
+          <Text key={ability_score}>{choice.bonus} punto bonus in:</Text>
           <Text key={ability_score}>{choice.ability_score.name}</Text>
         </>
       ))}

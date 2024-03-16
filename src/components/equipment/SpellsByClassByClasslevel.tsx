@@ -1,7 +1,8 @@
 import React from 'react';
 import {Text} from 'react-native';
 import {useGetSpellCastingByClassByClasslevelQuery} from '../../services/api';
-import {ClassIndexRequest} from '../../types/requests';
+import {ClassIndexRequest, SpellRequest} from '../../types/requests';
+import Spells from './Spells';
 
 export default function SpellByClassByClasslevelComponent({
   input,
@@ -23,7 +24,10 @@ export default function SpellByClassByClasslevelComponent({
     <>
       <Text>Hai:{data?.count} incantesimi:</Text>
       {data?.results.map((choice, index) => (
-        <Text>{choice.name}</Text>
+        <>
+          <Text>{choice.name}</Text>
+          <Spells input={choice.index as SpellRequest} />
+        </>
       ))}
     </>
   );

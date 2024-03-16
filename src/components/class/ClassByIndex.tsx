@@ -26,11 +26,11 @@ export default function ClassComponent({input}: Props) {
         value={data?.name ?? 'classe non disponibile'}
       />
       <LabeledValue label={'Dado Vita:'} value={data?.hit_die ?? 'mancante'} />
-      <Text>Scegli le tue Abilità:</Text>
+      {/*Scegli le abilità---->CONTROLLARE SE FA anche il secondo round di choices,vedi api */}
       {data?.proficiency_choices?.map((choice, index) => (
         <View>
-          <Text>Scegli al massimo {choice.choose} abilità</Text>
           <Text>{choice.desc}</Text>
+          <Text>Scegli al massimo {choice.choose} abilità</Text>
           {choice.from.options.map((option, optionIndex) => (
             <ProficiencyComponent option={option} />
           ))}
@@ -40,7 +40,7 @@ export default function ClassComponent({input}: Props) {
       {data?.proficiencies?.map((choice, index) => (
         <Text key={index}>{choice.name}</Text>
       ))}
-      <Text>Tiri salvezza:</Text>
+      <Text>You have proficiencies with this saving throws:</Text>
       {data?.saving_throws?.map((choice, index) => (
         <Text key={index}>{choice.name}</Text>
       ))}

@@ -19,7 +19,6 @@ export default function SpellAvailableByClassComponent({
   return (
     <>
       <Text>Dalla tua classe hai le seguenti specifiche:</Text>
-      <SpellAvailableByClassComponent input={input} />
       <Text>Hai disponibili {data?.count} Incantesimi:</Text>
       {data?.results.map((choice, index) => (
         <>

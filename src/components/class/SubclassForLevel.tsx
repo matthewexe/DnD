@@ -15,7 +15,7 @@ export default function SubclassForLevel({input}: Props) {
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isFetching) return <Text>attendi risposta dal server</Text>;
   return (
     <>
       <LabeledValue label={'Livello:'} value={`${data?.level}`} />
