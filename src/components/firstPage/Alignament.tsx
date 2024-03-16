@@ -15,12 +15,13 @@ export default function SpellAvailableByClassComponent({
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  //se il result precedente non va bene
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isFetching) return <Text>wait for response from the server</Text>;
   return (
     <>
-      <Text>Il tuo allineamento:</Text>
-      <Text>{data?.desc}</Text>
+      <LabeledValue
+        label={'Your alignment:'}
+        value={data?.desc ?? 'alignment not available'}
+      />
     </>
   );
 }

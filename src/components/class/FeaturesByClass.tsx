@@ -15,10 +15,10 @@ export default function FeaturesByClassComponent({
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isFetching) return <Text>wait for response from the server</Text>;
   return (
     <>
-      <Text>Hai disponibili {data?.count} caratteristiche</Text>
+      <Text>You have available {data?.count} characteristics</Text>
       {data?.results.map((choice, index) => (
         <>
           <Text key={index}>{choice.name}</Text>

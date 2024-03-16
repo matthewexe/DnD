@@ -11,7 +11,7 @@ export default function Armors({input}: {input: EquipmentItemRequest}) {
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isFetching) return <Text>wait for response from the server</Text>;
 
   //GREEDY
   // Verifica diretta se dex_bonus è true, tenendo conto che potrebbe essere anche undefined
@@ -22,35 +22,35 @@ export default function Armors({input}: {input: EquipmentItemRequest}) {
   let stealth = '';
   // Usa dexBonusIsTrue in un'istruzione if o direttamente in JSX.
   if (dexBonusIsTrue) {
-    bonus = "Puoi aggiungere il tuo bonus destrezza sull'armatura";
+    bonus = 'You can add your dexterity bonus on the armor';
   } else {
-    bonus = "Non puoi aggiungere la destrezza all'armatura";
+    bonus = 'You cannot add dexterity to armor';
   }
   if (stealthDisadvantageIsTrue) {
-    stealth = 'Hai svantaggio nelle prove furtive';
+    stealth = 'You have disadvantage on stealth checks';
   } else {
-    stealth = 'Non hai alcuno svantaggio nelle prove di furtività';
+    stealth = 'You have no disadvantage on stealth checks';
   }
   return (
     <>
       <LabeledValue
-        label="Armatura"
-        value={data?.armor_category ?? 'non specificata'}
+        label="Armor:"
+        value={data?.armor_category ?? 'not specified'}
       />
       <LabeledValue
-        label="Valore armatura base:"
-        value={data?.armor_class.base ?? 'non specificata'}
+        label="Base armor value:"
+        value={data?.armor_class.base ?? 'not specified'}
       />
       <Text>{bonus}</Text>
       <LabeledValue
-        label={"Forza minima per indossare l'armatura: "}
-        value={data?.str_minimum ?? 'Non definita'}
+        label={'Minimum strength to wear armor: '}
+        value={data?.str_minimum ?? 'Not defined'}
       />
       <Text>{stealth}</Text>
       <Text>
-        Costo: {data?.cost.quantity} {data?.cost.unit}
+        Cost: {data?.cost.quantity} {data?.cost.unit}
       </Text>
-      <LabeledValue label={'Peso'} value={data?.weight ?? 'Non specificato'} />
+      <LabeledValue label={'Weight'} value={data?.weight ?? 'Not specified'} />
     </>
   );
 }

@@ -15,10 +15,10 @@ export default function SubclassForLevel({input}: Props) {
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) return <Text>attendi risposta dal server</Text>;
+  if (isFetching) return <Text>wait for response from the server</Text>;
   return (
     <>
-      <LabeledValue label={'Livello:'} value={`${data?.level}`} />
+      <LabeledValue label={'Level:'} value={`${data?.level}`} />
       {data?.features.map((choice, index) => (
         <>
           <Text>{choice.name}</Text>

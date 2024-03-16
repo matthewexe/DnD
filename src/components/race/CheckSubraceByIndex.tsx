@@ -13,17 +13,17 @@ export default function SubraceByRace({input}: {input: RaceIndexRequest}) {
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isFetching) return <Text>wait for response from the server</Text>;
   if (data?.count == 0) {
     return (
       <>
-        <Text>Non ci sono attualmente Sottorazze disponibili </Text>
+        <Text>There are currently no Subraces available </Text>
       </>
     );
   } else {
     return (
       <>
-        <Text>Hai a disposizione:</Text>
+        <Text>You have at your disposal:</Text>
         {data?.results?.map((choice, index) => (
           <>
             <Text key={index}>{choice.name}</Text>

@@ -19,10 +19,10 @@ export default function SpellByClassByClasslevelComponent({
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isFetching) return <Text>wait for response from the server</Text>;
   return (
     <>
-      <Text>Hai:{data?.count} incantesimi:</Text>
+      <Text>You Have:{data?.count} spells:</Text>
       {data?.results.map((choice, index) => (
         <>
           <Text>{choice.name}</Text>

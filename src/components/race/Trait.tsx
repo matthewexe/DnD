@@ -10,7 +10,7 @@ export default function ExportTrait({input}: {input: TraitsRequest}) {
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isFetching) return <Text>wait for response from the server</Text>;
   return (
     <>
       <Text>{data?.desc}</Text>

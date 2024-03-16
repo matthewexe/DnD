@@ -11,27 +11,27 @@ export default function Weapons({input}: {input: EquipmentItemRequest}) {
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isFetching) return <Text>wait for response from the server</Text>;
   return (
     <>
       <LabeledValue
-        label={"L'arma è"}
-        value={data?.weapon_category.name ?? 'non disponibile'}
+        label={'The weapon is:'}
+        value={data?.weapon_category.name ?? 'not available'}
       />
       <LabeledValue
-        label={'Tipologia arma:'}
-        value={data?.weapon_range ?? 'non disponibile'}
+        label={'Weapon type:'}
+        value={data?.weapon_range ?? 'not available'}
       />
-      <Text>Costo:</Text>
+      <Text>Cost:</Text>
       <Text>
         {data?.cost.quantity} {data?.cost.unit}
       </Text>
       <Text>
-        Danno: {data?.damage?.damage_dice} tipo:
+        Damage: {data?.damage?.damage_dice} type:
         {data?.damage?.damage_type.name}
       </Text>
       <Text>
-        Lancibile: {data?.throw_range?.normal ?? 0}/
+        Throwable: {data?.throw_range?.normal ?? 0}/
         {data?.throw_range?.long ?? 0}
       </Text>
     </>

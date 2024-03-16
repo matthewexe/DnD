@@ -12,54 +12,53 @@ export default function Spells({input}: {input: SpellRequest}) {
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  //se il result precedente non va bene
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isFetching) return <Text>wait for response from the server</Text>;
   return (
     <>
+      {data && data.desc && <Text>{data.desc}</Text>}
       <Text>
         {data?.school.name}
         {data?.level}
       </Text>
       <LabeledValue
-        label={'Tempo di Lancio:'}
-        value={data?.casting_time ?? 'Non specificato'}
+        label={'Casting time:'}
+        value={data?.casting_time ?? 'Not specified'}
       />
       {/*RANGE da matteo*/}
       {data && data.range && (
         <LabeledValue
-          label={'Gittata:'}
+          label={'Range:'}
           value={`${rangeFieldToMeterField(data.range)}`}
         />
       )}
       <LabeledValue
-        label={'Componenti'}
+        label={'Components:'}
         value={`${data?.components?.join(',') ?? ' '} 
-        ${data?.material ?? 'nessun componenente richiesto'}`}
+        ${data?.material ?? 'no components required'}`}
       />
-      <LabeledValue label={'Durata:'} value={data?.duration ?? ''} />
-      {data && data.ritual && <Text>Tipo: Rituale</Text>}
-      {data && data.concentration && <Text>Concentrazione</Text>}
-      {data && data.attack_type && (
-        <Text>Tipologia di attacco: {data.attack_type}</Text>
-      )}
+      <LabeledValue label={'Duration:'} value={data?.duration ?? 'not found'} />
+      {data && data.ritual && <Text>Type: Ritual</Text>}
+      {data && data.concentration && <Text>Concentration</Text>}
+      {data && data.attack_type && <Text>Attack type: {data.attack_type}</Text>}
       {data && data.area_of_effect && (
         <LabeledValue
-          label={'Area di effetto:'}
-          value={`Tipologia ${data?.area_of_effect.type} Dimensione ${data?.area_of_effect?.size}`}
+          label={'Area of ​​effect:'}
+          value={`Typology ${data?.area_of_effect.type} Size ${data?.area_of_effect?.size}`}
         />
       )}
       {data && data.damage && (
         <LabeledValue
-          label={'Danno:'}
-          value={`Tipologia ${data?.damage.damage_type?.name} Dimensione ${data?.area_of_effect?.size}`}
+          label={'Damage type::'}
+          value={data?.damage.damage_type?.name ?? 'not specified'}
         />
       )}
-      {/*MATTEO FIX*/}
-      {/*rangeFieldToMeterField({data.damage.damage_at_slot_level})*/}
-
+      {/*MATTEO FIX------ALLERT---ALLERT---ALLERT---ALLERT---ALLERT---ALLERT---ALLERT---ALLERT---ALLERT---ALLERT---ALLERT---ALLERT*/}
+      rangeFieldToMeterField(data.damage.damage_at_slot_level)
+      {/*MATTEO FIX------ALLERT---ALLERT---ALLERT---ALLERT---ALLERT---ALLERT---ALLERT---ALLERT---ALLERT---ALLERT---ALLERT---ALLERT*/}
+      {data && data.higher_level && <Text>{data.higher_level}</Text>}
       {data && data.damage && data.damage.damage_at_slot_level && (
         <LabeledValue
-          label={'Danno incrementato ai livelli:'}
+          label={'Increased damage to levels:'}
           value={`${data.damage.damage_at_slot_level.map((key, index) => (
             <Text>
               {key.level}
@@ -70,7 +69,7 @@ export default function Spells({input}: {input: SpellRequest}) {
       )}
       {data && data.damage && data.damage.damage_at_character_level && (
         <LabeledValue
-          label={'Danno incrementato ai livelli del personaggio:'}
+          label={'Damage increased at character levels:'}
           value={`${data.damage.damage_at_character_level.map((key, index) => (
             <Text>
               {key.level}
@@ -79,22 +78,21 @@ export default function Spells({input}: {input: SpellRequest}) {
           ))}`}
         />
       )}
-
       {data && data.dc && (
         <LabeledValue
-          label={'Tiro salvezza su:'}
-          value={`${data?.dc.type.name} Se superi: ${
-            data?.dc.success ?? 'non specificato'
+          label={'Saving throw up:'}
+          value={`${data?.dc.type.name} If you pass: ${
+            data?.dc.success ?? 'not specified'
           }`}
         />
       )}
       <LabeledValue
-        label={'Descrizione'}
-        value={data?.desc.join('\n') ?? 'Descrizione non disponibile'}
+        label={'Description'}
+        value={data?.desc.join('\n') ?? 'Description not available'}
       />
       <LabeledValue
-        label={'Materiali:'}
-        value={data?.material ?? 'Materiale non specificato'}
+        label={'Materials:'}
+        value={data?.material ?? 'Material not specified'}
       />
     </>
   );

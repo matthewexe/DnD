@@ -21,17 +21,17 @@ export default function ResourceByClassByLevelComponent({
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isFetching) return <Text>wait for response from the server</Text>;
   return (
     <>
       <Text>
-        Al livello {data?.level} hai {data?.ability_score_bonuses ?? 0} punti
-        abilità bonus
+        At the level {data?.level} you have {data?.ability_score_bonuses ?? 0}
+        bonus skill points
       </Text>
       <Text>
-        Bonus di competenza: {data?.prof_bonus ?? 'Non trovato dal server'}
+        Proficiency Bonus: {data?.prof_bonus ?? 'Not found by the server'}
       </Text>
-      <Text>Caratteristiche:</Text>
+      <Text>Characteristics:</Text>
       {data?.features.map((choice, index) => (
         <>
           <Text key={index}>{choice.name}</Text>
@@ -41,69 +41,60 @@ export default function ResourceByClassByLevelComponent({
       {data && data.spellcasting && (
         <View>
           <Text>
-            Hai disponibili {data?.spellcasting.cantrips_known ?? 0} trucchetti{' '}
+            You have available {data?.spellcasting.cantrips_known ?? 0} cantrips
           </Text>
           <LabeledValue
-            label={'Slot incantesimi livello 1:'}
+            label={'Level 1 Spell Slots:'}
             value={
-              data?.spellcasting.spell_slots_level_1 ??
-              ' non trovato dal server'
+              data?.spellcasting.spell_slots_level_1 ?? ' not found on server'
             }
           />
           <LabeledValue
-            label={'Slot incantesimi livello 2:'}
+            label={'Level 2 Spell Slots:'}
             value={
-              data?.spellcasting.spell_slots_level_2 ??
-              ' non trovato dal server'
+              data?.spellcasting.spell_slots_level_2 ?? 'not found on server'
             }
           />
           <LabeledValue
-            label={'Slot incantesimi livello 3:'}
+            label={'Level 3 Spell Slots:'}
             value={
-              data?.spellcasting.spell_slots_level_3 ??
-              ' non trovato dal server'
+              data?.spellcasting.spell_slots_level_3 ?? ' not found on server'
             }
           />
           <LabeledValue
-            label={'Slot incantesimi livello 4:'}
+            label={'Level 4 Spell Slots:'}
             value={
-              data?.spellcasting.spell_slots_level_4 ??
-              ' non trovato dal server'
+              data?.spellcasting.spell_slots_level_4 ?? ' not found on server'
             }
           />
           <LabeledValue
-            label={'Slot incantesimi livello 5:'}
+            label={'Level 5 Spell Slots:'}
             value={
-              data?.spellcasting.spell_slots_level_5 ??
-              ' non trovato dal server'
+              data?.spellcasting.spell_slots_level_5 ?? ' not found on server'
             }
           />
           <LabeledValue
-            label={'Slot incantesimi livello 6:'}
+            label={'Level 6 Spell Slots:'}
             value={
-              data?.spellcasting.spell_slots_level_6 ??
-              ' non trovato dal server'
+              data?.spellcasting.spell_slots_level_6 ?? ' not found on server'
             }
           />
           <LabeledValue
-            label={'Slot incantesimi livello 7:'}
+            label={'Level 7 Spell Slots:'}
             value={
-              data?.spellcasting.spell_slots_level_7 ??
-              ' non trovato dal server'
+              data?.spellcasting.spell_slots_level_7 ?? ' not found on server'
             }
           />
           <LabeledValue
-            label={'Slot incantesimi livello 8:'}
+            label={'Level 8 Spell Slots:'}
             value={
-              data?.spellcasting.spell_slots_level_8 ??
-              ' non trovato dal server'
+              data?.spellcasting.spell_slots_level_8 ?? ' not found on server'
             }
           />
           <LabeledValue
-            label={'Slot incantesimi livello 9:'}
+            label={'Level 9 Spell Slots:'}
             value={
-              data?.spellcasting.spell_slots_level_9 ??
-              ' non trovato dal server'
+              data?.spellcasting.spell_slots_level_9 ?? ' not found on server'
             }
           />
         </View>
