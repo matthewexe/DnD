@@ -10,19 +10,20 @@ type Props = CheckBoxProps & {
   text: string;
 };
 
-const [selected, setSelection] = useState(false);
-
 export const StyledCheckBox = (props: Props) => {
+  const [selected, setSelection] = useState(false);
+
   return (
     <View style={styles.container}>
       <CheckBox
         {...props}
         value={selected}
-        onTouchStart={value => setSelection(!value)}
-        // onValueChange={}
+        tintColor={
+          selected ? customTheme2.colors.accent : customTheme2.colors.background
+        }
+        onValueChange={selected => setSelection(!selected)}
         onFillColor={customTheme2.colors.accent}
         onCheckColor={customTheme2.colors.primary}
-        //style={styles.checkBox}
       />
       <Text>{props.text}</Text>
     </View>

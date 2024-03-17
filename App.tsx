@@ -90,9 +90,12 @@ function App(): React.JSX.Element {
           <Tabs.Screen
             name=" "
             component={NewPlayerScreen}
-            options={{
+            options={() => ({
+              tabBarStyle: {
+                display: 'none',
+              },
               tabBarIcon: tabsIcon.plus,
-            }}
+            })}
           />
 
           <Tabs.Screen

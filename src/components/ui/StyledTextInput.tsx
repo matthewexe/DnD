@@ -20,9 +20,10 @@ export const StyledTextInput = (props: Props) => {
 
 const styles = StyleSheet.create({
   inputBox: {
-    borderBottomRightRadius: 10,
-    borderBottomLeftRadius: 4,
-    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 4,
+    borderTopLeftRadius: 4,
+    borderTopRightRadius: 12,
     backgroundColor: customTheme2.colors.background,
     borderLeftColor: customTheme2.colors.primary,
     borderBottomColor: customTheme2.colors.primary,

@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 // import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {SafeAreaView, Text} from 'react-native';
@@ -5,13 +6,13 @@ import {SafeAreaView, Text} from 'react-native';
 import {GameCard} from '../GameCard';
 import {HomeStackScreenProps} from '../../routes/HomeParamList';
 
-import {StyledButton} from '../ui/StyledButton';
-import {StyledText} from '../ui/StyledText';
+import {StyledButton} from '../ui/buttons/StyledButton';
+import {StyledButton2} from '../ui/buttons/StyledButton2';
+import {StyledText} from '../ui/texts/StyledText';
 import {StyledCheckBox} from '../ui/StyledCheckBox';
 import {StyledTextInput} from '../ui/StyledTextInput';
-import {StyledTitle} from '../ui/StyledTitle';
-import {customTheme2} from '../../constants/theme';
-import {StyledText2} from '../ui/StyledText2';
+import {StyledTitle} from '../ui/texts/StyledTitle';
+import {StyledText2} from '../ui/texts/StyledText2';
 
 type Props = HomeStackScreenProps<'ListGame'>;
 
@@ -31,16 +32,16 @@ export const Home = (props: Props) => {
         }
       />
       <Text />
-      <StyledButton
+      <StyledButton2
         text={
           //mi da errore però scrive lo stesso
           <StyledText
             children={'Inizia a creare il tuo personaggio >>'}></StyledText>
         }
         onPress={() => {
-          // {
-          //   props.navigation.navigate();
-          // }
+          {
+            props.navigation.navigate('NewGame');
+          }
         }}
       />
       <Text />

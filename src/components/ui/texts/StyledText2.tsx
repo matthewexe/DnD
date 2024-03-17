@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TextProps} from 'react-native';
-import {customTheme2} from '../../constants/theme';
+import {customTheme2} from '../../../constants/theme';
 
 type Props = TextProps & {
   description: string;

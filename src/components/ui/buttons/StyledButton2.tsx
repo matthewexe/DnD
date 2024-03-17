@@ -1,12 +1,12 @@
 import React from 'react';
 import {StyleSheet, PressableProps, Text, Pressable} from 'react-native';
-import Theme from '../../constants/theme';
+import Theme from '../../../constants/theme';
 
 type Props = PressableProps & {
   text: string;
 };
 
-export const StyledButton = (props: Props) => {
+export const StyledButton2 = (props: Props) => {
   return (
     <Pressable {...props} style={styles.text}>
       <Text>{props.text}</Text>
