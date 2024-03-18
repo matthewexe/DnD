@@ -23,7 +23,7 @@ export default function RaceComponent({input}: {input: RaceIndexRequest}) {
       <LabeledValue label="Name:" value={data?.name ?? 'race not available'} />
       <Text>Speed:</Text>
       <Text>{data?.speed ?? 'speed not available'} piedi</Text>
-      <Text>{convertiPiediInMetri(data?.speed ?? 0)} metri</Text>
+      {/*<Text>{convertiPiediInMetri(data?.speed ?? 0)} metri</Text> */}
 
       <LabeledValue
         label="Stature:"

@@ -13,6 +13,7 @@ import {
 import {StyledButton} from '../ui/buttons/StyledButton';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
 import {StyledText} from '../ui/texts/StyledText';
+import RaceComponent from '../race/RaceByIndex';
 
 type Props = NewPlayerNavigationProps<'Class'>;
 
@@ -41,6 +42,7 @@ export const Race = ({navigation}: Props) => {
   }
   return (
     <>
+      <RaceComponent input={'dragonborn'} />
       <StyledSubtitle>Race</StyledSubtitle>
       <Text />
       <StyledText>Nome</StyledText>
