@@ -4,21 +4,39 @@ import {Text, View} from 'react-native';
 import {NewPlayerNavigationProps} from '../../routes/NewPlayerParamList';
 import {SelectMenu} from '../SelectMenu';
 import {useGetEndpointResourceQuery} from '../../services/api';
-import {ClassIndexRequest} from '../../types/requests';
+import {
+  LanguageRequest,
+  RaceIndexRequest,
+  TraitsRequest,
+  ProficiencyByRaceRequest,
+} from '../../types/requests';
 import {StyledButton} from '../ui/buttons/StyledButton';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
 import {StyledText} from '../ui/texts/StyledText';
-import {StyledMenu} from '../ui/StyledMenu';
 
 type Props = NewPlayerNavigationProps<'Class'>;
 
 export const Race = ({navigation}: Props) => {
-  const {data: raceData, isLoading: isLoadingClass} =
-    useGetEndpointResourceQuery('classes');
+  const {data: languagesData, isLoading: isLoadingLanguage} =
+    useGetEndpointResourceQuery('language');
+  const {data: traitsData, isLoading: isLoadingTraits} =
+    useGetEndpointResourceQuery('traits');
+  const {data: raceData, isLoading: isLoadingRace} =
+    useGetEndpointResourceQuery('races');
+  const {data: proficiencyData, isLoading: isLoadingProficiency} =
+    useGetEndpointResourceQuery('proficiency');
 
-  const [classState, setClass] = useState<ClassIndexRequest>('barbarian');
+  const [language, setLanguage] = useState<LanguageRequest>('abyssal');
+  const [trait, setTrait] = useState<TraitsRequest>('artificers-lore');
+  const [proficiency, setProficiency] = useState<ProficiencyByRaceRequest>('');
+  const [RaceBonus, setRaceBonus] = useState('');
 
-  if (isLoadingClass) {
+  if (
+    isLoadingRace ||
+    isLoadingLanguage ||
+    isLoadingTraits ||
+    isLoadingProficiency
+  ) {
     return <Text>Loading...</Text>;
   }
   return (
@@ -29,17 +47,29 @@ export const Race = ({navigation}: Props) => {
       <StyledText>Velocità</StyledText>
       <StyledText>Statura</StyledText>
       <Text />
-      <SelectMenu label="Languages" onSelect={() => {}} />
-      {/* mancano i data e le informazioni */}
+      <SelectMenu label="Languages" onSelect={item => {}} />
+      {/* devo cambiare modello di input */}
       <Text />
       <Text />
-      <SelectMenu label="Traits" onSelect={() => {}} />
+      <SelectMenu
+        label="Traits"
+        onSelect={item => {
+          setTrait(item.index);
+        }}
+        data={traitsData?.results ?? []}
+      />
       <Text />
       <Text />
       <SelectMenu label="Race Bonus" onSelect={() => {}} />
       <Text />
       <Text />
-      <SelectMenu label="Initial Proficiencies" onSelect={() => {}} />
+      <SelectMenu
+        label="Initial Proficiencies"
+        onSelect={item => {
+          setProficiency(item.index);
+        }}
+        data={proficiencyData?.results ?? []}
+      />
       <Text />
       <Text />
       <View style={{alignSelf: 'center'}}>

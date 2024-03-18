@@ -40,7 +40,7 @@ export const Home = (props: Props) => {
         }
         onPress={() => {
           {
-            props.navigation.navigate('NewGame');
+            props.navigation.navigate('');
           }
         }}
       />

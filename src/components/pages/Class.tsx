@@ -50,16 +50,18 @@ export const Class = ({navigation}: Props) => {
         />
       </View>
       <Text />
-      <StyledButton
-        text="Next"
-        onPress={() => {
-          navigation.navigate('Class', {
-            class: classState,
-            level: 1,
-            userData: {class: classState},
-          });
-        }}
-      />
+      <View style={{alignSelf: 'center'}}>
+        <StyledButton
+          text="Next"
+          onPress={() => {
+            navigation.navigate('Class', {
+              class: classState,
+              level: 1,
+              userData: {class: classState},
+            });
+          }}
+        />
+      </View>
     </>
   );
 };

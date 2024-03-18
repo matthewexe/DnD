@@ -9,17 +9,24 @@ import {StyledButton} from '../ui/buttons/StyledButton';
 import {StyleSheet} from 'react-native';
 import {StyledText} from '../ui/texts/StyledText';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
+import {Error} from './Error';
 
 type Props = NewPlayerNavigationProps<'BasicInfo'>;
 
 export const BasicInfo = ({navigation}: Props) => {
-  const {data: raceData, isLoading: isLoadingRace} =
-    useGetEndpointResourceQuery('races');
+  const {
+    data: raceData,
+    isLoading: isLoadingRace,
+    error: raceError,
+  } = useGetEndpointResourceQuery('races');
 
   const [raceState, setRace] = useState<RaceIndexRequest>('dragonborn');
 
   if (isLoadingRace) {
     return <Text>Loading...</Text>;
+  }
+  if (raceError) {
+    //return Error;
   }
 
   return (

@@ -1,12 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import MySwitch from '../Switch';
 import {View, Text} from 'react-native';
 import StyledTitle from '../ui/texts/StyledTitle';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
+import {customTheme2} from '../../constants/theme';
 
 //tema scuro chiaro, import in home, export in
 export const Settings = () => {
+  const [usedTheme, setTheme] = useState(customTheme2.colors);
   return (
     <>
       <View>
@@ -24,7 +26,11 @@ export const Settings = () => {
           {'   '}
           Activate Dark Mode
         </Text>
-        <MySwitch />
+        <MySwitch
+          onChange={usedTheme => {
+            usedTheme = customTheme2.dark;
+          }}
+        />
         <Text />
       </View>
     </>

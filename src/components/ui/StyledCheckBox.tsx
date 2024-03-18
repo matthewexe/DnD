@@ -21,7 +21,7 @@ export const StyledCheckBox = (props: Props) => {
         tintColor={
           selected ? customTheme2.colors.accent : customTheme2.colors.background
         }
-        onValueChange={selected => setSelection(!selected)}
+        onChange={selected => setSelection(!selected)}
         onFillColor={customTheme2.colors.accent}
         onCheckColor={customTheme2.colors.primary}
       />
