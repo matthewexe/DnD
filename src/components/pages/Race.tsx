@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {InputText} from '../InputText';
-import {Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {NewPlayerNavigationProps} from '../../routes/NewPlayerParamList';
 import {SelectMenu} from '../SelectMenu';
 import {useGetEndpointResourceQuery} from '../../services/api';
@@ -42,51 +42,43 @@ export const Race = ({navigation}: Props) => {
   }
   return (
     <>
-      <RaceComponent input={'dragonborn'} />
-      <StyledSubtitle>Race</StyledSubtitle>
-      <Text />
-      <StyledText>Nome</StyledText>
-      <StyledText>Velocità</StyledText>
-      <StyledText>Statura</StyledText>
-      <Text />
-      <SelectMenu label="Languages" onSelect={item => {}} />
-      {/* devo cambiare modello di input */}
-      <Text />
-      <Text />
-      <SelectMenu
-        label="Traits"
-        onSelect={item => {
-          setTrait(item.index);
-        }}
-        data={traitsData?.results ?? []}
-      />
-      <Text />
-      <Text />
-      <SelectMenu label="Race Bonus" onSelect={() => {}} />
-      <Text />
-      <Text />
-      <SelectMenu
-        label="Initial Proficiencies"
-        onSelect={item => {
-          setProficiency(item.index);
-        }}
-        data={proficiencyData?.results ?? []}
-      />
-      <Text />
-      <Text />
-      <View style={{alignSelf: 'center'}}>
-        <StyledButton
-          text="Next"
-          onPress={() => {
-            navigation.navigate('Class', {
-              class: 'barbarian',
-              race: 'dragonborn',
-              level: 1,
-              userData: {class: undefined, race: undefined},
-            });
+      <ScrollView>
+        <RaceComponent input={'dragonborn'} />
+        <SelectMenu
+          label="Traits"
+          onSelect={item => {
+            setTrait(item.index);
           }}
+          data={traitsData?.results ?? []}
         />
-      </View>
+        <Text />
+        <Text />
+        <SelectMenu label="Race Bonus" onSelect={() => {}} />
+        <Text />
+        <Text />
+        <SelectMenu
+          label="Initial Proficiencies"
+          onSelect={item => {
+            setProficiency(item.index);
+          }}
+          data={proficiencyData?.results ?? []}
+        />
+        <Text />
+        <Text />
+        <View style={{alignSelf: 'center'}}>
+          <StyledButton
+            text="Next"
+            onPress={() => {
+              navigation.navigate('Class', {
+                class: 'barbarian',
+                race: 'dragonborn',
+                level: 1,
+                userData: {class: undefined, race: undefined},
+              });
+            }}
+          />
+        </View>
+      </ScrollView>
     </>
   );
 };

@@ -13,6 +13,15 @@ import {
   Subclass as SubclassResponse,
   Trait as TraitResponse,
   Weapon as WeaponResponse,
+  ResourceList as SubclassByClassResponse,
+  ClassSpellcasting,
+  Weapon,
+  EquipmentCategory,
+  Armor,
+  Level,
+  Spell,
+  Subclass,
+  Feature,
 } from '../types/responses';
 
 import {
@@ -34,8 +43,16 @@ import {
   MonstersRequestByLevel,
   FeaturesRequestByIndex,
   RacesRequestByIndex,
+  SubraceByIndexRequest,
+  TraitRequestByIndex,
+  SpellIndexRequest,
+  Subclasstypes,
+  SubclasstypesByIndex,
+  FeaturesRequest,
+  FeaturesRequestForIndex,
 } from '../types/requests';
 import {SubraceIndexResponse} from '../types/old_responses';
+import {Subrace} from '../types/responses';
 
 export const api = createApi({
   reducerPath: 'api',
@@ -49,6 +66,7 @@ export const api = createApi({
     'SpellForClass',
     'SubClassesAvailable',
     'FeaturesForClass',
+    'ResourcesByClassByLevel',
     'ProficienciesForClass',
     'LevelResources',
     'LevelFeatures',
@@ -72,14 +90,12 @@ export const api = createApi({
       query: ({index}) => `races/${index}`,
       providesTags: (result, error, {index}) => [{type: 'Race', id: index}],
     }),
-    //                                                              ALERT
-    //OCCHIO QUESTA é SBAGLIATISSIMA SECONDO ME
-    // getSubRacesByIndex: builder.query<SubclassResponse, SubclassRequest>({
-    //   query: ({index}) => `subraces/${index}`,
-    //   providesTags: (result, error, {index}) => [{type: 'Subrace', id: index}],
-    // }),
 
-    //                                                             ALERT
+    getSubRacesByIndex: builder.query<Subrace, SubraceByIndexRequest>({
+      query: ({index}) => `subraces/${index}`,
+      providesTags: (result, error, {index}) => [{type: 'Subrace', id: index}],
+    }),
+
     getCheckSubRacesByIndexByRace: builder.query<
       ResourceList,
       RacesRequestByIndex
@@ -104,6 +120,12 @@ export const api = createApi({
         {type: 'ResourceList', id: index},
       ],
     }),
+    getTrait: builder.query<TraitResponse, TraitRequestByIndex>({
+      query: ({index}) => `traits/${index}`,
+      providesTags: (result, error, {index}) => [
+        {type: 'ResourceList', id: index},
+      ],
+    }),
 
     //Classi-Multiclassi?-Sottoclassi
 
@@ -112,6 +134,7 @@ export const api = createApi({
       providesTags: (result, error, {index}) => [{type: 'Class', id: index}],
     }),
 
+    //QUESTA CREDO NON SERVA/SBAGLIATA, QUELLA DOPO È GIUSTA
     getSpellCastingByIndex: builder.query<
       ResourceList,
       SpellCastingForClassRequest
@@ -122,13 +145,42 @@ export const api = createApi({
       ],
     }),
 
+    getSpellCastingByClass: builder.query<ClassSpellcasting, ClassRequest>({
+      query: ({index}) => `classes/${index}/spellcasting`,
+      providesTags: (result, error, {index}) => [
+        {type: 'SpellForClass', id: index},
+      ],
+    }),
+    getSpellCastingByClassByClasslevel: builder.query<
+      ResourceList,
+      ClassLevelResourceRequest
+    >({
+      query: ({index, class_level}) =>
+        `classes/${index}/levels/${class_level}/spells`,
+      providesTags: (result, error, {index}) => [
+        {type: 'SpellForClass', id: index},
+      ],
+    }),
+    getSpells: builder.query<Spell, SpellIndexRequest>({
+      query: ({index}) => `spells/${index}`,
+      providesTags: (result, error, {index}) => [
+        {type: 'SpellForClass', id: index},
+      ],
+    }),
+
     //getMulticlassing   --->manca lo mettiamo?
 
     getSubClassesAvilableByIndex: builder.query<
-      SubclassResponse,
-      SubclassRequest
+      SubclassByClassResponse,
+      ClassRequest
     >({
       query: ({index}) => `classes/${index}/subclasses`,
+      providesTags: (result, error, {index}) => [
+        {type: 'SubClassesAvailable', id: index},
+      ],
+    }),
+    getSubClassesforLevel: builder.query<Level, SubclasstypesByIndex>({
+      query: ({index}) => `subclasses/${index}/levels`,
       providesTags: (result, error, {index}) => [
         {type: 'SubClassesAvailable', id: index},
       ],
@@ -146,15 +198,29 @@ export const api = createApi({
     }),
 
     //manca la request->fatta io controllare
-    getFeaturesForClassByIndex: builder.query<
-      FeatureResponse,
-      FeaturesRequestByIndex
-    >({
+    getFeaturesForClassByIndex: builder.query<Feature, FeaturesRequestForIndex>(
+      {
+        query: ({index}) => `features/${index}`,
+        providesTags: (result, error, {index}) => [
+          {type: 'FeaturesForClass', id: index},
+        ],
+      },
+    ),
+    getFeaturesByClass: builder.query<ResourceList, ClassRequest>({
       query: ({index}) => `classes/${index}/features`,
       providesTags: (result, error, {index}) => [
         {type: 'FeaturesForClass', id: index},
       ],
     }),
+    getResourcesByClassByLevel: builder.query<Level, ClassLevelResourceRequest>(
+      {
+        query: ({index, class_level}) =>
+          `classes/${index}/levels/${class_level}`,
+        providesTags: (result, error, {index}) => [
+          {type: 'ResourcesByClassByLevel', id: index},
+        ],
+      },
+    ),
 
     // Questa se vuoi la facciamo insieme perchè ti devo far vedere una roba
     getProficienciesForClassByIndex: builder.query<ResourceList, ClassRequest>({
@@ -273,6 +339,26 @@ export const api = createApi({
         {type: 'EquipmentItem', id: index},
       ],
     }),
+    getEquipmentWeapon: builder.query<EquipmentCategory, undefined>({
+      query: () => `equipment-categories/weapon`,
+      providesTags: (result, error) => [{type: 'EquipmentItem', id: 'LIST'}],
+    }),
+    getEquipmentArmor: builder.query<EquipmentCategory, undefined>({
+      query: () => `equipment-categories/armor`,
+      providesTags: (result, error) => [{type: 'EquipmentItem', id: 'LIST'}],
+    }),
+    getWeapon: builder.query<Weapon, EquipmentItemRequestByIndex>({
+      query: ({index}) => `equipment/${index}`,
+      providesTags: (result, error, {index}) => [
+        {type: 'EquipmentItem', id: index},
+      ],
+    }),
+    getArmor: builder.query<Armor, EquipmentItemRequestByIndex>({
+      query: ({index}) => `equipment/${index}`,
+      providesTags: (result, error, {index}) => [
+        {type: 'EquipmentItem', id: index},
+      ],
+    }),
 
     //manca la request
     //getEquipmentCategoryByIndex:
@@ -313,13 +399,20 @@ export const {
   useGetRacesByIndexQuery,
   //useGetSubRacesByIndexQuery,
   useGetSubRacesByIndexByRaceQuery,
+  useGetSubRacesByIndexQuery,
   useGetCheckSubRacesByIndexByRaceQuery,
   useGetTraitByIndexQuery,
+  useGetTraitQuery,
   useGetClassByIndexQuery,
   useGetSpellCastingByIndexQuery,
+  useGetSpellCastingByClassQuery,
   useGetSubClassesAvilableByIndexQuery,
+  useGetSubClassesforLevelQuery,
   useGetSpellAvailableByIndexQuery,
+  useGetSpellCastingByClassByClasslevelQuery,
+  useGetFeaturesByClassQuery,
   useGetFeaturesForClassByIndexQuery,
+  useGetResourcesByClassByLevelQuery,
   useGetProficienciesForClassByIndexQuery,
   useGetAllLevelResourcesByIndexQuery,
   useGetLevelResourcesByIndexByLevelQuery,
@@ -330,8 +423,13 @@ export const {
   useGetLanguageByIndexQuery,
   useGetSkillByIndexQuery,
   useGetEquipmentByIndexQuery,
+  useGetEquipmentWeaponQuery,
+  useGetEquipmentArmorQuery,
+  useGetArmorQuery,
   useGetWeaponPropertyByIndexQuery,
+  useGetWeaponQuery,
   useGetMonsterByIndexQuery,
   useGetMonsterByLevelQuery,
+  useGetSpellsQuery,
   useGetEndpointResourceQuery,
 } = api;
