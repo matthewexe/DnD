@@ -1,12 +1,15 @@
 export type Player = {
   id: number;
-  name: string;
+  player_name: string;
+  character_name: string;
   alignment: string;
   level: number;
   experience: number;
   ability_scores: number[];
   saving_throws: number[];
   ability_choices: string[];
+  race: string;
+  class: string;
   ca: number;
   speed: number;
   money: number[];

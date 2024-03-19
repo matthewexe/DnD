@@ -1,18 +1,18 @@
 import React from 'react';
 import {Text} from 'react-native';
 import {useGetRacesByIndexQuery} from '../../services/api';
-import {TraitsRequest} from '../../types/requests';
+import {RaceIndexRequest, TraitsRequest} from '../../types/requests';
 import {ProficiencyReferenceOption} from '../../types/responses';
 import TraitSpecifics from './TraitSpecifics';
 import {LabeledValue} from '../LabeledValue';
 import CheckSubrace from './CheckSubrace';
 import Traits from './Traits';
-import {NewPlayerNavigationProps} from '../../routes/NewPlayerParamList';
+import {HomeStackScreenProps} from '../../routes/HomeParamList';
 
-type Props = NewPlayerNavigationProps<'Race'>;
+type Props = HomeStackScreenProps<'NewPlayer_Race'>;
 
 export function RaceComponent({route}: Props) {
-  const input = route.params.race;
+  const input: RaceIndexRequest = route.params.race as RaceIndexRequest;
   const {data, error, isLoading, isFetching} = useGetRacesByIndexQuery({
     index: input,
   });

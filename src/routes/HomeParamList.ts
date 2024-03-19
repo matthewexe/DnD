@@ -5,11 +5,11 @@ import {Player} from '../types/db';
 
 export type HomeStackParamList = {
   ListGame: undefined;
-  GameDetail: {gameId: string};
+  GameDetail: {gameId: number};
   NewGame: undefined;
   SuccessError: {query: string};
-  GameDelete: {gameId: string};
-  NewPlayer_BasicInfo: {gameId: string};
+  GameDelete: {gameId: number};
+  NewPlayer_BasicInfo: {gameId: number};
   NewPlayer_Race: Player;
   NewPlayer_Class: Player;
   NewPlayer_Equipment: Player;

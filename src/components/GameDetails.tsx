@@ -2,7 +2,7 @@ import React from 'react';
 import {HomeStackScreenProps} from '../routes/HomeParamList';
 import {Button, Text} from 'react-native';
 
-export const GameDetailsScreen = ({
+export const GameDetails = ({
   navigation,
   route,
 }: HomeStackScreenProps<'GameDetail'>) => {
