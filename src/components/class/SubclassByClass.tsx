@@ -2,7 +2,7 @@ import React from 'react';
 import {Text} from 'react-native';
 import {useGetSubClassesAvilableByIndexQuery} from '../../services/api';
 import {ClassIndexRequest, Subclasstypes} from '../../types/requests';
-import SubclassForLevel from './subclassForLevel';
+import SubclassForLevel from './SubclassForLevel';
 
 type Props = {
   input: ClassIndexRequest;
@@ -15,11 +15,11 @@ export default function SubclassComponent({input}: Props) {
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isFetching) return <Text>wait for response from the server</Text>;
   return (
     <>
-      <Text>Sottoclasse:</Text>
-      <Text>Possibili scelte: {data?.count}</Text>
+      <Text>Subclass:</Text>
+      <Text>Possible choices: {data?.count}</Text>
       {data?.results.map((choice, index) => (
         <>
           <Text key={index}>{choice.name}</Text>

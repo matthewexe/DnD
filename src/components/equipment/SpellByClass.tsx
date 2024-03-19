@@ -15,12 +15,11 @@ export default function SpellAvailableByClassComponent({
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isFetching) return <Text>wait for response from the server</Text>;
   return (
     <>
-      <Text>Dalla tua classe hai le seguenti specifiche:</Text>
-      <SpellAvailableByClassComponent input={input} />
-      <Text>Hai disponibili {data?.count} Incantesimi:</Text>
+      <Text>From your class you have the following specifications:</Text>
+      <Text>You have available {data?.count} Spells:</Text>
       {data?.results.map((choice, index) => (
         <>
           <Text key={index}>{choice.name}</Text>

@@ -15,12 +15,12 @@ export default function SpellAvailableByClassComponent({
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isFetching) return <Text>wait for response from the server</Text>;
   return (
     <>
-      <LabeledValue label="Livello Incantesimo:" value={data?.level ?? -1} />
+      <LabeledValue label="Spell Level:" value={data?.level ?? -1} />
       <LabeledValue
-        label="Caratteristica da incantatore"
+        label="Spellcaster trait"
         value={data?.spellcasting_ability.name ?? -1}
       />
       {data?.info.map(choice => (

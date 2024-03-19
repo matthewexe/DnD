@@ -3,17 +3,18 @@ import {StyleSheet, Text, TextProps} from 'react-native';
 import {customTheme2} from '../../../constants/theme';
 
 type Props = TextProps & {
-  description: string;
+  label: string;
+  value: string;
 };
 
 export const StyledLabel = (props: Props) => {
   return (
     <>
       <Text {...props} style={styles.PrimaryText}>
-        {props.children}:
+        {props.label}
       </Text>
       <Text {...props} style={styles.Description}>
-        {props.description}
+        {props.value}
       </Text>
     </>
   );
@@ -26,10 +27,10 @@ const styles = StyleSheet.create({
     height: 24,
     fontWeight: 'bold',
     fontFamily: '',
-    fontSize: 17,
+    fontSize: 18,
   },
   Description: {
-    fontWeight: '200',
+    fontWeight: '400',
     width: '93%',
     fontSize: 14,
     alignSelf: 'center',
