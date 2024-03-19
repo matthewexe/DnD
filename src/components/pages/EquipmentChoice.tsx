@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Text, View} from 'react-native';
 import {NewPlayerNavigationProps} from '../../routes/NewPlayerParamList';
-import {StyledButton} from '../ui/buttons/StyledButton';
+import {StyledButton} from '../ui/StyledButton';
 import StyledTitle from '../ui/texts/StyledTitle';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
 import {SelectMenu} from '../SelectMenu';

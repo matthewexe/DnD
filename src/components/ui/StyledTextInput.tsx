@@ -9,11 +9,9 @@ export const StyledTextInput = (props: Props) => {
   return (
     <TextInput
       {...props}
-      placeholderTextColor={customTheme2.colors.text}
+      placeholderTextColor={customTheme2.colors.border}
       selectionColor={customTheme2.colors.background}
-      style={styles.inputBox}
-      //on chance text
-    >
+      style={styles.inputBox}>
       {props.children}
     </TextInput>
   );

@@ -8,21 +8,18 @@ import customTheme2 from '../../constants/theme';
 
 type Props = CheckBoxProps & {
   text: string;
-  onChange: (input: boolean) => void;
 };
 
 export const StyledCheckBox = (props: Props) => {
-  const [selected, setSelection] = useState(false);
-
   return (
     <View style={styles.container}>
       <CheckBox
         {...props}
-        value={selected}
+        value={props.value} //falso di default
         tintColor={
-          selected ? customTheme2.colors.accent : customTheme2.colors.text
+          props.value ? customTheme2.colors.accent : customTheme2.colors.text
         }
-        onChange={() => setSelection(!selected)}
+        onChange={props.onChange}
         tintColors={{
           true: customTheme2.colors.accent,
           false: customTheme2.colors.text,

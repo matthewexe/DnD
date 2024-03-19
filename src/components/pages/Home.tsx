@@ -6,11 +6,9 @@ import {SafeAreaView, Text} from 'react-native';
 import {GameCard} from '../GameCard';
 import {HomeStackScreenProps} from '../../routes/HomeParamList';
 
-import {StyledButton} from '../ui/buttons/StyledButton';
-import {StyledButton2} from '../ui/buttons/StyledButton2';
+import {StyledButton} from '../ui/StyledButton';
 import {StyledText} from '../ui/texts/StyledText';
 import {StyledCheckBox} from '../ui/StyledCheckBox';
-import {StyledTextInput} from '../ui/StyledTextInput';
 import {StyledTitle} from '../ui/texts/StyledTitle';
 import {StyledLabeledValue} from '../ui/texts/StyledLabeledValue';
 import {useState} from 'react';
@@ -22,10 +20,10 @@ export const Home = (props: Props) => {
   return (
     <SafeAreaView>
       <StyledTitle children={'Home'} />
-      <Text />
       <StyledCheckBox
         text="test"
-        onChange={selection => setChoice(!selection)}
+        value={choice}
+        onChange={() => setChoice(current => !current)}
       />
       <Text />
       <GameCard gameId="1" {...props} />
@@ -37,20 +35,13 @@ export const Home = (props: Props) => {
         }
       />
       <Text />
-      <StyledButton2
+      <StyledButton
         text={
           //mi da errore però scrive lo stesso
-          <StyledText
-            children={'Inizia a creare il tuo personaggio >>'}></StyledText>
+          <StyledText children={'Inizia a creare >>'}></StyledText>
         }
-        onPress={() => {
-          {
-            props.navigation.navigate('');
-          }
-        }}
+        onPress={() => {}}
       />
-      <Text />
-      <StyledCheckBox text="ciao" />
       <Text />
     </SafeAreaView>
   );

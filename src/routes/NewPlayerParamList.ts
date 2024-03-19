@@ -11,7 +11,7 @@ import {
 import {RootTabParamList, RootTabScreenProps} from './RootParamList';
 
 export type NewPlayerParamList = {
-  BasicInfo: {};
+  BasicInfo: undefined;
   RaceInfo: {
     player: string;
     character: string;
@@ -22,12 +22,6 @@ export type NewPlayerParamList = {
     raceBonus: RacesRequest;
     languages: LanguageRequestByIndex;
     initialProficiency: ProficiencyByRaceRequest;
-  };
-  ClassInfo: {
-    class: ClassIndexRequest;
-    level: ClassLevelsRequest;
-    exp: any; //?
-    userData: any;
   };
   EquipmentChoice: {};
   End: {userData: any};

@@ -1,34 +1,28 @@
 import React, {PropsWithChildren} from 'react';
-import {Text, View} from 'react-native';
+import {Text, TextInputProps, View} from 'react-native';
 import {StyledTextInput} from './ui/StyledTextInput';
 import {useState} from 'react';
 
-type Props = PropsWithChildren<{
+type Props = TextInputProps & {
   /**
    * The text to display
    */
   label: string;
-  placeholder: string;
   /**
    * The color of the text
    */
   disabled?: boolean;
-  onChangeText: (text: string) => void;
-}>;
+};
 
-export const InputText = ({
-  label,
-  placeholder,
-  disabled = false,
-  onChangeText,
-}: Props) => {
+export const InputText = (props: Props) => {
   return (
     <View>
-      <Text disabled={disabled}>{label}</Text>
+      <Text disabled={props.disabled}>{props.label}</Text>
       <StyledTextInput
-        placeholder={placeholder}
-        aria-disabled={disabled}
-        onChangeText={onChangeText}
+        placeholder={props.placeholder}
+        aria-disabled={props.disabled}
+        onChangeText={props.onChangeText}
+        {...props}
       />
     </View>
   );

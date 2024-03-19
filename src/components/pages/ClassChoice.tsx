@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import {InputText} from '../InputText';
-import {Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {NewPlayerNavigationProps} from '../../routes/NewPlayerParamList';
 import {SelectMenu} from '../SelectMenu';
 import {useGetEndpointResourceQuery} from '../../services/api';
 import {ClassIndexRequest} from '../../types/requests';
-import {StyledButton} from '../ui/buttons/StyledButton';
+import {StyledButton} from '../ui/StyledButton';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
+import StyledTitle from '../ui/texts/StyledTitle';
 
 type Props = NewPlayerNavigationProps<'ClassChoice'>;
 
@@ -23,7 +24,8 @@ export const ClassChoice = ({route, navigation}: Props) => {
   }
   return (
     <>
-      <StyledSubtitle>{'Class Choice'}</StyledSubtitle>
+      <StyledTitle>{'Class Choice'}</StyledTitle>
+      <Text />
       <SelectMenu
         label="Character Class"
         onSelect={item => {
@@ -55,11 +57,17 @@ export const ClassChoice = ({route, navigation}: Props) => {
         />
       </View>
       <Text />
-      <View style={{alignSelf: 'center'}}>
+      <View style={styles.rowStyle}>
         <StyledButton
-          text="Next"
+          text="<   Back"
           onPress={() => {
-            navigation.navigate('ClassInfo', {
+            navigation.goBack();
+          }}
+        />
+        <StyledButton
+          text="Next   >"
+          onPress={() => {
+            navigation.navigate('EquipmentChoice', {
               class: selectedClass,
               race: 'dragonborn',
               level: 3,
@@ -71,3 +79,13 @@ export const ClassChoice = ({route, navigation}: Props) => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  rowStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    padding: 13,
+    margin: -3,
+  },
+});

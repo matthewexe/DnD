@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {InputText} from '../InputText';
-import {Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {NewPlayerNavigationProps} from '../../routes/NewPlayerParamList';
 import {SelectMenu} from '../SelectMenu';
 import {useGetEndpointResourceQuery} from '../../services/api';
@@ -10,10 +10,11 @@ import {
   TraitsRequest,
   ProficiencyByRaceRequest,
 } from '../../types/requests';
-import {StyledButton} from '../ui/buttons/StyledButton';
+import {StyledButton} from '../ui/StyledButton';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
 import {StyledText} from '../ui/texts/StyledText';
 import {Route} from '@react-navigation/native';
+import {StyledTitle} from '../ui/texts/StyledTitle';
 
 type Props = NewPlayerNavigationProps<'RaceInfo'>;
 
@@ -43,8 +44,7 @@ export const RaceInfo = ({route, navigation}: Props) => {
   }
   return (
     <>
-      <StyledSubtitle>Race</StyledSubtitle>
-      <Text />
+      <StyledTitle>Race Information</StyledTitle>
       <StyledText>Nome</StyledText>
       <StyledText>Velocità</StyledText>
       <StyledText>Statura</StyledText>
@@ -74,9 +74,15 @@ export const RaceInfo = ({route, navigation}: Props) => {
       />
       <Text />
       <Text />
-      <View style={{alignSelf: 'center'}}>
+      <View style={styles.rowStyle}>
         <StyledButton
-          text="Next"
+          text="<   Back"
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
+        <StyledButton
+          text="Next   >"
           onPress={() => {
             navigation.navigate('ClassChoice', {
               language: language,
@@ -90,3 +96,13 @@ export const RaceInfo = ({route, navigation}: Props) => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  rowStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    padding: 13,
+    margin: -3,
+  },
+});
