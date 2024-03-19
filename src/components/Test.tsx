@@ -13,7 +13,8 @@ const Test = () => {
       realm.create('Test', {
         id: new Realm.BSON.UUID(),
         name: name,
-        description: desc.split(','),
+        description: desc,
+        class: 'barbarian',
       });
     });
   };

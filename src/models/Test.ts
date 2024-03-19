@@ -1,31 +1,20 @@
 import Realm from 'realm';
 import {ObjectSchema} from 'realm';
-
-export class EmbeddedTest extends Realm.Object<EmbeddedTest> {
-  description!: string;
-
-  static schema: ObjectSchema = {
-    name: 'EmbeddedTest',
-    embedded: true,
-    properties: {
-      description: 'string',
-    },
-  };
-}
+import {ClassIndexRequest} from '../types/requests';
 
 export default class Test extends Realm.Object<Test> {
   id!: Realm.BSON.UUID;
   name!: string;
-  // description?: Realm.List<string>;
-  embedded?: EmbeddedTest;
+  description?: string;
+  class!: ClassIndexRequest;
 
   static schema: ObjectSchema = {
     name: 'Test',
     properties: {
       id: 'uuid',
       name: 'string',
-      embedded: 'EmbeddedTest?',
-      // description: 'string?[]',
+      description: 'string?',
+      class: 'string',
     },
 
     primaryKey: 'id',

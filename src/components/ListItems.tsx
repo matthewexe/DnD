@@ -10,7 +10,7 @@ const ListItems = () => {
       <Text>Items:</Text>
       {results.map(item => (
         <Text key={item.id as unknown as string}>
-          {item.name}: {item.embedded?.description}
+          {item.name}: {item.class}
         </Text>
       ))}
     </SafeAreaView>

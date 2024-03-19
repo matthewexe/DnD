@@ -1,5 +1,15 @@
 import {Realm} from '@realm/react';
 import {ObjectSchema} from 'realm';
+import {
+  ClassIndexRequest,
+  EquipmentItemRequest,
+  FeaturesRequest,
+  LanguageRequest,
+  RacesRequest,
+  SpellRequest,
+  Subclasstypes,
+  TraitsRequest,
+} from '../types/requests';
 
 export class Game extends Realm.Object<Game> {
   id!: Realm.BSON.ObjectId;
@@ -24,8 +34,8 @@ export class Player extends Realm.Object<Player> {
   id!: Realm.BSON.UUID;
   character_name!: string;
   player_name!: string;
-  class!: string;
-  race!: string;
+  class!: ClassIndexRequest;
+  race!: RacesRequest;
   background!: string;
   alignment!: string;
   level!: number;
@@ -41,14 +51,14 @@ export class Player extends Realm.Object<Player> {
   hit_die!: number;
   weapon!: Realm.List<Weapon>;
   armor!: Realm.List<Armor>;
-  spells!: Realm.List<string>;
-  traits!: Realm.List<string>;
-  proficincies!: Realm.List<string>;
+  spells!: Realm.List<SpellRequest>;
+  traits!: Realm.List<TraitsRequest>;
+  proficiencies!: Realm.List<string>;
   //start
-  languages!: Realm.List<string>;
+  languages!: Realm.List<LanguageRequest>;
   //end
-  features!: Realm.List<string>;
-  subclass!: string;
+  features!: Realm.List<FeaturesRequest>;
+  subclass!: Subclasstypes;
 
   static schema: ObjectSchema = {
     name: 'Player',
@@ -75,7 +85,7 @@ export class Player extends Realm.Object<Player> {
       armor: 'Armor[]',
       spells: 'string[]',
       traits: 'string[]',
-      proficincies: 'string[]',
+      proficiencies: 'string[]',
       features: 'string[]',
       subclass: 'string',
       game: {
@@ -90,7 +100,7 @@ export class Player extends Realm.Object<Player> {
 }
 
 export class Armor extends Realm.Object<Armor> {
-  index!: string;
+  index!: EquipmentItemRequest;
   quantity!: number;
 
   static schema: ObjectSchema = {
@@ -106,14 +116,14 @@ export class Armor extends Realm.Object<Armor> {
 }
 
 export class Weapon extends Realm.Object<Weapon> {
-  index!: string;
+  index!: EquipmentItemRequest;
   quantity!: number;
 
   static schema: ObjectSchema = {
     name: 'Weapon',
     embedded: true,
     properties: {
-      index: 'int',
+      index: 'string',
       quantity: 'int',
     },
   };
