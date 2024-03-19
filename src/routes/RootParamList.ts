@@ -2,7 +2,7 @@ import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 
 export type RootTabParamList = {
   Home: undefined;
-  NewGame: undefined;
+  NewPlayer: undefined;
   Settings: undefined;
 };
 

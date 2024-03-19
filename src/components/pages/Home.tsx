@@ -12,22 +12,27 @@ import {StyledText} from '../ui/texts/StyledText';
 import {StyledCheckBox} from '../ui/StyledCheckBox';
 import {StyledTextInput} from '../ui/StyledTextInput';
 import {StyledTitle} from '../ui/texts/StyledTitle';
-import {StyledText2} from '../ui/texts/StyledText2';
+import {StyledLabeledValue} from '../ui/texts/StyledLabeledValue';
+import {useState} from 'react';
 
 type Props = HomeStackScreenProps<'ListGame'>;
 
 export const Home = (props: Props) => {
+  const [choice, setChoice] = useState(false);
   return (
     <SafeAreaView>
       <StyledTitle children={'Home'} />
       <Text />
-      <StyledCheckBox lineWidth={6} text="test" />
+      <StyledCheckBox
+        text="test"
+        onChange={selection => setChoice(!selection)}
+      />
       <Text />
       <GameCard gameId="1" {...props} />
       <Text />
-      <StyledText2
-        children={'  Nome figo di qualcosa'}
-        description={
+      <StyledLabeledValue
+        label={'  Nome figo di qualcosa'}
+        value={
           'ciaociao Questa è una descrizione fatta apposta perchè non so che cazzo devo scrivere e quando avremo trovato cosa scrivere sarà tolta. Nel mentre considerata come schiavetto per capire quanto cazzo può occupare una descrizione tipo, tra tutti quei papiri che sto gioco ci propone molto caltamente '
         }
       />

@@ -10,6 +10,7 @@ import {StyleSheet} from 'react-native';
 import {StyledText} from '../ui/texts/StyledText';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
 import {Error} from './Error';
+import {Loading} from './Loading';
 
 type Props = NewPlayerNavigationProps<'BasicInfo'>;
 
@@ -20,20 +21,23 @@ export const BasicInfo = ({navigation}: Props) => {
     error: raceError,
   } = useGetEndpointResourceQuery('races');
 
+  const [player, setPlayerName] = useState('s');
+  const [character, setCharacterName] = useState('i');
   const [raceState, setRace] = useState<RaceIndexRequest>('dragonborn');
 
   if (isLoadingRace) {
     return <Text>Loading...</Text>;
+    //<View>navigation.navigate('Loading')</View>;
   }
   if (raceError) {
-    //return Error;
+    return <View>navigation.navigate('Error')</View>;
   }
 
   return (
     <>
       <StyledSubtitle>Basic Information</StyledSubtitle>
       <View style={styles.rowStyle}>
-        <StyledText>ciao</StyledText>
+        <StyledText>n</StyledText>
         <Text
           style={{
             width: 110,
@@ -42,9 +46,21 @@ export const BasicInfo = ({navigation}: Props) => {
         <StyledButton text="< Cancel" onPress={navigation.goBack} />
       </View>
       <Text />
-      <InputText label="Player Name" placeholder="Enter Player Name" />
+      <InputText
+        label="Player Name"
+        placeholder="Enter Player Name"
+        onChangeText={input => {
+          setPlayerName(input);
+        }}
+      />
       <Text />
-      <InputText label="Character Name" placeholder="Enter Character Name" />
+      <InputText
+        label="Character Name"
+        placeholder="Enter Character Name"
+        onChangeText={input => {
+          setCharacterName(input);
+        }}
+      />
       <Text />
       <Text />
       <SelectMenu
@@ -60,11 +76,10 @@ export const BasicInfo = ({navigation}: Props) => {
         <StyledButton
           text="Next"
           onPress={() => {
-            navigation.navigate('Race', {
-              class: 'barbarian',
+            navigation.navigate('RaceInfo', {
+              player: player,
+              character: character,
               race: raceState,
-              level: 1,
-              userData: {class: undefined, race: raceState},
             });
           }}
         />

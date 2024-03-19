@@ -8,6 +8,7 @@ import customTheme2 from '../../constants/theme';
 
 type Props = CheckBoxProps & {
   text: string;
+  onChange: (input: boolean) => void;
 };
 
 export const StyledCheckBox = (props: Props) => {
@@ -19,11 +20,13 @@ export const StyledCheckBox = (props: Props) => {
         {...props}
         value={selected}
         tintColor={
-          selected ? customTheme2.colors.accent : customTheme2.colors.background
+          selected ? customTheme2.colors.accent : customTheme2.colors.text
         }
-        onChange={selected => setSelection(!selected)}
-        onFillColor={customTheme2.colors.accent}
-        onCheckColor={customTheme2.colors.primary}
+        onChange={() => setSelection(!selected)}
+        tintColors={{
+          true: customTheme2.colors.accent,
+          false: customTheme2.colors.text,
+        }}
       />
       <Text>{props.text}</Text>
     </View>

@@ -1,22 +1,35 @@
 import {CompositeScreenProps} from '@react-navigation/native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {ClassIndexRequest, RacesRequest} from '../types/requests';
+import {
+  ClassIndexRequest,
+  ClassLevelsRequest,
+  LanguageRequestByIndex,
+  ProficiencyByRaceRequest,
+  RacesRequest,
+  TraitsByIndexRequest,
+} from '../types/requests';
 import {RootTabParamList, RootTabScreenProps} from './RootParamList';
 
 export type NewPlayerParamList = {
-  BasicInfo: undefined;
-  Class: {
-    class: ClassIndexRequest;
+  BasicInfo: {};
+  RaceInfo: {
+    player: string;
+    character: string;
     race: RacesRequest;
-    level: number;
+  };
+  ClassChoice: {
+    Traits: TraitsByIndexRequest;
+    raceBonus: RacesRequest;
+    languages: LanguageRequestByIndex;
+    initialProficiency: ProficiencyByRaceRequest;
+  };
+  ClassInfo: {
+    class: ClassIndexRequest;
+    level: ClassLevelsRequest;
+    exp: any; //?
     userData: any;
   };
-  Race: {
-    class: ClassIndexRequest;
-    race: RacesRequest;
-    level: number;
-    userData: any;
-  };
+  EquipmentChoice: {};
   End: {userData: any};
 };
 

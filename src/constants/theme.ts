@@ -121,7 +121,7 @@ export const theme6 = {
   colors: {
     primary: '#FF4C42', // Soft Red
     secondary: '#333333', // Softer Black
-    accent: '#FF8243', // Coral (optional accent color)
+    accent: '#E17138', // Coral (optional accent color)
     text: '#FFFFFF', // White (for text)
     background: '#1E1E1E', // Dark Charcoal Background
     border: '#666666', // Lighter Gray (for borders)

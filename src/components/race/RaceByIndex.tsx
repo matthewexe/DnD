@@ -7,6 +7,7 @@ import ExportTrait from './Trait';
 import {LabeledValue} from '../LabeledValue';
 import SubraceByRace from './CheckSubraceByIndex';
 import TraitsComponent from './TraitsByRace';
+import {StyledLabelValue} from '../ui/texts/StyledLabeledValue';
 
 export default function RaceComponent({input}: {input: RaceIndexRequest}) {
   const {data, error, isLoading, isFetching} = useGetRacesByIndexQuery({
@@ -20,7 +21,10 @@ export default function RaceComponent({input}: {input: RaceIndexRequest}) {
 
   return (
     <>
-      <LabeledValue label="Name:" value={data?.name ?? 'race not available'} />
+      <StyledLabelValue
+        label="Name:"
+        value={data?.name ?? 'race not available'}
+      />
       <Text>Speed:</Text>
       <Text>{data?.speed ?? 'speed not available'} piedi</Text>
       <Text>{convertiPiediInMetri(data?.speed ?? 0)} metri</Text>

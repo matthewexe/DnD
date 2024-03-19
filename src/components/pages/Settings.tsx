@@ -32,6 +32,10 @@ export const Settings = () => {
           }}
         />
         <Text />
+        <Text />
+      </View>
+      <View>
+        <StyledSubtitle>Export</StyledSubtitle>
       </View>
     </>
   );

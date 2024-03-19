@@ -8,20 +8,22 @@ import {ClassIndexRequest} from '../../types/requests';
 import {StyledButton} from '../ui/buttons/StyledButton';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
 
-type Props = NewPlayerNavigationProps<'Class'>;
+type Props = NewPlayerNavigationProps<'ClassChoice'>;
 
-export const Class = ({navigation}: Props) => {
+export const ClassChoice = ({route, navigation}: Props) => {
   const {data: classData, isLoading: isLoadingClass} =
     useGetEndpointResourceQuery('classes');
 
-  const [classState, setClass] = useState<ClassIndexRequest>('barbarian');
+  const [languague, setLanguage] = useState('l');
+  const [exp, setExperience] = useState(0);
+  const [selectedClass, setClass] = useState<ClassIndexRequest>('barbarian');
 
   if (isLoadingClass) {
     return <Text>Loading...</Text>;
   }
   return (
     <>
-      <StyledSubtitle>{'Class Information'}</StyledSubtitle>
+      <StyledSubtitle>{'Class Choice'}</StyledSubtitle>
       <SelectMenu
         label="Character Class"
         onSelect={item => {
@@ -36,6 +38,9 @@ export const Class = ({navigation}: Props) => {
         <InputText
           label="Character Level"
           placeholder="Enter Character Level"
+          onChangeText={input => {
+            setClass(input);
+          }}
         />
         <Text
           style={{
@@ -54,10 +59,11 @@ export const Class = ({navigation}: Props) => {
         <StyledButton
           text="Next"
           onPress={() => {
-            navigation.navigate('Class', {
-              class: classState,
-              level: 1,
-              userData: {class: classState},
+            navigation.navigate('ClassInfo', {
+              class: selectedClass,
+              race: 'dragonborn',
+              level: 3,
+              userData: {class: undefined, race: undefined},
             });
           }}
         />

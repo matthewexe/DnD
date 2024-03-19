@@ -13,10 +13,12 @@ import {
 import {StyledButton} from '../ui/buttons/StyledButton';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
 import {StyledText} from '../ui/texts/StyledText';
+import {Route} from '@react-navigation/native';
 
-type Props = NewPlayerNavigationProps<'Class'>;
+type Props = NewPlayerNavigationProps<'RaceInfo'>;
 
-export const Race = ({navigation}: Props) => {
+export const RaceInfo = ({route, navigation}: Props) => {
+  const {thisRace} = route.params;
   const {data: languagesData, isLoading: isLoadingLanguage} =
     useGetEndpointResourceQuery('language');
   const {data: traitsData, isLoading: isLoadingTraits} =
@@ -76,11 +78,11 @@ export const Race = ({navigation}: Props) => {
         <StyledButton
           text="Next"
           onPress={() => {
-            navigation.navigate('Class', {
-              class: 'barbarian',
-              race: 'dragonborn',
+            navigation.navigate('ClassChoice', {
+              language: language,
+              traits: traitsData,
               level: 1,
-              userData: {class: undefined, race: undefined},
+              exp: 3,
             });
           }}
         />

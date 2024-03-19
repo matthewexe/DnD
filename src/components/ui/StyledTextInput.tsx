@@ -1,18 +1,19 @@
 import React from 'react';
 import {StyleSheet, TextInput, TextInputProps} from 'react-native';
-import {useTheme} from '@react-navigation/native';
+
 import {customTheme2} from '../../constants/theme';
 
 type Props = TextInputProps;
 
 export const StyledTextInput = (props: Props) => {
-  const {colors} = useTheme();
   return (
     <TextInput
       {...props}
-      placeholderTextColor={colors.text}
-      selectionColor={colors.background}
-      style={styles.inputBox}>
+      placeholderTextColor={customTheme2.colors.text}
+      selectionColor={customTheme2.colors.background}
+      style={styles.inputBox}
+      //on chance text
+    >
       {props.children}
     </TextInput>
   );
