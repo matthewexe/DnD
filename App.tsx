@@ -7,6 +7,8 @@ import {
   Armor as ArmorModel,
   Weapon as WeaponModel,
 } from './src/models/Game';
+import {Provider} from 'react-redux';
+import {store} from './src/store';
 
 const App = () => {
   return (
@@ -14,7 +16,9 @@ const App = () => {
       path="dnd.db"
       schema={[GameModel, PlayerModel, ArmorModel, WeaponModel]}
       schemaVersion={2}>
-      <SafeAreaView>{/* App */}</SafeAreaView>
+      <Provider store={store}>
+        <SafeAreaView>{/* App */}</SafeAreaView>
+      </Provider>
     </RealmProvider>
   );
 };
