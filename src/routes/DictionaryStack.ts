@@ -1,14 +1,20 @@
-import {createStackNavigator} from '@react-navigation/stack';
+import {
+  ClassIndexRequest,
+  ConditionRequest,
+  DamageTypeRequest,
+  MagicSchoolRequest,
+} from '../types/requests';
+import {Class} from '../types/responses';
 
-const Stack = createStackNavigator();
+type DictionaryStackParamList = {
+  Class: {className: ClassIndexRequest};
+  ClassResourceList: {className: ClassIndexRequest};
+  ClassLevels: {classInfo: Class; classLevel: number; spellLevel: number};
+  GameMechanics: {
+    condition: ConditionRequest;
+    damageType: DamageTypeRequest;
+    magicSchool: MagicSchoolRequest;
+  };
 
-export function MyStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Notifications" component={Notifications} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Settings" component={Settings} />
-    </Stack.Navigator>
-  );
-}
+  // ...
+};
