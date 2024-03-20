@@ -22,6 +22,8 @@ import {
   Spell,
   Subclass,
   Feature,
+  APIReference,
+  Monster,
 } from '../types/responses';
 
 import {
@@ -377,14 +379,15 @@ export const api = createApi({
     }),
 
     //MONSTERS
-    getMonsterByIndex: builder.query<ResourceList, MonstersRequestByIndex>({
+    getMonsterByIndex: builder.query<Monster, MonstersRequestByIndex>({
       query: ({index}) => `monsters/${index}`,
       providesTags: (result, error, {index}) => [{type: 'Monsters', id: index}],
     }),
 
     //non sono sicuro
     getMonsterByLevel: builder.query<ResourceList, MonstersRequestByLevel>({
-      query: ({challenge_rating}) => `monsters/${challenge_rating}`,
+      query: ({challenge_rating}) =>
+        `monsters?challenge_rating=${challenge_rating}`,
       providesTags: (result, error, {index}) => [{type: 'Monsters', id: index}],
     }),
 

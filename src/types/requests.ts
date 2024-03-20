@@ -1,4 +1,5 @@
-//GorlokTheDestroyer
+//gradi sfida possibili:
+export type ChallengeGrade = 0 | 1;
 
 //inizio
 export type TraitsByIndexRequest = {
