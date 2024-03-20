@@ -19,12 +19,14 @@ export default function SubclassForLevel({input}: Props) {
   return (
     <>
       <LabeledValue label={'Level:'} value={`${data?.level}`} />
-      {data?.features.map((choice, index) => (
-        <>
-          <Text>{choice.name}</Text>
-          <Features input={choice.index as FeaturesRequest} />
-        </>
-      ))}
+      {data &&
+        data.features &&
+        data.features.map((choice, index) => (
+          <>
+            <Text>{choice.name}</Text>
+            <Features input={choice.index as FeaturesRequest} />
+          </>
+        ))}
     </>
   );
 }

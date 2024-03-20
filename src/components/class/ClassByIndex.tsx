@@ -7,6 +7,7 @@ import {LabeledValue} from '../LabeledValue';
 import FeaturesByClassComponent from './FeaturesByClass';
 import ProficiencyByClassComponent from './ProficiencyByClass';
 import SubclassComponent from './SubclassByClass';
+import {ScrollView} from 'react-native-gesture-handler';
 
 type Props = {
   input: ClassIndexRequest;

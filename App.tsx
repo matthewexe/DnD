@@ -12,7 +12,7 @@ import {NewPlayerScreen} from './src/screen/NewPlayerScreen';
 import {store} from './src/store';
 import {View} from 'react-native';
 import {Settings} from './src/components/pages/Settings';
-import {DictionaryScreen} from './src/routes/DictionaryStack';
+import {Dictionary} from './src/screen/DictionaryScreen';
 
 const Tabs = createBottomTabNavigator();
 
@@ -89,8 +89,8 @@ function App(): React.JSX.Element {
             }}
           />
           <Tabs.Screen
-            name=" "
-            component={DictionaryScreen}
+            name="Dictionary"
+            component={Dictionary}
             options={() => ({
               tabBarStyle: {
                 display: 'none',
