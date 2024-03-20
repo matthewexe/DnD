@@ -1,4 +1,6 @@
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {CompositeScreenProps} from '@react-navigation/native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootTabScreenProps} from './RootProps';
 
 export type HomeParamList = {
   ListGame: undefined;
@@ -12,3 +14,9 @@ export type HomeParamList = {
   NewPlayer_Equip: {gameId: number};
   NewPLayer_End: {gameId: number};
 };
+
+export type HomeScreenProps<T extends keyof HomeParamList> =
+  CompositeScreenProps<
+    NativeStackScreenProps<HomeParamList, T>,
+    RootTabScreenProps<'Home'>
+  >;

@@ -12,5 +12,7 @@ export namespace NewPlayer {
     race: RacesRequest;
   };
 
-  type Race = {};
+  type Race = {
+    
+  };
 }

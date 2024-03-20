@@ -1,6 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RootParamList} from '../routes/RootProps';
+import {HomeScreen} from './HomeScreen';
 
 const Tabs = createBottomTabNavigator<RootParamList>();
 
