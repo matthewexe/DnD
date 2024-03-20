@@ -64,7 +64,7 @@ const tabsIcon = {
         top: -29,
       }}>
       <Icon
-        name="plus"
+        name="book"
         color={focused ? customTheme2.colors.background : color}
         size={size}
       />

@@ -38,6 +38,9 @@ dependencies:
   react-native:
     specifier: 0.73.3
     version: 0.73.3(@babel/core@7.23.9)(@babel/preset-env@7.23.9)(react@18.2.0)
+  react-native-collapsible:
+    specifier: ^1.6.1
+    version: 1.6.1(react-native@0.73.3)(react@18.2.0)
   react-native-safe-area-context:
     specifier: ^4.9.0
     version: 4.9.0(react-native@0.73.3)(react@18.2.0)
@@ -5979,6 +5982,16 @@ packages:
 
   /react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
+
+  /react-native-collapsible@1.6.1(react-native@0.73.3)(react@18.2.0):
+    resolution: {integrity: sha512-orF4BeiXd2hZW7fu9YcqIJXzN6TJcFcddY807D3MAOVktLuW9oQ+RIkrTJ5DR3v9ZOFfREkOjEmS79qeUTvkBQ==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
+    dependencies:
+      react: 18.2.0
+      react-native: 0.73.3(@babel/core@7.23.9)(@babel/preset-env@7.23.9)(react@18.2.0)
+    dev: false
 
   /react-native-safe-area-context@4.9.0(react-native@0.73.3)(react@18.2.0):
     resolution: {integrity: sha512-/OJD9Pb8IURyvn+1tWTszWPJqsbZ4hyHBU9P0xhOmk7h5owSuqL0zkfagU0pg7Vh0G2NKQkaPpUKUMMCUMDh/w==}

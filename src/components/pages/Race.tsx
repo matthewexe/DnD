@@ -15,6 +15,7 @@ import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
 import {StyledText} from '../ui/texts/StyledText';
 import {Route} from '@react-navigation/native';
 import {StyledTitle} from '../ui/texts/StyledTitle';
+import {Loading} from './Loading';
 
 type Props = NewPlayerNavigationProps<'RaceInfo'>;
 
@@ -31,7 +32,7 @@ export const RaceInfo = ({route, navigation}: Props) => {
 
   const [language, setLanguage] = useState<LanguageRequest>('abyssal');
   const [trait, setTrait] = useState<TraitsRequest>('artificers-lore');
-  const [proficiency, setProficiency] = useState<ProficiencyByRaceRequest>('');
+  const [proficiency, setProficiency] = useState<ProficiencyByRaceRequest>('a');
   const [RaceBonus, setRaceBonus] = useState('');
 
   if (
@@ -40,7 +41,7 @@ export const RaceInfo = ({route, navigation}: Props) => {
     isLoadingTraits ||
     isLoadingProficiency
   ) {
-    return <Text>Loading...</Text>;
+    return <Loading />;
   }
   return (
     <>

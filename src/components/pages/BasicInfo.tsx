@@ -8,12 +8,11 @@ import {useGetEndpointResourceQuery} from '../../services/api';
 import {RaceIndexRequest} from '../../types/requests';
 import {StyledButton} from '../ui/StyledButton';
 import {StyleSheet} from 'react-native';
-import {StyledText} from '../ui/texts/StyledText';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
 import {Error} from './Error';
-import {Loading} from './Loading';
-import {useNavigation} from '@react-navigation/native';
+import {Loading} from './Loading.tsx';
 import StyledTitle from '../ui/texts/StyledTitle';
+import {Accordion} from 'react-native-collapsible/Accordion';
 
 type Props = NewPlayerNavigationProps<'BasicInfo'>;
 
@@ -29,11 +28,7 @@ export const BasicInfo = ({navigation}: Props) => {
   const [raceState, setRace] = useState<RaceIndexRequest>('dragonborn');
 
   if (isLoadingRace) {
-    return (
-      <View style={{alignItems: 'center', flex: 3, justifyContent: 'center'}}>
-        <Text style={{fontSize: 18}}>Loading...</Text>
-      </View>
-    );
+    return <Loading />;
   }
   if (raceError) {
     return (

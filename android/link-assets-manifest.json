@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/NewTegomin-Regular.ttf",
+      "sha1": "caeb9f965b32a5480760a2c3fc4368fbcd2bfa62"
+    },
+    {
+      "path": "src/assets/fonts/New_Tegomin.zip",
+      "sha1": "3bbcbc2a37cc8c0f30466bf8eda6981d31015528"
+    },
+    {
+      "path": "src/assets/fonts/OFL.txt",
+      "sha1": "f04a276f6ec04f1864712efaffe0b553eebb33ee"
+    }
+  ]
+}

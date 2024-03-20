@@ -8,6 +8,7 @@ import {ClassIndexRequest} from '../../types/requests';
 import {StyledButton} from '../ui/StyledButton';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
 import StyledTitle from '../ui/texts/StyledTitle';
+import {Loading} from './Loading';
 
 type Props = NewPlayerNavigationProps<'ClassChoice'>;
 
@@ -20,7 +21,7 @@ export const ClassChoice = ({route, navigation}: Props) => {
   const [selectedClass, setClass] = useState<ClassIndexRequest>('barbarian');
 
   if (isLoadingClass) {
-    return <Text>Loading...</Text>;
+    return <Loading />;
   }
   return (
     <>

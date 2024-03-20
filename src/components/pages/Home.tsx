@@ -35,10 +35,12 @@ export const Home = (props: Props) => {
         }
       />
       <Text />
+      <StyledText>Testo prova font</StyledText>
       <StyledButton
         text={
           //mi da errore però scrive lo stesso
-          <StyledText children={'Inizia a creare >>'}></StyledText>
+          'Inizia'
+          // <StyledText children={'Inizia a creare >>'}></StyledText>
         }
         onPress={() => {}}
       />
