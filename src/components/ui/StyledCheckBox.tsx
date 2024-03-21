@@ -1,34 +1,20 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import CheckBox from '@react-native-community/checkbox';
 import {StyleSheet, View} from 'react-native';
 import {CheckBoxProps} from '@react-native-community/checkbox';
 import customTheme2 from '../../constants/theme';
 
-type Props = Omit<CheckBoxProps, 'value' | 'onValueChange'> & {
-  onValueChange?: (value: boolean) => void;
+type Props = CheckBoxProps & {
   text: string;
 };
 
 export const StyledCheckBox = (props: Props) => {
-  const [state, setState] = useState(false);
-  const _onValueChange = (value: boolean) => {
-    if (props.onValueChange !== undefined) {
-      props.onValueChange(value);
-    }
-
-    setState(value);
-  };
-
   return (
     <View style={styles.container}>
       <CheckBox
         {...props}
-        value={state}
-        // tintColor={
-        //   state ? customTheme2.colors.accent : customTheme2.colors.text
-        // }
-        onValueChange={_onValueChange}
+        value={props.value}
         tintColors={{
           true: customTheme2.colors.accent,
           false: customTheme2.colors.text,

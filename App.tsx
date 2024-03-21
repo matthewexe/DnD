@@ -12,6 +12,7 @@ import {store} from './src/store';
 import {SelectableTable} from './src/components/table/SelectableTable';
 import {NavigationContainer} from '@react-navigation/native';
 import {customTheme2} from './src/constants/theme';
+import {Counter} from './src/components/table/Counter';
 
 const App = () => {
   const headers = ['Head', 'Head2', 'Head3', 'Head4'];
@@ -31,7 +32,8 @@ const App = () => {
         <NavigationContainer theme={customTheme2}>
           <SafeAreaView style={{flex: 1, backgroundColor: 'black'}}>
             {/* <StyledCheckBox text="check" onValueChange={console.log} /> */}
-            <SelectableTable head={headers} data={data} />
+            {/* <SelectableTable head={headers} data={data} max_selectbale={1} /> */}
+            <Counter onValueChange={console.log} minValue={0} maxValue={20} />
           </SafeAreaView>
         </NavigationContainer>
       </Provider>
