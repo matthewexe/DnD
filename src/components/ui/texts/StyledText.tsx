@@ -14,7 +14,7 @@ export const StyledText = (props: Props) => {
 const styles = StyleSheet.create({
   TextBox: {
     width: 180,
-    height: 23,
+    //height: 23,
     fontWeight: 'bold',
     fontSize: 21,
     top: -3,

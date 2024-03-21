@@ -5,6 +5,9 @@ import {useGetEndpointResourceQuery} from '../../services/api';
 import {AlignmentRequest} from '../../types/requests';
 
 import SpellAvailableByClassComponent from '../firstPage/Alignament';
+import Alignament from '../firstPage/Alignament';
+import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
+import StyledTitle from '../ui/texts/StyledTitle';
 
 export const DictionaryAlignament = () => {
   const {data: classData, isLoading: isLoadingClass} =
@@ -18,15 +21,18 @@ export const DictionaryAlignament = () => {
   }
   return (
     <>
-      <SelectMenu
-        label="Alignament"
-        onSelect={item => {
-          setAlignament(item.index);
-        }}
-        data={classData?.results ?? []}
-      />
+      <StyledTitle>{'Alignament'}</StyledTitle>
       <View style={styles.container}>
-        <SpellAvailableByClassComponent input={alignamentState} />
+        <SelectMenu
+          label=""
+          onSelect={item => {
+            setAlignament(item.index);
+          }}
+          data={classData?.results ?? []}
+        />
+      </View>
+      <View style={styles.container}>
+        <Alignament input={alignamentState} />
       </View>
     </>
   );

@@ -18,15 +18,13 @@ export type DictionaryStackParamList = {
   AlignamentD: undefined;
   //--
   ClassD: undefined;
-  DictionaryClass: {
-    class: ClassIndexRequest;
-    level: number;
-  };
-  //--
-  ClassResourceListD: undefined;
-  DictionaryClassResourceList: {className: ClassIndexRequest};
   //--
   ClassLevelsD: undefined;
+  //--
+  ConditionD: undefined;
+  //--
+  DamegeTypeD: undefined;
+  //--
   DictionaryClassLevels: {
     classInfo: Class;
     classLevel: number;

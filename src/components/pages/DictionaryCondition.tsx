@@ -2,16 +2,16 @@ import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SelectMenu} from '../SelectMenu';
 import {useGetEndpointResourceQuery} from '../../services/api';
-import {ClassIndexRequest} from '../../types/requests';
-import ClassComponent from '../class/ClassByIndex';
+import {ConditionRequest} from '../../types/requests';
 import StyledTitle from '../ui/texts/StyledTitle';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import ConditionComponent from '../dictionary/Condition';
 
-export const DictionaryClass = () => {
+export const DictionaryCondition = () => {
   const {data: classData, isLoading: isLoadingClass} =
-    useGetEndpointResourceQuery('classes');
+    useGetEndpointResourceQuery('conditions');
 
-  const [classState, setClass] = useState<ClassIndexRequest>('barbarian');
+  const [conditionState, setCondition] = useState<ConditionRequest>('blinded');
 
   if (isLoadingClass) {
     return <Text>Loading...</Text>;
@@ -19,19 +19,19 @@ export const DictionaryClass = () => {
   return (
     <>
       <SafeAreaView style={styles.safeview}>
-        <StyledTitle>Character Class</StyledTitle>
+        <StyledTitle>Conditions</StyledTitle>
         <View style={styles.container}>
           <SelectMenu
             label=""
             onSelect={item => {
-              setClass(item.index);
+              setCondition(item.index);
             }}
             data={classData?.results ?? []}
           />
         </View>
         <ScrollView>
           <View style={styles.container}>
-            <ClassComponent input={classState} />
+            <ConditionComponent input={conditionState} />
           </View>
         </ScrollView>
       </SafeAreaView>

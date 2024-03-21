@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TextProps} from 'react-native';
+import {StyleSheet, Text, TextProps, View} from 'react-native';
 import {customTheme2} from '../../../constants/theme';
 
 type Props = TextProps & {
@@ -9,30 +9,34 @@ type Props = TextProps & {
 
 export const StyledLabel = (props: Props) => {
   return (
-    <>
-      <Text {...props} style={styles.PrimaryText}>
-        {props.label}
-      </Text>
+    <View>
+      <View style={styles.primaryTextContainer}>
+        <Text {...props} style={styles.PrimaryText}>
+          {props.label}
+        </Text>
+      </View>
       <Text {...props} style={styles.Description}>
         {props.value}
       </Text>
-    </>
+    </View>
   );
 };
 const styles = StyleSheet.create({
-  PrimaryText: {
+  primaryTextContainer: {
     borderBottomColor: customTheme2.colors.primary,
     borderBottomWidth: 1,
-    width: 200,
-    height: 24,
+    padding: 3,
+    backgroundColor: 'transparent',
+  },
+  PrimaryText: {
     fontWeight: 'bold',
-    fontFamily: '',
-    fontSize: 18,
+    // fontFamily: '',
+    fontSize: 20,
   },
   Description: {
-    fontWeight: '400',
-    width: '93%',
-    fontSize: 14,
+    paddingVertical: 10,
+    paddingHorizontal: 5,
+    fontSize: 15,
     alignSelf: 'center',
     textAlign: 'justify',
   },

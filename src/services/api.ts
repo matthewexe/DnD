@@ -23,6 +23,8 @@ import {
   Subclass,
   Feature,
   Multiclassing,
+  Condition,
+  DamageType,
 } from '../types/responses';
 
 import {
@@ -51,6 +53,10 @@ import {
   SubclasstypesByIndex,
   FeaturesRequest,
   FeaturesRequestForIndex,
+  ConditionRequest,
+  ConditionRequestByIndex,
+  DamageTypeRequest,
+  DamageTypeByIndexRequest,
 } from '../types/requests';
 import {SubraceIndexResponse} from '../types/old_responses';
 import {Subrace} from '../types/responses';
@@ -79,6 +85,8 @@ export const api = createApi({
     'EquipmentItem',
     'WeaponProperties',
     'Multiclassing',
+    'Condition',
+    'Damage',
     'Monsters',
   ],
   endpoints: builder => ({
@@ -392,6 +400,18 @@ export const api = createApi({
       ],
     }),
 
+    getCondition: builder.query<Condition, ConditionRequestByIndex>({
+      query: ({index}) => `conditions/${index}`,
+      providesTags: (result, error, {index}) => [
+        {type: 'Condition', id: index},
+      ],
+    }),
+
+    getDamageType: builder.query<DamageType, DamageTypeByIndexRequest>({
+      query: ({index}) => `damage-types/${index}`,
+      providesTags: (result, error, {index}) => [{type: 'Damage', id: index}],
+    }),
+
     //MONSTERS
     getMonsterByIndex: builder.query<ResourceList, MonstersRequestByIndex>({
       query: ({index}) => `monsters/${index}`,
@@ -445,4 +465,6 @@ export const {
   useGetEndpointResourceQuery,
   //dictionary
   useGetMulticlassingQuery,
+  useGetConditionQuery,
+  useGetDamageTypeQuery,
 } = api;

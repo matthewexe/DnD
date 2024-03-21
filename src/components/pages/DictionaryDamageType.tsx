@@ -2,16 +2,16 @@ import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SelectMenu} from '../SelectMenu';
 import {useGetEndpointResourceQuery} from '../../services/api';
-import {ClassIndexRequest} from '../../types/requests';
-import ClassComponent from '../class/ClassByIndex';
+import {ConditionRequest, DamageTypeRequest} from '../../types/requests';
 import StyledTitle from '../ui/texts/StyledTitle';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import DamageTypeComponent from '../dictionary/DamageType';
 
-export const DictionaryClass = () => {
+export const DictionaryDamageType = () => {
   const {data: classData, isLoading: isLoadingClass} =
-    useGetEndpointResourceQuery('classes');
+    useGetEndpointResourceQuery('damage-types');
 
-  const [classState, setClass] = useState<ClassIndexRequest>('barbarian');
+  const [damageTypeState, setDamageType] = useState<DamageTypeRequest>('acid');
 
   if (isLoadingClass) {
     return <Text>Loading...</Text>;
@@ -19,19 +19,19 @@ export const DictionaryClass = () => {
   return (
     <>
       <SafeAreaView style={styles.safeview}>
-        <StyledTitle>Character Class</StyledTitle>
+        <StyledTitle>Damage Types</StyledTitle>
         <View style={styles.container}>
           <SelectMenu
             label=""
             onSelect={item => {
-              setClass(item.index);
+              setDamageType(item.index);
             }}
             data={classData?.results ?? []}
           />
         </View>
         <ScrollView>
           <View style={styles.container}>
-            <ClassComponent input={classState} />
+            <DamageTypeComponent input={damageTypeState} />
           </View>
         </ScrollView>
       </SafeAreaView>

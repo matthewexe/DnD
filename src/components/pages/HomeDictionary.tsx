@@ -32,17 +32,6 @@ export const HomeDictionary = ({navigation, route}: Props) => {
           onPress={() => {
             navigation.navigate('ClassD');
           }}
-          //   navigation.navigate('Class', {
-          //     className: 'barbarian',
-          //   });
-          // }}
-        />
-        <DictionaryButton
-          text="Class Resource List"
-          style={{marginVertical: 5}}
-          onPress={() => {
-            navigation.navigate('ClassResourceListD');
-          }}
         />
         <DictionaryButton
           text="Class Levels"
@@ -51,9 +40,15 @@ export const HomeDictionary = ({navigation, route}: Props) => {
           }}
         />
         <DictionaryButton
-          text="Game Mechanics"
+          text="Conditions"
           onPress={() => {
-            navigation.navigate('GameMechanicsD');
+            navigation.navigate('ConditionD');
+          }}
+        />
+        <DictionaryButton
+          text="DamageTypes"
+          onPress={() => {
+            navigation.navigate('DamegeTypeD');
           }}
         />
       </View>

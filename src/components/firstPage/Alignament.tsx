@@ -1,13 +1,10 @@
-import {Text} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {useGetAlignmentByIndexQuery} from '../../services/api';
 import {AlignmentRequest} from '../../types/requests';
 import React from 'react';
+import {StyledLabel} from '../ui/texts/LabeldValueStyle';
 
-export default function SpellAvailableByClassComponent({
-  input,
-}: {
-  input: AlignmentRequest;
-}) {
+export default function Alignament({input}: {input: AlignmentRequest}) {
   const {data, error, isLoading, isFetching} = useGetAlignmentByIndexQuery({
     index: input,
   });
@@ -18,8 +15,9 @@ export default function SpellAvailableByClassComponent({
   if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
     <>
-      <Text>Il tuo allineamento:</Text>
-      <Text>{data?.desc}</Text>
+      <StyledLabel
+        label={'Your Alignament:'}
+        value={data?.desc ?? 'not found'}></StyledLabel>
     </>
   );
 }

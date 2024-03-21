@@ -21,7 +21,7 @@ export const StyledTitle = (props: Props) => {
         style={{
           width: '100%',
           backgroundColor: customTheme2.colors.primary,
-          height: 35,
+          //height: 35,
           textAlign: 'center',
           fontSize: 30,
           fontWeight: 'bold',

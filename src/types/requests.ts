@@ -182,6 +182,9 @@ export type ConditionRequest =
   | 'restrained'
   | 'stunned'
   | 'unconscious';
+export type ConditionRequestByIndex = {
+  index: ConditionRequest;
+};
 
 export type DamageTypeRequest =
   | 'acid'
@@ -197,6 +200,9 @@ export type DamageTypeRequest =
   | 'radiant'
   | 'slashing'
   | 'thunder';
+export type DamageTypeByIndexRequest = {
+  index: DamageTypeRequest;
+};
 
 export type MagicSchoolRequest =
   | 'abjuration'

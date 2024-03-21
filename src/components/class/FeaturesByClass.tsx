@@ -1,4 +1,4 @@
-import {Text} from 'react-native';
+import {ScrollView, Text} from 'react-native';
 import {useGetFeaturesByClassQuery} from '../../services/api';
 import {ClassIndexRequest, FeaturesRequest} from '../../types/requests';
 import React from 'react';
