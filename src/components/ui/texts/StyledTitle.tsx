@@ -1,8 +1,8 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Text, TextProps} from 'react-native';
-import {customTheme2} from '../../../constants/theme';
+import { Text, TextProps } from 'react-native';
+import { customTheme2 } from '../../../constants/theme';
 
 type Props = TextProps;
 
@@ -13,7 +13,7 @@ export const StyledTitle = (props: Props) => {
         style={{
           width: '100%',
           backgroundColor: customTheme2.colors.primary,
-          height: 10,
+          height: 12,
           textAlign: 'center',
         }}></Text>
       <Text
@@ -21,7 +21,7 @@ export const StyledTitle = (props: Props) => {
         style={{
           width: '100%',
           backgroundColor: customTheme2.colors.primary,
-          height: 35,
+          height: 38,
           textAlign: 'center',
           fontSize: 30,
           fontWeight: 'bold',

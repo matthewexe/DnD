@@ -1,10 +1,21 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
+import StyledTitle from '../ui/texts/StyledTitle';
+import {StyledText} from '../ui/texts/StyledText';
 
-export const Success = () => {
+type Props = {
+  message: string;
+};
+export const Success = (props: Props) => {
   return (
-    <View>
-      <Text></Text>
+    <View
+      // eslint-disable-next-line react-native/no-inline-styles
+      style={{
+        alignSelf: 'center',
+        justifyContent: 'center',
+      }}>
+      <StyledTitle>Success!</StyledTitle>
+      <StyledText>{props.message}</StyledText>
     </View>
   );
 };

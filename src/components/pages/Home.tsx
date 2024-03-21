@@ -1,31 +1,36 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react/self-closing-comp */
 // import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 // import Icon from 'react-native-vector-icons/FontAwesome6';
-import {GameCard} from '../GameCard';
-import {HomeStackScreenProps} from '../../routes/HomeParamList';
+import { GameCard } from '../GameCard';
+import { HomeStackScreenProps } from '../../routes/HomeParamList';
 
-import {StyledButton} from '../ui/StyledButton';
-import {StyledText} from '../ui/texts/StyledText';
-import {StyledCheckBox} from '../ui/StyledCheckBox';
-import {StyledTitle} from '../ui/texts/StyledTitle';
-import {StyledLabeledValue} from '../ui/texts/StyledLabeledValue';
-import {useState} from 'react';
+import { StyledButton } from '../ui/StyledButton';
+import { StyledText } from '../ui/texts/StyledText';
+import { StyledCheckBox } from '../ui/StyledCheckBox';
+import { StyledTitle } from '../ui/texts/StyledTitle';
+import { StyledLabeledValue } from '../ui/texts/StyledLabeledValue';
+import { useState } from 'react';
+import { StyledAccordion } from '../ui/StyledAccordion';
+import { StyledModal } from '../ui/StyledModal';
+import Modal from 'react-native-modal';
+import { Loading } from './Loading';
 
 type Props = HomeStackScreenProps<'ListGame'>;
 
 export const Home = (props: Props) => {
   const [choice, setChoice] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   return (
     <SafeAreaView>
       <StyledTitle children={'Home'} />
       <StyledCheckBox
-        text="test"
-        value={choice}
-        onChange={() => setChoice(current => !current)}
-      />
-      <Text />
+
+
+        onChange={() => setChoice(current => !current)} text={''} />
+
       <GameCard gameId="1" {...props} />
       <Text />
       <StyledLabeledValue
@@ -42,9 +47,13 @@ export const Home = (props: Props) => {
           'Inizia'
           // <StyledText children={'Inizia a creare >>'}></StyledText>
         }
-        onPress={() => {}}
+        onPress={() => {
+          setShowModal(!showModal)
+        }}
+
       />
-      <Text />
+      <StyledModal isVisible={showModal}><Loading /></StyledModal>
+      {/* <StyledAccordion /> */}
     </SafeAreaView>
   );
 };
