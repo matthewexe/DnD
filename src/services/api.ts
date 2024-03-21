@@ -22,6 +22,7 @@ import {
   Spell,
   Subclass,
   Feature,
+  Multiclassing,
 } from '../types/responses';
 
 import {
@@ -77,6 +78,7 @@ export const api = createApi({
     'Skills',
     'EquipmentItem',
     'WeaponProperties',
+    'Multiclassing',
     'Monsters',
   ],
   endpoints: builder => ({
@@ -376,6 +378,20 @@ export const api = createApi({
       ],
     }),
 
+    getEndpointResource: builder.query<ResourceList, string>({
+      query: str => `/${str}/`,
+      providesTags: (result, error, str) => [{type: 'ResourceList', id: str}],
+    }),
+
+    //Start aggiunte per Dictionary
+
+    getMulticlassing: builder.query<Multiclassing, ClassRequest>({
+      query: ({index}) => `classes/${index}/multi-classing`,
+      providesTags: (result, error, {index}) => [
+        {type: 'Multiclassing', id: index},
+      ],
+    }),
+
     //MONSTERS
     getMonsterByIndex: builder.query<ResourceList, MonstersRequestByIndex>({
       query: ({index}) => `monsters/${index}`,
@@ -386,11 +402,6 @@ export const api = createApi({
     getMonsterByLevel: builder.query<ResourceList, MonstersRequestByLevel>({
       query: ({challenge_rating}) => `monsters/${challenge_rating}`,
       providesTags: (result, error, {index}) => [{type: 'Monsters', id: index}],
-    }),
-
-    getEndpointResource: builder.query<ResourceList, string>({
-      query: str => `/${str}/`,
-      providesTags: (result, error, str) => [{type: 'ResourceList', id: str}],
     }),
   }),
 });
@@ -432,4 +443,6 @@ export const {
   useGetMonsterByLevelQuery,
   useGetSpellsQuery,
   useGetEndpointResourceQuery,
+  //dictionary
+  useGetMulticlassingQuery,
 } = api;

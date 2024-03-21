@@ -13,9 +13,12 @@ export const StyledText = (props: Props) => {
 };
 const styles = StyleSheet.create({
   TextBox: {
-    width: 100,
+    width: 180,
     height: 23,
     fontWeight: 'bold',
+    fontSize: 21,
+    top: -3,
+    textAlign: 'center',
     color: customTheme2.colors.text,
   },
 });

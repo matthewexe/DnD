@@ -13,6 +13,7 @@ import {store} from './src/store';
 import {View} from 'react-native';
 import {Settings} from './src/components/pages/Settings';
 import {Dictionary} from './src/screen/DictionaryScreen';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const Tabs = createBottomTabNavigator();
 
@@ -78,37 +79,39 @@ const tabsIcon = {
 
 function App(): React.JSX.Element {
   return (
-    <Provider store={store}>
-      <NavigationContainer theme={customTheme2}>
-        <Tabs.Navigator screenOptions={screenOptions}>
-          <Tabs.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              tabBarIcon: tabsIcon.home,
-            }}
-          />
-          <Tabs.Screen
-            name="Dictionary"
-            component={Dictionary}
-            options={() => ({
-              tabBarStyle: {
-                display: 'none',
-              },
-              tabBarIcon: tabsIcon.plus,
-            })}
-          />
+    <GestureHandlerRootView style={{flex: 1}}>
+      <Provider store={store}>
+        <NavigationContainer theme={customTheme2}>
+          <Tabs.Navigator screenOptions={screenOptions}>
+            <Tabs.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                tabBarIcon: tabsIcon.home,
+              }}
+            />
+            <Tabs.Screen
+              name="Dictionary"
+              component={Dictionary}
+              options={() => ({
+                tabBarStyle: {
+                  display: 'none',
+                },
+                tabBarIcon: tabsIcon.plus,
+              })}
+            />
 
-          <Tabs.Screen
-            name="Settings"
-            component={Settings}
-            options={{
-              tabBarIcon: tabsIcon.gear,
-            }}
-          />
-        </Tabs.Navigator>
-      </NavigationContainer>
-    </Provider>
+            <Tabs.Screen
+              name="Settings"
+              component={Settings}
+              options={{
+                tabBarIcon: tabsIcon.gear,
+              }}
+            />
+          </Tabs.Navigator>
+        </NavigationContainer>
+      </Provider>
+    </GestureHandlerRootView>
   );
 }
 

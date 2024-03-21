@@ -2,14 +2,16 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {SelectMenu} from '../SelectMenu';
 import {useGetEndpointResourceQuery} from '../../services/api';
-import {ClassIndexRequest} from '../../types/requests';
-import ClassComponent from '../class/ClassByIndex';
+import {AlignmentRequest} from '../../types/requests';
 
-export const DictionaryClass = () => {
+import SpellAvailableByClassComponent from '../firstPage/Alignament';
+
+export const DictionaryAlignament = () => {
   const {data: classData, isLoading: isLoadingClass} =
-    useGetEndpointResourceQuery('classes');
+    useGetEndpointResourceQuery('alignments');
 
-  const [classState, setClass] = useState<ClassIndexRequest>('barbarian');
+  const [alignamentState, setAlignament] =
+    useState<AlignmentRequest>('neutral');
 
   if (isLoadingClass) {
     return <Text>Loading...</Text>;
@@ -17,14 +19,14 @@ export const DictionaryClass = () => {
   return (
     <>
       <SelectMenu
-        label="Character Class"
+        label="Alignament"
         onSelect={item => {
-          setClass(item.index);
+          setAlignament(item.index);
         }}
         data={classData?.results ?? []}
       />
       <View style={styles.container}>
-        <ClassComponent input={classState} />
+        <SpellAvailableByClassComponent input={alignamentState} />
       </View>
     </>
   );

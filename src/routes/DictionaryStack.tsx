@@ -15,8 +15,13 @@ import {RootTabScreenProps, RootTabParamList} from './RootParamList';
 export type DictionaryStackParamList = {
   Dictionary: undefined;
   //--
+  AlignamentD: undefined;
+  //--
   ClassD: undefined;
-  //DictionaryClass: {className: ClassIndexRequest};
+  DictionaryClass: {
+    class: ClassIndexRequest;
+    level: number;
+  };
   //--
   ClassResourceListD: undefined;
   DictionaryClassResourceList: {className: ClassIndexRequest};

@@ -7,6 +7,7 @@ import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
 import {StyledText} from '../ui/texts/StyledText';
 import {DictionaryButton} from '../ui/buttons/DictionaryButton';
 import CustomButton from '../ui/buttons/CustomBotton';
+import StyledTitle from '../ui/texts/StyledTitle';
 
 type Props = DictionaryStackScreenProps<'Dictionary'>;
 
@@ -15,10 +16,17 @@ export const HomeDictionary = ({navigation, route}: Props) => {
 
   return (
     <>
-      <StyledSubtitle>Dictionary</StyledSubtitle>
+      <StyledTitle>Dictionary</StyledTitle>
 
       <Text>Select your topic:</Text>
       <View style={styles.container}>
+        <DictionaryButton
+          text="Alignaments"
+          style={{marginVertical: 5}}
+          onPress={() => {
+            navigation.navigate('AlignamentD');
+          }}
+        />
         <DictionaryButton
           text="Class"
           onPress={() => {
