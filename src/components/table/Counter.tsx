@@ -2,14 +2,22 @@ import React, {useState} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 
-type Props = {
-  onValueChange: (value: number) => void;
+export type CounterProps = {
+  initValue?: number;
+  onMinus: (value: number) => boolean;
+  onPlus: (value: number) => boolean;
   minValue?: number;
   maxValue?: number;
 };
 
-export const Counter = ({onValueChange, minValue, maxValue}: Props) => {
-  const [value, setValue] = useState(0);
+export const Counter = ({
+  initValue = 0,
+  onPlus,
+  onMinus,
+  minValue,
+  maxValue,
+}: CounterProps) => {
+  const [value, setValue] = useState(initValue);
 
   const tryValue = (possibleValue: number) => {
     if (minValue !== undefined && possibleValue < minValue) {
@@ -28,8 +36,7 @@ export const Counter = ({onValueChange, minValue, maxValue}: Props) => {
       <Pressable
         onPress={() => {
           const newValue = tryValue(value - 1);
-          setValue(newValue);
-          onValueChange(newValue);
+          setValue(onMinus(newValue) ? newValue : value);
         }}>
         <View
           style={[
@@ -37,7 +44,9 @@ export const Counter = ({onValueChange, minValue, maxValue}: Props) => {
             styles.centered,
             {borderTopLeftRadius: 50, borderBottomLeftRadius: 50},
           ]}>
-          <Icon name="minus" style={styles.buttonText} />
+          <Text style={[styles.buttonText, {fontSize: 20, fontWeight: '800'}]}>
+            -
+          </Text>
         </View>
       </Pressable>
       <View style={[styles.button, styles.centered]}>
@@ -46,8 +55,7 @@ export const Counter = ({onValueChange, minValue, maxValue}: Props) => {
       <Pressable
         onPress={() => {
           const newValue = tryValue(value + 1);
-          setValue(newValue);
-          onValueChange(newValue);
+          setValue(onPlus(newValue) ? newValue : value);
         }}>
         <View
           style={[

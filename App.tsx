@@ -9,18 +9,17 @@ import {
 } from './src/models/Game';
 import {Provider} from 'react-redux';
 import {store} from './src/store';
-import {SelectableTable} from './src/components/table/SelectableTable';
 import {NavigationContainer} from '@react-navigation/native';
 import {customTheme2} from './src/constants/theme';
-import {Counter} from './src/components/table/Counter';
+import {CountedTable} from './src/components/table/CountedTable';
 
 const App = () => {
-  const headers = ['Head', 'Head2', 'Head3', 'Head4'];
+  const headers = ['Head', 'Head2', 'Head3'];
   const data = [
-    ['1', '2', '3', '4'],
-    ['a', 'b', 'c', 'd'],
-    ['1', '2', '3', '4'],
-    ['a', 'b', 'c', 'd'],
+    ['1', '2', '3'],
+    ['a', 'b', 'c'],
+    ['1', '2', '3'],
+    ['a', 'b', 'c'],
   ];
 
   return (
@@ -33,7 +32,7 @@ const App = () => {
           <SafeAreaView style={{flex: 1, backgroundColor: 'black'}}>
             {/* <StyledCheckBox text="check" onValueChange={console.log} /> */}
             {/* <SelectableTable head={headers} data={data} max_selectbale={1} /> */}
-            <Counter onValueChange={console.log} minValue={0} maxValue={20} />
+            <CountedTable head={headers} data={data} max_selectable={2} />
           </SafeAreaView>
         </NavigationContainer>
       </Provider>
