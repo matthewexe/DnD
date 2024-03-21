@@ -46,12 +46,8 @@ const Row = ({data, isHead = false, onPlus, onMinus, ...rest}: RowProps) => {
 };
 export const CountedTable = ({head, data, max_selectable}: TableProps) => {
   const {colors} = useTheme();
-  const [countedRows, setCountedRows] = useState<number[]>([]);
+  const [countedRows, setCountedRows] = useState<number[]>(data.map(() => 0));
   const selectedRows = useRef(0);
-
-  useEffect(() => {
-    setCountedRows(data.map(() => 0));
-  }, []);
 
   const onMinus = (newValue: number, index: number) => {
     console.log('CountedTable', countedRows, selectedRows.current);
