@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/self-closing-comp */
 // import {useTheme} from '@react-navigation/native';
@@ -17,6 +18,8 @@ import { StyledAccordion } from '../ui/StyledAccordion';
 import { StyledModal } from '../ui/StyledModal';
 import Modal from 'react-native-modal';
 import { Loading } from './Loading';
+import { Error } from './Error';
+import { Success } from './Success';
 
 type Props = HomeStackScreenProps<'ListGame'>;
 
@@ -52,7 +55,9 @@ export const Home = (props: Props) => {
         }}
 
       />
-      <StyledModal isVisible={showModal}><Loading /></StyledModal>
+      <StyledModal isVisible={showModal}>
+        <Success message={'Game Created successfully!'} onPress={() => { setShowModal(!showModal) }} />
+      </StyledModal>
       {/* <StyledAccordion /> */}
     </SafeAreaView>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -7,18 +8,23 @@ export class StyledModal extends ReactNativeModal {
 
     render() {
         return (
-            <View style={{ width: '70%', height: '80%', alignSelf: 'center', position: 'absolute', top: '50%' }}>
+            <View style={{
+                width: '70%', height: '80%', alignSelf: 'center', position: 'absolute', top: '70%',
+
+
+            }}>
                 <Modal
                     {...this.props}
-                    animationInTiming={900}
+                    animationInTiming={480}
                     animationIn={'slideInUp'}
-                    animationOutTiming={300}
-                    animationOut={'slideInUp'}
+                    animationOutTiming={500}
+                    animationOut={'slideOutDown'}
 
                     coverScreen={false} //per coprire l'intero schermo
                     isVisible={this.props.isVisible}
-                    backdropColor='transparent'
-                    backdropOpacity={100}
+                    backdropColor='trasparent'
+                    backdropOpacity={5}
+
 
                     style={styles.centered}
 
@@ -33,11 +39,20 @@ export class StyledModal extends ReactNativeModal {
 
 const styles = StyleSheet.create({
     centered: {
-        borderWidth: 1,
-        borderRadius: 0,
+        borderWidth: 0,
+        borderRadius: 12,
         backgroundColor: '#ffffff',
         borderColor: 'white',
 
         flex: 1,
+
+        shadowColor: '#ffffff',
+        shadowOffset: {
+            width: 0,
+            height: 12,
+        },
+        shadowOpacity: 0.85,
+        shadowRadius: 4,
+        elevation: 26,
     },
 });

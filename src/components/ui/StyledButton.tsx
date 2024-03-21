@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, PressableProps, Text, Pressable} from 'react-native';
+import { StyleSheet, PressableProps, Text, Pressable } from 'react-native';
 import Theme from '../../constants/theme';
 
 type Props = PressableProps & {
