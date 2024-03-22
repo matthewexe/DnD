@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   Description: {
     paddingVertical: 10,
     paddingHorizontal: 5,
-    fontSize: 15,
+    fontSize: 18,
     alignSelf: 'center',
     textAlign: 'justify',
   },

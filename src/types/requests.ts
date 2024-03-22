@@ -214,6 +214,9 @@ export type MagicSchoolRequest =
   | 'necromancy'
   | 'trasmutation';
 
+export type MagicSchoolByIndexRequest = {
+  index: MagicSchoolRequest;
+};
 //Equipment
 export type EquipmentItemRequest =
   | 'Abacus'

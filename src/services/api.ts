@@ -25,6 +25,8 @@ import {
   Multiclassing,
   Condition,
   DamageType,
+  AbilityScore,
+  MagicSchool,
 } from '../types/responses';
 
 import {
@@ -57,6 +59,7 @@ import {
   ConditionRequestByIndex,
   DamageTypeRequest,
   DamageTypeByIndexRequest,
+  MagicSchoolByIndexRequest,
 } from '../types/requests';
 import {SubraceIndexResponse} from '../types/old_responses';
 import {Subrace} from '../types/responses';
@@ -88,6 +91,8 @@ export const api = createApi({
     'Condition',
     'Damage',
     'Monsters',
+    'MagicSchool',
+    'Features',
   ],
   endpoints: builder => ({
     //le tengo ordinate x come andranno utilizzate (NON opzionale)
@@ -412,6 +417,25 @@ export const api = createApi({
       providesTags: (result, error, {index}) => [{type: 'Damage', id: index}],
     }),
 
+    getAbilityScore: builder.query<AbilityScore, AbilityScoreRequestByIndex>({
+      query: ({index}) => `ability-scores/${index}`,
+      providesTags: (result, error, {index}) => [
+        {type: 'AbilitiesScore', id: index},
+      ],
+    }),
+
+    getMagicSchool: builder.query<MagicSchool, MagicSchoolByIndexRequest>({
+      query: ({index}) => `magic-schools/${index}`,
+      providesTags: (result, error, {index}) => [
+        {type: 'MagicSchool', id: index},
+      ],
+    }),
+
+    getFeatures: builder.query<Feature, FeaturesRequestForIndex>({
+      query: ({index}) => `features/${index}`,
+      providesTags: (result, error, {index}) => [{type: 'Features', id: index}],
+    }),
+
     //MONSTERS
     getMonsterByIndex: builder.query<ResourceList, MonstersRequestByIndex>({
       query: ({index}) => `monsters/${index}`,
@@ -467,4 +491,7 @@ export const {
   useGetMulticlassingQuery,
   useGetConditionQuery,
   useGetDamageTypeQuery,
+  useGetAbilityScoreQuery,
+  useGetMagicSchoolQuery,
+  useGetFeaturesQuery,
 } = api;

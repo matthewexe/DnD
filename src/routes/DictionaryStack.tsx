@@ -15,6 +15,8 @@ import {RootTabScreenProps, RootTabParamList} from './RootParamList';
 export type DictionaryStackParamList = {
   Dictionary: undefined;
   //--
+  AbilityScoresD: undefined;
+  //--
   AlignamentD: undefined;
   //--
   ClassD: undefined;
@@ -24,6 +26,12 @@ export type DictionaryStackParamList = {
   ConditionD: undefined;
   //--
   DamegeTypeD: undefined;
+  //--
+  LanguagesD: undefined;
+  //--
+  MagicSchoolD: undefined;
+  //--
+  FeaturesD: undefined;
   //--
   DictionaryClassLevels: {
     classInfo: Class;

@@ -1,13 +1,9 @@
 import {View, Text, StyleSheet, Button} from 'react-native';
 import {DictionaryStackScreenProps} from '../../routes/DictionaryStack';
-import {InputText} from '../InputText';
-import {SelectMenu} from '../SelectMenu';
-import {StyledButton} from '../ui/buttons/StyledButton';
-import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
-import {StyledText} from '../ui/texts/StyledText';
 import {DictionaryButton} from '../ui/buttons/DictionaryButton';
-import CustomButton from '../ui/buttons/CustomBotton';
 import StyledTitle from '../ui/texts/StyledTitle';
+import {PrimaryText} from '../ui/texts/PrimaryText';
+import {ScrollView} from 'react-native-gesture-handler';
 
 type Props = DictionaryStackScreenProps<'Dictionary'>;
 
@@ -16,42 +12,68 @@ export const HomeDictionary = ({navigation, route}: Props) => {
 
   return (
     <>
-      <StyledTitle>Dictionary</StyledTitle>
-
-      <Text>Select your topic:</Text>
-      <View style={styles.container}>
-        <DictionaryButton
-          text="Alignaments"
-          style={{marginVertical: 5}}
-          onPress={() => {
-            navigation.navigate('AlignamentD');
-          }}
-        />
-        <DictionaryButton
-          text="Class"
-          onPress={() => {
-            navigation.navigate('ClassD');
-          }}
-        />
-        <DictionaryButton
-          text="Class Levels"
-          onPress={() => {
-            navigation.navigate('ClassLevelsD');
-          }}
-        />
-        <DictionaryButton
-          text="Conditions"
-          onPress={() => {
-            navigation.navigate('ConditionD');
-          }}
-        />
-        <DictionaryButton
-          text="DamageTypes"
-          onPress={() => {
-            navigation.navigate('DamegeTypeD');
-          }}
-        />
-      </View>
+      <ScrollView>
+        <StyledTitle>Dictionary</StyledTitle>
+        <PrimaryText>Select your topic:</PrimaryText>
+        <View style={styles.container}>
+          <DictionaryButton
+            text="Ability Scores"
+            style={{marginVertical: 5}}
+            onPress={() => {
+              navigation.navigate('AbilityScoresD');
+            }}
+          />
+          <DictionaryButton
+            text="Alignaments"
+            style={{marginVertical: 5}}
+            onPress={() => {
+              navigation.navigate('AlignamentD');
+            }}
+          />
+          <DictionaryButton
+            text="Class"
+            onPress={() => {
+              navigation.navigate('ClassD');
+            }}
+          />
+          <DictionaryButton
+            text="Class Levels"
+            onPress={() => {
+              navigation.navigate('ClassLevelsD');
+            }}
+          />
+          <DictionaryButton
+            text="Conditions"
+            onPress={() => {
+              navigation.navigate('ConditionD');
+            }}
+          />
+          <DictionaryButton
+            text="Damage Types"
+            onPress={() => {
+              navigation.navigate('DamegeTypeD');
+            }}
+          />
+          <DictionaryButton
+            text="Features"
+            onPress={() => {
+              navigation.navigate('FeaturesD');
+            }}
+          />
+          <DictionaryButton
+            text="Magic Schools"
+            onPress={() => {
+              navigation.navigate('MagicSchoolD');
+            }}
+          />
+          <DictionaryButton
+            text="Languages"
+            onPress={() => {
+              navigation.navigate('LanguagesD');
+            }}
+          />
+        </View>
+      </ScrollView>
     </>
   );
 };
