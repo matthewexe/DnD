@@ -12,27 +12,23 @@ import {store} from './src/store';
 import {NavigationContainer} from '@react-navigation/native';
 import {customTheme2} from './src/constants/theme';
 import {CountedTable} from './src/components/table/CountedTable';
+import {ApiFieldsAdapter} from './src/helpers/adapter';
+import {Test} from './src/components/Test';
 
 const App = () => {
-  const headers = ['Head', 'Head2', 'Head3'];
-  const data = [
-    ['1', '2', '3'],
-    ['a', 'b', 'c'],
-    ['1', '2', '3'],
-    ['a', 'b', 'c'],
-  ];
+  const head = ['Name'];
+  const data = [['John'], ['Doe']];
 
   return (
     <RealmProvider
       path="dnd.db"
       schema={[GameModel, PlayerModel, ArmorModel, WeaponModel]}
-      schemaVersion={2}>
+      schemaVersion={3}>
       <Provider store={store}>
         <NavigationContainer theme={customTheme2}>
           <SafeAreaView style={{flex: 1, backgroundColor: 'black'}}>
-            {/* <StyledCheckBox text="check" onValueChange={console.log} /> */}
-            {/* <SelectableTable head={headers} data={data} max_selectbale={1} /> */}
-            <CountedTable head={headers} data={data} max_selectable={2} />
+            {/* <Test /> */}
+            <CountedTable data={data} head={head} max_selectable={2} />
           </SafeAreaView>
         </NavigationContainer>
       </Provider>

@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import 'react-native-get-random-values';
@@ -60,7 +60,9 @@ export const CountedTable = ({head, data, max_selectable}: TableProps) => {
       return false;
     }
 
-    selectedRows.current--;
+    if (countedRows[index] > 0) {
+      selectedRows.current--;
+    }
     return true;
   };
 
@@ -87,8 +89,8 @@ export const CountedTable = ({head, data, max_selectable}: TableProps) => {
           index={-1}
           data={head}
           isHead={true}
-          onPlus={() => {}}
-          onMinus={() => {}}
+          onPlus={() => false}
+          onMinus={() => false}
         />
       )}
       <FlatList

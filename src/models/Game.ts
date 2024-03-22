@@ -32,7 +32,7 @@ export class Game extends Realm.Object<Game> {
 }
 
 export class Player extends Realm.Object<Player> {
-  id!: Realm.BSON.UUID;
+  id!: Realm.BSON.ObjectId;
   character_name!: string;
   player_name!: string;
   class!: ClassIndexRequest;
@@ -65,7 +65,7 @@ export class Player extends Realm.Object<Player> {
   static schema: ObjectSchema = {
     name: 'Player',
     properties: {
-      id: 'uuid',
+      id: 'objectId',
       character_name: 'string',
       player_name: 'string',
       class: 'string',
