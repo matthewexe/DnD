@@ -17,18 +17,18 @@ export const ListGame = ({navigation, route}: Props) => {
 
   return (
     <SafeAreaView>
-      <StyledTitle>Home</StyledTitle>
-      <StyledSubtitle>List Game</StyledSubtitle>
-      <View style={[styles.buttonContainer]}>
-        <StyledButton
-          text="Create Game"
-          onPress={() => {
-            navigation.navigate('NewGame');
-          }}
-        />
-      </View>
-      <View style={[styles.scroll]}>
-        <ScrollView contentContainerStyle={[styles.gamesContainer]}>
+      <ScrollView contentContainerStyle={[]}>
+        <StyledTitle>Home</StyledTitle>
+        <StyledSubtitle>List Game</StyledSubtitle>
+        <View style={[styles.buttonContainer]}>
+          <StyledButton
+            text="Create Game"
+            onPress={() => {
+              navigation.navigate('NewGame');
+            }}
+          />
+        </View>
+        <View style={[styles.gamesContainer]}>
           {games.map((game, index) => (
             <GameCard
               key={game.id.id.toString() + index}
@@ -45,8 +45,8 @@ export const ListGame = ({navigation, route}: Props) => {
               route={route}
             />
           ))}
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
