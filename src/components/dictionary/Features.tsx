@@ -31,10 +31,21 @@ export default function FeaturesComponent({input}: Props) {
             {data.level ?? 'not specified'}
           </PrimaryText>
         )}
+        {data && data.prerequisites.length > 0 && (
+          <StyledLabel label={'Prerequisites:'} value={''}></StyledLabel>
+        )}
         {data &&
-          data.prerequisites.length > 0 && (
-            <StyledLabel label={'Prerequisites:'} value={''}></StyledLabel>
-          ) && <View />}
+          data.prerequisites.length > 0 &&
+          data.prerequisites.map(choice => (
+            <>
+              {choice.type && (
+                <DescriptionText>Type:{choice.type}</DescriptionText>
+              )}
+              {choice.level && (
+                <DescriptionText>Livello:{choice.level}</DescriptionText>
+              )}
+            </>
+          ))}
         {/* dqw ----------------------------------------------------------------------------------------------------------------------*/}
         {data && data.desc && (
           <StyledLabel

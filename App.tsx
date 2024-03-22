@@ -8,7 +8,6 @@ import {Provider} from 'react-redux';
 import {HomeScreen} from './src/screen/HomeScreen';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import {customTheme2} from './src/constants/theme';
-import {NewPlayerScreen} from './src/screen/NewPlayerScreen';
 import {store} from './src/store';
 import {View} from 'react-native';
 import {Settings} from './src/components/pages/Settings';

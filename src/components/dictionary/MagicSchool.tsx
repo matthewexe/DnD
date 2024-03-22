@@ -1,21 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {
-  useGetAbilityScoreQuery,
-  useGetLanguageByIndexQuery,
-  useGetMagicSchoolQuery,
-} from '../../services/api';
-import {
-  AbilityScoreRequest,
-  ConditionRequest,
-  LanguageRequest,
-  MagicSchoolRequest,
-} from '../../types/requests';
+import {useGetMagicSchoolQuery} from '../../services/api';
+import {MagicSchoolRequest} from '../../types/requests';
 import {StyledLabel} from '../ui/texts/LabeldValueStyle';
-import {StyledText} from '../ui/texts/StyledText';
-import SkillComponent from './Skills';
 import {DescriptionText} from '../ui/texts/DescriptionText';
-import {PrimaryText} from '../ui/texts/PrimaryText';
 
 type Props = {
   input: MagicSchoolRequest;

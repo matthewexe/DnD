@@ -27,6 +27,7 @@ import {
   DamageType,
   AbilityScore,
   MagicSchool,
+  Monster,
 } from '../types/responses';
 
 import {
@@ -437,7 +438,7 @@ export const api = createApi({
     }),
 
     //MONSTERS
-    getMonsterByIndex: builder.query<ResourceList, MonstersRequestByIndex>({
+    getMonsterByIndex: builder.query<Monster, MonstersRequestByIndex>({
       query: ({index}) => `monsters/${index}`,
       providesTags: (result, error, {index}) => [{type: 'Monsters', id: index}],
     }),
