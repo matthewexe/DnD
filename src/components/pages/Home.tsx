@@ -3,23 +3,22 @@
 /* eslint-disable react/self-closing-comp */
 // import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import {SafeAreaView, Text} from 'react-native';
 // import Icon from 'react-native-vector-icons/FontAwesome6';
-import { GameCard } from '../GameCard';
-import { HomeStackScreenProps } from '../../routes/HomeParamList';
+import {GameCard} from '../GameCard';
+import {HomeStackScreenProps} from '../../routes/HomeParamList';
 
-import { StyledButton } from '../ui/StyledButton';
-import { StyledText } from '../ui/texts/StyledText';
-import { StyledCheckBox } from '../ui/StyledCheckBox';
-import { StyledTitle } from '../ui/texts/StyledTitle';
-import { StyledLabeledValue } from '../ui/texts/StyledLabeledValue';
-import { useState } from 'react';
-import { StyledAccordion } from '../ui/StyledAccordion';
-import { StyledModal } from '../ui/StyledModal';
+import {StyledButton} from '../ui/StyledButton';
+import {StyledText} from '../ui/texts/StyledText';
+import {StyledCheckBox} from '../ui/StyledCheckBox';
+import {StyledTitle} from '../ui/texts/StyledTitle';
+import {StyledLabeledValue} from '../ui/texts/StyledLabeledValue';
+import {useState} from 'react';
+import {StyledModal} from '../ui/StyledModal';
 import Modal from 'react-native-modal';
-import { Loading } from './Loading';
-import { Error } from './Error';
-import { Success } from './Success';
+import {Loading} from './Loading';
+import {Error} from './Error';
+import {Success} from './Success';
 
 type Props = HomeStackScreenProps<'ListGame'>;
 
@@ -30,9 +29,9 @@ export const Home = (props: Props) => {
     <SafeAreaView>
       <StyledTitle children={'Home'} />
       <StyledCheckBox
-
-
-        onChange={() => setChoice(current => !current)} text={''} />
+        onChange={() => setChoice(current => !current)}
+        text={''}
+      />
 
       <GameCard gameId="1" {...props} />
       <Text />
@@ -45,20 +44,19 @@ export const Home = (props: Props) => {
       <Text />
       {/* <StyledText>Testo prova font</StyledText> */}
       <StyledButton
-        text={
-          //mi da errore però scrive lo stesso
-          'Inizia'
-          // <StyledText children={'Inizia a creare >>'}></StyledText>
-        }
+        text={'Inizia'}
         onPress={() => {
-          setShowModal(!showModal)
+          setShowModal(!showModal);
         }}
-
       />
       <StyledModal isVisible={showModal}>
-        <Success message={'Game Created successfully!'} onPress={() => { setShowModal(!showModal) }} />
+        <Success
+          message={'Game Created successfully!'}
+          onPress={() => {
+            setShowModal(!showModal);
+          }}
+        />
       </StyledModal>
-      <StyledAccordion />
     </SafeAreaView>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import {Text} from 'react-native';
 import {useGetSubClassesforLevelQuery} from '../../services/api';
 import {FeaturesRequest, Subclasstypes} from '../../types/requests';
-import {LabeledValue} from '../LabeledValue';
+import {LabeledValue} from '../ui/LabeledValue';
 import Features from './Features';
 
 type Props = {

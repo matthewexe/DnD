@@ -3,7 +3,7 @@ import {Text, View} from 'react-native';
 import {useGetClassByIndexQuery} from '../../services/api';
 import {ClassIndexRequest} from '../../types/requests';
 import {ProficiencyComponent} from '../ProficiencyComponent';
-import {LabeledValue} from '../LabeledValue';
+import {LabeledValue} from '../ui/LabeledValue';
 import FeaturesByClassComponent from './FeaturesByClass';
 import ProficiencyByClassComponent from './ProficiencyByClass';
 import SubclassComponent from './SubclassByClass';

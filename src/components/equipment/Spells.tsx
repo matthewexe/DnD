@@ -2,7 +2,7 @@ import React from 'react';
 import {Text} from 'react-native';
 import {useGetSpellsQuery} from '../../services/api';
 import {SpellRequest} from '../../types/requests';
-import {LabeledValue} from '../LabeledValue';
+import {LabeledValue} from '../ui/LabeledValue';
 import {rangeFieldToMeterField} from '../../helper/fieldConverter';
 
 export default function Spells({input}: {input: SpellRequest}) {

@@ -4,7 +4,7 @@ import {useGetRacesByIndexQuery} from '../../services/api';
 import {RaceIndexRequest, TraitsRequest} from '../../types/requests';
 import {ProficiencyReferenceOption} from '../../types/responses';
 import ExportTrait from './Trait';
-import {LabeledValue} from '../LabeledValue';
+import {LabeledValue} from '../ui/LabeledValue';
 import SubraceByRace from './CheckSubraceByIndex';
 import TraitsComponent from './TraitsByRace';
 import {StyledLabelValue} from '../ui/texts/StyledLabeledValue';

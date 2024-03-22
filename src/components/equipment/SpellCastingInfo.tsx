@@ -2,7 +2,7 @@ import {Text} from 'react-native';
 import {useGetSpellCastingByClassQuery} from '../../services/api';
 import {ClassIndexRequest} from '../../types/requests';
 import React from 'react';
-import {LabeledValue} from '../LabeledValue';
+import {LabeledValue} from '../ui/LabeledValue';
 
 export default function SpellAvailableByClassComponent({
   input,

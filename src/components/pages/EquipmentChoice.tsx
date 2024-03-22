@@ -4,7 +4,7 @@ import {NewPlayerNavigationProps} from '../../routes/NewPlayerParamList';
 import {StyledButton} from '../ui/StyledButton';
 import StyledTitle from '../ui/texts/StyledTitle';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
-import {SelectMenu} from '../SelectMenu';
+import {SelectMenu} from '../ui/SelectMenu';
 
 type Props = NewPlayerNavigationProps<'EquipmentChoice'>;
 

@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import MySwitch from '../Switch';
+import MySwitch from '../ui/Switch';
 import {View, Text} from 'react-native';
 import StyledTitle from '../ui/texts/StyledTitle';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';

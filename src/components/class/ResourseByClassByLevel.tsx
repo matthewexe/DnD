@@ -3,7 +3,7 @@ import {Text, View} from 'react-native';
 import {useGetResourcesByClassByLevelQuery} from '../../services/api';
 import {ClassIndexRequest} from '../../types/requests';
 import FeaturesByClassByLevelComponent from './fetchFeaturesByClassByLevel';
-import {LabeledValue} from '../LabeledValue';
+import {LabeledValue} from '../ui/LabeledValue';
 import {classSpecificToString} from '../../helper/classSpecific';
 
 export default function ResourceByClassByLevelComponent({

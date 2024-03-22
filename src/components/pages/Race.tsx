@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {InputText} from '../InputText';
+import {InputText} from '../ui/InputText';
 import {StyleSheet, Text, View} from 'react-native';
 import {NewPlayerNavigationProps} from '../../routes/NewPlayerParamList';
-import {SelectMenu} from '../SelectMenu';
+import {SelectMenu} from '../ui/SelectMenu';
 import {useGetEndpointResourceQuery} from '../../services/api';
 import {
   LanguageRequest,
