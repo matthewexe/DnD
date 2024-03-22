@@ -1,22 +1,23 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {useGetClassByIndexQuery} from '../services/api';
-import {ApiFieldsAdapter} from '../helpers/adapter';
+import {useRealm} from '@realm/react';
+import {GameModel} from '../models/types';
+import 'react-native-get-random-values';
+import Realm from 'realm';
+import {Game} from '../models/Game';
 
 export const Test = () => {
-  const {data} = useGetClassByIndexQuery({index: 'barbarian'});
+  const realm = useRealm();
+  const classData: GameModel = {
+    id: new Realm.BSON.ObjectId(),
+    name: 'Test',
+    description: 'Test Description',
+    players: [],
+  };
 
-  console.log(
-    data
-      ? data.proficiency_choices.map(value =>
-          value.from.options.map(item =>
-            ApiFieldsAdapter.proficiencyChoices(item).reduce(
-              (prev, cur) => prev + cur,
-            ),
-          ),
-        )
-      : null,
-  );
+  // realm.write(() => {
+  //   realm.create('Game', classData);
+  // });
 
   return <Text>Test</Text>;
 };

@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, PressableProps, Text, Pressable } from 'react-native';
-import Theme from '../../constants/theme';
+import {StyleSheet, PressableProps, Pressable} from 'react-native';
+import {customTheme2} from '../../constants/theme';
+import {StyledText} from './texts/StyledText';
 
 type Props = PressableProps & {
   text: string;
@@ -9,7 +10,7 @@ type Props = PressableProps & {
 export const StyledButton = (props: Props) => {
   return (
     <Pressable {...props} style={styles.button}>
-      <Text>{props.text}</Text>
+      <StyledText>{props.text}</StyledText>
     </Pressable>
   );
 };
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Theme.colors.primary,
+    backgroundColor: customTheme2.colors.primary,
     width: 120,
     height: 41,
   },

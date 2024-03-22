@@ -1,42 +1,25 @@
 import React from 'react';
-import {Text, TextProps, View} from 'react-native';
+import {StyleSheet, Text, TextProps} from 'react-native';
 import {customTheme2} from '../../../constants/theme';
 
 type Props = TextProps;
 
 export const StyledSubtitle = (props: Props) => {
   return (
-    <>
-      <Text style={{height: 19}} />
-      <View
-        style={{
-          flexDirection: 'row',
-        }}>
-        <Text
-          {...props}
-          style={{
-            fontSize: 35,
-            fontFamily: '',
-            color: customTheme2.colors.notification,
-            top: -9,
-          }}>
-          |
-        </Text>
-        <Text
-          style={{
-            width: 5,
-          }}></Text>
-        <Text
-          {...props}
-          style={{
-            fontSize: 24,
-            fontFamily: '',
-            color: customTheme2.colors.text,
-          }}>
-          {props.children}
-        </Text>
-        <Text style={{height: 44}} />
-      </View>
-    </>
+    <Text {...props} style={[styles.subtitle]}>
+      {props.children}
+    </Text>
   );
 };
+
+const styles = StyleSheet.create({
+  subtitle: {
+    fontSize: 24,
+    fontFamily: '',
+    color: customTheme2.colors.text,
+    borderColor: customTheme2.colors.notification,
+    borderLeftWidth: 3,
+    paddingLeft: 8,
+    margin: 5,
+  },
+});
