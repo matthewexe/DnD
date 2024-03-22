@@ -1,41 +1,50 @@
-/* eslint-disable react/self-closing-comp */
 /* eslint-disable prettier/prettier */
-import React from 'react';
-import { Text, View } from 'react-native';
-import Accordion, { AccordionProps } from 'react-native-collapsible/Accordion';
+import React, { useState } from 'react';
+import { Text, View, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
+import type { PropsWithChildren } from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome6';
+import Accordion from 'react-native-collapsible/Accordion';
+import { APIReference } from '../../types/responses';
 
-type Props<T extends object> = AccordionProps<T> & {
+type AccordionItemProps = PropsWithChildren<{
+    title: string;
+}>;
 
-};
+function AccordionItem({ children, title }: AccordionItemProps) {
+    const [selected, setSelected] = useState(false);
 
-export const StyledAccordion = <T extends object,>(props: Props<T>) => {
-    const renderHeader_fnct = <T extends object,>(section: Props<T>) => {
-        <View style={{ alignSelf: 'center' }}>
-            <Text >.</Text>
-        </View >
-    };
-    const renderContent_fnct = <T extends object,>(section: Props<T>) => {
-        return (
-            <View style={{}}>
-                <Text>content</Text>
-            </View>
-        );
-    };
+    function openClose() {
+        setSelected(!selected);
+    }
 
-    const updateSections_fnct = (activeSections: Props.section) => {
-        this.setState({ activeSections });
-    };
+    const content = <View>{children}</View>;
 
+    return (<View style={{ flexDirection: 'row' }}>
+        <TouchableOpacity onPress={openClose} style={{ flexDirection: 'row' }}>
+            <Text>{title}</Text>
+            <Icon name={selected ? "chevron-up" : "chevron-down"} size={20} color="#009000" />
+        </TouchableOpacity>
+        {selected && content}
+    </View>)
+}
 
-    return (
-        <>
-            <Accordion {...props}
-                sections={props.sections}
-                onChange={props.onChange}
-                activeSections={props.activeSections}
-                renderContent={renderContent_fnct}
-                renderHeader={renderHeader_fnct}
-            ></Accordion >
-        </>
-    );
-};
+type Props = {
+    data: APIReference[];
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const StyledAccordion = (props: Props) => {
+    return (<SafeAreaView>
+        <ScrollView contentInsetAdjustmentBehavior='automatic'>
+            <AccordionItem title={"titolo"}>
+                <Text>Prima descrizione</Text>
+            </AccordionItem>
+            <AccordionItem title={"titolone"}>
+                <Text>secOnda deskrizione</Text>
+            </AccordionItem>
+            <AccordionItem title={"titolino"}>
+                <Text>terZa desckreezione</Text>
+            </AccordionItem>
+        </ScrollView>
+    </SafeAreaView >);
+}

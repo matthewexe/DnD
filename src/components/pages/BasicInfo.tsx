@@ -1,22 +1,22 @@
-/* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
-import {InputText} from '../InputText';
-import {Text, View} from 'react-native';
-import {NewPlayerNavigationProps} from '../../routes/NewPlayerParamList';
-import {SelectMenu} from '../SelectMenu';
-import {useGetEndpointResourceQuery} from '../../services/api';
-import {RaceIndexRequest} from '../../types/requests';
-import {StyledButton} from '../ui/StyledButton';
-import {StyleSheet} from 'react-native';
-import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
-import {Error} from './Error';
-import {Loading} from './Loading.tsx';
+/* eslint-disable prettier/prettier */
+import React, { useState } from 'react';
+import { InputText } from '../InputText';
+import { Text, View } from 'react-native';
+import { NewPlayerNavigationProps } from '../../routes/NewPlayerParamList';
+import { SelectMenu } from '../SelectMenu';
+import { useGetEndpointResourceQuery } from '../../services/api';
+import { RaceIndexRequest } from '../../types/requests';
+import { StyledButton } from '../ui/StyledButton';
+import { StyleSheet } from 'react-native';
+import { StyledSubtitle } from '../ui/texts/StyledSubtitle';
+import { Error } from './Error';
+import { Loading } from './Loading.tsx';
 import StyledTitle from '../ui/texts/StyledTitle';
-import {Accordion} from 'react-native-collapsible/Accordion';
+
 
 type Props = NewPlayerNavigationProps<'BasicInfo'>;
 
-export const BasicInfo = ({navigation}: Props) => {
+export const BasicInfo = ({ navigation }: Props) => {
   const {
     data: raceData,
     isLoading: isLoadingRace,

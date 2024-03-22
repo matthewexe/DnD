@@ -43,7 +43,7 @@ export const Home = (props: Props) => {
         }
       />
       <Text />
-      <StyledText>Testo prova font</StyledText>
+      {/* <StyledText>Testo prova font</StyledText> */}
       <StyledButton
         text={
           //mi da errore però scrive lo stesso
@@ -58,7 +58,7 @@ export const Home = (props: Props) => {
       <StyledModal isVisible={showModal}>
         <Success message={'Game Created successfully!'} onPress={() => { setShowModal(!showModal) }} />
       </StyledModal>
-      {/* <StyledAccordion /> */}
+      <StyledAccordion />
     </SafeAreaView>
   );
 };
