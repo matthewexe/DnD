@@ -2,7 +2,6 @@
 import React from 'react';
 import {StyleSheet, Text, TextProps} from 'react-native';
 import {customTheme2} from '../../../constants/theme';
-// import './assets/fonts/NewTegomin-Regular.ttf';
 
 type Props = TextProps;
 
@@ -16,9 +15,9 @@ export const StyledText = (props: Props) => {
 
 const styles = StyleSheet.create({
   TextBox: {
-    width: 100,
-    fontWeight: 'bold',
     color: customTheme2.colors.text,
     fontFamily: 'NewTegomin-Regular',
+    fontSize: 17,
+    textAlignVertical: 'bottom',
   },
 });

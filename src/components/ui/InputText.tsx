@@ -2,8 +2,8 @@ import React, {PropsWithChildren} from 'react';
 import {Text, TextInputProps, View} from 'react-native';
 import {StyledTextInput} from './StyledTextInput';
 import {useState} from 'react';
-import {fontFamilies} from '../constants/fonts';
 import {customTheme2} from '../../constants/theme';
+import {StyledText} from './texts/StyledText';
 
 type Props = TextInputProps & {
   /**
@@ -19,13 +19,16 @@ type Props = TextInputProps & {
 export const InputText = (props: Props) => {
   return (
     <View>
-      <Text
-        disabled={props.disabled}
-        style={{
-          fontFamily: 'Becasime Antique',
-        }}>
-        {props.label}
-      </Text>
+      <View style={{padding: 4}}>
+        <StyledText
+          disabled={props.disabled}
+          style={{
+            fontFamily: 'NewTegomin-Regular', //becasime Antique
+            paddingBottom: 1,
+          }}>
+          {props.label}
+        </StyledText>
+      </View>
       <StyledTextInput
         placeholder={props.placeholder}
         aria-disabled={props.disabled}

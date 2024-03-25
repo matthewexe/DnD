@@ -12,6 +12,7 @@ import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
 import {Error} from './Error';
 import {Loading} from './Loading.tsx';
 import StyledTitle from '../ui/texts/StyledTitle';
+import {StyledText} from '../ui/texts/StyledText.tsx';
 
 type Props = NewPlayerNavigationProps<'BasicInfo'>;
 
@@ -74,9 +75,13 @@ export const BasicInfo = ({navigation}: Props) => {
       <Text />
       <Text />
       <View style={styles.rowStyle}>
-        <StyledButton text="<   Cancel" onPress={navigation.goBack} />
         <StyledButton
-          text="Next   >"
+          text="  Cancel"
+          onPress={navigation.goBack}
+          iconName="caret-left"
+        />
+        <StyledButton
+          text="Next   "
           onPress={() => {
             navigation.navigate('RaceInfo', {
               player: playerName,
