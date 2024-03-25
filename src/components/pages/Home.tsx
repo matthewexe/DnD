@@ -6,21 +6,19 @@ import React from 'react';
 import {SafeAreaView, Text} from 'react-native';
 // import Icon from 'react-native-vector-icons/FontAwesome6';
 import {GameCard} from '../GameCard';
-import {HomeStackScreenProps} from '../../routes/HomeParamList';
 
 import {StyledButton} from '../ui/StyledButton';
-import {StyledText} from '../ui/texts/StyledText';
 import {StyledCheckBox} from '../ui/StyledCheckBox';
 import {StyledTitle} from '../ui/texts/StyledTitle';
 import {StyledLabeledValue} from '../ui/texts/StyledLabeledValue';
 import {useState} from 'react';
 import {StyledModal} from '../ui/StyledModal';
-import Modal from 'react-native-modal';
 import {Loading} from './Loading';
 import {Error} from './Error';
 import {Success} from './Success';
+import {HomeScreenProps} from '../../routes/HomeProps';
 
-type Props = HomeStackScreenProps<'ListGame'>;
+type Props = HomeScreenProps<'ListGame'>;
 
 export const Home = (props: Props) => {
   const [choice, setChoice] = useState(false);
@@ -36,7 +34,7 @@ export const Home = (props: Props) => {
       <GameCard gameId="1" {...props} />
       <Text />
       <StyledLabeledValue
-        label={'  Nome figo di qualcosa'}
+        label={'Nome figo di qualcosa'}
         value={
           'ciaociao Questa è una descrizione fatta apposta perchè non so che cazzo devo scrivere e quando avremo trovato cosa scrivere sarà tolta. Nel mentre considerata come schiavetto per capire quanto cazzo può occupare una descrizione tipo, tra tutti quei papiri che sto gioco ci propone molto caltamente '
         }
@@ -46,14 +44,16 @@ export const Home = (props: Props) => {
       <StyledButton
         text={'Inizia'}
         onPress={() => {
-          setShowModal(!showModal);
+          props.navigation.navigate('NewGame');
+          // setShowModal(!showModal);
         }}
       />
+      <Text />
       <StyledModal isVisible={showModal}>
         <Success
           message={'Game Created successfully!'}
           onPress={() => {
-            setShowModal(!showModal);
+            setShowModal(false);
           }}
         />
       </StyledModal>

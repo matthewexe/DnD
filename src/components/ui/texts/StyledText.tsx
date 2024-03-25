@@ -17,7 +17,6 @@ export const StyledText = (props: Props) => {
 const styles = StyleSheet.create({
   TextBox: {
     width: 100,
-    height: 23,
     fontWeight: 'bold',
     color: customTheme2.colors.text,
     fontFamily: 'NewTegomin-Regular',

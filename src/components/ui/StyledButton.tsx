@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, PressableProps, Text, Pressable } from 'react-native';
+import {StyleSheet, PressableProps, Text, Pressable} from 'react-native';
 import Theme from '../../constants/theme';
 
 type Props = PressableProps & {
@@ -16,11 +16,11 @@ export const StyledButton = (props: Props) => {
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 6,
+    borderRadius: 9,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Theme.colors.primary,
-    width: 120,
-    height: 41,
+    width: 100,
+    padding: 13,
   },
 });

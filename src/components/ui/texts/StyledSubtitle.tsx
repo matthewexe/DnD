@@ -7,7 +7,7 @@ type Props = TextProps;
 export const StyledSubtitle = (props: Props) => {
   return (
     <>
-      <Text style={{height: 19}} />
+      <Text />
       <View
         style={{
           flexDirection: 'row',
@@ -35,7 +35,7 @@ export const StyledSubtitle = (props: Props) => {
           }}>
           {props.children}
         </Text>
-        <Text style={{height: 44}} />
+        <Text />
       </View>
     </>
   );

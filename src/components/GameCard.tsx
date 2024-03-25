@@ -1,19 +1,21 @@
 import React from 'react';
 import {Text, TouchableHighlight, View} from 'react-native';
-import {HomeStackScreenProps} from '../routes/HomeParamList';
+import {HomeScreenProps} from '../routes/HomeProps';
+import {useRealm} from '@realm/react';
+import Realm from 'realm';
 
-export type GameCardProps = HomeStackScreenProps<'ListGame'> & {
-  gameId: string;
+export type GameCardProps = HomeScreenProps<'ListGame'> & {
+  gameId: number;
 };
 
 export const GameCard = ({gameId, navigation}: GameCardProps) => {
   return (
     <View>
-      <TouchableHighlight
+      <TouchableHighlight //pressable
         onPress={() => {
           navigation.navigate('GameDetail', {gameId: gameId});
         }}>
-        <Text id="title-card">Game Title</Text>
+        <Text id="title-card" style={{}}></Text>
       </TouchableHighlight>
     </View>
   );

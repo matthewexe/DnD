@@ -1,6 +1,7 @@
 import {CompositeScreenProps} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootTabScreenProps} from './RootProps';
+import Realm from 'realm';
 
 export type HomeParamList = {
   ListGame: undefined;

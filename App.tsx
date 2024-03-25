@@ -1,18 +1,17 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {
   createBottomTabNavigator,
   BottomTabNavigationOptions,
 } from '@react-navigation/bottom-tabs';
-import { Provider } from 'react-redux';
-import { HomeScreen } from './src/screen/HomeScreen';
+import {Provider} from 'react-redux';
+import {HomeScreen} from './src/screen/HomeScreen';
 import Icon from 'react-native-vector-icons/FontAwesome6';
-import { customTheme2 } from './src/constants/theme';
-import { NewPlayerScreen } from './src/screen/NewPlayerScreen';
-import { store } from './src/store';
-import { View } from 'react-native';
-import { Settings } from './src/components/pages/Settings';
+import {customTheme2} from './src/constants/theme';
+import {NewPlayerScreen} from './src/screen/NewPlayerScreen';
+import {store} from './src/store';
+import {View} from 'react-native';
+import {Settings} from './src/components/pages/Settings';
 
 const Tabs = createBottomTabNavigator();
 
@@ -36,7 +35,7 @@ const screenOptions: BottomTabNavigationOptions = {
 };
 
 const tabsIcon = {
-  home: ({ color, size }: { focused: boolean; color: string; size: number }) => (
+  home: ({color, size}: {focused: boolean; color: string; size: number}) => (
     <Icon name="house" color={color} size={size} />
   ),
   plus: ({
@@ -68,7 +67,7 @@ const tabsIcon = {
       />
     </View>
   ),
-  gear: ({ color, size }: { focused: boolean; color: string; size: number }) => (
+  gear: ({color, size}: {focused: boolean; color: string; size: number}) => (
     <Icon name="gear" color={color} size={size} />
   ),
 };
@@ -86,7 +85,7 @@ function App(): React.JSX.Element {
             }}
           />
           <Tabs.Screen
-            name=" "
+            name="Dictionary"
             component={NewPlayerScreen}
             options={() => ({
               tabBarStyle: {

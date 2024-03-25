@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     borderBottomColor: customTheme2.colors.primary,
     borderBottomWidth: 1,
     width: 200,
-    height: 24,
     fontWeight: 'bold',
     fontFamily: '',
     fontSize: 18,
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
   Description: {
     fontWeight: '200',
     width: '93%',
-    fontSize: 14,
+    fontSize: 16,
     alignSelf: 'center',
     textAlign: 'justify',
   },

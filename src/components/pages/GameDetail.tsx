@@ -1,23 +1,53 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
-import { Text, View } from 'react-native';
-// eslint-disable-next-line prettier/prettier
-import { HomeStackScreenProps } from '../../routes/HomeParamList';
-import { NavigationProp } from '@react-navigation/native';
-import { StyledButton } from '../ui/StyledButton';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {StyledButton} from '../ui/StyledButton';
 import StyledTitle from '../ui/texts/StyledTitle';
+import {HomeScreenProps} from '../../routes/HomeProps';
+import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
+import {StyledLabeledValue} from '../ui/texts/StyledLabeledValue';
+import {useRealm} from '@realm/react';
 
-type Props = HomeStackScreenProps<'GameDetail'> & NavigationProp & {
-    gameTitle: string;
-};
+type Props = HomeScreenProps<'GameDetail'>;
 
-export const GameDetail = ({ props, navigation }: Props) => {
-    return (<>
+export const GameDetail = ({navigation, route}: Props) => {
+  const realm = useRealm();
+  const gameId = route.params.gameId;
+  const title = 'Titolo';
+
+  return (
+    <>
+      <SafeAreaView>
+        <StyledTitle>{title}</StyledTitle>
+        <Text />
         <View>
-            <StyledTitle>{props.gameTitle}</StyledTitle>
-            <StyledButton text={'messagge'} />
-            <StyledButton text={'Delete Player'} />
-            <StyledButton text={'Add Player'} onPress={navigation.navigate('BasicInfo')} />
+          {/* <Text>Name:</Text>
+          <Text /> */}
+          <StyledLabeledValue label={'Description'} value={'fottiti'} />
         </View>
-    </>);
+        <StyledSubtitle>Players</StyledSubtitle>
+        <View style={styles.content}>
+          <StyledButton text={'Delete Player'} style={{}} />
+        </View>
+        <Text />
+        <View style={{alignSelf: 'center'}}>
+          <StyledButton
+            text={'Add Player'}
+            style={{}}
+            onPress={() =>
+              navigation.navigate('NewPlayer_BasicInfo', {gameId: gameId})
+            }
+          />
+        </View>
+        <View>{/* tutte le card dei player */}</View>
+      </SafeAreaView>
+    </>
+  );
 };
+
+const styles = StyleSheet.create({
+  content: {
+    flexDirection: 'row',
+
+    alignSelf: 'center',
+  },
+});

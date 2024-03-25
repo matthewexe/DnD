@@ -1,16 +1,16 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {HomeStackParamList} from '../routes/HomeParamList';
 import {Home} from '../components/pages/Home';
-import {GameDetailsScreen} from './GameDetailsScreen';
+import {HomeParamList} from '../routes/HomeProps';
+import {GameDetail} from '../components/pages/GameDetail';
 
-const HomeStack = createNativeStackNavigator<HomeStackParamList>();
+const HomeStack = createNativeStackNavigator<HomeParamList>();
 
 export const HomeScreen = ({}) => {
   return (
     <HomeStack.Navigator screenOptions={{headerShown: false}}>
       <HomeStack.Screen name="ListGame" component={Home} />
-      <HomeStack.Screen name="GameDetail" component={GameDetailsScreen} />
+      <HomeStack.Screen name="GameDetail" component={GameDetail} />
     </HomeStack.Navigator>
   );
 };

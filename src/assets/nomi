@@ -1,0 +1,309 @@
+interface DnDCharacterSheet {
+  //Pagina 1 --------------------------------------------------
+  //blocco iniziale
+  CharacterName: string;
+  ClassLevel: string;
+  PlayerName: string;
+  Background: string;
+  Race: string;
+  Alignment: string;
+  XP: string;
+
+  //blocco bonus
+  Insp1: string;
+  Insp2: string;
+  Insp3: string;
+  Insp4: string;
+  ProfBonus: string;
+
+  //blocco proficiency
+  STR: string;
+  STRmod: string;
+  DEX: string;
+  DEXmod: string;
+  CON: string;
+  CONmod: string;
+  INT: string;
+  INTmod: string;
+  WIS: string;
+  WISmod: string;
+  CHA: string;
+  CHAmod: string;
+
+  //tiri salvezza
+  'ST Strength': string;
+  'ST Dexterity': string;
+  'ST Constitution': string;
+  'ST Intelligence': string;
+  'ST Wisdom': string;
+  'ST Charisma': string;
+
+  //blocco Abilità
+  ACRO: string;
+  ANIM: string;
+  ARC: string;
+  ATH: string;
+  STLTH: string;
+  INV: string;
+  DEC: string;
+  INTI: string;
+  PERF: string;
+  INS: string;
+  MED: string;
+  NAT: string;
+  PERC: string;
+  PERS: string;
+  SLE: string;
+  REL: string;
+  SURV: string;
+  HIST: string;
+
+  ACROP: string; //non boolean?
+  ANIMP: string;
+  ARCP: string;
+  ATHP: string;
+  STLTHP: string;
+  INVP: string;
+  DECP: string;
+  INTIP: string;
+  PERFP: string;
+  INSP: string;
+  MEDP: string;
+  NATP: string;
+  PERCP: string;
+  PERSP: string;
+  SLEP: string;
+  RELP: string;
+  SURVP: string;
+  HISTP: string;
+
+  //blocco centrale
+  AC: string;
+  Initiative: string;
+  Speed: string;
+  HPMax: string;
+  HPCurrent: string;
+  HPTemp: string;
+  HDTotal: string;
+  HD: string;
+
+  //i puntini del successo a destra
+  'Check Box 12': boolean;
+  'Check Box 13': boolean;
+  'Check Box 14': boolean;
+  'Check Box 15': boolean;
+  'Check Box 16': boolean;
+  'Check Box 17': boolean;
+
+  //blocco a destra
+  PersonalityTraits: string;
+  Ideals: string;
+  Bonds: string;
+  Flaws: string;
+
+  //Pezzo inferiore
+  'Wpn Name': string;
+  'Wpn1 AtkBonus': string;
+  'Wpn1 Damage': string;
+  'Wpn Name 2': string;
+  'Wpn2 AtkBonus': string;
+  'Wpn2 Damage': string;
+  'Wpn Name 3': string;
+  'Wpn3 AtkBonus': string;
+  'Wpn3 Damage': string;
+  'Wpn Name 4': string;
+  'Wpn4 AtkBonus': string;
+  'Wpn4 Damage': string;
+  'Wpn Name 5': string;
+  'Wpn5 AtkBonus': string;
+  'Wpn5 Damage': string;
+
+  AttacksSpellcasting: string;
+  Passive: string;
+  ProficienciesLang: string;
+  CP: string;
+  SP: string;
+  EP: string;
+  GP: string;
+  PP: string;
+  Equipment: string;
+  'Features and Traits': string;
+
+  //Pagina 2 --------------------------------------------------
+  //blocco iniziale
+  Age: string;
+  Height: string;
+  Weight: string;
+  Eyes: string;
+  Skin: string;
+  Hair: string;
+
+  //Blocchi rimanenti
+  //'Appearance Image';
+  Text1: string;
+  Allies: string;
+  FactionName: string;
+  //Faction Image
+  Text2: string;
+  Backstory: string;
+  'Feats+Traits': string;
+  Treasure: string;
+
+  //Pagina 3 --------------------------------------------------
+  //Blocco iniziale
+  'Spellcasting Class 2': string;
+  'SpellcastingAbility 2': string;
+  'SpellSaveDC 2': string;
+  'SpellAtkBonus 2': string;
+
+  //0
+  'Spells 1014': string;
+  'Spells 1015': string;
+  'Spells 1016': string;
+  'Spells 1017': string;
+  'Spells 1018': string;
+  'Spells 1019': string;
+  'Spells 1020': string;
+  'Spells 1021': string;
+  'Spells 1022': string;
+
+  //1
+  'SlotsTotal 19': string;
+  SlotsRemaining19: string;
+
+  'Spells 101014': string;
+  //Spells 1015:string;   -> penso sia 101015
+  'Spells 1023': string;
+  'Spells 1024': string;
+  'Spells 1025': string;
+  'Spells 1026': string;
+  'Spells 1027': string;
+  'Spells 1028': string;
+  'Spells 1029': string;
+  'Spells 1030': string;
+  'Spells 1031': string;
+  'Spells 1032': string;
+  'Spells 1033': string;
+
+  //2
+  'SlotsTotal 20': string;
+  SlotsRemaining20: string;
+
+  'Spells 1046': string;
+  'Spells 1034': string;
+  'Spells 1035': string;
+  'Spells 1036': string;
+  'Spells 1037': string;
+  'Spells 1038': string;
+  'Spells 1039': string;
+  'Spells 1040': string;
+  'Spells 1041': string;
+  'Spells 1042': string;
+  'Spells 1043': string;
+  'Spells 1044': string;
+  'Spells 1045': string;
+
+  //3
+  'SlotsTotal 21': string;
+  SlotsRemaining21: string;
+
+  'Spells 1048': string;
+  'Spells 1047': string;
+  'Spells 1049': string;
+  'Spells 1050': string;
+  'Spells 1051': string;
+  'Spells 1052': string;
+  'Spells 1053': string;
+  'Spells 1054': string;
+  'Spells 1055': string;
+  'Spells 1056': string;
+  'Spells 1057': string;
+  'Spells 1058': string;
+  'Spells 1059': string;
+
+  //4
+  'SlotsTotal 22': string;
+  SlotsRemaining22: string;
+
+  'Spells 1061': string;
+  'Spells 1060': string;
+  'Spells 1062': string;
+  'Spells 1063': string;
+  'Spells 1064': string;
+  'Spells 1065': string;
+  'Spells 1066': string;
+  'Spells 1067': string;
+  'Spells 1068': string;
+  'Spells 1069': string;
+  'Spells 1070': string;
+  'Spells 1071': string;
+  'Spells 1072': string;
+
+  //5
+  'SlotsTotal 23': string;
+  SlotsRemaining23: string;
+
+  'Spells 1074': string;
+  'Spells 1073': string;
+  'Spells 1075': string;
+  'Spells 1076': string;
+  'Spells 1077': string;
+  'Spells 1078': string;
+  'Spells 1079': string;
+  'Spells 1080': string;
+  'Spells 1081': string;
+
+  //6
+  'SlotsTotal 24': string;
+  SlotsRemaining24: string;
+
+  'Spells 1083': string;
+  'Spells 1082': string;
+  'Spells 1084': string;
+  'Spells 1085': string;
+  'Spells 1086': string;
+  'Spells 1087': string;
+  'Spells 1088': string;
+  'Spells 1089': string;
+  'Spells 1090': string;
+
+  //7
+  'SlotsTotal 25': string;
+  SlotsRemaining25: string;
+
+  'Spells 1092': string;
+  'Spells 1091': string;
+  'Spells 1093': string;
+  'Spells 1094': string;
+  'Spells 1095': string;
+  'Spells 1096': string;
+  'Spells 1097': string;
+  'Spells 1098': string;
+  'Spells 1099': string;
+
+  //8
+  'SlotsTotal 26': string;
+  SlotsRemaining26: string;
+
+  'Spells 10101': string;
+  'Spells 10100': string;
+  'Spells 10102': string;
+  'Spells 10103': string;
+  'Spells 10104': string;
+  'Spells 10105': string;
+  'Spells 10106': string;
+
+  //9
+  'SlotsTotal 27': string;
+  SlotsRemaining27: string;
+
+  'Spells 10108': string;
+  'Spells 10107': string;
+  'Spells 10109': string;
+  'Spells 101010': string;
+  'Spells 101011': string;
+  'Spells 101012': string;
+  'Spells 101013': string;
+}
+
+// Dovresti utilizzare questa interfaccia per tipizzare i dati della tua scheda personaggio D&D.
