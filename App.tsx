@@ -12,22 +12,25 @@ import {NavigationContainer} from '@react-navigation/native';
 import {customTheme2} from './src/constants/theme';
 import {RootScreen} from './src/screens/RootScreen';
 import 'react-native-gesture-handler';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const App = () => {
   // const head = ['Name'];
   // const data = [['John'], ['Doe']];
 
   return (
-    <RealmProvider
-      path="dnd.db"
-      schema={[GameModel, PlayerModel, ArmorModel, WeaponModel]}
-      schemaVersion={4}>
-      <Provider store={store}>
-        <NavigationContainer theme={customTheme2}>
-          <RootScreen />
-        </NavigationContainer>
-      </Provider>
-    </RealmProvider>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <RealmProvider
+        path="dnd.db"
+        schema={[GameModel, PlayerModel, ArmorModel, WeaponModel]}
+        schemaVersion={4}>
+        <Provider store={store}>
+          <NavigationContainer theme={customTheme2}>
+            <RootScreen />
+          </NavigationContainer>
+        </Provider>
+      </RealmProvider>
+    </GestureHandlerRootView>
   );
 };
 

@@ -8,6 +8,7 @@ import {
   Subclasstypes,
   SubracesRequest,
   EquipmentItemRequest,
+  AlignmentRequest,
 } from '../types/requests';
 
 export type GameModel = {
@@ -18,13 +19,13 @@ export type GameModel = {
 };
 
 export type PlayerModel = {
-  id: Realm.BSON.ObjectId;
+  id?: Realm.BSON.ObjectId;
   character_name: string;
   player_name: string;
   class: ClassIndexRequest;
   race: RacesRequest;
   background: string;
-  alignment: string;
+  alignment: AlignmentRequest;
   level: number;
   experience: number;
   ability_scores: number[];

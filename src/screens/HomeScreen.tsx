@@ -2,6 +2,8 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {HomeParamList} from '../routes/HomeProps';
 import {ListGame} from '../components/pages/ListGame';
+import {NewGame} from '../components/pages/games/NewGame';
+import {GameDetail} from '../components/pages/games/GameDetail';
 
 const Navigator = createNativeStackNavigator<HomeParamList>();
 
@@ -11,6 +13,8 @@ export const HomeScreen = () => {
       initialRouteName="ListGame"
       screenOptions={{headerShown: false}}>
       <Navigator.Screen name="ListGame" component={ListGame} />
+      <Navigator.Screen name="GameDetail" component={GameDetail} />
+      <Navigator.Screen name="NewGame" component={NewGame} />
       {/* <Navigator.Screen name="ListGame" component={ListGame} /> */}
       {/* <Navigator.Screen name="SuccessError" component={SuccessError} />
       <Navigator.Screen name="GameDetail" component={GameDetail} />
