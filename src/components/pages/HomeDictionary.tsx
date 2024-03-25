@@ -25,6 +25,7 @@ export const HomeDictionary = ({navigation, route}: Props) => {
           />
           <DictionaryButton
             text="Alignaments"
+            icon={require('/home/mattia/Documenti/DnD/src/assets/Alignament.png')}
             style={{marginVertical: 5}}
             onPress={() => {
               navigation.navigate('AlignamentD');
@@ -32,6 +33,7 @@ export const HomeDictionary = ({navigation, route}: Props) => {
           />
           <DictionaryButton
             text="Class"
+            icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
             onPress={() => {
               navigation.navigate('ClassD');
             }}
@@ -50,6 +52,7 @@ export const HomeDictionary = ({navigation, route}: Props) => {
           />
           <DictionaryButton
             text="Damage Types"
+            icon={require('/home/mattia/Documenti/DnD/src/assets/DamageTypes.png')}
             onPress={() => {
               navigation.navigate('DamegeTypeD');
             }}
