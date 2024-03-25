@@ -1,4 +1,4 @@
-function ordinaArrayNumeriCasuali(): number[] {
+export function ordinaArrayNumeriCasuali(): number[] {
   const numeriCasualiOrdinati: number[] = [];
 
   for (let i = 0; i < 6; i++) {

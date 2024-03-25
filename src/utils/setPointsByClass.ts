@@ -19,7 +19,10 @@ type Caratteristica =
   | 'saggezza'
   | 'carisma';
 
-function assegnaCaratteristiche(input: number[], classe: Classe): number[] {
+export function assegnaCaratteristiche(
+  input: number[],
+  classe: Classe,
+): number[] {
   const ordineCaratteristichePerClasse: Record<Classe, Caratteristica[]> = {
     barbarian: [
       'forza',

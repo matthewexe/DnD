@@ -1,8 +1,6 @@
-/* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {InputText} from '../ui/InputText.tsx';
 import {Text, View} from 'react-native';
-import {NewPlayerNavigationProps} from '../../routes/NewPlayerParamList';
 import {SelectMenu} from '../ui/SelectMenu.tsx';
 import {useGetEndpointResourceQuery} from '../../services/api';
 import {RaceIndexRequest} from '../../types/requests';
@@ -15,23 +13,24 @@ import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
 import StyledTitle from '../ui/texts/StyledTitle';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {HomeScreenProps} from '../../routes/HomeProps.ts';
+import {defaultPlayer} from '../../helper/default.ts';
 
 type Props = HomeScreenProps<'NewPlayer_BasicInfo'>;
 
-export const BasicInfo = ({navigation}: Props) => {
+export const BasicInfo = ({navigation, route}: Props) => {
   const {
     data: raceData,
     isLoading: isLoadingRace,
     error: raceError,
   } = useGetEndpointResourceQuery('races');
 
-  const [playerName, setPlayerName] = useState('');
-  const [characterName, setCharacterName] = useState('');
-  const [raceState, setRace] = useState<RaceIndexRequest>('dragonborn');
+  const gameId = route.params.gameId;
+  const userData = useRef(defaultPlayer());
 
   // if (isLoadingRace) {
   //   return <Loading />;
   // }
+  // TODO: Loading/Error
   if (raceError) {
     return (
       <View>
@@ -50,24 +49,25 @@ export const BasicInfo = ({navigation}: Props) => {
       <InputText
         label="Player Name"
         placeholder="New Player"
-        value={playerName}
+        value={userData.current.player_name}
         onChangeText={input => {
-          setPlayerName(input);
+          userData.current.player_name = input;
         }}
       />
       <InputText
         disabled={false}
         label="Character Name"
         placeholder="NPC"
-        value={characterName}
+        value={userData.current.character_name}
         onChangeText={input => {
-          setCharacterName(input);
+          userData.current.character_name = input;
         }}
       />
       <SelectMenu
         label="Character Race"
+        defaultValue={userData.current.race}
         onSelect={item => {
-          setRace(item.index);
+          userData.current.race = item;
         }}
         data={raceData?.results ?? []}
       />
@@ -77,9 +77,8 @@ export const BasicInfo = ({navigation}: Props) => {
           text="Next   >"
           onPress={() => {
             navigation.navigate('NewPlayer_Race', {
-              player: playerName,
-              character: characterName,
-              race: raceState,
+              gameId: gameId,
+              playerData: userData.current,
             });
           }}
         />

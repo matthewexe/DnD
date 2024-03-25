@@ -11,8 +11,8 @@ export const NewGame = () => {
 
   return (
     <SafeAreaView>
-      {/* Success */}
-      {/* Error */}
+      {/* TODO: Success */}
+      {/* TODO: Error */}
       <StyledTitle>New Game</StyledTitle>
       <View>
         <View>

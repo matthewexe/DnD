@@ -13,6 +13,7 @@ import {customTheme2} from './src/constants/theme';
 import {RootScreen} from './src/screens/RootScreen';
 import 'react-native-gesture-handler';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {Test} from './src/components/Test';
 
 const App = () => {
   // const head = ['Name'];
@@ -27,6 +28,7 @@ const App = () => {
         <Provider store={store}>
           <NavigationContainer theme={customTheme2}>
             <RootScreen />
+            {/* <Test /> */}
           </NavigationContainer>
         </Provider>
       </RealmProvider>

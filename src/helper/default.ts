@@ -1,5 +1,7 @@
 import {PlayerModel} from '../models/types';
 import {calculateModifier} from '../utils/calculateModifier';
+import {ordinaArrayNumeriCasuali} from '../utils/createRandomNumbers';
+import {assegnaCaratteristiche} from '../utils/setPointsByClass';
 
 export const defaultPlayer = (): PlayerModel => {
   const ability_scores = assegnaCaratteristiche(
