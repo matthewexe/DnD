@@ -1,4 +1,4 @@
-function xpFromLevel(level: number): string {
+export function xpFromLevel(level: number): string {
   const xpLevels = [
     0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000,
     120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000,
@@ -12,7 +12,7 @@ function xpFromLevel(level: number): string {
   }.`;
 }
 
-function levelFromXP(xp: number): string {
+export function levelFromXP(xp: number): string {
   const levels = [
     {xp: 0, level: 1},
     {xp: 300, level: 2},
