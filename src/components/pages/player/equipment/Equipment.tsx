@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {HomeScreenProps} from '../../../../routes/HomeProps';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -7,6 +7,8 @@ import {View} from 'react-native';
 import {StyledSubtitle} from '../../../ui/texts/StyledSubtitle';
 import {StyledText} from '../../../ui/texts/StyledText';
 import {useGetClassByIndexQuery} from '../../../../services/api';
+import {Options} from '../../../options/Options';
+import {EquipmentConverter} from '../../../../helper/fieldConverter';
 
 type Props = HomeScreenProps<'NewPlayer_Equip'>;
 
@@ -14,6 +16,8 @@ export const Equipment = ({route, navigation}: Props) => {
   const {data, error, isLoading, isFetching} = useGetClassByIndexQuery({
     index: route.params.playerData.class,
   });
+
+  const additionalEquipments = useRef<string[]>([]);
 
   const userData = route.params.playerData;
 
@@ -31,11 +35,23 @@ export const Equipment = ({route, navigation}: Props) => {
             </StyledText>
           ))}
           <StyledSubtitle>Additional Equipment</StyledSubtitle>
-          {/* TODO: tabella di scelta per l'equipaggiamento
-          <Text>Scegli ulteriore equipaggiamento:</Text>
-      {data?.starting_equipment_options?.map((choice, index) => (
-        <EquipmentOptionComponent choice={choice} />
-      ))} */}
+          {data?.starting_equipment_options.map((value, index) => {
+            const entries =
+              EquipmentConverter.startingEquipmentOptionSetToCountedReferences(
+                value.from,
+              );
+
+            return (
+              <Options
+                desc={value.desc}
+                options={entries}
+                onSelection={idx => {
+                  additionalEquipments.current[index] = idx;
+                  console.log(additionalEquipments.current);
+                }}
+              />
+            );
+          })}
         </View>
       </ScrollView>
     </SafeAreaView>

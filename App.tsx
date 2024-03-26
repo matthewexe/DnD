@@ -27,8 +27,8 @@ const App = () => {
         schemaVersion={4}>
         <Provider store={store}>
           <NavigationContainer theme={customTheme2}>
-            {/* <RootScreen /> */}
-            <Test />
+            <RootScreen />
+            {/* <Test /> */}
           </NavigationContainer>
         </Provider>
       </RealmProvider>

@@ -126,7 +126,7 @@ export const BasicInfo = ({navigation, route}: Props) => {
         label="Character Race"
         defaultValue={userData.current.race}
         onSelect={item => {
-          userData.current.race = item;
+          userData.current.race = item.item;
         }}
         data={raceData?.results ?? []}
       />
@@ -134,7 +134,7 @@ export const BasicInfo = ({navigation, route}: Props) => {
         label="Character Class"
         defaultValue={userData.current.class}
         onSelect={item => {
-          userData.current.class = item;
+          userData.current.class = item.index;
         }}
         data={classData?.results ?? []}
       />

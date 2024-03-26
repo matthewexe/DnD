@@ -15,11 +15,11 @@ export const Test = () => {
       name: 'test2',
       quantity: 2,
     },
-    {
-      index: '3',
-      name: 'test3',
-      quantity: 3,
-    },
+    // {
+    //   index: '3',
+    //   name: 'test3',
+    //   quantity: 3,
+    // },
   ];
 
   return <Options options={options} desc="choose between:" />;

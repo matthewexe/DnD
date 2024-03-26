@@ -7,6 +7,7 @@ import {GameDetail} from '../components/pages/games/GameDetail';
 import {BasicInfo} from '../components/pages/player/BasicInfo';
 import RaceComponent from '../components/pages/player/race/RaceByIndex';
 import ClassComponent from '../components/pages/player/class/ClassByIndex';
+import {Equipment} from '../components/pages/player/equipment/Equipment';
 
 const Navigator = createNativeStackNavigator<HomeParamList>();
 
@@ -21,12 +22,12 @@ export const HomeScreen = () => {
       <Navigator.Screen name="NewPlayer_BasicInfo" component={BasicInfo} />
       <Navigator.Screen name="NewPlayer_Race" component={RaceComponent} />
       <Navigator.Screen name="NewPlayer_Class" component={ClassComponent} />
+      <Navigator.Screen name="NewPlayer_Equip" component={Equipment} />
       {/* <Navigator.Screen name="ListGame" component={ListGame} /> */}
       {/* <Navigator.Screen name="SuccessError" component={SuccessError} />
       <Navigator.Screen name="GameDetail" component={GameDetail} />
       <Navigator.Screen name="NewGame" component={NewGame} />
       <Navigator.Screen name="DeleteGame" component={DeleteGame} />
-      <Navigator.Screen name="NewPlayer_Equip" component={Equipment} />
       <Navigator.Screen name="NewPLayer_End" component={End} /> */}
     </Navigator.Navigator>
   );

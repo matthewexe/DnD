@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyledText} from '../ui/texts/StyledText';
 import {Pressable, StyleSheet, View} from 'react-native';
-import {StyledButton} from '../ui/StyledButton';
 import {customTheme2} from '../../constants/theme';
 
 export type CountedReference = {
@@ -16,17 +15,34 @@ type Props = {
   onSelection?: (index: string) => void;
 };
 
-export const Options = ({options, desc}: Props) => {
+export const Options = ({options, desc, onSelection}: Props) => {
   //   const;
+  const [selected, setSelected] = React.useState<number>(-1);
+  const onPress = (option: CountedReference, index: number) => {
+    setSelected(index);
+    onSelection?.(option.index);
+  };
 
   return (
     <View style={[styles.container]}>
       <StyledText>{desc}</StyledText>
       <View style={[styles.optionsContainer]}>
         {options.map((option, index) => (
-          <View style={[styles.option]}>
-            <Pressable key={index}>
-              <StyledText>{option.name}</StyledText>
+          <View
+            key={index}
+            style={[
+              styles.option,
+              index === selected ? styles.optionActive : {},
+            ]}>
+            <Pressable
+              style={{flex: 1}}
+              key={index}
+              onPress={() => onPress(option, index)}>
+              <View style={[styles.optionText]}>
+                <StyledText>
+                  {option.quantity} {option.name}
+                </StyledText>
+              </View>
             </Pressable>
           </View>
         ))}
@@ -49,18 +65,25 @@ const styles = StyleSheet.create({
     margin: 10,
     width: '100%',
     flexDirection: 'row',
+    padding: 0,
     justifyContent: 'space-around',
+    flexWrap: 'wrap',
+    gap: 10,
   },
   option: {
-    padding: 10,
     borderWidth: 1,
     borderColor: customTheme2.colors.primary,
     flexGrow: 1,
-    flexBasis: 100,
+    flexBasis: 125,
     marginHorizontal: 10,
     borderRadius: 10,
   },
   optionActive: {
     backgroundColor: customTheme2.colors.primary,
+  },
+  optionText: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
   },
 });

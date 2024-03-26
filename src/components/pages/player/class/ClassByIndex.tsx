@@ -19,6 +19,8 @@ export default function ClassComponent({route, navigation}: Props) {
   const input = route.params.playerData.class as ClassIndexRequest;
   const userData = useRef(route.params.playerData);
 
+  console.log(input);
+
   const {data, error, isLoading, isFetching} = useGetClassByIndexQuery({
     index: input,
   });
