@@ -1,9 +1,9 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {useGetSubRacesByIndexQuery} from '../../services/api';
-import {SubraceIndexRequest} from '../../types/requests';
+import {useGetSubRacesByIndexQuery} from '../../../../services/api';
+import {SubraceIndexRequest} from '../../../../types/requests';
 import ExportTrait from './Trait';
-import {TraitsRequest} from '../../types/requests';
+import {TraitsRequest} from '../../../../types/requests';
 
 //Serve per verificare se ci sono sottorazze disponibili si continua la ricerca, altrimenti si ignora
 export default function SubraceByIndexComponent({

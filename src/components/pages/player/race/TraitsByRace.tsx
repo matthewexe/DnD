@@ -1,8 +1,9 @@
 import {Text} from 'react-native';
-import {useGetTraitByIndexQuery} from '../../services/api';
-import {RaceIndexRequest, TraitsRequest} from '../../types/requests';
+import {useGetTraitByIndexQuery} from '../../../../services/api';
+import {RaceIndexRequest, TraitsRequest} from '../../../../types/requests';
 import React from 'react';
 import ExportTrait from './Trait';
+import {StyledText} from '../../../ui/texts/StyledText';
 
 export default function TraitsComponent({input}: {input: RaceIndexRequest}) {
   const {data, error, isLoading, isFetching} = useGetTraitByIndexQuery({
@@ -14,10 +15,12 @@ export default function TraitsComponent({input}: {input: RaceIndexRequest}) {
   if (isFetching) return <Text>wait for response from the server</Text>;
   return (
     <>
-      {data?.results.map((Name, index) => (
+      {data?.results.map((item, index) => (
         <>
-          <Text key={index}>{Name.name}</Text>
-          <ExportTrait input={Name.index as TraitsRequest} />
+          <ExportTrait
+            key={index + (item.index ?? '')}
+            input={item.index as TraitsRequest}
+          />
         </>
       ))}
     </>

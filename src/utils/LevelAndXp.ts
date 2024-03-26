@@ -1,18 +1,16 @@
-export function xpFromLevel(level: number): string {
+export function xpFromLevel(level: number): number {
   const xpLevels = [
     0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000,
     120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000,
   ];
 
   if (level < 1 || level > 20) {
-    return 'Invalid level. Must be between 1 and 20.';
+    return 0;
   }
-  return `The experience points needed for the level ${level} are ${
-    xpLevels[level - 1]
-  }.`;
+  return xpLevels[level - 1];
 }
 
-export function levelFromXP(xp: number): string {
+export function levelFromXP(xp: number): number {
   const levels = [
     {xp: 0, level: 1},
     {xp: 300, level: 2},
@@ -37,9 +35,12 @@ export function levelFromXP(xp: number): string {
   ];
 
   const playerLevel = levels.find(level => xp < level.xp);
+  if (xp < 0) {
+    return 1;
+  }
   if (playerLevel) {
-    return `You are at level ${playerLevel.level - 1}, with ${xp} XP.`;
+    return playerLevel.level - 1;
   } else {
-    return 'You are at the maximum level (20), congratulations!';
+    return 20;
   }
 }
