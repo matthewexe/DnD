@@ -76,12 +76,12 @@ export const BasicInfo = ({navigation}: Props) => {
       <Text />
       <View style={styles.rowStyle}>
         <StyledButton
-          text="  Cancel"
+          text="Cancel"
           onPress={navigation.goBack}
           iconName="caret-left"
         />
         <StyledButton
-          text="Next   "
+          text="Next"
           onPress={() => {
             navigation.navigate('RaceInfo', {
               player: playerName,
@@ -89,6 +89,7 @@ export const BasicInfo = ({navigation}: Props) => {
               race: raceState,
             });
           }}
+          iconName="caret-right"
         />
       </View>
     </>

@@ -12,16 +12,27 @@ type Props = PressableProps & {
 export const StyledButton = (props: Props) => {
   return (
     <Pressable {...props} style={styles.button}>
-      <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-        <Text style={{paddingTop: 3}}>
-          {props.text} {'   '}
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+        }}>
+        <Text
+          style={{
+            paddingBottom: 5,
+            fontFamily: 'NewTegomin-Regular',
+            top: -1,
+            fontSize: 17,
+          }}>
+          {props.text}
         </Text>
         {props.iconName && (
           <Icon
             name={props.iconName}
             size={25}
             color={props.iconColor}
-            style={{paddingRight: 2}}
+            style={{paddingRight: 1, marginLeft: 13}}
           />
         )}
       </View>

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {PropsWithChildren} from 'react';
 import {Text, TextInputProps, View} from 'react-native';
 import {StyledTextInput} from './StyledTextInput';
@@ -20,14 +21,7 @@ export const InputText = (props: Props) => {
   return (
     <View>
       <View style={{padding: 4}}>
-        <StyledText
-          disabled={props.disabled}
-          style={{
-            fontFamily: 'NewTegomin-Regular', //becasime Antique
-            paddingBottom: 1,
-          }}>
-          {props.label}
-        </StyledText>
+        <StyledText disabled={props.disabled}>{props.label}</StyledText>
       </View>
       <StyledTextInput
         placeholder={props.placeholder}

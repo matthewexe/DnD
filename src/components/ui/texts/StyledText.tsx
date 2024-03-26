@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
     color: customTheme2.colors.text,
     fontFamily: 'NewTegomin-Regular',
     fontSize: 17,
+    fontWeight: '400',
+    margin: 1,
     textAlignVertical: 'bottom',
   },
 });
