@@ -2,8 +2,8 @@ import React from 'react';
 import {Text} from 'react-native';
 import {useGetTraitQuery} from '../../../../services/api';
 import {TraitsRequest} from '../../../../types/requests';
-import {StyledLabeledValue} from '../../../ui/texts/StyledLabeledValue';
 import {StyledText} from '../../../ui/texts/StyledText';
+import {StyledLabeledValue} from '../../../ui/texts/StyledLabeledValue';
 
 export default function ExportTrait({input}: {input: TraitsRequest}) {
   const {data, error, isLoading, isFetching} = useGetTraitQuery({

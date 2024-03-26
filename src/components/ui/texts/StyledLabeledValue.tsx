@@ -32,12 +32,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: '',
     fontSize: 18,
+    color: customTheme2.colors.text,
   },
   Description: {
-    fontWeight: '200',
+    fontWeight: '400',
     width: '93%',
     fontSize: 14,
     alignSelf: 'center',
     textAlign: 'justify',
+    color: customTheme2.colors.text,
   },
 });

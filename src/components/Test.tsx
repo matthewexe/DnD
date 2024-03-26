@@ -1,28 +1,26 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {useRealm} from '@realm/react';
-import {GameModel} from '../models/types';
 import 'react-native-get-random-values';
-import Realm from 'realm';
-import {Game, Player} from '../models/Game';
-import {defaultPlayer} from '../helper/default';
+import {CountedReference, Options} from './options/Options';
 
 export const Test = () => {
-  const realm = useRealm();
-  const player = {
-    id: new Realm.BSON.ObjectId(),
-    ...defaultPlayer(),
-  };
+  const options: CountedReference[] = [
+    {
+      index: '1',
+      name: 'test',
+      quantity: 1,
+    },
+    {
+      index: '2',
+      name: 'test2',
+      quantity: 2,
+    },
+    {
+      index: '3',
+      name: 'test3',
+      quantity: 3,
+    },
+  ];
 
-  // console.log(realm.objects(Player)[0]);
-
-  // realm.write(() => {
-  //   const result = realm
-  //     .objects(Game)[0]
-  //     .players.push(realm.objects(Player)[0]);
-
-  //   console.log(result);
-  // });
-
-  return <Text>Test</Text>;
+  return <Options options={options} desc="choose between:" />;
 };

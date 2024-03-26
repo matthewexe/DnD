@@ -1,21 +1,22 @@
 import React, {useRef} from 'react';
 import {Text, View} from 'react-native';
-import {useGetRacesByIndexQuery} from '../../../../services/api';
-import {RaceIndexRequest, TraitsRequest} from '../../../../types/requests';
 import ExportTrait from './Trait';
 import SubraceByRace from './CheckSubraceByIndex';
 import TraitsComponent from './TraitsByRace';
-import {StyledText} from '../../../ui/texts/StyledText';
-import {StyledSubtitle} from '../../../ui/texts/StyledSubtitle';
-import {HomeScreenProps} from '../../../../routes/HomeProps';
-import {StyledLabeledValue} from '../../../ui/texts/StyledLabeledValue';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
+import {HomeScreenProps} from '../../../../routes/HomeProps';
+import {useGetRacesByIndexQuery} from '../../../../services/api';
+import {RaceIndexRequest, TraitsRequest} from '../../../../types/requests';
+import {StyledSubtitle} from '../../../ui/texts/StyledSubtitle';
+import {StyledText} from '../../../ui/texts/StyledText';
 import StyledTitle from '../../../ui/texts/StyledTitle';
+import {StyledLabeledValue} from '../../../ui/texts/StyledLabeledValue';
+import {StyledButton} from '../../../ui/StyledButton';
 
 type Props = HomeScreenProps<'NewPlayer_Race'>;
 
-export default function RaceComponent({route}: Props) {
+export default function RaceComponent({route, navigation}: Props) {
   const input = route.params.playerData.race as RaceIndexRequest;
   const userData = useRef(route.params.playerData);
 
@@ -110,6 +111,17 @@ export default function RaceComponent({route}: Props) {
             onSelectedValue={item => {
               userData.current.subrace = item;
             }}
+          />
+        </View>
+        <View style={[{alignItems: 'center', padding: 30}]}>
+          <StyledButton
+            text="Next"
+            onPress={() =>
+              navigation.navigate('NewPlayer_Class', {
+                gameId: route.params.gameId,
+                playerData: userData.current,
+              })
+            }
           />
         </View>
       </ScrollView>

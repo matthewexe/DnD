@@ -18,6 +18,5 @@ const styles = StyleSheet.create({
   TextBox: {
     fontWeight: 'bold',
     color: customTheme2.colors.text,
-    fontFamily: 'NewTegomin-Regular',
   },
 });
