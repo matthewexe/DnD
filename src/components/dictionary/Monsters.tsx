@@ -8,6 +8,11 @@ import {PrimaryText} from '../ui/texts/PrimaryText';
 import {MonsterArmorClass} from './MonsterArmorClass';
 import {MonsterProficienciesClass} from './MonsterProficienciesClass';
 import {convertFootToMeters} from '../../utils/convertFootToMeters';
+import {MonsterConditionImmunities} from './MonsterCondition';
+import {MonsterSenses} from './MonsterSenses';
+import {MonsterSpecialAbilities} from './MonsterSpecialAbilities';
+import {MonsterActions} from './MonsterActions';
+import {MonsterLegendaryAction} from './MonsterLegendaryActions';
 
 type Props = {
   input: MagicSchoolRequest;
@@ -28,10 +33,15 @@ export default function MonsterComponent({input}: Props) {
           value={data?.name ?? 'not found'}></StyledLabel>
         {data && data.challenge_rating && (
           <PrimaryText>
-            Challenge Rate
+            Challenge Rating
             <DescriptionText>
               {data?.challenge_rating ?? 'not found'}
             </DescriptionText>
+          </PrimaryText>
+        )}
+        {data && data.xp && (
+          <PrimaryText>
+            XP: <DescriptionText>{data.xp}</DescriptionText>
           </PrimaryText>
         )}
         {data && data.size && (
@@ -124,6 +134,18 @@ export default function MonsterComponent({input}: Props) {
               creature’s HD) to cast a spell.
             </DescriptionText>
           )}
+          {/* FINE SPEED  */}
+          {data && data.proficiency_bonus && (
+            <PrimaryText>
+              Proficiency Bonus
+              {data.proficiency_bonus < 0 && (
+                <DescriptionText>-{data?.proficiency_bonus}</DescriptionText>
+              )}
+              {data.proficiency_bonus >= 0 && (
+                <DescriptionText>+{data?.proficiency_bonus}</DescriptionText>
+              )}
+            </PrimaryText>
+          )}
         </PrimaryText>
         <StyledLabel label={'Ability scores'} value={''}></StyledLabel>
         <PrimaryText>
@@ -175,6 +197,9 @@ export default function MonsterComponent({input}: Props) {
         </PrimaryText>
 
         {/* FINE SPEED */}
+
+        {data && data.senses && <MonsterSenses senses={data.senses} />}
+
         <StyledLabel label={'Proficiencies'} value={''}></StyledLabel>
         {data &&
           data.proficiencies.length > 0 &&
@@ -193,13 +218,55 @@ export default function MonsterComponent({input}: Props) {
         )}
         {data && data.damage_resistances.length > 0 && (
           <StyledLabel
-            label={'Damage_resistances'}
+            label={'Damage Resistances'}
             value={data.damage_resistances.join('\n')}></StyledLabel>
         )}
         {data && data.damage_immunities.length > 0 && (
           <StyledLabel
-            label={'Damage_immunities'}
+            label={'Damage Immunities'}
             value={data.damage_immunities.join('\n')}></StyledLabel>
+        )}
+        {data &&
+          data.condition_immunities.length > 0 && (
+            <StyledLabel
+              label={'Condition Immunities'}
+              value={''}></StyledLabel>
+          ) && (
+            <MonsterConditionImmunities
+              condition_immunities={data.condition_immunities}
+            />
+          )}
+        {data && data.languages && <PrimaryText>Languages:</PrimaryText> && (
+          <DescriptionText>{data.languages}</DescriptionText>
+        )}
+
+        {data && data.special_abilities && (
+          <MonsterSpecialAbilities special_abilities={data.special_abilities} />
+        )}
+
+        {data && data.actions && <MonsterActions actions={data.actions} />}
+
+        {data && data.subtype && (
+          <StyledLabel label={'Subtype:'} value={data.subtype}></StyledLabel>
+        )}
+
+        {data && data.reactions && (
+          <StyledLabel label={'Reactions'} value={''}></StyledLabel>
+        )}
+        {data &&
+          data.reactions &&
+          data.reactions.map(
+            choice =>
+              choice.name && (
+                <PrimaryText>
+                  {choice.name}
+                  <DescriptionText>{choice.desc}</DescriptionText>
+                </PrimaryText>
+              ),
+          )}
+
+        {data && data.legendary_actions && (
+          <MonsterLegendaryAction action={data.legendary_actions} />
         )}
       </View>
     </>

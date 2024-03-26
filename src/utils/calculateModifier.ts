@@ -1,4 +1,4 @@
-export function calculateModifier(score: number): string {
+function calculateModifier(score: number): string {
   if (score < 0) {
     // errore
     return 'An error has probably occurred.\nThe minimum score allowed is 1.';
