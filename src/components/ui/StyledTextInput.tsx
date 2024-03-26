@@ -10,7 +10,7 @@ export const StyledTextInput = (props: Props) => {
     <TextInput
       {...props}
       placeholderTextColor={customTheme2.colors.border}
-      selectionColor={customTheme2.colors.background}
+      selectionColor={customTheme2.colors.notification}
       style={styles.inputBox}>
       {props.children}
     </TextInput>
