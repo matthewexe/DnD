@@ -13,12 +13,14 @@ export const MonsterArmorClass = ({armor_class}: Props) => {
     <>
       {armor_class.type && (
         <PrimaryText>
-          Armor Type:<DescriptionText>{armor_class.type}</DescriptionText>
+          Armor Type:{'\t\t\t'}
+          <DescriptionText>{armor_class.type}</DescriptionText>
         </PrimaryText>
       )}
       {armor_class.value && (
         <PrimaryText>
-          CA: <DescriptionText>{armor_class.value}</DescriptionText>
+          CA:{'\t\t\t'}
+          <DescriptionText>{armor_class.value}</DescriptionText>
         </PrimaryText>
       )}
       {armor_class.desc && (

@@ -9,6 +9,8 @@ import {DictionaryAbilityScores} from '../components/pages/DictionaryAbilityScor
 import {DictionaryLanguages} from '../components/pages/DictionaryLanguages';
 import {DictionaryMagicSchool} from '../components/pages/DictionaryMagicSchool';
 import {DictionaryFeatures} from '../components/pages/DictionaryFeatures';
+import {DictionaryHomeMonsters} from '../components/pages/DictionaryHomeMonsters';
+import {DictionaryMonsterByIndex} from '../components/pages/DictionaryMonsterByIndex';
 
 const Stack = createNativeStackNavigator<DictionaryStackParamList>();
 
@@ -24,6 +26,11 @@ export function Dictionary() {
       <Stack.Screen name="LanguagesD" component={DictionaryLanguages} />
       <Stack.Screen name="MagicSchoolD" component={DictionaryMagicSchool} />
       <Stack.Screen name="FeaturesD" component={DictionaryFeatures} />
+      <Stack.Screen name="MonstersD" component={DictionaryHomeMonsters} />
+      <Stack.Screen
+        name="MonsterDByName"
+        component={DictionaryMonsterByIndex}
+      />
     </Stack.Navigator>
   );
 }

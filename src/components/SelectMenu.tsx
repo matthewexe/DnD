@@ -6,7 +6,7 @@ import {StyledMenu} from './ui/StyledMenu';
 
 type Props = SelectDropdownProps & {
   label: string;
-  data: APIReference[];
+  data: any[];
 };
 
 export const SelectMenu = (props: Props) => {

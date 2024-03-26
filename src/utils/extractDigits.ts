@@ -1,4 +1,4 @@
-function extractDigits(input: string): number {
+export function extractDigits(input: string): number {
   // Rimuove tutti i caratteri non numerici
   const digitsString = input.replace(/\D/g, '');
 

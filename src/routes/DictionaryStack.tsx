@@ -33,6 +33,13 @@ export type DictionaryStackParamList = {
   //--
   FeaturesD: undefined;
   //--
+  MonstersD: undefined;
+  //--
+  MonsterDByName: undefined;
+  //--
+  MonsterDByRange: undefined;
+  //--
+
   DictionaryClassLevels: {
     classInfo: Class;
     classLevel: number;

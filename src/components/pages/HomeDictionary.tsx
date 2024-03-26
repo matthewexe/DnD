@@ -75,6 +75,12 @@ export const HomeDictionary = ({navigation, route}: Props) => {
               navigation.navigate('LanguagesD');
             }}
           />
+          <DictionaryButton
+            text="Monsters"
+            onPress={() => {
+              navigation.navigate('MonstersD');
+            }}
+          />
         </View>
       </ScrollView>
     </>

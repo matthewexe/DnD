@@ -2,6 +2,8 @@ import React from 'react';
 import {DescriptionText} from '../ui/texts/DescriptionText';
 import {Senses} from '../../types/responses';
 import {PrimaryText} from '../ui/texts/PrimaryText';
+import {convertFootToMeters} from '../../utils/convertFootToMeters';
+import {extractDigits} from '../../utils/extractDigits';
 
 type Props = {
   senses: Senses;
@@ -12,31 +14,34 @@ export const MonsterSenses = ({senses}: Props) => {
     <>
       {senses.blindsight && (
         <PrimaryText>
-          Blindsight
+          Blindsight:{'\t\t\t'}
           <DescriptionText>{senses.blindsight}</DescriptionText>
         </PrimaryText>
       )}
       {senses.darkvision && (
         <PrimaryText>
-          Darkvision
-          <DescriptionText>{senses.darkvision}</DescriptionText>
+          Darkvision:{'\t\t\t'}
+          <DescriptionText>
+            {senses.darkvision} or{' '}
+            {convertFootToMeters(extractDigits(senses.darkvision))}
+          </DescriptionText>
         </PrimaryText>
       )}
       {senses.passive_perception && (
         <PrimaryText>
-          Passive Perception
+          Passive Perception:{'\t\t\t'}
           <DescriptionText>{senses.passive_perception}</DescriptionText>
         </PrimaryText>
       )}
       {senses.tremorsense && (
         <PrimaryText>
-          Tremorsense
+          Tremorsense:{'\t\t\t'}
           <DescriptionText>{senses.tremorsense}</DescriptionText>
         </PrimaryText>
       )}
       {senses.truesight && (
         <PrimaryText>
-          Truesight
+          Truesight:{'\t\t\t'}
           <DescriptionText>{senses.truesight}</DescriptionText>
         </PrimaryText>
       )}
