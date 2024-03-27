@@ -52,6 +52,7 @@ export const Equipment = ({route, navigation}: Props) => {
             />
           );
         })}
+        {/* TODO: Spellcasting */}
       </View>
     </NewPlayerView>
   );

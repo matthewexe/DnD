@@ -2,14 +2,12 @@ import React from 'react';
 import {HomeScreenProps} from '../../../routes/HomeProps';
 import {useQuery, useRealm} from '@realm/react';
 import {Game, Player} from '../../../models/Game';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {ScrollView} from 'react-native-gesture-handler';
-import StyledTitle from '../../ui/texts/StyledTitle';
 import {StyledSubtitle} from '../../ui/texts/StyledSubtitle';
 import {Text, View} from 'react-native';
 import {StyledText} from '../../ui/texts/StyledText';
 import {StyledButton} from '../../ui/StyledButton';
 import {Realm} from '@realm/react';
+import {NewPlayerView} from '../../../views/NewPlayerView';
 
 type Props = HomeScreenProps<'GameDetail'>;
 
@@ -38,34 +36,35 @@ export const GameDetail = ({navigation, route}: Props) => {
   };
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <StyledTitle>{game.name}</StyledTitle>
-        <StyledSubtitle>{game.description}</StyledSubtitle>
+    <NewPlayerView
+      title="GameDetail"
+      loading={false}
+      error={game === undefined ? 'Errore nel recupero del game' : undefined}
+      errorOnPress={() => {}}>
+      <StyledSubtitle>{game.description}</StyledSubtitle>
+      <View>
         <View>
-          <View>
-            <StyledButton text="Add Player" onPress={addPlayer} />
-          </View>
-          <View>
-            {game.players.map((player, index) => {
-              return (
-                <View>
-                  <View>
-                    <StyledText>
-                      {index + 1}. {player.player_name}
-                    </StyledText>
-                    <Text>{player.character_name}</Text>
-                  </View>
-                  <StyledButton
-                    text="Delete"
-                    onPress={() => deletePlayer(player.id)}
-                  />
-                </View>
-              );
-            })}
-          </View>
+          <StyledButton text="Add Player" onPress={addPlayer} />
         </View>
-      </ScrollView>
-    </SafeAreaView>
+        <View>
+          {game.players.map((player, index) => {
+            return (
+              <View>
+                <View>
+                  <StyledText>
+                    {index + 1}. {player.player_name}
+                  </StyledText>
+                  <Text>{player.character_name}</Text>
+                </View>
+                <StyledButton
+                  text="Delete"
+                  onPress={() => deletePlayer(player.id)}
+                />
+              </View>
+            );
+          })}
+        </View>
+      </View>
+    </NewPlayerView>
   );
 };
