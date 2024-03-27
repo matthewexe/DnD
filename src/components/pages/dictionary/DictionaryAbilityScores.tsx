@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {SelectMenu} from '../../SelectMenu';
 import {useGetEndpointResourceQuery} from '../../../services/api';
-import {AbilityScoreRequest, AlignmentRequest} from '../../../types/requests';
+import {AbilityScoreRequest} from '../../../types/requests';
 import StyledTitle from '../../ui/texts/StyledTitle';
 import AbilityScoresComponent from '../../dictionary/AbilityScores';
 import {ScrollView} from 'react-native-gesture-handler';

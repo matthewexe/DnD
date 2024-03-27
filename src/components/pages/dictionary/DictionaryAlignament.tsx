@@ -4,9 +4,8 @@ import {SelectMenu} from '../../SelectMenu';
 import {useGetEndpointResourceQuery} from '../../../services/api';
 import {AlignmentRequest} from '../../../types/requests';
 
-import SpellAvailableByClassComponent from '../../firstPage/Alignament';
 import Alignament from '../../firstPage/Alignament';
-import {StyledSubtitle} from '../../ui/texts/StyledSubtitle';
+
 import StyledTitle from '../../ui/texts/StyledTitle';
 
 export const DictionaryAlignament = () => {
