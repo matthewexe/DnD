@@ -2,6 +2,8 @@ import React from 'react';
 import {Text} from 'react-native';
 import 'react-native-get-random-values';
 import {CountedReference, Options} from './options/Options';
+import {StyledAccordionItem} from './ui/StyledAccordion';
+import {StyledText} from './ui/texts/StyledText';
 
 export const Test = () => {
   const options: CountedReference[] = [
@@ -22,5 +24,9 @@ export const Test = () => {
     // },
   ];
 
-  return <Options options={options} desc="choose between:" />;
+  return (
+    <StyledAccordionItem title={'Test'}>
+      <StyledText>aaaaaaaaaaa</StyledText>
+    </StyledAccordionItem>
+  );
 };

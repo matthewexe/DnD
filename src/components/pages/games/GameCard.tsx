@@ -1,7 +1,7 @@
 import React from 'react';
 import {HomeScreenProps} from '../../../routes/HomeProps';
 import Realm from 'realm';
-import {useRealm} from '@realm/react';
+import {useQuery, useRealm} from '@realm/react';
 import {Pressable, StyleSheet, View} from 'react-native';
 import {Game} from '../../../models/Game';
 import {StyledText} from '../../ui/texts/StyledText';
@@ -12,8 +12,9 @@ type Props = HomeScreenProps<'ListGame'> & {
 };
 
 export const GameCard = ({gameId, navigation}: Props) => {
-  const realm = useRealm();
-  const game = realm.objectForPrimaryKey<Game>('Game', gameId);
+  const game = useQuery<Game>(Game, results => {
+    return results.filtered('id == $0', gameId);
+  })[0];
 
   const onPress = () => {
     navigation.navigate('GameDetail', {gameId: gameId});

@@ -13,6 +13,7 @@ import {StyledText} from '../../../ui/texts/StyledText';
 import StyledTitle from '../../../ui/texts/StyledTitle';
 import {StyledLabeledValue} from '../../../ui/texts/StyledLabeledValue';
 import {StyledButton} from '../../../ui/StyledButton';
+import {NewPlayerView} from '../../../../views/NewPlayerView';
 
 type Props = HomeScreenProps<'NewPlayer_Race'>;
 
@@ -30,50 +31,48 @@ export default function RaceComponent({route, navigation}: Props) {
   //input per verificare le sottorazze.
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <StyledTitle>Race</StyledTitle>
-        <View>
-          <StyledLabeledValue
-            label="Name"
-            value={data?.name ?? 'race not available'}
-          />
+    <NewPlayerView title="Race">
+      <View>
+        <StyledLabeledValue
+          label="Name"
+          value={data?.name ?? 'race not available'}
+        />
 
-          <StyledSubtitle>Speed</StyledSubtitle>
-          <StyledText>{data?.speed ?? 'speed not available'} piedi</StyledText>
-          {/* TODO: converti piedi in metri */}
-          <StyledText>{data?.speed ?? 0} metri</StyledText>
+        <StyledSubtitle>Speed</StyledSubtitle>
+        <StyledText>{data?.speed ?? 'speed not available'} piedi</StyledText>
+        {/* TODO: converti piedi in metri */}
+        <StyledText>{data?.speed ?? 0} metri</StyledText>
 
-          <StyledLabeledValue
-            label="Stature"
-            value={data?.size ?? 'stature not available'}
-          />
-          <StyledText>Languages:</StyledText>
-          {data?.languages?.map((language, index) => (
-            <Text key={index}>{language.name}</Text>
-          ))}
-          <StyledSubtitle>Traits:</StyledSubtitle>
-          {data?.traits?.map((traits, index) => (
-            <>
-              <ExportTrait input={traits.index as TraitsRequest} />
-            </>
-          ))}
-          <StyledSubtitle>Race Bonuses</StyledSubtitle>
-          {data?.ability_bonuses.map((choice, index) => (
-            <StyledText key={index}>
-              {choice.ability_score.name ?? 'not available'} +{choice.bonus}
-            </StyledText>
-          ))}
-          {/*NB: per ogni razza ci sono ipoteticamente dei bonus da aggiungere su determinate caratteriistiche "index"  di un certo amount "bonus". */}
+        <StyledLabeledValue
+          label="Stature"
+          value={data?.size ?? 'stature not available'}
+        />
+        <StyledText>Languages:</StyledText>
+        {data?.languages?.map((language, index) => (
+          <Text key={index}>{language.name}</Text>
+        ))}
+        <StyledSubtitle>Traits:</StyledSubtitle>
+        {data?.traits?.map((traits, index) => (
+          <>
+            <ExportTrait input={traits.index as TraitsRequest} />
+          </>
+        ))}
+        <StyledSubtitle>Race Bonuses</StyledSubtitle>
+        {data?.ability_bonuses.map((choice, index) => (
+          <StyledText key={index}>
+            {choice.ability_score.name ?? 'not available'} +{choice.bonus}
+          </StyledText>
+        ))}
+        {/*NB: per ogni razza ci sono ipoteticamente dei bonus da aggiungere su determinate caratteriistiche "index"  di un certo amount "bonus". */}
 
-          <StyledSubtitle>Proficiencies</StyledSubtitle>
-          {data?.starting_proficiencies?.map((proficiency, index) => (
-            <StyledText key={index}>{proficiency.name}</StyledText>
-          )) ?? <StyledText>Starting skills not available</StyledText>}
+        <StyledSubtitle>Proficiencies</StyledSubtitle>
+        {data?.starting_proficiencies?.map((proficiency, index) => (
+          <StyledText key={index}>{proficiency.name}</StyledText>
+        )) ?? <StyledText>Starting skills not available</StyledText>}
 
-          <StyledSubtitle>Traits of the breed:</StyledSubtitle>
-          <TraitsComponent input={input} />
-          {/* TODO: tabella di scelta per le abilità iniziali
+        <StyledSubtitle>Traits of the breed:</StyledSubtitle>
+        <TraitsComponent input={input} />
+        {/* TODO: tabella di scelta per le abilità iniziali
       <Text>
         Available options: {data && data.starting_proficiency_options?.choose}
       </Text>
@@ -88,43 +87,42 @@ export default function RaceComponent({route, navigation}: Props) {
         </Text>
       )) ?? <Text>Proficiency options not available</Text>} */}
 
-          {/*INIZIO DESCRIZIONE (STRINGHE) la parte meno importante a livello implementativo. */}
-          <StyledSubtitle>Race description:</StyledSubtitle>
-          <StyledLabeledValue
-            label="Language"
-            value={data?.language_desc ?? 'Language description not available'}
-          />
-          <StyledLabeledValue
-            label="Your racial alignment"
-            value={data?.alignment ?? 'Alignment not available'}
-          />
-          <StyledLabeledValue
-            label="The tendency of your species"
-            value={data?.age ?? 'Age description not available'}
-          />
-          <StyledLabeledValue
-            label="The size of your species"
-            value={data?.size_description ?? 'Height description not available'}
-          />
-          <SubraceByRace
-            input={input}
-            onSelectedValue={item => {
-              userData.current.subrace = item;
-            }}
-          />
-        </View>
-        <View style={[{alignItems: 'center', padding: 30}]}>
-          <StyledButton
-            text="Next"
-            onPress={() =>
-              navigation.navigate('NewPlayer_Class', {
-                gameId: route.params.gameId,
-                playerData: userData.current,
-              })
-            }
-          />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        {/*INIZIO DESCRIZIONE (STRINGHE) la parte meno importante a livello implementativo. */}
+        <StyledSubtitle>Race description:</StyledSubtitle>
+        <StyledLabeledValue
+          label="Language"
+          value={data?.language_desc ?? 'Language description not available'}
+        />
+        <StyledLabeledValue
+          label="Your racial alignment"
+          value={data?.alignment ?? 'Alignment not available'}
+        />
+        <StyledLabeledValue
+          label="The tendency of your species"
+          value={data?.age ?? 'Age description not available'}
+        />
+        <StyledLabeledValue
+          label="The size of your species"
+          value={data?.size_description ?? 'Height description not available'}
+        />
+        <SubraceByRace
+          input={input}
+          onSelectedValue={item => {
+            userData.current.subrace = item;
+          }}
+        />
+      </View>
+      <View style={[{alignItems: 'center', padding: 30}]}>
+        <StyledButton
+          text="Next"
+          onPress={() =>
+            navigation.navigate('NewPlayer_Class', {
+              gameId: route.params.gameId,
+              playerData: userData.current,
+            })
+          }
+        />
+      </View>
+    </NewPlayerView>
   );
 }

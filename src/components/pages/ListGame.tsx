@@ -2,7 +2,7 @@ import React from 'react';
 import {HomeScreenProps} from '../../routes/HomeProps';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import StyledTitle from '../ui/texts/StyledTitle';
-import {useRealm} from '@realm/react';
+import {useQuery, useRealm} from '@realm/react';
 import {Game} from '../../models/Game';
 import {GameCard} from './games/GameCard';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
@@ -11,9 +11,7 @@ import {StyledButton} from '../ui/StyledButton';
 type Props = HomeScreenProps<'ListGame'>;
 
 export const ListGame = ({navigation, route}: Props) => {
-  const realm = useRealm();
-
-  const games = realm.objects<Game>('Game');
+  const games = useQuery<Game>(Game);
 
   return (
     <SafeAreaView>

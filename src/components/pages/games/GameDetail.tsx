@@ -1,6 +1,6 @@
 import React from 'react';
 import {HomeScreenProps} from '../../../routes/HomeProps';
-import {useRealm} from '@realm/react';
+import {useQuery, useRealm} from '@realm/react';
 import {Game, Player} from '../../../models/Game';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -16,7 +16,9 @@ type Props = HomeScreenProps<'GameDetail'>;
 export const GameDetail = ({navigation, route}: Props) => {
   const realm = useRealm();
   const gameId = route.params.gameId;
-  const game = realm.objectForPrimaryKey<Game>('Game', gameId);
+  const game = useQuery<Game>(Game, results => {
+    return results.filtered('id == $0', gameId);
+  })[0];
 
   if (game === null) {
     // TODO: Error Modal

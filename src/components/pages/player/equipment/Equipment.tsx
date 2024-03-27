@@ -9,6 +9,7 @@ import {StyledText} from '../../../ui/texts/StyledText';
 import {useGetClassByIndexQuery} from '../../../../services/api';
 import {Options} from '../../../options/Options';
 import {EquipmentConverter} from '../../../../helper/fieldConverter';
+import {NewPlayerView} from '../../../../views/NewPlayerView';
 
 type Props = HomeScreenProps<'NewPlayer_Equip'>;
 
@@ -24,36 +25,34 @@ export const Equipment = ({route, navigation}: Props) => {
   // TODO: loading/error
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <StyledTitle>Equipment</StyledTitle>
-        <View>
-          <StyledSubtitle>Starting Equipment</StyledSubtitle>
-          {data?.starting_equipment?.map((choice, index) => (
-            <StyledText key={index}>
-              {choice.equipment.name} quantità:{choice.quantity}
-            </StyledText>
-          ))}
-          <StyledSubtitle>Additional Equipment</StyledSubtitle>
-          {data?.starting_equipment_options.map((value, index) => {
-            const entries =
-              EquipmentConverter.startingEquipmentOptionSetToCountedReferences(
-                value.from,
-              );
-
-            return (
-              <Options
-                desc={value.desc}
-                options={entries}
-                onSelection={idx => {
-                  additionalEquipments.current[index] = idx;
-                  console.log(additionalEquipments.current);
-                }}
-              />
+    <NewPlayerView title="Equipment">
+      <View>
+        <StyledSubtitle>Starting Equipment</StyledSubtitle>
+        {data?.starting_equipment?.map((choice, index) => (
+          <StyledText key={index}>
+            {choice.equipment.name} quantità:{choice.quantity}
+          </StyledText>
+        ))}
+        <StyledSubtitle>Additional Equipment</StyledSubtitle>
+        {data?.starting_equipment_options.map((value, index) => {
+          const entries =
+            EquipmentConverter.startingEquipmentOptionSetToCountedReferences(
+              value.from,
             );
-          })}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+
+          return (
+            <Options
+              key={index}
+              desc={value.desc}
+              options={entries}
+              onSelection={idx => {
+                additionalEquipments.current[index] = idx;
+                console.log(additionalEquipments.current);
+              }}
+            />
+          );
+        })}
+      </View>
+    </NewPlayerView>
   );
 };

@@ -14,6 +14,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {HomeScreenProps} from '../../../routes/HomeProps.ts';
 import {defaultPlayer} from '../../../helper/default.ts';
 import {levelFromXP, xpFromLevel} from '../../../utils/LevelAndXp.ts';
+import {NewPlayerView} from '../../../views/NewPlayerView.tsx';
 
 type Props = HomeScreenProps<'NewPlayer_BasicInfo'>;
 
@@ -83,8 +84,7 @@ export const BasicInfo = ({navigation, route}: Props) => {
   }
 
   return (
-    <SafeAreaView>
-      <StyledTitle>Basic Information</StyledTitle>
+    <NewPlayerView title="Basic Info">
       <StyledSubtitle>Let's Begin</StyledSubtitle>
 
       <InputText
@@ -150,7 +150,7 @@ export const BasicInfo = ({navigation, route}: Props) => {
           }}
         />
       </View>
-    </SafeAreaView>
+    </NewPlayerView>
   );
 };
 

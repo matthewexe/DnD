@@ -12,6 +12,7 @@ import StyledTitle from '../../../ui/texts/StyledTitle';
 import {StyledLabeledValue} from '../../../ui/texts/StyledLabeledValue';
 import {ScrollView} from 'react-native-gesture-handler';
 import {StyledButton} from '../../../ui/StyledButton';
+import {NewPlayerView} from '../../../../views/NewPlayerView';
 
 type Props = HomeScreenProps<'NewPlayer_Class'>;
 
@@ -29,26 +30,24 @@ export default function ClassComponent({route, navigation}: Props) {
   if (isLoading) return <Text>loading...</Text>;
   if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <StyledTitle>Class</StyledTitle>
-        <View>
-          <StyledLabeledValue
-            label="Nome"
-            value={data?.name ?? 'classe non disponibile'}
-          />
-          <StyledLabeledValue
-            label={'Dado Vita'}
-            value={data?.hit_die.toString() ?? 'mancante'}
-          />
-          <StyledSubtitle>Abilità di base:</StyledSubtitle>
-          {data?.proficiencies?.map((choice, index) => (
-            <StyledText key={index}>{choice.name}</StyledText>
-          ))}
+    <NewPlayerView title="Class">
+      <View>
+        <StyledLabeledValue
+          label="Nome"
+          value={data?.name ?? 'classe non disponibile'}
+        />
+        <StyledLabeledValue
+          label={'Dado Vita'}
+          value={data?.hit_die.toString() ?? 'mancante'}
+        />
+        <StyledSubtitle>Abilità di base:</StyledSubtitle>
+        {data?.proficiencies?.map((choice, index) => (
+          <StyledText key={index}>{choice.name}</StyledText>
+        ))}
 
-          <StyledSubtitle>Abilità</StyledSubtitle>
-          <StyledText>Scegli le tue Abilità:</StyledText>
-          {/* TODO: tabella per scegliere le abilità
+        <StyledSubtitle>Abilità</StyledSubtitle>
+        <StyledText>Scegli le tue Abilità:</StyledText>
+        {/* TODO: tabella per scegliere le abilità
         {data?.proficiency_choices?.map((choice, index) => (
           <View>
             <Text>Scegli al massimo {choice.choose} abilità</Text>
@@ -59,45 +58,44 @@ export default function ClassComponent({route, navigation}: Props) {
           </View>
         ))} */}
 
-          <StyledSubtitle>Tiri salvezza:</StyledSubtitle>
-          {data?.saving_throws?.map((choice, index) => (
-            <StyledText key={index}>{choice.name}</StyledText>
-          ))}
+        <StyledSubtitle>Tiri salvezza:</StyledSubtitle>
+        {data?.saving_throws?.map((choice, index) => (
+          <StyledText key={index}>{choice.name}</StyledText>
+        ))}
 
-          <FeaturesByClassComponent input={input} />
-          <ProficiencyByClassComponent input={input} />
-          <StyledSubtitle>Sottoclassi:</StyledSubtitle>
-          <SubclassComponent
-            input={input}
-            onSelectedValue={item =>
-              (userData.current.subclass = item as Subclasstypes)
-            }
-          />
+        <FeaturesByClassComponent input={input} />
+        <ProficiencyByClassComponent input={input} />
+        <StyledSubtitle>Sottoclassi:</StyledSubtitle>
+        <SubclassComponent
+          input={input}
+          onSelectedValue={item =>
+            (userData.current.subclass = item as Subclasstypes)
+          }
+        />
 
-          {/*Da Spostare nella pagina successiva */}
-          {/* <StyledSubtitle>Equipaggiamento iniziale:</StyledSubtitle>
+        {/*Da Spostare nella pagina successiva */}
+        {/* <StyledSubtitle>Equipaggiamento iniziale:</StyledSubtitle>
       {data?.starting_equipment?.map((choice, index) => (
         <StyledText key={index}>
           {choice.equipment.name} quantità:{choice.quantity}
         </StyledText>
       ))} */}
-          {/*<Text>Scegli ulteriore equipaggiamento:</Text>
+        {/*<Text>Scegli ulteriore equipaggiamento:</Text>
       {data?.starting_equipment_options?.map((choice, index) => (
         <EquipmentOptionComponent choice={choice} />
       ))} */}
-        </View>
-        <View style={[{alignItems: 'center', padding: 30}]}>
-          <StyledButton
-            text="Next"
-            onPress={() =>
-              navigation.navigate('NewPlayer_Equip', {
-                gameId: route.params.gameId,
-                playerData: userData.current,
-              })
-            }
-          />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+      </View>
+      <View style={[{alignItems: 'center', padding: 30}]}>
+        <StyledButton
+          text="Next"
+          onPress={() =>
+            navigation.navigate('NewPlayer_Equip', {
+              gameId: route.params.gameId,
+              playerData: userData.current,
+            })
+          }
+        />
+      </View>
+    </NewPlayerView>
   );
 }
