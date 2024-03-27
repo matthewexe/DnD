@@ -54,7 +54,7 @@ export const HomeDictionary = ({navigation, route}: Props) => {
           />
           <DictionaryButton
             text="Damage Types"
-            icon={require('/home/mattia/Documenti/DnD/src/assets/DamageTypes.png')}
+            icon={require('../../assets/DamageTypes.png')}
             onPress={() => {
               navigation.navigate('DamegeTypeD');
             }}
