@@ -8,6 +8,7 @@ import {
   RacesRequest,
   SpellRequest,
   Subclasstypes,
+  SubracesRequest,
   TraitsRequest,
 } from '../types/requests';
 
@@ -31,7 +32,7 @@ export class Game extends Realm.Object<Game> {
 }
 
 export class Player extends Realm.Object<Player> {
-  id!: Realm.BSON.UUID;
+  id!: Realm.BSON.ObjectId;
   character_name!: string;
   player_name!: string;
   class!: ClassIndexRequest;
@@ -59,11 +60,12 @@ export class Player extends Realm.Object<Player> {
   //end
   features!: Realm.List<FeaturesRequest>;
   subclass!: Subclasstypes;
+  subrace!: SubracesRequest;
 
   static schema: ObjectSchema = {
     name: 'Player',
     properties: {
-      id: 'uuid',
+      id: 'objectId',
       character_name: 'string',
       player_name: 'string',
       class: 'string',
@@ -78,7 +80,7 @@ export class Player extends Realm.Object<Player> {
       ca: 'int',
       speed: 'int',
       money: 'int[]',
-      extra_proficiencies: 'string[]?',
+      extra_proficiencies: 'string?[]',
       ps: 'int',
       hit_die: 'int',
       weapon: 'Weapon[]',
@@ -88,14 +90,14 @@ export class Player extends Realm.Object<Player> {
       proficiencies: 'string[]',
       features: 'string[]',
       subclass: 'string',
+      subrace: 'string',
       game: {
         type: 'linkingObjects',
         objectType: 'Game',
         property: 'players',
       },
-
-      primaryKey: 'id',
     },
+    primaryKey: 'id',
   };
 }
 

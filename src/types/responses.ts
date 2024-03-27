@@ -231,7 +231,7 @@ export type ArmorClass = {
 export type Armor = IEquipment &
   IEquipmentBase & {
     __typename?: 'Armor';
-    armor_category: string; //EDITED era   EquipmentCategory
+    armor_category: EquipmentCategory;
     armor_class: ArmorClass;
     cost: Cost;
     desc?: string[] | null;
@@ -508,7 +508,10 @@ export type MonsterSpellSlot = {
 
 export type MonsterSpell = {
   __typename?: 'MonsterSpell';
-  spell: Spell;
+  //spell: Spell;
+  name?: string;
+  level?: number;
+  notes?: string;
   usage?: Usage | null;
 };
 
@@ -714,40 +717,40 @@ export type MonsterArmorClass = {
 
 export type Monster = {
   __typename?: 'Monster';
-  actions?: MonsterAction[] | null;
-  alignment: string;
-  armor_class?: MonsterArmorClass[] | null;
-  challenge_rating: number;
-  charisma: number;
-  condition_immunities: Condition[];
-  constitution: number;
-  damage_immunities: string[];
-  damage_resistances: string[];
-  damage_vulnerabilities: string[];
-  desc?: string | null;
-  dexterity: number;
+  actions?: MonsterAction[] | null; //OK
+  alignment: string; //OK
+  armor_class?: MonsterArmorClass[] | null; //OK
+  challenge_rating: number; //OK
+  charisma: number; //OK
+  condition_immunities: Condition[]; //OK
+  constitution: number; //OK
+  damage_immunities: string[]; //OK
+  damage_resistances: string[]; //OK
+  damage_vulnerabilities: string[]; //OK
+  desc?: string | null; //OK
+  dexterity: number; //OK
   forms?: Monster[] | null;
-  hit_dice: string;
-  hit_points: number;
-  hit_points_roll: string;
+  hit_dice: string; //NON SERVE
+  hit_points: number; //OK
+  hit_points_roll: string; //OK
   image?: string | null;
   index: string;
-  intelligence: number;
-  languages: string;
-  legendary_actions?: LegendaryAction[] | null;
-  name: string;
-  proficiencies: MonsterProficiency[];
-  proficiency_bonus: number;
-  reactions?: Reaction[] | null;
-  senses: Senses;
-  size: Size;
-  special_abilities?: SpecialAbility[] | null;
-  speed: MonsterSpeed;
-  strength: number;
-  subtype?: MonsterSubtype | null;
-  type: MonsterType;
-  wisdom: number;
-  xp: number;
+  intelligence: number; //OK
+  languages: string; //OK
+  legendary_actions?: LegendaryAction[] | null; //OK
+  name: string; //OK
+  proficiencies: MonsterProficiency[]; //OK
+  proficiency_bonus: number; //OK
+  reactions?: Reaction[] | null; //OK
+  senses: Senses; //OK
+  size: Size; //OK
+  special_abilities?: SpecialAbility[] | null; //OK
+  speed: MonsterSpeed; //OK
+  strength: number; //OK
+  subtype?: MonsterSubtype | null; //OK
+  type: MonsterType; //OK
+  wisdom: number; //OK
+  xp: number; //OK
 };
 
 export type ProficiencyReferenceOption = {
@@ -938,7 +941,6 @@ export type Subrace = ProficiencyRace & {
   ability_bonuses: AbilityBonus[];
   desc: string;
   index: string;
-  languages: APIReference[];
   language_options?: LanguageChoice | null;
   name: string;
   race: Race;

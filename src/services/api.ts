@@ -20,6 +20,13 @@ import {
   Level,
   Spell,
   Feature,
+  Multiclassing,
+  Condition,
+  DamageType,
+  AbilityScore,
+  MagicSchool,
+  Subrace,
+  Monster,
 } from '../types/responses';
 
 import {
@@ -43,8 +50,10 @@ import {
   SpellIndexRequest,
   SubclasstypesByIndex,
   FeaturesRequestForIndex,
+  ConditionRequestByIndex,
+  DamageTypeByIndexRequest,
+  MagicSchoolByIndexRequest,
 } from '../types/requests';
-import {Subrace} from '../types/responses';
 
 export const api = createApi({
   reducerPath: 'api',
@@ -69,7 +78,12 @@ export const api = createApi({
     'Skills',
     'EquipmentItem',
     'WeaponProperties',
+    'Multiclassing',
+    'Condition',
+    'Damage',
     'Monsters',
+    'MagicSchool',
+    'Features',
   ],
   endpoints: builder => ({
     //le tengo ordinate x come andranno utilizzate (NON opzionale)
@@ -365,21 +379,67 @@ export const api = createApi({
       ],
     }),
 
+    getEndpointResource: builder.query<ResourceList, string>({
+      query: str => `/${str}/`,
+      providesTags: (result, error, str) => [{type: 'ResourceList', id: str}],
+    }),
+
+    //Start aggiunte per Dictionary
+
+    getMulticlassing: builder.query<Multiclassing, ClassRequest>({
+      query: ({index}) => `classes/${index}/multi-classing`,
+      providesTags: (result, error, {index}) => [
+        {type: 'Multiclassing', id: index},
+      ],
+    }),
+
+    getCondition: builder.query<Condition, ConditionRequestByIndex>({
+      query: ({index}) => `conditions/${index}`,
+      providesTags: (result, error, {index}) => [
+        {type: 'Condition', id: index},
+      ],
+    }),
+
+    getDamageType: builder.query<DamageType, DamageTypeByIndexRequest>({
+      query: ({index}) => `damage-types/${index}`,
+      providesTags: (result, error, {index}) => [{type: 'Damage', id: index}],
+    }),
+
+    getAbilityScore: builder.query<AbilityScore, AbilityScoreRequestByIndex>({
+      query: ({index}) => `ability-scores/${index}`,
+      providesTags: (result, error, {index}) => [
+        {type: 'AbilitiesScore', id: index},
+      ],
+    }),
+
+    getMagicSchool: builder.query<MagicSchool, MagicSchoolByIndexRequest>({
+      query: ({index}) => `magic-schools/${index}`,
+      providesTags: (result, error, {index}) => [
+        {type: 'MagicSchool', id: index},
+      ],
+    }),
+
+    getFeatures: builder.query<Feature, FeaturesRequestForIndex>({
+      query: ({index}) => `features/${index}`,
+      providesTags: (result, error, {index}) => [{type: 'Features', id: index}],
+    }),
+
     //MONSTERS
-    getMonsterByIndex: builder.query<ResourceList, MonstersRequestByIndex>({
+    getMonsterByIndex: builder.query<Monster, MonstersRequestByIndex>({
       query: ({index}) => `monsters/${index}`,
       providesTags: (result, error, {index}) => [{type: 'Monsters', id: index}],
     }),
 
     //non sono sicuro
     getMonsterByLevel: builder.query<ResourceList, MonstersRequestByLevel>({
-      query: ({challenge_rating}) => `monsters/${challenge_rating}`,
-      providesTags: (result, error, {index}) => [{type: 'Monsters', id: index}],
-    }),
-
-    getEndpointResource: builder.query<ResourceList, string>({
-      query: str => `/${str}/`,
-      providesTags: (result, error, str) => [{type: 'ResourceList', id: str}],
+      query: ({challenge_rating}) =>
+        `monsters/?challenge_rating=${challenge_rating.join(',')}`,
+      providesTags: () => [
+        {
+          type: 'Monsters',
+          id: 'LIST',
+        },
+      ],
     }),
   }),
 });
@@ -421,4 +481,11 @@ export const {
   useGetMonsterByLevelQuery,
   useGetSpellsQuery,
   useGetEndpointResourceQuery,
+  //dictionary
+  useGetMulticlassingQuery,
+  useGetConditionQuery,
+  useGetDamageTypeQuery,
+  useGetAbilityScoreQuery,
+  useGetMagicSchoolQuery,
+  useGetFeaturesQuery,
 } = api;

@@ -2,7 +2,7 @@ import React from 'react';
 import SelectDropdown, {
   SelectDropdownProps,
 } from 'react-native-select-dropdown';
-import { customTheme2 } from '../../constants/theme';
+import {customTheme2} from '../../constants/theme';
 
 type Props = SelectDropdownProps;
 

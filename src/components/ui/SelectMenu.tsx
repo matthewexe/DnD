@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {SelectDropdownProps} from 'react-native-select-dropdown';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import {APIReference} from '../../types/responses';
 import {StyledMenu} from './StyledMenu';
 
@@ -22,7 +21,6 @@ export const SelectMenu = (props: Props) => {
         buttonTextAfterSelection={selectedItem => {
           return selectedItem.name;
         }}
-        renderSearchInputRightIcon={() => <Icon name="search" />}
         search={true}
         {...props}
       />
