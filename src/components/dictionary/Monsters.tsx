@@ -34,9 +34,9 @@ export default function MonsterComponent({input}: Props) {
           label={'Selected Monster:'}
           value={data?.name ?? 'not found'}></StyledLabel>
         <View style={styles.spece}></View>
-        {data && data.challenge_rating && (
-          <PrimaryText>Challenge Rating:</PrimaryText>
-        )}
+
+        <PrimaryText>Challenge Rating:</PrimaryText>
+
         <DescriptionText>
           {data?.challenge_rating ?? 'not found'}
         </DescriptionText>
@@ -76,7 +76,7 @@ export default function MonsterComponent({input}: Props) {
           <DescriptionText>{data?.hit_points ?? 'not found'}</DescriptionText>
         </PrimaryText>
         <DescriptionText>
-          Hit Points with dices:
+          Hit Points with dices:{'\t\t\t'}
           {data?.hit_points_roll ?? 'not found'}
         </DescriptionText>
         <View style={styles.spece}></View>
@@ -154,9 +154,8 @@ export default function MonsterComponent({input}: Props) {
             )}
           </PrimaryText>
         )}
-
         <View style={styles.spece}></View>
-
+        {/* SAFE DA QUI IN GIU */}
         <StyledLabel label={'Ability scores'} value={''}></StyledLabel>
         <PrimaryText>
           Strength:{'\t\t\t'}
@@ -245,16 +244,14 @@ export default function MonsterComponent({input}: Props) {
             label={'Damage Immunities'}
             value={data.damage_immunities.join('\n')}></StyledLabel>
         )}
+        {data && data.condition_immunities.length > 0 && (
+          <StyledLabel label={'Condition Immunities'} value={''}></StyledLabel>
+        )}
         {data &&
-          data.condition_immunities.length > 0 && (
-            <StyledLabel
-              label={'Condition Immunities'}
-              value={''}></StyledLabel>
-          ) && (
-            <MonsterConditionImmunities
-              condition_immunities={data.condition_immunities}
-            />
-          )}
+          data.condition_immunities.length > 0 &&
+          data.condition_immunities.map(choice => (
+            <MonsterConditionImmunities condition_immunities={choice} />
+          ))}
 
         {data && data.languages && (
           <StyledLabel label={'Languages:'} value={''}></StyledLabel>
@@ -274,8 +271,11 @@ export default function MonsterComponent({input}: Props) {
             <MonsterSpecialAbilities special_abilities={choice} />
           ))}
 
-        {data && data.actions && <MonsterActions actions={data.actions} />}
+        {data && data.actions && <StyledLabel label={'Actions'} value={''} />}
 
+        {data &&
+          data.actions &&
+          data.actions.map(choice => <MonsterActions actions={choice} />)}
         {data && data.subtype && (
           <StyledLabel label={'Subtype:'} value={data.subtype}></StyledLabel>
         )}
@@ -285,19 +285,23 @@ export default function MonsterComponent({input}: Props) {
         )}
         {data &&
           data.reactions &&
-          data.reactions.map(
-            choice =>
-              choice.name && (
-                <PrimaryText>
-                  {choice.name}
-                  <DescriptionText>{choice.desc}</DescriptionText>
-                </PrimaryText>
-              ),
+          data.reactions.map(choice => (
+            <PrimaryText>
+              {choice.name}:{'\t\t\t'}
+              <DescriptionText>{choice.desc}</DescriptionText>
+            </PrimaryText>
+          ))}
+        <View style={styles.spece}></View>
+        {data &&
+          data.legendary_actions &&
+          data.legendary_actions.length > 0 && (
+            <StyledLabel label={'Legendary Actions:'} value={''}></StyledLabel>
           )}
-
-        {data && data.legendary_actions && (
-          <MonsterLegendaryAction action={data.legendary_actions} />
-        )}
+        {data &&
+          data.legendary_actions &&
+          data.legendary_actions.map(choice => (
+            <MonsterLegendaryAction action={choice} />
+          ))}
       </View>
     </>
   );

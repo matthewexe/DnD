@@ -11,6 +11,7 @@ import {DictionaryMagicSchool} from '../components/pages/DictionaryMagicSchool';
 import {DictionaryFeatures} from '../components/pages/DictionaryFeatures';
 import {DictionaryHomeMonsters} from '../components/pages/DictionaryHomeMonsters';
 import {DictionaryMonsterByIndex} from '../components/pages/DictionaryMonsterByIndex';
+import {DictionaryMonsterByLevel} from '../components/pages/DictionaryMonsterByLevel';
 
 const Stack = createNativeStackNavigator<DictionaryStackParamList>();
 
@@ -30,6 +31,10 @@ export function Dictionary() {
       <Stack.Screen
         name="MonsterDByName"
         component={DictionaryMonsterByIndex}
+      />
+      <Stack.Screen
+        name="MonsterDByRange"
+        component={DictionaryMonsterByLevel}
       />
     </Stack.Navigator>
   );

@@ -23,12 +23,7 @@ export default function MonsterByLevel({input}: Props) {
       )}
       {data &&
         data.results &&
-        data.results.map(
-          choice =>
-            choice.index && (
-              <MonsterComponent input={choice.index as MonsterRequest} />
-            ),
-        )}
+        data.results.map(choice => <PrimaryText>-{choice.name}</PrimaryText>)}
     </>
   );
 }

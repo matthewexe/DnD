@@ -1,67 +1,205 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
-import {SelectMenu} from '../SelectMenu';
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+} from 'react-native';
+import {DictionaryButton} from '../ui/buttons/DictionaryButton';
 import StyledTitle from '../ui/texts/StyledTitle';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import FeaturesComponent from '../dictionary/Features';
+import {DescriptionText} from '../ui/texts/DescriptionText';
+import {MonsterLevelButton} from '../ui/buttons/MonsterLevelButton';
 import MonsterByLevel from '../dictionary/MonsterByLevel';
 
-export const DictionaryFeatures = () => {
-  const array: number[] = new Array<number>(24);
-  const selection: string[] = new Array<string>(24);
+export const DictionaryMonsterByLevel = () => {
+  // I valori disponibili per lo slider.
+  const values = [
+    '0',
+    '(1 / 8)',
+    '(1 / 4)',
+    '(1 / 2)',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    '19',
+    '20',
+  ];
+  const output = [
+    0,
+    1 / 8,
+    1 / 4,
+    1 / 2,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+  ];
 
-  array[0] = 0;
-  selection[0] = '0';
-  array[1] = 1 / 8;
-  selection[1] = '1/8';
-  array[2] = 1 / 4;
-  selection[2] = '1/4';
-  array[3] = 1 / 2;
-  selection[3] = '1/2';
-  for (let i = 4; i < 24; i++) {
-    array[i] = i - 3;
-    selection[i] = array[i].toString();
-  }
-  const [startState, setStart] = useState<string>('');
-  const [endState, setEnd] = useState<string>('');
+  // Stati per start ed end.
+
+  // Indice attuale per navigare nell'array 'values'.
+  const [range, setRange] = useState<number[]>();
+  const [currentIndexStart, setStartIndex] = useState(0);
+  const [currentIndexEnd, setEndIndex] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleStart = () => {
+    setSubmitted(false);
+    // Incrementa il valore di start, assicurandosi di non superare la lunghezza di 'values'.
+    const nextIndex =
+      currentIndexStart + 1 < values.length
+        ? currentIndexStart + 1
+        : currentIndexStart;
+
+    setStartIndex(nextIndex);
+
+    // Aggiorna end se necessario.
+    if (currentIndexEnd <= currentIndexStart) {
+      setEndIndex(nextIndex);
+    }
+  };
+
+  const handleSubtractStart = () => {
+    // Incrementa il valore di start, assicurandosi di non superare la lunghezza di 'values'.
+    setSubmitted(false);
+    const nextIndex =
+      currentIndexStart - 1 < 0 ? currentIndexStart : currentIndexStart - 1;
+    setStartIndex(nextIndex);
+  };
+
+  const handleEnd = () => {
+    setSubmitted(false);
+    const nextIndex =
+      currentIndexEnd + 1 < values.length
+        ? currentIndexEnd + 1
+        : currentIndexEnd;
+    setEndIndex(nextIndex);
+  };
+
+  const handleSubtractEnd = () => {
+    // Incrementa il valore di start, assicurandosi di non superare la lunghezza di 'values'.
+    setSubmitted(false);
+    const nextIndex =
+      currentIndexEnd - 1 < 0 ? currentIndexEnd : currentIndexEnd - 1;
+    setEndIndex(nextIndex);
+
+    // Aggiorna end se necessario.
+    if (currentIndexEnd <= currentIndexStart) {
+      setStartIndex(nextIndex);
+    }
+  };
+  const handleSubmit = () => {
+    // Creazione di un array da start a end e preparazione per la query.
+    const startIndex = currentIndexStart;
+    const endIndex = currentIndexEnd;
+    setRange(output.slice(startIndex, endIndex + 1));
+    setSubmitted(true);
+    // Qui inserire la logica per la query con l'array 'range'.
+  };
 
   return (
-    <>
-      <SafeAreaView style={styles.safeview}>
-        <StyledTitle>Monsters By Levels</StyledTitle>
+    <SafeAreaView style={styles.safeview}>
+      <ScrollView>
+        <StyledTitle>Monsters by Levels</StyledTitle>
+
         <View style={styles.container}>
-          <SelectMenu
-            label=""
-            onSelect={item => {
-              setStart(item);
-            }}
-            data={selection}
-          />
-        </View>
-        <ScrollView>
-          <View style={styles.container}>
-            <MonsterByLevel input={[]} />
+          <View style={styles.buttonbox}>
+            <DescriptionText>
+              Start lv: {values[currentIndexStart]}
+              {'\t\t'}
+            </DescriptionText>
+
+            <MonsterLevelButton
+              text="+"
+              // icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
+              onPress={handleStart}
+            />
+            <MonsterLevelButton
+              text="-"
+              // icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
+              onPress={handleSubtractStart}
+            />
           </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+          <View style={styles.buttonbox}>
+            <DescriptionText>
+              End lv: {values[currentIndexEnd]}
+              {'\t\t'}
+            </DescriptionText>
+            <MonsterLevelButton
+              text="+"
+              // icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
+              onPress={handleEnd}
+            />
+            <MonsterLevelButton
+              text="-"
+              // icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
+              onPress={handleSubtractEnd}
+            />
+          </View>
+          <View style={styles.buttonbox}>
+            <DictionaryButton
+              text="Submit"
+              // icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
+              onPress={handleSubmit}
+            />
+          </View>
+          {submitted && <MonsterByLevel input={range ?? []} />}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  rowStyle: {
-    flexDirection: 'row',
-  },
   container: {
     alignSelf: 'center',
-    padding: 30,
+    padding: 20,
     flexDirection: 'column', // o 'column' per bottoni verticali
     justifyContent: 'space-between', // Distribuisce uniformemente lo spazio
   },
-  button: {
-    margin: 10, // Distanzia i bottoni l'uno dall'altro
+  buttonbox: {
+    alignSelf: 'center',
+    padding: 20,
+    flexDirection: 'row', // o 'column' per bottoni verticali
+    justifyContent: 'space-between', // Distribuisce uniformemente lo spazio
   },
   safeview: {
     bottom: 10,
+  },
+  spece: {
+    padding: 20,
   },
 });

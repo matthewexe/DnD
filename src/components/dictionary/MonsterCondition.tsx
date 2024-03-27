@@ -4,21 +4,21 @@ import {DescriptionText} from '../ui/texts/DescriptionText';
 import {PrimaryText} from '../ui/texts/PrimaryText';
 
 type Props = {
-  condition_immunities: Condition[];
+  condition_immunities: Condition;
 };
 
 export const MonsterConditionImmunities = ({condition_immunities}: Props) => {
   return (
     <>
-      {condition_immunities.map(choice => {
-        choice.name && (
-          <PrimaryText>
-            Condition:
-            <DescriptionText>{choice.name}</DescriptionText>
-          </PrimaryText>
-        );
-        choice.desc && <DescriptionText>{choice.desc}</DescriptionText>;
-      })}
+      {condition_immunities.name && (
+        <PrimaryText>
+          Condition:{'\t\t\t'}
+          <DescriptionText>{condition_immunities.name}</DescriptionText>
+        </PrimaryText>
+      )}
+      {condition_immunities.desc && (
+        <DescriptionText>{condition_immunities.desc}</DescriptionText>
+      )}
     </>
   );
 };

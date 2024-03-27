@@ -4,20 +4,19 @@ import {PrimaryText} from '../ui/texts/PrimaryText';
 import {MonsterAction} from '../../types/responses';
 
 type Props = {
-  actions: MonsterAction[];
+  actions: MonsterAction;
 };
 
 export const MonsterActions = ({actions}: Props) => {
   return (
     <>
-      {actions.map(choice => {
-        choice.name && (
-          <PrimaryText>
-            Name:<DescriptionText>{choice.name}</DescriptionText>
-          </PrimaryText>
-        ),
-          choice.desc && <DescriptionText>{choice.desc}</DescriptionText>;
-      })}
+      {actions.name && (
+        <PrimaryText>
+          Name:{'\t\t\t'}
+          <DescriptionText>{actions.name}</DescriptionText>
+        </PrimaryText>
+      )}
+      {actions.desc && <DescriptionText>{actions.desc}</DescriptionText>}
     </>
   );
 };

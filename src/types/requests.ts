@@ -391,7 +391,7 @@ export type MonsterRequest =
 export type MonstersRequestByIndex = {index: MonsterRequest};
 export type MonstersRequestByLevel = {
   //index: string;
-  challenge_rating?: number[];
+  challenge_rating: number[];
 };
 export type RaceIndexRequest =
   | 'dragonborn'

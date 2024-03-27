@@ -36,13 +36,19 @@ export const MonsterSenses = ({senses}: Props) => {
       {senses.tremorsense && (
         <PrimaryText>
           Tremorsense:{'\t\t\t'}
-          <DescriptionText>{senses.tremorsense}</DescriptionText>
+          <DescriptionText>
+            {senses.tremorsense} or{' '}
+            {convertFootToMeters(extractDigits(senses.tremorsense))}
+          </DescriptionText>
         </PrimaryText>
       )}
       {senses.truesight && (
         <PrimaryText>
           Truesight:{'\t\t\t'}
-          <DescriptionText>{senses.truesight}</DescriptionText>
+          <DescriptionText>
+            {senses.truesight} or{' '}
+            {convertFootToMeters(extractDigits(senses.truesight))}
+          </DescriptionText>
         </PrimaryText>
       )}
     </>

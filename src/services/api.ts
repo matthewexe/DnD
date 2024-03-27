@@ -445,11 +445,12 @@ export const api = createApi({
 
     //non sono sicuro
     getMonsterByLevel: builder.query<ResourceList, MonstersRequestByLevel>({
-      query: ({challenge_rating}) => `monsters/${challenge_rating}`,
+      query: ({challenge_rating}) =>
+        `monsters/?challenge_rating=${challenge_rating.join(',')}`,
       providesTags: (result, error, {challenge_rating}) => [
         {
           type: 'Monsters',
-          id: challenge_rating?.reduce((prev, value) => prev * value) ?? 0,
+          id: 'LIST',
         },
       ],
     }),
