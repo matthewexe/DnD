@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   Description: {
-    fontWeight: '200',
+    fontWeight: '400',
+    fontFamily: 'NewTegomin-Regular',
     width: '93%',
     fontSize: 16,
     alignSelf: 'center',
