@@ -1,3 +1,4 @@
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {DictionaryStackParamList} from '../routes/DictionaryStack';
 import {HomeDictionary} from '../components/pages/HomeDictionary';
