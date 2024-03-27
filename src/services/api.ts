@@ -10,7 +10,6 @@ import {
   Race as RaceResponse,
   ResourceList,
   Skill as SkillResponse,
-  Subclass as SubclassResponse,
   Trait as TraitResponse,
   Weapon as WeaponResponse,
   ResourceList as SubclassByClassResponse,
@@ -20,21 +19,19 @@ import {
   Armor,
   Level,
   Spell,
-  Subclass,
   Feature,
   Multiclassing,
   Condition,
   DamageType,
   AbilityScore,
   MagicSchool,
+  Subrace,
   Monster,
 } from '../types/responses';
 
 import {
   ClassRequest,
   SpellCastingForClassRequest,
-  SubclassRequest,
-  TraitsByIndexRequest,
   AbilityScoreRequestByIndex,
   AlignamentRequestByIndex,
   BackgroundRequestByIndex,
@@ -47,23 +44,16 @@ import {
   ClassLevelAllResourceRequest,
   ClassLevelResourceRequest,
   MonstersRequestByLevel,
-  FeaturesRequestByIndex,
   RacesRequestByIndex,
   SubraceByIndexRequest,
   TraitRequestByIndex,
   SpellIndexRequest,
-  Subclasstypes,
   SubclasstypesByIndex,
-  FeaturesRequest,
   FeaturesRequestForIndex,
-  ConditionRequest,
   ConditionRequestByIndex,
-  DamageTypeRequest,
   DamageTypeByIndexRequest,
   MagicSchoolByIndexRequest,
 } from '../types/requests';
-import {SubraceIndexResponse} from '../types/old_responses';
-import {Subrace} from '../types/responses';
 
 export const api = createApi({
   reducerPath: 'api',
@@ -119,10 +109,7 @@ export const api = createApi({
       query: ({index}) => `races/${index}/subraces'`,
       providesTags: (result, error, {index}) => [{type: 'Subrace', id: index}],
     }),
-    getSubRacesByIndexByRace: builder.query<
-      SubraceIndexResponse,
-      RacesRequestByIndex
-    >({
+    getSubRacesByIndexByRace: builder.query<Subrace, RacesRequestByIndex>({
       query: ({index}) => `races/${index}/subraces'`,
       providesTags: (result, error, {index}) => [{type: 'Subrace', id: index}],
     }),
@@ -356,12 +343,12 @@ export const api = createApi({
       ],
     }),
     getEquipmentWeapon: builder.query<EquipmentCategory, undefined>({
-      query: () => `equipment-categories/weapon`,
-      providesTags: (result, error) => [{type: 'EquipmentItem', id: 'LIST'}],
+      query: () => 'equipment-categories/weapon',
+      providesTags: () => [{type: 'EquipmentItem', id: 'LIST'}],
     }),
     getEquipmentArmor: builder.query<EquipmentCategory, undefined>({
-      query: () => `equipment-categories/armor`,
-      providesTags: (result, error) => [{type: 'EquipmentItem', id: 'LIST'}],
+      query: () => 'equipment-categories/armor',
+      providesTags: () => [{type: 'EquipmentItem', id: 'LIST'}],
     }),
     getWeapon: builder.query<Weapon, EquipmentItemRequestByIndex>({
       query: ({index}) => `equipment/${index}`,
@@ -447,7 +434,7 @@ export const api = createApi({
     getMonsterByLevel: builder.query<ResourceList, MonstersRequestByLevel>({
       query: ({challenge_rating}) =>
         `monsters/?challenge_rating=${challenge_rating.join(',')}`,
-      providesTags: (result, error, {challenge_rating}) => [
+      providesTags: () => [
         {
           type: 'Monsters',
           id: 'LIST',
