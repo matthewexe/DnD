@@ -1,36 +1,36 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {SelectMenu} from '../SelectMenu';
-import {useGetEndpointResourceQuery} from '../../services/api';
-import {AbilityScoreRequest, AlignmentRequest} from '../../types/requests';
-import StyledTitle from '../ui/texts/StyledTitle';
-import AbilityScoresComponent from '../dictionary/AbilityScores';
+import {SelectMenu} from '../../SelectMenu';
+import {useGetEndpointResourceQuery} from '../../../services/api';
+import {MagicSchoolRequest} from '../../../types/requests';
+import StyledTitle from '../../ui/texts/StyledTitle';
 import {ScrollView} from 'react-native-gesture-handler';
+import MagicSchoolComponent from '../../dictionary/MagicSchool';
 
-export const DictionaryAbilityScores = () => {
+export const DictionaryMagicSchool = () => {
   const {data: classData, isLoading: isLoadingClass} =
-    useGetEndpointResourceQuery('ability-scores');
+    useGetEndpointResourceQuery('magic-schools');
 
-  const [abilityScoresState, setAbilityScores] =
-    useState<AbilityScoreRequest>('cha');
+  const [magicSchoolState, setMagicSchool] =
+    useState<MagicSchoolRequest>('abjuration');
 
   if (isLoadingClass) {
     return <Text>Loading...</Text>;
   }
   return (
     <>
-      <StyledTitle>{'Ability Scores'}</StyledTitle>
+      <StyledTitle>{'MagicSchools'}</StyledTitle>
       <View style={styles.container}>
         <SelectMenu
           label=""
           onSelect={item => {
-            setAbilityScores(item.index);
+            setMagicSchool(item.index);
           }}
           data={classData?.results ?? []}
         />
       </View>
       <ScrollView>
-        <AbilityScoresComponent input={abilityScoresState} />
+        <MagicSchoolComponent input={magicSchoolState} />
       </ScrollView>
     </>
   );

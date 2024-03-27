@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {SelectMenu} from '../SelectMenu';
-import {useGetEndpointResourceQuery} from '../../services/api';
-import {ClassIndexRequest} from '../../types/requests';
-import ClassComponent from '../class/ClassByIndex';
-import StyledTitle from '../ui/texts/StyledTitle';
+import {SelectMenu} from '../../SelectMenu';
+import {useGetEndpointResourceQuery} from '../../../services/api';
+import {ClassIndexRequest} from '../../../types/requests';
+import ClassComponent from '../../class/ClassByIndex';
+import StyledTitle from '../../ui/texts/StyledTitle';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 export const DictionaryClass = () => {

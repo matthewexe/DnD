@@ -1,43 +1,36 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {SelectMenu} from '../SelectMenu';
-import {useGetEndpointResourceQuery} from '../../services/api';
-import {
-  AbilityScoreRequest,
-  AlignmentRequest,
-  LanguageRequest,
-  MagicSchoolRequest,
-} from '../../types/requests';
-import StyledTitle from '../ui/texts/StyledTitle';
-import AbilityScoresComponent from '../dictionary/AbilityScores';
+import {SelectMenu} from '../../SelectMenu';
+import {useGetEndpointResourceQuery} from '../../../services/api';
+import {AbilityScoreRequest, AlignmentRequest} from '../../../types/requests';
+import StyledTitle from '../../ui/texts/StyledTitle';
+import AbilityScoresComponent from '../../dictionary/AbilityScores';
 import {ScrollView} from 'react-native-gesture-handler';
-import LanguagesComponent from '../dictionary/Languages';
-import MagicSchoolComponent from '../dictionary/MagicSchool';
 
-export const DictionaryMagicSchool = () => {
+export const DictionaryAbilityScores = () => {
   const {data: classData, isLoading: isLoadingClass} =
-    useGetEndpointResourceQuery('magic-schools');
+    useGetEndpointResourceQuery('ability-scores');
 
-  const [magicSchoolState, setMagicSchool] =
-    useState<MagicSchoolRequest>('abjuration');
+  const [abilityScoresState, setAbilityScores] =
+    useState<AbilityScoreRequest>('cha');
 
   if (isLoadingClass) {
     return <Text>Loading...</Text>;
   }
   return (
     <>
-      <StyledTitle>{'MagicSchools'}</StyledTitle>
+      <StyledTitle>{'Ability Scores'}</StyledTitle>
       <View style={styles.container}>
         <SelectMenu
           label=""
           onSelect={item => {
-            setMagicSchool(item.index);
+            setAbilityScores(item.index);
           }}
           data={classData?.results ?? []}
         />
       </View>
       <ScrollView>
-        <MagicSchoolComponent input={magicSchoolState} />
+        <AbilityScoresComponent input={abilityScoresState} />
       </ScrollView>
     </>
   );

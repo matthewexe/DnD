@@ -1,17 +1,10 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  Button,
-  StyleSheet,
-  ScrollView,
-  SafeAreaView,
-} from 'react-native';
-import {DictionaryButton} from '../ui/buttons/DictionaryButton';
-import StyledTitle from '../ui/texts/StyledTitle';
-import {DescriptionText} from '../ui/texts/DescriptionText';
-import {MonsterLevelButton} from '../ui/buttons/MonsterLevelButton';
-import MonsterByLevel from '../dictionary/MonsterByLevel';
+import {View, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
+import {DictionaryButton} from '../../ui/buttons/DictionaryButton';
+import StyledTitle from '../../ui/texts/StyledTitle';
+import {DescriptionText} from '../../ui/texts/DescriptionText';
+import {MonsterLevelButton} from '../../ui/buttons/MonsterLevelButton';
+import MonsterByLevel from '../../dictionary/MonsterByLevel';
 
 export const DictionaryMonsterByLevel = () => {
   // I valori disponibili per lo slider.

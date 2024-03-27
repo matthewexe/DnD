@@ -1,17 +1,14 @@
-import {View, Text, StyleSheet, Button} from 'react-native';
-import {DictionaryStackScreenProps} from '../../routes/DictionaryStack';
-import {DictionaryButton} from '../ui/buttons/DictionaryButton';
-import StyledTitle from '../ui/texts/StyledTitle';
-import {PrimaryText} from '../ui/texts/PrimaryText';
+import React from 'react';
+import {View, StyleSheet} from 'react-native';
+import {DictionaryStackScreenProps} from '../../../routes/DictionaryStack';
+import {DictionaryButton} from '../../ui/buttons/DictionaryButton';
+import StyledTitle from '../../ui/texts/StyledTitle';
+import {PrimaryText} from '../../ui/texts/PrimaryText';
 import {ScrollView} from 'react-native-gesture-handler';
-
-const AlignImage = require('../../assets');
 
 type Props = DictionaryStackScreenProps<'Dictionary'>;
 
-export const HomeDictionary = ({navigation, route}: Props) => {
-  const params = route.params;
-
+export const HomeDictionary = ({navigation}: Props) => {
   return (
     <>
       <ScrollView>

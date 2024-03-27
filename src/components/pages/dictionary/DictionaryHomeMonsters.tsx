@@ -1,9 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {useGetEndpointResourceQuery} from '../../services/api';
-import {DictionaryButton} from '../ui/buttons/DictionaryButton';
-import {DictionaryStackScreenProps} from '../../routes/DictionaryStack';
-import StyledTitle from '../ui/texts/StyledTitle';
+import {StyleSheet, View} from 'react-native';
+import {DictionaryButton} from '../../ui/buttons/DictionaryButton';
+import {DictionaryStackScreenProps} from '../../../routes/DictionaryStack';
+import StyledTitle from '../../ui/texts/StyledTitle';
 
 type Props = DictionaryStackScreenProps<'MonstersD'>;
 

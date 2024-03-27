@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {SelectMenu} from '../SelectMenu';
-import {useGetEndpointResourceQuery} from '../../services/api';
-import {ConditionRequest} from '../../types/requests';
-import StyledTitle from '../ui/texts/StyledTitle';
+import {SelectMenu} from '../../SelectMenu';
+import {useGetEndpointResourceQuery} from '../../../services/api';
+import {FeaturesRequest} from '../../../types/requests';
+import StyledTitle from '../../ui/texts/StyledTitle';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import ConditionComponent from '../dictionary/Condition';
+import FeaturesComponent from '../../dictionary/Features';
 
-export const DictionaryCondition = () => {
+export const DictionaryFeatures = () => {
   const {data: classData, isLoading: isLoadingClass} =
-    useGetEndpointResourceQuery('conditions');
+    useGetEndpointResourceQuery('features');
 
-  const [conditionState, setCondition] = useState<ConditionRequest>('blinded');
+  const [featureState, setFeature] =
+    useState<FeaturesRequest>('action-surge-1-use');
 
   if (isLoadingClass) {
     return <Text>Loading...</Text>;
@@ -19,19 +20,19 @@ export const DictionaryCondition = () => {
   return (
     <>
       <SafeAreaView style={styles.safeview}>
-        <StyledTitle>Conditions</StyledTitle>
+        <StyledTitle>Features</StyledTitle>
         <View style={styles.container}>
           <SelectMenu
             label=""
             onSelect={item => {
-              setCondition(item.index);
+              setFeature(item.index);
             }}
             data={classData?.results ?? []}
           />
         </View>
         <ScrollView>
           <View style={styles.container}>
-            <ConditionComponent input={conditionState} />
+            <FeaturesComponent input={featureState} />
           </View>
         </ScrollView>
       </SafeAreaView>

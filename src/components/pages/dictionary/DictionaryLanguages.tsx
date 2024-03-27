@@ -1,39 +1,36 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {SelectMenu} from '../SelectMenu';
-import {useGetEndpointResourceQuery} from '../../services/api';
-import {AlignmentRequest} from '../../types/requests';
+import {SelectMenu} from '../../SelectMenu';
+import {useGetEndpointResourceQuery} from '../../../services/api';
+import {LanguageRequest} from '../../../types/requests';
+import StyledTitle from '../../ui/texts/StyledTitle';
+import {ScrollView} from 'react-native-gesture-handler';
+import LanguagesComponent from '../../dictionary/Languages';
 
-import SpellAvailableByClassComponent from '../firstPage/Alignament';
-import Alignament from '../firstPage/Alignament';
-import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
-import StyledTitle from '../ui/texts/StyledTitle';
-
-export const DictionaryAlignament = () => {
+export const DictionaryLanguages = () => {
   const {data: classData, isLoading: isLoadingClass} =
-    useGetEndpointResourceQuery('alignments');
+    useGetEndpointResourceQuery('languages');
 
-  const [alignamentState, setAlignament] =
-    useState<AlignmentRequest>('neutral');
+  const [languagesState, setLanguages] = useState<LanguageRequest>('common');
 
   if (isLoadingClass) {
     return <Text>Loading...</Text>;
   }
   return (
     <>
-      <StyledTitle>{'Alignament'}</StyledTitle>
+      <StyledTitle>{'Languages'}</StyledTitle>
       <View style={styles.container}>
         <SelectMenu
           label=""
           onSelect={item => {
-            setAlignament(item.index);
+            setLanguages(item.index);
           }}
           data={classData?.results ?? []}
         />
       </View>
-      <View style={styles.container}>
-        <Alignament input={alignamentState} />
-      </View>
+      <ScrollView>
+        <LanguagesComponent input={languagesState} />
+      </ScrollView>
     </>
   );
 };

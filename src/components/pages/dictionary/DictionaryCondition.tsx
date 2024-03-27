@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {SelectMenu} from '../SelectMenu';
-import {useGetEndpointResourceQuery} from '../../services/api';
-import {ConditionRequest, DamageTypeRequest} from '../../types/requests';
-import StyledTitle from '../ui/texts/StyledTitle';
+import {SelectMenu} from '../../SelectMenu';
+import {useGetEndpointResourceQuery} from '../../../services/api';
+import {ConditionRequest} from '../../../types/requests';
+import StyledTitle from '../../ui/texts/StyledTitle';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import DamageTypeComponent from '../dictionary/DamageType';
+import ConditionComponent from '../../dictionary/Condition';
 
-export const DictionaryDamageType = () => {
+export const DictionaryCondition = () => {
   const {data: classData, isLoading: isLoadingClass} =
-    useGetEndpointResourceQuery('damage-types');
+    useGetEndpointResourceQuery('conditions');
 
-  const [damageTypeState, setDamageType] = useState<DamageTypeRequest>('acid');
+  const [conditionState, setCondition] = useState<ConditionRequest>('blinded');
 
   if (isLoadingClass) {
     return <Text>Loading...</Text>;
@@ -19,19 +19,19 @@ export const DictionaryDamageType = () => {
   return (
     <>
       <SafeAreaView style={styles.safeview}>
-        <StyledTitle>Damage Types</StyledTitle>
+        <StyledTitle>Conditions</StyledTitle>
         <View style={styles.container}>
           <SelectMenu
             label=""
             onSelect={item => {
-              setDamageType(item.index);
+              setCondition(item.index);
             }}
             data={classData?.results ?? []}
           />
         </View>
         <ScrollView>
           <View style={styles.container}>
-            <DamageTypeComponent input={damageTypeState} />
+            <ConditionComponent input={conditionState} />
           </View>
         </ScrollView>
       </SafeAreaView>

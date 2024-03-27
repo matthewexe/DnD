@@ -1,18 +1,17 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {SelectMenu} from '../SelectMenu';
-import {useGetEndpointResourceQuery} from '../../services/api';
-import {FeaturesRequest} from '../../types/requests';
-import StyledTitle from '../ui/texts/StyledTitle';
+import {SelectMenu} from '../../SelectMenu';
+import {useGetEndpointResourceQuery} from '../../../services/api';
+import {DamageTypeRequest} from '../../../types/requests';
+import StyledTitle from '../../ui/texts/StyledTitle';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import FeaturesComponent from '../dictionary/Features';
+import DamageTypeComponent from '../../dictionary/DamageType';
 
-export const DictionaryFeatures = () => {
+export const DictionaryDamageType = () => {
   const {data: classData, isLoading: isLoadingClass} =
-    useGetEndpointResourceQuery('features');
+    useGetEndpointResourceQuery('damage-types');
 
-  const [featureState, setFeature] =
-    useState<FeaturesRequest>('action-surge-1-use');
+  const [damageTypeState, setDamageType] = useState<DamageTypeRequest>('acid');
 
   if (isLoadingClass) {
     return <Text>Loading...</Text>;
@@ -20,19 +19,19 @@ export const DictionaryFeatures = () => {
   return (
     <>
       <SafeAreaView style={styles.safeview}>
-        <StyledTitle>Features</StyledTitle>
+        <StyledTitle>Damage Types</StyledTitle>
         <View style={styles.container}>
           <SelectMenu
             label=""
             onSelect={item => {
-              setFeature(item.index);
+              setDamageType(item.index);
             }}
             data={classData?.results ?? []}
           />
         </View>
         <ScrollView>
           <View style={styles.container}>
-            <FeaturesComponent input={featureState} />
+            <DamageTypeComponent input={damageTypeState} />
           </View>
         </ScrollView>
       </SafeAreaView>

@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {SelectMenu} from '../SelectMenu';
-import StyledTitle from '../ui/texts/StyledTitle';
+import {SelectMenu} from '../../SelectMenu';
+import StyledTitle from '../../ui/texts/StyledTitle';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {MonsterRequest} from '../../types/requests';
-import {useGetEndpointResourceQuery} from '../../services/api';
-import MonsterComponent from '../dictionary/Monsters';
+import {MonsterRequest} from '../../../types/requests';
+import {useGetEndpointResourceQuery} from '../../../services/api';
+import MonsterComponent from '../../dictionary/Monsters';
 
 export const DictionaryMonsterByIndex = () => {
-  const {data: classData, isLoading: isLoadingClass} =
-    useGetEndpointResourceQuery('monsters');
+  const {data: classData} = useGetEndpointResourceQuery('monsters');
   const [indexState, setIndex] = useState<MonsterRequest>('aboleth');
 
   return (
