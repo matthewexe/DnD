@@ -97,6 +97,14 @@ export const HomeDictionary = ({navigation}: Props) => {
               navigation.navigate('MulticlassingD');
             }}
           />
+
+          <DictionaryButton
+            text="Race"
+            // icon={require('@assets/Multiclassing.png')}
+            onPress={() => {
+              navigation.navigate('RaceD');
+            }}
+          />
         </View>
       </ScrollView>
     </>

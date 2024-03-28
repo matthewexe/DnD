@@ -1,11 +1,10 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {useGetAbilityScoreQuery} from '../../services/api';
-import {AbilityScoreRequest, ConditionRequest} from '../../types/requests';
+import {AbilityScoreRequest} from '../../types/requests';
 import {StyledLabel} from '../ui/texts/LabeldValueStyle';
 import {StyledText} from '../ui/texts/StyledText';
 import SkillComponent from './Skills';
-import {DescriptionText} from '../ui/texts/DescriptionText';
 import {PrimaryText} from '../ui/texts/PrimaryText';
 
 type Props = {

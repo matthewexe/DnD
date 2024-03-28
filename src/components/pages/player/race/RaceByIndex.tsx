@@ -3,17 +3,15 @@ import {Text, View} from 'react-native';
 import ExportTrait from './Trait';
 import SubraceByRace from './CheckSubraceByIndex';
 import TraitsComponent from './TraitsByRace';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {ScrollView} from 'react-native-gesture-handler';
 import {HomeScreenProps} from '../../../../routes/HomeProps';
 import {useGetRacesByIndexQuery} from '../../../../services/api';
 import {RaceIndexRequest, TraitsRequest} from '../../../../types/requests';
 import {StyledSubtitle} from '../../../ui/texts/StyledSubtitle';
 import {StyledText} from '../../../ui/texts/StyledText';
-import StyledTitle from '../../../ui/texts/StyledTitle';
 import {StyledLabeledValue} from '../../../ui/texts/StyledLabeledValue';
 import {StyledButton} from '../../../ui/StyledButton';
 import {NewPlayerView} from '../../../../views/NewPlayerView';
+import {convertFootToMeters} from 'utils/convertFootToMeters';
 
 type Props = HomeScreenProps<'NewPlayer_Race'>;
 
@@ -31,7 +29,7 @@ export default function RaceComponent({route, navigation}: Props) {
   //input per verificare le sottorazze.
 
   return (
-    <NewPlayerView title="Race">
+    <NewPlayerView title="Race" errorOnPress={() => {}}>
       <View>
         <StyledLabeledValue
           label="Name"
@@ -39,8 +37,8 @@ export default function RaceComponent({route, navigation}: Props) {
         />
 
         <StyledSubtitle>Speed</StyledSubtitle>
-        <StyledText>{data?.speed ?? 'speed not available'} piedi</StyledText>
-        {/* TODO: converti piedi in metri */}
+        <StyledText>{data?.speed ?? 'speed not available'}</StyledText>
+
         <StyledText>{data?.speed ?? 0} metri</StyledText>
 
         <StyledLabeledValue
@@ -52,7 +50,7 @@ export default function RaceComponent({route, navigation}: Props) {
           <Text key={index}>{language.name}</Text>
         ))}
         <StyledSubtitle>Traits:</StyledSubtitle>
-        {data?.traits?.map((traits, index) => (
+        {data?.traits?.map(traits => (
           <>
             <ExportTrait input={traits.index as TraitsRequest} />
           </>

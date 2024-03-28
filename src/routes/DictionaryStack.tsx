@@ -37,6 +37,8 @@ export type DictionaryStackParamList = {
   //--
   MonsterDByRange: undefined;
   //--
+  RaceD: undefined;
+  //--
 
   DictionaryClassLevels: {
     classInfo: Class;
