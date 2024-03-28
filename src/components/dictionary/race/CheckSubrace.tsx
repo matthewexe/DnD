@@ -1,12 +1,11 @@
 import React from 'react';
 import {Text} from 'react-native';
 import {useGetCheckSubRacesByIndexByRaceQuery} from '../../../services/api';
-import {RaceIndexRequest} from '../../../types/requests';
+import {RacesRequest} from '../../../types/requests';
 import {StyledText} from '../../ui/texts/StyledText';
-import Subrace from './Subrace';
 
 type Props = {
-  input: RaceIndexRequest;
+  input: RacesRequest;
 };
 
 //Serve per verificare se ci sono sottorazze disponibili si continua la ricerca, altrimenti si ignora
@@ -43,9 +42,9 @@ export default function CheckSubrace({input}: Props) {
                   <StyledText>{choice.name}</StyledText>
                 </>
               ))}
-            {data &&
-              data.results &&
-              data.results.map(choice => <Subrace input={choice.index} />)}
+            {/*  {data && 
+               data.results &&
+               data.results.map(choice => <Subrace input={choice.index} />)}*/}
           </>
         )}
       </>

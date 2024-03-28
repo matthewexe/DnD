@@ -20,16 +20,25 @@ export const DictionaryAbilityScores = () => {
   return (
     <>
       <StyledTitle>{'Ability Scores'}</StyledTitle>
-      <View style={styles.container}>
-        <View
-          style={{
-            width: 200,
-            height: 200,
-          }}>
-          <Image
-            source={require('@assets/Ability.png')} // Sostituisci con il percorso corretto
-            style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
-          />
+      <ScrollView>
+        <View style={styles.container}>
+          <View
+            style={{
+              width: 200,
+              height: 200,
+            }}>
+            <Image
+              source={require('@assets/Ability.png')} // Sostituisci con il percorso corretto
+              style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
+            />
+            <SelectMenu
+              label=""
+              onSelect={item => {
+                setAbilityScores(item.index);
+              }}
+              data={classData?.results ?? []}
+            />
+          </View>
           <SelectMenu
             label=""
             onSelect={item => {
@@ -38,15 +47,6 @@ export const DictionaryAbilityScores = () => {
             data={classData?.results ?? []}
           />
         </View>
-        <SelectMenu
-          label=""
-          onSelect={item => {
-            setAbilityScores(item.index);
-          }}
-          data={classData?.results ?? []}
-        />
-      </View>
-      <ScrollView>
         <AbilityScoresComponent input={abilityScoresState} />
       </ScrollView>
     </>

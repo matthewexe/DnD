@@ -7,8 +7,8 @@ import {StyledText} from '../../ui/texts/StyledText';
 import {StyledLabeledValue} from '../../ui/texts/StyledLabeledValue';
 import {convertFootToMeters} from '../../../utils/convertFootToMeters';
 import RaceTrait from './RaceTrait';
-import TraitByRace from './TraitByRace';
 import {ProficiencyReferenceOption} from 'types/responses';
+import CheckSubrace from './CheckSubrace';
 
 type Props = {
   input: RacesRequest;
@@ -33,7 +33,7 @@ export default function Race({input}: Props) {
         <StyledSubtitle>Speed</StyledSubtitle>
         {data && data.speed && (
           <StyledText>
-            {data.speed}foot or {convertFootToMeters(data.speed)} meters
+            {data.speed} foot or {convertFootToMeters(data.speed)}
           </StyledText>
         )}
 
@@ -41,10 +41,17 @@ export default function Race({input}: Props) {
           label="Stature"
           value={data?.size ?? 'stature not available'}
         />
-        <StyledText>Languages:</StyledText>
-        {data?.languages?.map((language, index) => (
-          <Text key={index}>{language.name}</Text>
-        ))}
+        {data && data.languages && (
+          <StyledLabeledValue
+            label={'Languages'}
+            value={data?.languages?.map((language, index) => (
+              <StyledText key={index}>
+                {language.name}
+                {'\n'}
+              </StyledText>
+            ))}
+          />
+        )}
         <StyledSubtitle>Traits:</StyledSubtitle>
         {data?.traits?.map(traits => (
           <>
@@ -58,22 +65,24 @@ export default function Race({input}: Props) {
           </StyledText>
         ))}
         {/*NB: per ogni razza ci sono ipoteticamente dei bonus da aggiungere su determinate caratteriistiche "index"  di un certo amount "bonus". */}
-        {data && data.starting_proficiencies && (
-          <StyledSubtitle>Proficiencies</StyledSubtitle>
+        {data && data.starting_proficiencies.length > 0 && (
+          <StyledLabeledValue
+            label={'Proficiencies'}
+            value={data.starting_proficiencies.map(choice => (
+              <StyledText>
+                {choice.name}
+                {'\n'}
+              </StyledText>
+            ))}
+          />
         )}
 
-        {data &&
-          data.starting_proficiencies &&
-          data.starting_proficiencies.map(choice => (
-            <StyledText>{choice.name}</StyledText>
-          ))}
-
-        <StyledSubtitle>Traits of the breed:</StyledSubtitle>
-        <TraitByRace input={input} />
+        {/* <StyledSubtitle>Traits of the breed:</StyledSubtitle> */}
+        {/* <TraitByRace input={input} /> */}
 
         {data && data.starting_proficiency_options && (
           <StyledLabeledValue
-            label={'Available options:'}
+            label={'Available options'}
             value={data.starting_proficiency_options.choose.toString() ?? '0'}
           />
         )}
@@ -110,6 +119,7 @@ export default function Race({input}: Props) {
           label="The size of your species"
           value={data?.size_description ?? 'Height description not available'}
         />
+        <CheckSubrace input={input} />
       </View>
     </>
   );

@@ -20,28 +20,29 @@ export const DictionaryFeatures = () => {
   return (
     <>
       <SafeAreaView style={styles.safeview}>
-        <StyledTitle>Features</StyledTitle>
-        <View style={styles.container}>
-          <View
-            style={{
-              width: 200,
-              height: 200,
-              borderRadius: 1000,
-            }}>
-            <Image
-              source={require('@assets/Features.png')} // Sostituisci con il percorso corretto
-              style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
+        <ScrollView>
+          <StyledTitle>Features</StyledTitle>
+          <View style={styles.container}>
+            <View
+              style={{
+                width: 200,
+                height: 200,
+                borderRadius: 1000,
+              }}>
+              <Image
+                source={require('@assets/Features.png')} // Sostituisci con il percorso corretto
+                style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
+              />
+            </View>
+            <SelectMenu
+              label=""
+              onSelect={item => {
+                setFeature(item.index);
+              }}
+              data={classData?.results ?? []}
             />
           </View>
-          <SelectMenu
-            label=""
-            onSelect={item => {
-              setFeature(item.index);
-            }}
-            data={classData?.results ?? []}
-          />
-        </View>
-        <ScrollView>
+
           <View style={styles.container}>
             <FeaturesComponent input={featureState} />
           </View>

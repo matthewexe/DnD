@@ -15,6 +15,7 @@ import {DictionaryMonsterByIndex} from '../components/pages/dictionary/Dictionar
 import {DictionaryMonsterByLevel} from '../components/pages/dictionary/DictionaryMonsterByLevel';
 import {DictionaryMulticlassing} from '../components/pages/dictionary/DictionaryMulticlassing';
 import {DictionaryRace} from '../components/pages/dictionary/DictionaryRace';
+import {DictionarySubrace} from '../components/pages/dictionary/DictionarySubrace';
 
 const Stack = createNativeStackNavigator<DictionaryStackParamList>();
 
@@ -33,6 +34,7 @@ export function Dictionary() {
       <Stack.Screen name="MonstersD" component={DictionaryHomeMonsters} />
       <Stack.Screen name="MulticlassingD" component={DictionaryMulticlassing} />
       <Stack.Screen name="RaceD" component={DictionaryRace} />
+      <Stack.Screen name="SubraceD" component={DictionarySubrace} />
       <Stack.Screen
         name="MonsterDByName"
         component={DictionaryMonsterByIndex}

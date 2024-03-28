@@ -99,10 +99,18 @@ export const HomeDictionary = ({navigation}: Props) => {
           />
 
           <DictionaryButton
-            text="Race"
-            // icon={require('@assets/Multiclassing.png')}
+            text="Races"
+            icon={require('@assets/Races.png')}
             onPress={() => {
               navigation.navigate('RaceD');
+            }}
+          />
+
+          <DictionaryButton
+            text="Subraces"
+            icon={require('@assets/Subraces.png')}
+            onPress={() => {
+              navigation.navigate('SubraceD');
             }}
           />
         </View>

@@ -1,47 +1,80 @@
-import React from 'react';
-import {Text} from 'react-native';
-import {useGetSubRacesByIndexQuery} from '../../../services/api';
+import React, {useState} from 'react';
+import {
+  Image,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import {useGetEndpointResourceQuery} from '../../../services/api';
 import {SubraceIndexRequest} from '../../../types/requests';
-import ExportTrait from './DictionaryTrait';
-import {TraitsRequest} from '../../../types/requests';
+import StyledTitle from '../../ui/texts/StyledTitle';
+import {SelectMenu} from '../../ui/SelectMenu';
+import Subrace from '../../dictionary/race/Subrace';
 
-//Serve per verificare se ci sono sottorazze disponibili si continua la ricerca, altrimenti si ignora
-export default function SubraceByIndexComponent({
-  input,
-}: {
-  input: SubraceIndexRequest;
-}) {
-  const {data, error, isLoading, isFetching} = useGetSubRacesByIndexQuery({
-    index: input,
-  });
+export const DictionarySubrace = () => {
+  const {data: classData, isLoading: isLoadingClass} =
+    useGetEndpointResourceQuery('subraces');
 
-  if (error) return <Text>error in fetching</Text>;
-  if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) return <Text>wait for response from the server</Text>;
+  const [subraceState, setSubrace] = useState<SubraceIndexRequest>('high-elf');
+
+  if (isLoadingClass) {
+    return <Text>Loading...</Text>;
+  }
   return (
-    <>
-      <Text>The subrace {data?.name} has available:</Text>
-      <Text>{data?.desc}</Text>
-      <Text>Your skills:</Text>
-      {data?.ability_bonuses.map((choice, ability_score) => (
-        <>
-          <Text key={ability_score}>{choice.bonus} bonus point in:</Text>
-          <Text key={ability_score}>{choice.ability_score.name}</Text>
-        </>
-      ))}
-      {data?.starting_proficiencies.map((choice, index) => (
-        <Text key={index}>{choice.name}</Text>
-      ))}
-      <Text>You can choose {data?.language_options?.choose} lenguages:</Text>
-      {data?.language_options?.from.options.map((choice, index) => (
-        <Text key={index}>{choice.item.name}</Text>
-      ))}
-      {data?.racial_traits.map((choice, index) => (
-        <>
-          <Text key={index}>{choice.name}</Text>
-          <ExportTrait input={choice.index as TraitsRequest} />
-        </>
-      ))}
-    </>
+    <SafeAreaView style={styles.safeview}>
+      <ScrollView>
+        <StyledTitle>Subraces</StyledTitle>
+        <View style={styles.container}>
+          <View
+            style={{
+              width: 200,
+              height: 200,
+              borderRadius: 1000,
+            }}>
+            <Image
+              source={require('@assets/Subraces.png')}
+              style={{width: '100%', height: '100%', borderRadius: 1000}}
+            />
+          </View>
+          <SelectMenu
+            label=""
+            onSelect={item => {
+              setSubrace(item.index);
+            }}
+            data={classData?.results ?? []}
+          />
+        </View>
+
+        <View style={styles.main}>
+          <Subrace input={subraceState} />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  rowStyle: {
+    flexDirection: 'row',
+  },
+  container: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    padding: 30,
+    flexDirection: 'column', // o 'column' per bottoni verticali
+    justifyContent: 'space-between', // Distribuisce uniformemente lo spazio
+  },
+  main: {
+    padding: 30,
+    flexDirection: 'column', // o 'column' per bottoni verticali
+    justifyContent: 'space-between', // Distribuisce uniformemente lo spazio
+  },
+  button: {
+    margin: 10, // Distanzia i bottoni l'uno dall'altro
+  },
+  safeview: {
+    bottom: 10,
+  },
+});

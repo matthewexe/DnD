@@ -39,6 +39,8 @@ export type DictionaryStackParamList = {
   //--
   RaceD: undefined;
   //--
+  SubraceD: undefined;
+  //--
 
   DictionaryClassLevels: {
     classInfo: Class;
