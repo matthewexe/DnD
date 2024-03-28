@@ -130,8 +130,6 @@ export const api = createApi({
       ],
     }),
 
-    //Classi-Multiclassi?-Sottoclassi
-
     getClassByIndex: builder.query<ClassResponse, ClassRequest>({
       query: ({index}) => `classes/${index}`,
       providesTags: (result, error, {index}) => [{type: 'Class', id: index}],
@@ -170,8 +168,6 @@ export const api = createApi({
         {type: 'SpellForClass', id: index},
       ],
     }),
-
-    //getMulticlassing   --->manca lo mettiamo?
 
     getSubClassesAvilableByIndex: builder.query<
       SubclassByClassResponse,

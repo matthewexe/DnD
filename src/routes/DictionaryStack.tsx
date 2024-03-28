@@ -1,9 +1,5 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {
-  NativeStackScreenProps,
-  createNativeStackNavigator,
-} from '@react-navigation/native-stack';
-import {
-  ClassIndexRequest,
   ConditionRequest,
   DamageTypeRequest,
   MagicSchoolRequest,
@@ -32,6 +28,8 @@ export type DictionaryStackParamList = {
   MagicSchoolD: undefined;
   //--
   FeaturesD: undefined;
+  //--
+  MulticlassingD: undefined;
   //--
   MonstersD: undefined;
   //--

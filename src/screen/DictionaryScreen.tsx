@@ -1,17 +1,19 @@
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {DictionaryStackParamList} from '../routes/DictionaryStack';
-import {HomeDictionary} from '../components/pages/HomeDictionary';
-import {DictionaryClass} from '../components/pages/DictionaryClass';
-import {DictionaryAlignament} from '../components/pages/DictionaryAlignament';
-import {DictionaryCondition} from '../components/pages/DictionaryCondition';
-import {DictionaryDamageType} from '../components/pages/DictionaryDamageType';
-import {DictionaryAbilityScores} from '../components/pages/DictionaryAbilityScores';
-import {DictionaryLanguages} from '../components/pages/DictionaryLanguages';
-import {DictionaryMagicSchool} from '../components/pages/DictionaryMagicSchool';
-import {DictionaryFeatures} from '../components/pages/DictionaryFeatures';
-import {DictionaryHomeMonsters} from '../components/pages/DictionaryHomeMonsters';
-import {DictionaryMonsterByIndex} from '../components/pages/DictionaryMonsterByIndex';
-import {DictionaryMonsterByLevel} from '../components/pages/DictionaryMonsterByLevel';
+import {HomeDictionary} from '../components/pages/dictionary/HomeDictionary';
+import {DictionaryClass} from '../components/pages/dictionary/DictionaryClass';
+import {DictionaryAlignament} from '../components/pages/dictionary/DictionaryAlignament';
+import {DictionaryCondition} from '../components/pages/dictionary/DictionaryCondition';
+import {DictionaryDamageType} from '../components/pages/dictionary/DictionaryDamageType';
+import {DictionaryAbilityScores} from '../components/pages/dictionary/DictionaryAbilityScores';
+import {DictionaryLanguages} from '../components/pages/dictionary/DictionaryLanguages';
+import {DictionaryMagicSchool} from '../components/pages/dictionary/DictionaryMagicSchool';
+import {DictionaryFeatures} from '../components/pages/dictionary/DictionaryFeatures';
+import {DictionaryHomeMonsters} from '../components/pages/dictionary/DictionaryHomeMonsters';
+import {DictionaryMonsterByIndex} from '../components/pages/dictionary/DictionaryMonsterByIndex';
+import {DictionaryMonsterByLevel} from '../components/pages/dictionary/DictionaryMonsterByLevel';
+import {DictionaryMulticlassing} from '../components/pages/dictionary/DictionaryMulticlassing';
 
 const Stack = createNativeStackNavigator<DictionaryStackParamList>();
 
@@ -28,6 +30,7 @@ export function Dictionary() {
       <Stack.Screen name="MagicSchoolD" component={DictionaryMagicSchool} />
       <Stack.Screen name="FeaturesD" component={DictionaryFeatures} />
       <Stack.Screen name="MonstersD" component={DictionaryHomeMonsters} />
+      <Stack.Screen name="MulticlassingD" component={DictionaryMulticlassing} />
       <Stack.Screen
         name="MonsterDByName"
         component={DictionaryMonsterByIndex}
