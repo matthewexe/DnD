@@ -6,7 +6,7 @@ import {
 } from '../types/requests';
 import {Class} from '../types/responses';
 import {CompositeScreenProps} from '@react-navigation/native';
-import {RootTabScreenProps, RootTabParamList} from './RootParamList';
+import {RootTabScreenProps, RootParamList} from './RootProps';
 
 export type DictionaryStackParamList = {
   Dictionary: undefined;
@@ -58,5 +58,5 @@ export type DictionaryStackScreenProps<
   T extends keyof DictionaryStackParamList,
 > = CompositeScreenProps<
   NativeStackScreenProps<DictionaryStackParamList, T>,
-  RootTabScreenProps<keyof RootTabParamList>
+  RootTabScreenProps<keyof RootParamList>
 >;

@@ -20,7 +20,7 @@ export const MonsterSpecialAbilities = ({special_abilities}: Props) => {
           {special_abilities.name}
         </PrimaryText>
       )}
-      <View style={styles.spece}></View>
+      <View style={styles.spece} />
 
       {special_abilities.damage &&
         special_abilities.damage.length > 0 &&
