@@ -7,6 +7,10 @@ import {
   EquipmentMultipleOption,
   EquipmentOption,
   EquipmentOptionSet,
+  ProficiencyChoice,
+  ProficiencyChoiceOption,
+  ProficiencyOption,
+  ProficiencyReferenceOption,
   StartingEquipmentOptionSet,
 } from '../types/responses';
 
@@ -129,3 +133,40 @@ export namespace EquipmentConverter {
     );
   }
 }
+
+export namespace ProficiencyConverter {
+  export type NamedReference = {
+    name: string;
+    index: string;
+  };
+
+  export function ProficiencyReferenceOptionToIndex(
+    reference: ProficiencyReferenceOption,
+  ): NamedReference {
+    return {
+      index: reference.item.index,
+      name: reference.item.name,
+    };
+  }
+
+  export function ProficiencyOptionToIndex(
+    option: ProficiencyOption,
+  ): NamedReference | undefined {
+    if (option.__typename === 'ProficiencyChoiceOption') {
+      return undefined;
+    }
+    return ProficiencyReferenceOptionToIndex(
+      option as ProficiencyReferenceOption,
+    );
+  }
+
+  export function ProficiencyOptionsToIndex(
+    options: ProficiencyOption[],
+  ): NamedReference[] {
+    return options
+      .map(option => ProficiencyOptionToIndex(option))
+      .filter(value => value !== undefined) as NamedReference[];
+  }
+}
+
+export namespace APIIndexes {}

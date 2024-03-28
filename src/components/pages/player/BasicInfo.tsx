@@ -39,11 +39,6 @@ export const BasicInfo = ({navigation, route}: Props) => {
   const levelTimeout = useRef<NodeJS.Timeout | null>(null);
   const experienceTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  // if (isLoadingRace) {
-  //   return <Loading />;
-  // }
-  // TODO: Loading/Error
-
   const changeExperience = (value: string) => {
     clearTimeout(experienceTimeout.current as NodeJS.Timeout);
 
@@ -84,7 +79,7 @@ export const BasicInfo = ({navigation, route}: Props) => {
   }
 
   return (
-    <NewPlayerView title="Basic Info">
+    <NewPlayerView title="Basic Info" errorOnPress={() => {}}>
       <StyledSubtitle>Let's Begin</StyledSubtitle>
 
       <InputText
@@ -126,7 +121,7 @@ export const BasicInfo = ({navigation, route}: Props) => {
         label="Character Race"
         defaultValue={userData.current.race}
         onSelect={item => {
-          userData.current.race = item.item;
+          userData.current.race = item.index;
         }}
         data={raceData?.results ?? []}
       />
@@ -144,6 +139,7 @@ export const BasicInfo = ({navigation, route}: Props) => {
         <StyledButton
           text="Next   >"
           onPress={() => {
+            console.log(userData.current);
             navigation.navigate('NewPlayer_Race', {
               gameId: gameId,
               playerData: userData.current,

@@ -1,13 +1,12 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 import CheckBox from '@react-native-community/checkbox';
-import { StyleSheet, View } from 'react-native';
-import { CheckBoxProps } from '@react-native-community/checkbox';
+import {StyleSheet, View} from 'react-native';
+import {CheckBoxProps} from '@react-native-community/checkbox';
 import customTheme2 from '../../constants/theme';
 
-type Props = Omit<CheckBoxProps, 'value' | 'onValueChange'> & {
-  onValueChange?: (value: boolean) => void;
+type Props = CheckBoxProps & {
   text: string;
 };
 

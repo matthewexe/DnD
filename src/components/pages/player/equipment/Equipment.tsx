@@ -25,7 +25,11 @@ export const Equipment = ({route, navigation}: Props) => {
   // TODO: loading/error
 
   return (
-    <NewPlayerView title="Equipment">
+    <NewPlayerView
+      title="Equipment"
+      loading={false}
+      error={undefined}
+      errorOnPress={() => {}}>
       <View>
         <StyledSubtitle>Starting Equipment</StyledSubtitle>
         {data?.starting_equipment?.map((choice, index) => (

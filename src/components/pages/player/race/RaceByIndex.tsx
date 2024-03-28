@@ -3,14 +3,11 @@ import {Text, View} from 'react-native';
 import ExportTrait from './Trait';
 import SubraceByRace from './CheckSubraceByIndex';
 import TraitsComponent from './TraitsByRace';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {ScrollView} from 'react-native-gesture-handler';
 import {HomeScreenProps} from '../../../../routes/HomeProps';
 import {useGetRacesByIndexQuery} from '../../../../services/api';
 import {RaceIndexRequest, TraitsRequest} from '../../../../types/requests';
 import {StyledSubtitle} from '../../../ui/texts/StyledSubtitle';
 import {StyledText} from '../../../ui/texts/StyledText';
-import StyledTitle from '../../../ui/texts/StyledTitle';
 import {StyledLabeledValue} from '../../../ui/texts/StyledLabeledValue';
 import {StyledButton} from '../../../ui/StyledButton';
 import {NewPlayerView} from '../../../../views/NewPlayerView';
@@ -20,6 +17,8 @@ type Props = HomeScreenProps<'NewPlayer_Race'>;
 export default function RaceComponent({route, navigation}: Props) {
   const input = route.params.playerData.race as RaceIndexRequest;
   const userData = useRef(route.params.playerData);
+
+  console.log(route.params.playerData);
 
   const {data, error, isLoading, isFetching} = useGetRacesByIndexQuery({
     index: input,
@@ -31,7 +30,11 @@ export default function RaceComponent({route, navigation}: Props) {
   //input per verificare le sottorazze.
 
   return (
-    <NewPlayerView title="Race">
+    <NewPlayerView
+      title="Race"
+      loading={false}
+      error={undefined}
+      errorOnPress={() => {}}>
       <View>
         <StyledLabeledValue
           label="Name"

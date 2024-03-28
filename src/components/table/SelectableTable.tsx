@@ -9,6 +9,7 @@ type TableProps = {
   max_selectbale: number;
   head: string[];
   data: string[][];
+  onValueChange?: (value: number[]) => void;
 };
 
 type RowProps = {
@@ -52,17 +53,29 @@ const Row = ({data, index, isChecked, canCheck = true, onSelect}: RowProps) => {
     </View>
   );
 };
-export const SelectableTable = ({head, data, max_selectbale}: TableProps) => {
+
+export const SelectableTable = ({
+  head,
+  data,
+  max_selectbale,
+  onValueChange,
+}: TableProps) => {
   const {colors} = useTheme();
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
 
+  console.log(max_selectbale);
+
   const onSelectedRow = (index: number) => {
-    console.log('Selected row:', selectedRows);
+    console.log(selectedRows);
     if (selectedRows.includes(index)) {
-      setSelectedRows(selectedRows.filter(rowId => rowId !== index));
+      const indexArray = selectedRows.filter(rowId => rowId !== index);
+      setSelectedRows(indexArray);
+      onValueChange && onValueChange(indexArray);
     } else {
       if (selectedRows.length < max_selectbale) {
-        setSelectedRows([...selectedRows, index]);
+        const indexArray = [...selectedRows, index];
+        setSelectedRows(indexArray);
+        onValueChange && onValueChange(indexArray);
       } else {
         // Optionally show an alert or notification that the max has been reached
         console.log('Maximum selection reached');

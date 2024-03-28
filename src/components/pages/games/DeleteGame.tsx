@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {HomeScreenProps} from '../../../routes/HomeProps';
 import {useQuery, useRealm} from '@realm/react';
 import {Game} from '../../../models/Game';
@@ -12,42 +12,29 @@ type Props = HomeScreenProps<'DeleteGame'>;
 export const DeleteGame = ({route, navigation}: Props) => {
   const realm = useRealm();
 
-  const [successModalVisible, setSuccessModalVisible] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | undefined>(undefined);
-
   const gameId = route.params.gameId;
   const game = useQuery<Game>(Game, results => {
     return results.filtered('id == $0', gameId);
   })[0];
 
   const errorStatus = () => {
-    if (!game.isValid()) {
-      return 'Invalid Game';
-    } else if (error !== undefined) {
-      return error;
-    }
     return undefined;
   };
 
   const deleteGame = () => {
     realm.write(() => {
-      setLoading(true);
-
-      const result = realm.delete(game);
-
-      setLoading(false);
-      if (result !== undefined) {
-        setError('Error deleting game');
-      } else {
-        setError(undefined);
-        setSuccessModalVisible(true);
-      }
+      realm.delete(game);
     });
+    navigation.navigate('ListGame');
   };
 
   return (
-    <NewPlayerView title="Delete Game" error={errorStatus()} errorOnPress={}>
+    <NewPlayerView
+      title="Delete Game"
+      error={errorStatus()}
+      errorOnPress={() => {
+        navigation.navigate('ListGame');
+      }}>
       {game && (
         <View>
           <View>
@@ -58,7 +45,6 @@ export const DeleteGame = ({route, navigation}: Props) => {
             />
           </View>
           <View>
-            {/* TODO: Modal delete game */}
             <StyledButton text="Delete Game" onPress={() => deleteGame()} />
           </View>
         </View>
