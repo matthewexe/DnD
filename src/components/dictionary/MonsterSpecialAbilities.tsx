@@ -34,7 +34,7 @@ export const MonsterSpecialAbilities = ({special_abilities}: Props) => {
       {special_abilities.spellcasting && (
         <MonsterSpellCasting spell={special_abilities.spellcasting} />
       )}
-      <View style={styles.spece}></View>
+      <View style={styles.spece} />
     </>
   );
 };

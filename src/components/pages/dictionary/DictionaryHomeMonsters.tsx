@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import {DictionaryButton} from '../../ui/buttons/DictionaryButton';
 import {DictionaryStackScreenProps} from '../../../routes/DictionaryStack';
 import StyledTitle from '../../ui/texts/StyledTitle';
@@ -11,6 +11,17 @@ export const DictionaryHomeMonsters = ({navigation}: Props) => {
     <>
       <StyledTitle>Monsters</StyledTitle>
       <View style={styles.container}>
+        <View
+          style={{
+            width: 200,
+            height: 200,
+            borderRadius: 1000,
+          }}>
+          <Image
+            source={require('@assets/Monsters.png')} // Sostituisci con il percorso corretto
+            style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
+          />
+        </View>
         <DictionaryButton
           text="Monster by name"
           icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
@@ -33,8 +44,10 @@ export const DictionaryHomeMonsters = ({navigation}: Props) => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'center',
-    padding: 250,
+    alignItems: 'center',
+    padding: 25,
     flexDirection: 'column', // o 'column' per bottoni verticali
-    justifyContent: 'space-between', // Distribuisce uniformemente lo spazio
+    justifyContent: 'center', // Distribuisce uniformemente lo spazio
+    flex: 1,
   },
 });

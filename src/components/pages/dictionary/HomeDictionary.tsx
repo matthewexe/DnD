@@ -92,7 +92,7 @@ export const HomeDictionary = ({navigation}: Props) => {
 
           <DictionaryButton
             text="Multiclassing"
-            // icon={require('../../assets/Languages.png')}
+            icon={require('@assets/Multiclassing.png')}
             onPress={() => {
               navigation.navigate('MulticlassingD');
             }}

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Image} from 'react-native';
 import {SelectMenu} from '../../ui/SelectMenu';
 import {useGetEndpointResourceQuery} from '../../../services/api';
 import {ClassIndexRequest} from '../../../types/requests';
@@ -20,6 +20,16 @@ export const DictionaryMulticlassing = () => {
     <>
       <StyledTitle>{'Multiclassing'}</StyledTitle>
       <View style={styles.container}>
+        <View
+          style={{
+            width: 200,
+            height: 200,
+          }}>
+          <Image
+            source={require('@assets/Multiclassing.png')} // Sostituisci con il percorso corretto
+            style={{width: '100%', height: '100%', borderRadius: 60}} // Stili per l'immagine per farla adattare alla View
+          />
+        </View>
         <SelectMenu
           label=""
           onSelect={item => {
@@ -41,6 +51,7 @@ const styles = StyleSheet.create({
   },
   container: {
     alignSelf: 'center',
+    alignItems: 'center',
     padding: 30,
     flexDirection: 'column', // o 'column' per bottoni verticali
     justifyContent: 'space-between', // Distribuisce uniformemente lo spazio
