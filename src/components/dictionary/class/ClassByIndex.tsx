@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {Text, View} from 'react-native';
 import FeaturesByClassComponent from './FeaturesByClass';
-import ProficiencyByClassComponent from './ProficiencyByClass';
+import ProficiencyByClassComponent from './ProficiencyD';
 import SubclassComponent from './SubclassByClass';
 import {useGetClassByIndexQuery} from '../../../services/api';
 import {ClassIndexRequest, Subclasstypes} from '../../../types/requests';
@@ -11,6 +11,7 @@ import {HomeScreenProps} from '../../../routes/HomeProps';
 import {StyledLabeledValue} from '../../ui/texts/StyledLabeledValue';
 import {StyledButton} from '../../ui/StyledButton';
 import {NewPlayerView} from '../../../views/NewPlayerView';
+import ProficiencyD from './ProficiencyD';
 
 type Props = HomeScreenProps<'NewPlayer_Class'>;
 
@@ -31,32 +32,35 @@ export default function ClassComponent({route, navigation}: Props) {
     <>
       <View>
         <StyledLabeledValue
-          label="Nome"
+          label="Name"
           value={data?.name ?? 'classe non disponibile'}
         />
         <StyledLabeledValue
-          label={'Dado Vita'}
+          label={'Hit Die'}
           value={data?.hit_die.toString() ?? 'mancante'}
         />
-        <StyledSubtitle>Abilità di base:</StyledSubtitle>
+        <StyledSubtitle>Base Abilities</StyledSubtitle>
         {data?.proficiencies?.map((choice, index) => (
           <StyledText key={index}>{choice.name}</StyledText>
         ))}
 
-        <StyledSubtitle>Abilità</StyledSubtitle>
-        <StyledText>Scegli le tue Abilità:</StyledText>
-        {/* TODO: tabella per scegliere le abilità
-    {data?.proficiency_choices?.map((choice, index) => (
-      <View>
-        <Text>Scegli al massimo {choice.choose} abilità</Text>
-        <Text>{choice.desc}</Text>
-        {choice.from.options.map((option, optionIndex) => (
-          <ProficiencyComponent option={option} />
-        ))}
-      </View>
-    ))} */}
+        <StyledSubtitle>Abilities</StyledSubtitle>
+        <StyledText>Choose your abilities</StyledText>
 
-        <StyledSubtitle>Tiri salvezza:</StyledSubtitle>
+        {data?.proficiency_choices?.map(choice => (
+          <View>
+            <StyledText>You can choose {choice.choose} abilities:</StyledText>
+            <StyledText>{choice.desc}</StyledText>
+            {choice &&
+              choice.from &&
+              choice.from.options &&
+              choice.from.options.map(option => (
+                <ProficiencyD input={option} />
+              ))}
+          </View>
+        ))}
+
+        <StyledSubtitle>Saving throws</StyledSubtitle>
         {data?.saving_throws?.map((choice, index) => (
           <StyledText key={index}>{choice.name}</StyledText>
         ))}

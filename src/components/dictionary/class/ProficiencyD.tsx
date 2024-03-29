@@ -1,12 +1,9 @@
 import {Text} from 'react-native';
-import {useGetProficienciesForClassByIndexQuery} from '../../../../services/api';
-import {ClassIndexRequest} from '../../../../types/requests';
+import {useGetProficienciesForClassByIndexQuery} from '../../../services/api';
+import {ClassIndexRequest} from '../../../types/requests';
+import {StyledText} from '../../ui/texts/StyledText';
 
-export default function ProficiencyByClassComponent({
-  input,
-}: {
-  input: ClassIndexRequest;
-}) {
+export default function ProficiencyD({input}: {input: ClassIndexRequest}) {
   const {data, error, isLoading, isFetching} =
     useGetProficienciesForClassByIndexQuery({
       index: input,
@@ -17,9 +14,9 @@ export default function ProficiencyByClassComponent({
   if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
     <>
-      <Text>Hai {data?.count} competenze:</Text>
+      <StyledText>You have {data?.count} proficiencies:</StyledText>
       {data?.results.map((choice, index) => (
-        <Text key={index}>{choice.name}</Text>
+        <StyledText key={index}>{choice.name}</StyledText>
       ))}
     </>
   );
