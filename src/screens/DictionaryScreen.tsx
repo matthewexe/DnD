@@ -16,6 +16,7 @@ import {DictionaryMonsterByLevel} from '../components/pages/dictionary/Dictionar
 import {DictionaryMulticlassing} from '../components/pages/dictionary/DictionaryMulticlassing';
 import {DictionaryRace} from '../components/pages/dictionary/DictionaryRace';
 import {DictionarySubrace} from '../components/pages/dictionary/DictionarySubrace';
+import {DictionaryClassByLevel} from '../components/pages/dictionary/DictionaryClassByLevel';
 
 const Stack = createNativeStackNavigator<DictionaryStackParamList>();
 
@@ -24,6 +25,7 @@ export function Dictionary() {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Dictionary" component={HomeDictionary} />
       <Stack.Screen name="ClassD" component={DictionaryClass} />
+      <Stack.Screen name="ClassLevelsD" component={DictionaryClassByLevel} />
       <Stack.Screen name="AlignamentD" component={DictionaryAlignament} />
       <Stack.Screen name="ConditionD" component={DictionaryCondition} />
       <Stack.Screen name="DamegeTypeD" component={DictionaryDamageType} />

@@ -40,6 +40,7 @@ export const HomeDictionary = ({navigation}: Props) => {
           />
           <DictionaryButton
             text="Class Levels"
+            icon={require('@assets/Class.png')}
             onPress={() => {
               navigation.navigate('ClassLevelsD');
             }}

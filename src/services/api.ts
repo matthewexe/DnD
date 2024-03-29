@@ -5,7 +5,6 @@ import {
   Background as BackgroundResponse,
   Class as ClassResponse,
   ProficiencyReference as EquipmentResponse,
-  Feature as FeatureResponse,
   Language as LanguageResponse,
   Race as RaceResponse,
   ResourceList,
@@ -252,7 +251,7 @@ export const api = createApi({
 
     //credo sia sbagliata, non trovo la response adeguata
     getFeaturesByIndexByLevel: builder.query<
-      FeatureResponse,
+      Feature,
       ClassLevelResourceRequest
     >({
       query: ({index, class_level}) =>

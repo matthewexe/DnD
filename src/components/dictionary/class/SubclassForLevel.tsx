@@ -1,10 +1,10 @@
 import React from 'react';
 import {Text} from 'react-native';
 import Features from './Features';
-import {useGetSubClassesforLevelQuery} from '../../../../services/api';
-import {Subclasstypes, FeaturesRequest} from '../../../../types/requests';
-import {LabeledValue} from '../../../ui/LabeledValue';
-import {StyledText} from '../../../ui/texts/StyledText';
+import {useGetSubClassesforLevelQuery} from '../../../services/api';
+import {Subclasstypes, FeaturesRequest} from '../../../types/requests';
+import {LabeledValue} from '../../ui/LabeledValue';
+import {StyledText} from '../../ui/texts/StyledText';
 
 type Props = {
   input: Subclasstypes;
@@ -19,7 +19,7 @@ export default function SubclassForLevel({input}: Props) {
   if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
     <>
-      <LabeledValue label={'Livello:'} value={`${data?.level}`} />
+      <LabeledValue label={'Level:'} value={`${data?.level}`} />
       {data?.features.map(choice => (
         <>
           <StyledText>{choice.name}</StyledText>

@@ -29,7 +29,7 @@ export const DictionaryClass = () => {
               }}>
               <Image
                 source={require('@assets/Class.png')}
-                style={{width: '100%', height: '100%', borderRadius: 60}}
+                style={{width: '100%', height: '100%', borderRadius: 1000}}
               />
             </View>
             <SelectMenu

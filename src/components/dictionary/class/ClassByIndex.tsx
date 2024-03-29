@@ -8,6 +8,7 @@ import {StyledSubtitle} from '../../ui/texts/StyledSubtitle';
 import {StyledText} from '../../ui/texts/StyledText';
 import {StyledLabeledValue} from '../../ui/texts/StyledLabeledValue';
 import {Proficiency} from './Proficiency';
+import SubclassByClass from './SubclassByClass';
 
 type Props = {
   input: ClassIndexRequest;
@@ -43,7 +44,9 @@ export default function ClassByIndex({input}: Props) {
         {data?.proficiency_choices?.map(choice => (
           <View>
             <View style={styles.space} />
-            <StyledText>You can choose {choice.choose} abilities:</StyledText>
+            <StyledText>
+              You can choose {choice.choose} from the following list:
+            </StyledText>
             <View style={styles.space} />
             {/* <StyledText>{choice.desc}</StyledText> */}
             {choice.from.options.map(option => (
@@ -71,6 +74,8 @@ export default function ClassByIndex({input}: Props) {
             {')'}
           </StyledText>
         ))}
+        <View style={styles.space} />
+        <SubclassByClass input={input} />
         {/*<Text>Scegli ulteriore equipaggiamento:</Text>
   {data?.starting_equipment_options?.map((choice, index) => (
     <EquipmentOptionComponent choice={choice} />
