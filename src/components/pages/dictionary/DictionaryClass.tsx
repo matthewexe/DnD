@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SelectMenu} from '../../ui/SelectMenu';
 import {useGetEndpointResourceQuery} from '../../../services/api';
 import {ClassIndexRequest} from '../../../types/requests';
-import ClassComponent from '../player/class/ClassByIndex';
 import StyledTitle from '../../ui/texts/StyledTitle';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import ClassByIndex from '../../dictionary/class/ClassByIndex';
 
 export const DictionaryClass = () => {
   const {data: classData, isLoading: isLoadingClass} =
@@ -19,19 +19,29 @@ export const DictionaryClass = () => {
   return (
     <>
       <SafeAreaView style={styles.safeview}>
-        <StyledTitle>Character Class</StyledTitle>
-        <View style={styles.container}>
-          <SelectMenu
-            label=""
-            onSelect={item => {
-              setClass(item.index);
-            }}
-            data={classData?.results ?? []}
-          />
-        </View>
         <ScrollView>
+          <StyledTitle>Classes</StyledTitle>
           <View style={styles.container}>
-            <ClassComponent input={classState} />
+            <View
+              style={{
+                width: 200,
+                height: 200,
+              }}>
+              <Image
+                source={require('@assets/Class.png')}
+                style={{width: '100%', height: '100%', borderRadius: 60}}
+              />
+            </View>
+            <SelectMenu
+              label=""
+              onSelect={item => {
+                setClass(item.index);
+              }}
+              data={classData?.results ?? []}
+            />
+          </View>
+          <View style={styles.total}>
+            <ClassByIndex input={classState} />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -40,17 +50,16 @@ export const DictionaryClass = () => {
 };
 
 const styles = StyleSheet.create({
-  rowStyle: {
-    flexDirection: 'row',
-  },
   container: {
     alignSelf: 'center',
     padding: 30,
     flexDirection: 'column', // o 'column' per bottoni verticali
     justifyContent: 'space-between', // Distribuisce uniformemente lo spazio
   },
-  button: {
-    margin: 10, // Distanzia i bottoni l'uno dall'altro
+  total: {
+    padding: 30,
+    flexDirection: 'column', // o 'column' per bottoni verticali
+    justifyContent: 'space-between', // Distribuisce uniformemente lo spazio
   },
   safeview: {
     bottom: 10,

@@ -1,10 +1,10 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {useGetResourcesByClassByLevelQuery} from '../../../../services/api';
-import {ClassIndexRequest} from '../../../../types/requests';
-import {LabeledValue} from '../../../ui/LabeledValue';
+import {useGetResourcesByClassByLevelQuery} from '../../../services/api';
+import {ClassIndexRequest} from '../../../types/requests';
+import {LabeledValue} from '../../ui/LabeledValue';
 import FeaturesByClassByLevelComponent from './FeaturesByClassByLevel';
-import {classSpecificToString} from '../../../../helper/classSpecific';
+import {classSpecificToString} from '../../../helper/classSpecific';
 
 export default function ResourceByClassByLevelComponent({
   input,

@@ -1,9 +1,8 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {FeaturesRequest} from '../../../../types/requests';
-import {useGetFeaturesForClassByIndexQuery} from '../../../../services/api';
-import {StyledText} from '../../../ui/texts/StyledText';
-import {StyledLabeledValue} from '../../../ui/texts/StyledLabeledValue';
+import {FeaturesRequest} from '../../../types/requests';
+import {useGetFeaturesForClassByIndexQuery} from '../../../services/api';
+import {StyledLabeledValue} from '../../ui/texts/StyledLabeledValue';
 
 type Props = {
   input: FeaturesRequest;
