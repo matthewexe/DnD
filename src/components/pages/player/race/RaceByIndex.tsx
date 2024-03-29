@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Text, View} from 'react-native';
 import ExportTrait from './Trait';
 import SubraceByRace from './CheckSubraceByIndex';
@@ -11,18 +11,32 @@ import {StyledText} from '../../../ui/texts/StyledText';
 import {StyledLabeledValue} from '../../../ui/texts/StyledLabeledValue';
 import {StyledButton} from '../../../ui/StyledButton';
 import {NewPlayerView} from '../../../../views/NewPlayerView';
+import {SelectableTable} from '../../../table/SelectableTable';
+import {ProficiencyConverter} from '../../../../helper/fieldConverter';
 
 type Props = HomeScreenProps<'NewPlayer_Race'>;
 
 export default function RaceComponent({route, navigation}: Props) {
   const input = route.params.playerData.race as RaceIndexRequest;
   const userData = useRef(route.params.playerData);
-
-  console.log(route.params.playerData);
+  const proficiencies = useRef<string[]>([]);
+  const [startingOptions, setStartingOptions] = React.useState<
+    ProficiencyConverter.NamedReference[]
+  >([]);
 
   const {data, error, isLoading, isFetching} = useGetRacesByIndexQuery({
     index: input,
   });
+
+  useEffect(() => {
+    if (data) {
+      setStartingOptions(
+        ProficiencyConverter.ProficiencyOptionsToIndex(
+          data.starting_proficiency_options?.from.options ?? [],
+        ),
+      );
+    }
+  }, [data]);
 
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
@@ -55,7 +69,7 @@ export default function RaceComponent({route, navigation}: Props) {
           <Text key={index}>{language.name}</Text>
         ))}
         <StyledSubtitle>Traits:</StyledSubtitle>
-        {data?.traits?.map((traits, index) => (
+        {data?.traits?.map(traits => (
           <>
             <ExportTrait input={traits.index as TraitsRequest} />
           </>
@@ -73,12 +87,30 @@ export default function RaceComponent({route, navigation}: Props) {
           <StyledText key={index}>{proficiency.name}</StyledText>
         )) ?? <StyledText>Starting skills not available</StyledText>}
 
+        <StyledSubtitle>Optional Proficiencies</StyledSubtitle>
+        {data && data.starting_proficiency_options && (
+          <>
+            <StyledText>
+              Available options:{' '}
+              {data && data.starting_proficiency_options?.choose}
+            </StyledText>
+            <SelectableTable
+              head={['Description']}
+              data={startingOptions.map(value => [value.name])}
+              max_selectbale={data.starting_proficiency_options.choose}
+              onValueChange={value => {
+                proficiencies.current = value.map(
+                  stringArr => startingOptions[stringArr].index,
+                );
+              }}
+            />
+          </>
+        )}
         <StyledSubtitle>Traits of the breed:</StyledSubtitle>
         <TraitsComponent input={input} />
+
         {/* TODO: tabella di scelta per le abilità iniziali
-      <Text>
-        Available options: {data && data.starting_proficiency_options?.choose}
-      </Text>
+      
       <StyledLabeledValue
         label={'Available options:'}
         value={data?.starting_proficiency_options?.choose ?? 0}
@@ -118,12 +150,18 @@ export default function RaceComponent({route, navigation}: Props) {
       <View style={[{alignItems: 'center', padding: 30}]}>
         <StyledButton
           text="Next"
-          onPress={() =>
+          onPress={() => {
+            proficiencies.current
+              .filter(item => item !== undefined)
+              .flat()
+              .forEach(item => {
+                userData.current.proficiencies.push(item);
+              });
             navigation.navigate('NewPlayer_Class', {
               gameId: route.params.gameId,
               playerData: userData.current,
-            })
-          }
+            });
+          }}
         />
       </View>
     </NewPlayerView>

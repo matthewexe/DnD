@@ -63,33 +63,29 @@ export default function ClassComponent({route, navigation}: Props) {
         ))}
 
         <StyledSubtitle>Abilità</StyledSubtitle>
-        <StyledText>Scegli le tue Abilità:</StyledText>
 
         {proficiencyChoices.map((choice, index) => {
           return (
-            <SelectableTable
-              key={index}
-              head={['descrizione']}
-              data={choice.map(value => [value.name])}
-              max_selectbale={data?.proficiency_choices[index].choose ?? 1}
-              onValueChange={value => {
-                proficiencies.current[index] = value.map(
-                  stringArr => proficiencyChoices[index][stringArr].index,
-                );
-              }}
-            />
+            <>
+              <StyledText key={index}>
+                Scegli {data?.proficiency_choices[index].choose ?? 1} abilità
+                trà le seguenti:
+              </StyledText>
+              <SelectableTable
+                key={index}
+                head={['descrizione']}
+                data={choice.map(value => [value.name])}
+                max_selectbale={data?.proficiency_choices[index].choose ?? 1}
+                onValueChange={value => {
+                  proficiencies.current[index] = value.map(
+                    stringArr => proficiencyChoices[index][stringArr].index,
+                  );
+                  console.log(proficiencies.current);
+                }}
+              />
+            </>
           );
         })}
-        {/* TODO: tabella per scegliere le abilità
-        {data?.proficiency_choices?.map((choice, index) => (
-          <View>
-            <Text>Scegli al massimo {choice.choose} abilità</Text>
-            <Text>{choice.desc}</Text>
-            {choice.from.options.map((option, optionIndex) => (
-              <ProficiencyComponent option={option} />
-            ))}
-          </View>
-        ))} */}
 
         <StyledSubtitle>Tiri salvezza:</StyledSubtitle>
         {data?.saving_throws?.map((choice, index) => (
@@ -101,32 +97,26 @@ export default function ClassComponent({route, navigation}: Props) {
         <StyledSubtitle>Sottoclassi:</StyledSubtitle>
         <SubclassComponent
           input={input}
-          onSelectedValue={item =>
-            (userData.current.subclass = item as Subclasstypes)
-          }
+          onSelectedValue={item => {
+            userData.current.subclass = item as Subclasstypes;
+          }}
         />
-
-        {/*Da Spostare nella pagina successiva */}
-        {/* <StyledSubtitle>Equipaggiamento iniziale:</StyledSubtitle>
-      {data?.starting_equipment?.map((choice, index) => (
-        <StyledText key={index}>
-          {choice.equipment.name} quantità:{choice.quantity}
-        </StyledText>
-      ))} */}
-        {/*<Text>Scegli ulteriore equipaggiamento:</Text>
-      {data?.starting_equipment_options?.map((choice, index) => (
-        <EquipmentOptionComponent choice={choice} />
-      ))} */}
       </View>
       <View style={[{alignItems: 'center', padding: 30}]}>
         <StyledButton
           text="Next"
-          onPress={() =>
+          onPress={() => {
+            proficiencies.current
+              .filter(item => item !== undefined)
+              .flat()
+              .forEach(item => {
+                userData.current.proficiencies.push(item);
+              });
             navigation.navigate('NewPlayer_Equip', {
               gameId: route.params.gameId,
               playerData: userData.current,
-            })
-          }
+            });
+          }}
         />
       </View>
     </NewPlayerView>

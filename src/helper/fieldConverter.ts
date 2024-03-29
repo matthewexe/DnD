@@ -7,7 +7,6 @@ import {
   EquipmentMultipleOption,
   EquipmentOption,
   EquipmentOptionSet,
-  ProficiencyChoice,
   ProficiencyChoiceOption,
   ProficiencyOption,
   ProficiencyReferenceOption,
@@ -140,20 +139,30 @@ export namespace ProficiencyConverter {
     index: string;
   };
 
+  export function ProficiencyChoiceOptionToIndex(
+    option: ProficiencyChoiceOption,
+  ): NamedReference[] {
+    return option.choice.from.options
+      .map(value => ProficiencyOptionToIndex(value))
+      .flat();
+  }
+
   export function ProficiencyReferenceOptionToIndex(
     reference: ProficiencyReferenceOption,
-  ): NamedReference {
-    return {
-      index: reference.item.index,
-      name: reference.item.name,
-    };
+  ): NamedReference[] {
+    return [
+      {
+        index: reference.item.index,
+        name: reference.item.name,
+      },
+    ];
   }
 
   export function ProficiencyOptionToIndex(
     option: ProficiencyOption,
-  ): NamedReference | undefined {
-    if (option.__typename === 'ProficiencyChoiceOption') {
-      return undefined;
+  ): NamedReference[] {
+    if (option.option_type === 'choice') {
+      return ProficiencyChoiceOptionToIndex(option as ProficiencyChoiceOption);
     }
     return ProficiencyReferenceOptionToIndex(
       option as ProficiencyReferenceOption,
@@ -163,9 +172,9 @@ export namespace ProficiencyConverter {
   export function ProficiencyOptionsToIndex(
     options: ProficiencyOption[],
   ): NamedReference[] {
-    return options
-      .map(option => ProficiencyOptionToIndex(option))
-      .filter(value => value !== undefined) as NamedReference[];
+    const result = options.map(value => ProficiencyOptionToIndex(value)).flat();
+    // console.log(result);
+    return result;
   }
 }
 

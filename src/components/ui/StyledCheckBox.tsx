@@ -1,6 +1,4 @@
-/* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
-
+import React from 'react';
 import CheckBox from '@react-native-community/checkbox';
 import {StyleSheet, View} from 'react-native';
 import {CheckBoxProps} from '@react-native-community/checkbox';
@@ -10,21 +8,18 @@ type Props = CheckBoxProps & {
   text: string;
 };
 
-export const StyledCheckBox = (props: Props) => {
-  const [state, setState] = useState(false);
-  const _onValueChange = (value: boolean) => {
+export const StyledCheckBox = ({value, ...props}: Props) => {
+  const _onValueChange = (newValue: boolean) => {
     if (props.onValueChange !== undefined) {
-      props.onValueChange(value);
+      props.onValueChange(newValue);
     }
-
-    setState(value);
   };
 
   return (
     <View style={styles.container}>
       <CheckBox
         {...props}
-        value={state}
+        value={value}
         onValueChange={_onValueChange}
         tintColors={{
           true: customTheme2.colors.accent,

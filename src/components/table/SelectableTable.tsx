@@ -63,15 +63,14 @@ export const SelectableTable = ({
   const {colors} = useTheme();
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
 
-  console.log(max_selectbale);
-
   const onSelectedRow = (index: number) => {
-    console.log(selectedRows);
+    //Se la riga è gia stata selezionata viene rimossa
     if (selectedRows.includes(index)) {
       const indexArray = selectedRows.filter(rowId => rowId !== index);
       setSelectedRows(indexArray);
       onValueChange && onValueChange(indexArray);
     } else {
+      // La riga viene aggiunta solo se non è stato superato il numero massimo di righe selezionabili
       if (selectedRows.length < max_selectbale) {
         const indexArray = [...selectedRows, index];
         setSelectedRows(indexArray);
