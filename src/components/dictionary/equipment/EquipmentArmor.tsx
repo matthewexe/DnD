@@ -1,11 +1,11 @@
 import React from 'react';
 import {Text} from 'react-native';
 import Armors from './Armor';
-import {useGetEquipmentArmorQuery} from '../../../../services/api';
-import {EquipmentItemRequest} from '../../../../types/requests';
-import {LabeledValue} from '../../../ui/LabeledValue';
+import {useGetEquipmentArmorQuery} from '../../../services/api';
+import {ArmorRequest} from '../../../types/requests';
+import {LabeledValue} from '../../ui/LabeledValue';
 
-export default function EquipmentTypeArmors() {
+export default function EquipmentArmors() {
   const {data, error, isLoading, isFetching} =
     useGetEquipmentArmorQuery(undefined);
 
@@ -14,11 +14,11 @@ export default function EquipmentTypeArmors() {
   if (isFetching) return <Text>wait for response from the server</Text>;
   return (
     <>
-      <LabeledValue label={'Category:'} value={data?.name ?? -1} />
-      {data?.equipment.map((choice, index) => (
+      <LabeledValue label={'Category:'} value={data?.name ?? 'not found'} />
+      {data?.equipment.map(choice => (
         <>
           <Text>{choice.name}</Text>
-          <Armors input={choice.index as EquipmentItemRequest} />
+          <Armors input={choice.index as unknown as ArmorRequest} />
         </>
       ))}
     </>

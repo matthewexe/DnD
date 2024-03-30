@@ -15,6 +15,8 @@ export type DictionaryStackParamList = {
   //--
   AlignamentD: undefined;
   //--
+  ArmorD: undefined;
+  //--
   ClassD: undefined;
   //--
   ClassLevelsD: undefined;

@@ -90,14 +90,16 @@ export enum MagicItemRarity {
   Varies = 'VARIES',
   VeryRare = 'VERY_RARE',
 }
-
+export type Rarity = {
+  name: MagicItemRarity;
+};
 export type MagicItem = IEquipmentBase & {
   __typename?: 'MagicItem';
   desc: string[];
   equipment_category: EquipmentCategory;
   index: string;
   name: string;
-  rarity: MagicItemRarity;
+  rarity: Rarity;
 };
 
 export type IEquipment = {

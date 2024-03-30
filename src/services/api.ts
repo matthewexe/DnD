@@ -26,6 +26,7 @@ import {
   MagicSchool,
   Subrace,
   Monster,
+  MagicItem,
 } from '../types/responses';
 
 import {
@@ -52,6 +53,7 @@ import {
   ConditionRequestByIndex,
   DamageTypeByIndexRequest,
   MagicSchoolByIndexRequest,
+  ArmorRequestByIndex,
 } from '../types/requests';
 
 export const api = createApi({
@@ -351,7 +353,7 @@ export const api = createApi({
         {type: 'EquipmentItem', id: index},
       ],
     }),
-    getArmor: builder.query<Armor, EquipmentItemRequestByIndex>({
+    getArmor: builder.query<Armor, ArmorRequestByIndex>({
       query: ({index}) => `equipment/${index}`,
       providesTags: (result, error, {index}) => [
         {type: 'EquipmentItem', id: index},
@@ -376,6 +378,10 @@ export const api = createApi({
 
     getEndpointResource: builder.query<ResourceList, string>({
       query: str => `/${str}/`,
+      providesTags: (result, error, str) => [{type: 'ResourceList', id: str}],
+    }),
+    getEquipmentResource: builder.query<EquipmentCategory, string>({
+      query: str => `/${str}`,
       providesTags: (result, error, str) => [{type: 'ResourceList', id: str}],
     }),
 
@@ -417,6 +423,13 @@ export const api = createApi({
     getFeatures: builder.query<Feature, FeaturesRequestForIndex>({
       query: ({index}) => `features/${index}`,
       providesTags: (result, error, {index}) => [{type: 'Features', id: index}],
+    }),
+
+    getMagicArmor: builder.query<MagicItem, ArmorRequestByIndex>({
+      query: ({index}) => `magic-items/${index}`,
+      providesTags: (result, error, {index}) => [
+        {type: 'MagicSchool', id: index},
+      ],
     }),
 
     //MONSTERS
@@ -476,6 +489,7 @@ export const {
   useGetMonsterByLevelQuery,
   useGetSpellsQuery,
   useGetEndpointResourceQuery,
+  useGetEquipmentResourceQuery,
   //dictionary
   useGetMulticlassingQuery,
   useGetConditionQuery,
@@ -483,4 +497,5 @@ export const {
   useGetAbilityScoreQuery,
   useGetMagicSchoolQuery,
   useGetFeaturesQuery,
+  useGetMagicArmorQuery,
 } = api;

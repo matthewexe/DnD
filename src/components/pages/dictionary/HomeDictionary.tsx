@@ -32,6 +32,13 @@ export const HomeDictionary = ({navigation}: Props) => {
             }}
           />
           <DictionaryButton
+            text="Armors"
+            icon={require('@assets/Armors.png')}
+            onPress={() => {
+              navigation.navigate('ArmorD');
+            }}
+          />
+          <DictionaryButton
             text="Class"
             icon={require('@assets/Class.png')}
             onPress={() => {

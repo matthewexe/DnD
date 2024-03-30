@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {SelectMenu} from '../../ui/SelectMenu';
 import {useGetEndpointResourceQuery} from '../../../services/api';
 import {AlignmentRequest} from '../../../types/requests';
@@ -18,29 +18,31 @@ export const DictionaryAlignament = () => {
   }
   return (
     <>
-      <StyledTitle>{'Alignament'}</StyledTitle>
-      <View style={styles.container}>
-        <View
-          style={{
-            width: 200,
-            height: 200,
-          }}>
-          <Image
-            source={require('@assets/Alignament.png')} // Sostituisci con il percorso corretto
-            style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
+      <SafeAreaView style={styles.safeview}>
+        <StyledTitle>{'Alignament'}</StyledTitle>
+        <View style={styles.container}>
+          <View
+            style={{
+              width: 200,
+              height: 200,
+            }}>
+            <Image
+              source={require('@assets/Alignament.png')} // Sostituisci con il percorso corretto
+              style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
+            />
+          </View>
+          <SelectMenu
+            label=""
+            onSelect={item => {
+              setAlignament(item.index);
+            }}
+            data={classData?.results ?? []}
           />
         </View>
-        <SelectMenu
-          label=""
-          onSelect={item => {
-            setAlignament(item.index);
-          }}
-          data={classData?.results ?? []}
-        />
-      </View>
-      <View style={styles.container}>
-        <Alignament input={alignamentState} />
-      </View>
+        <View style={styles.container}>
+          <Alignament input={alignamentState} />
+        </View>
+      </SafeAreaView>
     </>
   );
 };
@@ -58,5 +60,8 @@ const styles = StyleSheet.create({
   },
   button: {
     margin: 10, // Distanzia i bottoni l'uno dall'altro
+  },
+  safeview: {
+    bottom: 10,
   },
 });
