@@ -121,6 +121,14 @@ export const HomeDictionary = ({navigation}: Props) => {
               navigation.navigate('SubraceD');
             }}
           />
+
+          <DictionaryButton
+            text="Weapons"
+            icon={require('@assets/Weapons.png')}
+            onPress={() => {
+              navigation.navigate('WeaponD');
+            }}
+          />
         </View>
       </ScrollView>
     </>

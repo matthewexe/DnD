@@ -206,21 +206,21 @@ export enum WeaponRange {
 export type Weapon = IEquipment &
   IEquipmentBase & {
     __typename?: 'Weapon';
-    category_range: EquipmentCategory;
-    cost: Cost;
-    damage?: Damage | null;
-    desc?: string[] | null;
-    equipment_category: EquipmentCategory;
-    index: string;
-    name: string;
-    properties: WeaponProperty[];
-    range: Range;
-    special?: string[] | null;
-    throw_range?: Range | null;
-    two_handed_damage?: Damage | null;
-    weapon_category: EquipmentCategory;
-    weapon_range: WeaponRange;
-    weight?: number | null;
+    category_range: EquipmentCategory; //OK
+    cost: Cost; //OK
+    damage?: Damage | null; //OK
+    desc?: string[] | null; //OK
+    equipment_category: EquipmentCategory; //non serve
+    index: string; //non serve
+    name: string; //OK
+    properties: WeaponProperty[]; //-->Non le metto
+    range: Range; //OK
+    special?: string[] | null; //OK
+    throw_range?: Range | null; //OK
+    two_handed_damage?: Damage | null; //OK
+    weapon_category: EquipmentCategory; //incluso in category_range
+    weapon_range: WeaponRange; //incluso in category_range
+    weight?: number | null; //OK
   };
 
 export type ArmorClass = {

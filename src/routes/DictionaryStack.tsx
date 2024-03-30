@@ -43,7 +43,8 @@ export type DictionaryStackParamList = {
   //--
   SubraceD: undefined;
   //--
-
+  WeaponD: undefined;
+  //--
   DictionaryClassLevels: {
     classInfo: Class;
     classLevel: number;

@@ -1,12 +1,12 @@
 import {StyleSheet, Text} from 'react-native';
 import React from 'react';
 import {useGetMagicArmorQuery} from '../../../services/api';
-import {ArmorRequest} from '../../../types/requests';
-import {StyledSubtitle} from '../../../components/ui/texts/StyledSubtitle';
-import {StyledText} from '../../../components/ui/texts/StyledText';
+import {EquipmentItemRequest} from '../../../types/requests';
+import {StyledSubtitle} from '../../ui/texts/StyledSubtitle';
+import {StyledText} from '../../ui/texts/StyledText';
 import {View} from 'react-native';
 
-export default function MagicItemsArmor({input}: {input: ArmorRequest}) {
+export default function MagicItems({input}: {input: EquipmentItemRequest}) {
   const {data, error, isLoading, isFetching} = useGetMagicArmorQuery({
     index: input,
   });

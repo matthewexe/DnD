@@ -425,7 +425,7 @@ export const api = createApi({
       providesTags: (result, error, {index}) => [{type: 'Features', id: index}],
     }),
 
-    getMagicArmor: builder.query<MagicItem, ArmorRequestByIndex>({
+    getMagicArmor: builder.query<MagicItem, EquipmentItemRequestByIndex>({
       query: ({index}) => `magic-items/${index}`,
       providesTags: (result, error, {index}) => [
         {type: 'MagicSchool', id: index},

@@ -2,18 +2,18 @@ import React, {useState} from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SelectMenu} from '../../ui/SelectMenu';
 import {useGetEquipmentResourceQuery} from '../../../services/api';
-import {ArmorRequest, ItemType} from '../../../types/requests';
+import {EquipmentItemRequest, ItemType} from '../../../types/requests';
 import StyledTitle from '../../ui/texts/StyledTitle';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import Armor from '../../../components/dictionary/equipment/Armor';
 import {determineItemType} from '../../../helper/determineItemType';
 import MagicItemsArmor from '../../dictionary/equipment/MagicItems';
+import Weapon from '../../../components/dictionary/equipment/Weapon';
 
-export const DictionaryArmor = () => {
+export const DictionaryWeapon = () => {
   const {data: classData, isLoading: isLoadingClass} =
-    useGetEquipmentResourceQuery('equipment-categories/armor');
+    useGetEquipmentResourceQuery('equipment-categories/weapon');
 
-  const [armorState, setArmor] = useState<ArmorRequest>('padded-armor');
+  const [weaponState, setWeapon] = useState<EquipmentItemRequest>('club');
   const [typeState, setType] = useState<ItemType>('equipment');
 
   if (isLoadingClass) {
@@ -24,7 +24,7 @@ export const DictionaryArmor = () => {
     <>
       <SafeAreaView style={styles.safeview}>
         <ScrollView>
-          <StyledTitle>Armors</StyledTitle>
+          <StyledTitle>Weapons</StyledTitle>
           <View style={styles.container}>
             <View
               style={{
@@ -32,14 +32,14 @@ export const DictionaryArmor = () => {
                 height: 200,
               }}>
               <Image
-                source={require('@assets/Armors.png')} // Sostituisci con il percorso corretto
+                source={require('@assets/Weapons.png')} // Sostituisci con il percorso corretto
                 style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
               />
             </View>
             <SelectMenu
               label=""
               onSelect={item => {
-                setArmor(item.index);
+                setWeapon(item.index);
                 setType(determineItemType(item.url));
               }}
               data={classData?.equipment ?? []}
@@ -47,9 +47,9 @@ export const DictionaryArmor = () => {
           </View>
           <View style={styles.container}>
             {typeState === 'equipment' ? (
-              <Armor input={armorState} />
+              <Weapon input={weaponState} />
             ) : (
-              <MagicItemsArmor input={armorState} />
+              <MagicItemsArmor input={weaponState} />
             )}
           </View>
         </ScrollView>
