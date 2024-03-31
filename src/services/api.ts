@@ -136,17 +136,6 @@ export const api = createApi({
       providesTags: (result, error, {index}) => [{type: 'Class', id: index}],
     }),
 
-    //QUESTA CREDO NON SERVA/SBAGLIATA, QUELLA DOPO È GIUSTA
-    getSpellCastingByIndex: builder.query<
-      ResourceList,
-      SpellCastingForClassRequest
-    >({
-      query: ({index}) => `classes/${index}/spellcasting`,
-      providesTags: (result, error, {index}) => [
-        {type: 'SpellForClass', id: index},
-      ],
-    }),
-
     getSpellCastingByClass: builder.query<ClassSpellcasting, ClassRequest>({
       query: ({index}) => `classes/${index}/spellcasting`,
       providesTags: (result, error, {index}) => [
@@ -461,7 +450,6 @@ export const {
   useGetTraitByIndexQuery,
   useGetTraitQuery,
   useGetClassByIndexQuery,
-  useGetSpellCastingByIndexQuery,
   useGetSpellCastingByClassQuery,
   useGetSubClassesAvilableByIndexQuery,
   useGetSubClassesforLevelQuery,

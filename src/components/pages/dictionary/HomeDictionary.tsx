@@ -115,6 +115,14 @@ export const HomeDictionary = ({navigation}: Props) => {
           />
 
           <DictionaryButton
+            text="Spells"
+            icon={require('@assets/Spells.png')}
+            onPress={() => {
+              navigation.navigate('SpellD');
+            }}
+          />
+
+          <DictionaryButton
             text="Subraces"
             icon={require('@assets/Subraces.png')}
             onPress={() => {

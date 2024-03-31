@@ -45,6 +45,8 @@ export type DictionaryStackParamList = {
   //--
   WeaponD: undefined;
   //--
+  SpellD: undefined;
+  //--
   DictionaryClassLevels: {
     classInfo: Class;
     classLevel: number;

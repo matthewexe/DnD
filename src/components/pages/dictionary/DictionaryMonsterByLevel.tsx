@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
+import {View, StyleSheet, ScrollView, SafeAreaView, Image} from 'react-native';
 import {DictionaryButton} from '../../ui/buttons/DictionaryButton';
 import StyledTitle from '../../ui/texts/StyledTitle';
 import {DescriptionText} from '../../ui/texts/DescriptionText';
@@ -127,8 +127,19 @@ export const DictionaryMonsterByLevel = () => {
     <SafeAreaView style={styles.safeview}>
       <ScrollView>
         <StyledTitle>Monsters by Levels</StyledTitle>
-
         <View style={styles.container}>
+          <View style={styles.container2}>
+            <View
+              style={{
+                width: 200,
+                height: 200,
+              }}>
+              <Image
+                source={require('@assets/Monsters.png')} // Sostituisci con il percorso corretto
+                style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
+              />
+            </View>
+          </View>
           <View style={styles.buttonbox}>
             <DescriptionText>
               Start lv: {values[currentIndexStart]}
@@ -180,6 +191,13 @@ const styles = StyleSheet.create({
   container: {
     alignSelf: 'center',
     padding: 20,
+    flexDirection: 'column', // o 'column' per bottoni verticali
+    justifyContent: 'space-between', // Distribuisce uniformemente lo spazio
+  },
+  container2: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    padding: 30,
     flexDirection: 'column', // o 'column' per bottoni verticali
     justifyContent: 'space-between', // Distribuisce uniformemente lo spazio
   },

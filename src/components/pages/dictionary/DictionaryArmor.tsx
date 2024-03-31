@@ -2,7 +2,11 @@ import React, {useState} from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SelectMenu} from '../../ui/SelectMenu';
 import {useGetEquipmentResourceQuery} from '../../../services/api';
-import {ArmorRequest, ItemType} from '../../../types/requests';
+import {
+  ArmorRequest,
+  EquipmentItemRequest,
+  ItemType,
+} from '../../../types/requests';
 import StyledTitle from '../../ui/texts/StyledTitle';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Armor from '../../../components/dictionary/equipment/Armor';
@@ -49,7 +53,7 @@ export const DictionaryArmor = () => {
             {typeState === 'equipment' ? (
               <Armor input={armorState} />
             ) : (
-              <MagicItemsArmor input={armorState} />
+              <MagicItemsArmor input={armorState as EquipmentItemRequest} />
             )}
           </View>
         </ScrollView>

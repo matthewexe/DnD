@@ -9,6 +9,7 @@ import {StyledText} from '../../ui/texts/StyledText';
 import {StyledLabeledValue} from '../../ui/texts/StyledLabeledValue';
 import {Proficiency} from './Proficiency';
 import SubclassByClass from './SubclassByClass';
+import SpellByClass from '../equipment/SpellByClass';
 
 type Props = {
   input: ClassIndexRequest;
@@ -76,6 +77,9 @@ export default function ClassByIndex({input}: Props) {
         ))}
         <View style={styles.space} />
         <SubclassByClass input={input} />
+        <View style={styles.space} />
+        <StyledSubtitle>Spellcasting</StyledSubtitle>
+        <SpellByClass input={input} />
         {/*<Text>Scegli ulteriore equipaggiamento:</Text>
   {data?.starting_equipment_options?.map((choice, index) => (
     <EquipmentOptionComponent choice={choice} />

@@ -1,20 +1,18 @@
 import React from 'react';
-import {Text} from 'react-native';
-import {useGetFeaturesByIndexByLevelQuery} from '../../../services/api';
-import {ClassIndexRequest} from '../../../types/requests';
+import {StyleSheet, Text} from 'react-native';
+import {useGetFeaturesForClassByIndexQuery} from '../../../services/api';
+import {FeaturesRequest} from '../../../types/requests';
 import {StyledText} from '../../../components/ui/texts/StyledText';
+import {View} from 'react-native';
 
 export default function FeaturesByClassByLevelComponent({
   input,
-  level,
 }: {
-  input: ClassIndexRequest;
-  level: number;
+  input: FeaturesRequest;
 }) {
   const {data, error, isLoading, isFetching} =
-    useGetFeaturesByIndexByLevelQuery({
+    useGetFeaturesForClassByIndexQuery({
       index: input,
-      class_level: level,
     });
 
   if (error) {
@@ -27,6 +25,19 @@ export default function FeaturesByClassByLevelComponent({
     <Text>attendi risposta dal server</Text>;
   }
   return (
-    <>{data && data.desc && <StyledText>{data.desc.join('\n')}</StyledText>}</>
+    <>
+      {data && data.desc && data.desc.length > 0 && (
+        <>
+          <StyledText>{data.desc.join('\n')}</StyledText>
+          <View style={styles.space} />
+        </>
+      )}
+    </>
   );
 }
+
+const styles = StyleSheet.create({
+  space: {
+    padding: 20,
+  },
+});

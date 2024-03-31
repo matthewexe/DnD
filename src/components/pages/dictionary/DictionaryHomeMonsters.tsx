@@ -24,14 +24,14 @@ export const DictionaryHomeMonsters = ({navigation}: Props) => {
         </View>
         <DictionaryButton
           text="Monster by name"
-          icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
+          icon={require('@assets/Monsters.png')}
           onPress={() => {
             navigation.navigate('MonsterDByName');
           }}
         />
         <DictionaryButton
           text="Monster by levels"
-          icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
+          icon={require('@assets/Monsters.png')}
           onPress={() => {
             navigation.navigate('MonsterDByRange');
           }}

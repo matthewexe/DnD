@@ -1,12 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useGetResourcesByClassByLevelQuery} from '../../../services/api';
-import {ClassIndexRequest} from '../../../types/requests';
+import {ClassIndexRequest, FeaturesRequest} from '../../../types/requests';
 import FeaturesByClassByLevelComponent from './FeaturesByClassByLevel';
-import {classSpecificToString} from '../../../helper/classSpecific';
 import {StyledSubtitle} from '../../../components/ui/texts/StyledSubtitle';
 import {StyledText} from '../../../components/ui/texts/StyledText';
 import {StyledLabeledValue} from '../../../components/ui/texts/StyledLabeledValue';
+import SpellClassLevel from '../equipment/SpellClassLevel';
 
 export default function ResourseClassLevel({
   input,
@@ -38,10 +38,12 @@ export default function ResourseClassLevel({
       <StyledSubtitle>Features:</StyledSubtitle>
       {data &&
         data.features &&
-        data.features.map((choice, index) => (
+        data.features.map(choice => (
           <>
-            <StyledText key={index}>{choice.name}</StyledText>
-            <FeaturesByClassByLevelComponent input={input} level={level} />
+            <StyledLabeledValue label={choice.name} value={''} />
+            <FeaturesByClassByLevelComponent
+              input={choice.index as FeaturesRequest}
+            />
           </>
         ))}
       {data && data.spellcasting && (
@@ -128,6 +130,42 @@ export default function ResourseClassLevel({
                 ' not found'
               }
             />
+          </View>
+          <View style={styles.space}>
+            <StyledSubtitle>Spell lv 1</StyledSubtitle>
+            <SpellClassLevel input={input} level={1} />
+          </View>
+          <View style={styles.space}>
+            <StyledSubtitle>Spell lv 2</StyledSubtitle>
+            <SpellClassLevel input={input} level={2} />
+          </View>
+          <View style={styles.space}>
+            <StyledSubtitle>Spell lv 3</StyledSubtitle>
+            <SpellClassLevel input={input} level={3} />
+          </View>
+          <View style={styles.space}>
+            <StyledSubtitle>Spell lv 4</StyledSubtitle>
+            <SpellClassLevel input={input} level={4} />
+          </View>
+          <View style={styles.space}>
+            <StyledSubtitle>Spell lv 5</StyledSubtitle>
+            <SpellClassLevel input={input} level={5} />
+          </View>
+          <View style={styles.space}>
+            <StyledSubtitle>Spell lv 6</StyledSubtitle>
+            <SpellClassLevel input={input} level={6} />
+          </View>
+          <View style={styles.space}>
+            <StyledSubtitle>Spell lv 7</StyledSubtitle>
+            <SpellClassLevel input={input} level={7} />
+          </View>
+          <View style={styles.space}>
+            <StyledSubtitle>Spell lv 8</StyledSubtitle>
+            <SpellClassLevel input={input} level={8} />
+          </View>
+          <View style={styles.space}>
+            <StyledSubtitle>Spell lv 9</StyledSubtitle>
+            <SpellClassLevel input={input} level={9} />
           </View>
         </View>
       )}

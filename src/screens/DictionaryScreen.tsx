@@ -19,6 +19,7 @@ import {DictionarySubrace} from '../components/pages/dictionary/DictionarySubrac
 import {DictionaryClassByLevel} from '../components/pages/dictionary/DictionaryClassByLevel';
 import {DictionaryArmor} from '../components/pages/dictionary/DictionaryArmor';
 import {DictionaryWeapon} from '../components/pages/dictionary/DictionaryWeapon';
+import {DictionarySpell} from '../components/pages/dictionary/DictionarySpell';
 
 const Stack = createNativeStackNavigator<DictionaryStackParamList>();
 
@@ -41,6 +42,7 @@ export function Dictionary() {
       <Stack.Screen name="SubraceD" component={DictionarySubrace} />
       <Stack.Screen name="ArmorD" component={DictionaryArmor} />
       <Stack.Screen name="WeaponD" component={DictionaryWeapon} />
+      <Stack.Screen name="SpellD" component={DictionarySpell} />
       <Stack.Screen
         name="MonsterDByName"
         component={DictionaryMonsterByIndex}
