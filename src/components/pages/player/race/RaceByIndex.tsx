@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import {Text, View} from 'react-native';
 import ExportTrait from './Trait';
-import SubraceByRace from './CheckSubraceByIndex';
+import SubraceByRace from './CheckSubrace';
 import TraitsComponent from './TraitsByRace';
 import {HomeScreenProps} from '../../../../routes/HomeProps';
 import {useGetRacesByIndexQuery} from '../../../../services/api';
@@ -58,7 +58,6 @@ export default function RaceComponent({route, navigation}: Props) {
 
         <StyledSubtitle>Speed</StyledSubtitle>
         <StyledText>{data?.speed ?? 'speed not available'} piedi</StyledText>
-        {/* TODO: converti piedi in metri */}
         <StyledText>{convertFootToMeters(data?.speed ?? 0)}</StyledText>
 
         <StyledLabeledValue

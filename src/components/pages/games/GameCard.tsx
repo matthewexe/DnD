@@ -1,7 +1,7 @@
 import React from 'react';
 import {HomeScreenProps} from '../../../routes/HomeProps';
 import Realm from 'realm';
-import {useQuery, useRealm} from '@realm/react';
+import {useQuery} from '@realm/react';
 import {Pressable, StyleSheet, View} from 'react-native';
 import {Game} from '../../../models/Game';
 import {StyledText} from '../../ui/texts/StyledText';
@@ -22,12 +22,12 @@ export const GameCard = ({gameId, navigation}: Props) => {
 
   return (
     <View style={[styles.container]}>
-      <Pressable onPress={onPress}>
+      <Pressable onPress={onPress} style={{flex: 1}}>
         <View style={[styles.title]}>
           <StyledText>{game?.name}</StyledText>
         </View>
         <View style={[styles.content]}>
-          <StyledText numberOfLines={2} ellipsizeMode="tail">
+          <StyledText numberOfLines={6} ellipsizeMode="tail">
             {game?.description}
           </StyledText>
         </View>

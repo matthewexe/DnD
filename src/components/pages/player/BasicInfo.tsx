@@ -10,7 +10,6 @@ import {StyledSubtitle} from '../../ui/texts/StyledSubtitle.tsx';
 // import {Loading} from './Loading.tsx';
 // TODO: LOADING/ERROR
 import StyledTitle from '../../ui/texts/StyledTitle.tsx';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {HomeScreenProps} from '../../../routes/HomeProps.ts';
 import {defaultPlayer} from '../../../helper/default.ts';
 import {levelFromXP, xpFromLevel} from '../../../utils/LevelAndXp.ts';
@@ -30,12 +29,16 @@ export const BasicInfo = ({navigation, route}: Props) => {
     error: classError,
   } = useGetEndpointResourceQuery('classes');
 
+  const {data: alignmentData, isLoading: isLoadingAlignment} =
+    useGetEndpointResourceQuery('alignments');
+
   const gameId = route.params.gameId;
   const userData = useRef(defaultPlayer());
   const [level, setLevel] = useState(userData.current.level.toString());
   const [experience, setExperience] = useState(
     userData.current.experience.toString(),
   );
+
   const levelTimeout = useRef<NodeJS.Timeout | null>(null);
   const experienceTimeout = useRef<NodeJS.Timeout | null>(null);
 
@@ -131,7 +134,14 @@ export const BasicInfo = ({navigation, route}: Props) => {
         }}
         data={classData?.results ?? []}
       />
-      {/* TODO: Aggiungi allineamento */}
+      <SelectMenu
+        label="Alignment"
+        defaultValue={userData.current.alignment}
+        onSelect={item => {
+          userData.current.alignment = item.index;
+        }}
+        data={alignmentData?.results ?? []}
+      />
       <View style={styles.rowStyle}>
         <StyledButton text="<   Cancel" onPress={navigation.goBack} />
         <StyledButton
