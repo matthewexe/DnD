@@ -84,8 +84,7 @@ export const BasicInfo = ({navigation, route}: Props) => {
 
       <InputText
         label="Player Name"
-        placeholder="New Player"
-        value={userData.current.player_name}
+        placeholder="NPC"
         onChangeText={input => {
           userData.current.player_name = input;
         }}
@@ -94,7 +93,6 @@ export const BasicInfo = ({navigation, route}: Props) => {
         disabled={false}
         label="Character Name"
         placeholder="NPC"
-        value={userData.current.character_name}
         onChangeText={input => {
           userData.current.character_name = input;
         }}
@@ -139,10 +137,33 @@ export const BasicInfo = ({navigation, route}: Props) => {
         <StyledButton
           text="Next   >"
           onPress={() => {
-            console.log(userData.current);
+            let player_name = userData.current.player_name;
+
+            if (player_name === '') {
+              player_name = defaultPlayer().player_name;
+            }
+
+            let character_name = userData.current.character_name;
+            if (character_name === '') {
+              character_name = defaultPlayer().character_name;
+            }
+
+            let level_user = userData.current.level;
+            let experience_user = userData.current.experience;
+            if (level_user <= 0 || experience_user <= 0) {
+              experience_user = defaultPlayer().experience;
+              level_user = defaultPlayer().level;
+            }
+
             navigation.navigate('NewPlayer_Race', {
               gameId: gameId,
-              playerData: userData.current,
+              playerData: {
+                ...userData.current,
+                player_name: player_name,
+                character_name: character_name,
+                level: level_user,
+                experience: experience_user,
+              },
             });
           }}
         />
@@ -150,8 +171,6 @@ export const BasicInfo = ({navigation, route}: Props) => {
     </NewPlayerView>
   );
 };
-
-// TODO: Adjust Navigation and params
 
 const styles = StyleSheet.create({
   rowStyle: {

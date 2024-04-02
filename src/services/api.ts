@@ -106,7 +106,7 @@ export const api = createApi({
       ResourceList,
       RacesRequestByIndex
     >({
-      query: ({index}) => `races/${index}/subraces'`,
+      query: ({index}) => `races/${index}/subraces`,
       providesTags: (result, error, {index}) => [{type: 'Subrace', id: index}],
     }),
     getSubRacesByIndexByRace: builder.query<Subrace, RacesRequestByIndex>({

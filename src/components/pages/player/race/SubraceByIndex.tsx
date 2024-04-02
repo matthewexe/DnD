@@ -15,6 +15,8 @@ export default function SubraceByIndexComponent({
     index: input,
   });
 
+  // TODO: check api response
+
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
   if (isFetching) return <Text>wait for response from the server</Text>;

@@ -1,21 +1,35 @@
 import React, {useRef} from 'react';
 import {HomeScreenProps} from '../../../../routes/HomeProps';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {ScrollView} from 'react-native-gesture-handler';
-import StyledTitle from '../../../ui/texts/StyledTitle';
 import {View} from 'react-native';
 import {StyledSubtitle} from '../../../ui/texts/StyledSubtitle';
 import {StyledText} from '../../../ui/texts/StyledText';
-import {useGetClassByIndexQuery} from '../../../../services/api';
+import {
+  useGetClassByIndexQuery,
+  useGetResourcesByClassByLevelQuery,
+} from '../../../../services/api';
 import {Options} from '../../../options/Options';
-import {EquipmentConverter} from '../../../../helper/fieldConverter';
+import {
+  EquipmentConverter,
+  snakeCaseToTitleCase,
+} from '../../../../helper/fieldConverter';
 import {NewPlayerView} from '../../../../views/NewPlayerView';
+import {ClassIndexRequest} from '../../../../types/requests';
+import {StyledButton} from '../../../ui/StyledButton';
 
 type Props = HomeScreenProps<'NewPlayer_Equip'>;
 
 export const Equipment = ({route, navigation}: Props) => {
   const {data, error, isLoading, isFetching} = useGetClassByIndexQuery({
     index: route.params.playerData.class,
+  });
+
+  const {
+    data: spellData,
+    isLoading: isLoadingSpell,
+    isFetching: isFetchingSpell,
+  } = useGetResourcesByClassByLevelQuery({
+    index: route.params.playerData.class as ClassIndexRequest,
+    class_level: route.params.playerData.level,
   });
 
   const additionalEquipments = useRef<string[]>([]);
@@ -56,7 +70,26 @@ export const Equipment = ({route, navigation}: Props) => {
             />
           );
         })}
-        {/* TODO: Spellcasting */}
+
+        {spellData?.spellcasting && (
+          <StyledSubtitle>Spellcasting</StyledSubtitle>
+        )}
+        {spellData &&
+          spellData.spellcasting &&
+          Object.entries(spellData.spellcasting).map(([key, value]) => (
+            <StyledText key={key}>
+              {snakeCaseToTitleCase(key)}: {value}
+            </StyledText>
+          ))}
+        <StyledButton
+          text="Save"
+          onPress={() => {
+            navigation.navigate('NewPLayer_End', {
+              gameId: route.params.gameId,
+              playerData: userData,
+            });
+          }}
+        />
       </View>
     </NewPlayerView>
   );

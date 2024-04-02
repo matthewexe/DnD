@@ -46,6 +46,13 @@ export function objectReducer<T extends object, V>(
   return fieldArray;
 }
 
+export function snakeCaseToTitleCase(value: string): string {
+  return value
+    .split('_')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
 export namespace EquipmentConverter {
   export function startingEquipmentOptionSetToCountedReferences(
     options: StartingEquipmentOptionSet,

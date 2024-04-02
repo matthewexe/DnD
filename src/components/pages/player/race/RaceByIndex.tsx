@@ -13,6 +13,7 @@ import {StyledButton} from '../../../ui/StyledButton';
 import {NewPlayerView} from '../../../../views/NewPlayerView';
 import {SelectableTable} from '../../../table/SelectableTable';
 import {ProficiencyConverter} from '../../../../helper/fieldConverter';
+import {convertFootToMeters} from '../../../../helper/convertFootToMeters';
 
 type Props = HomeScreenProps<'NewPlayer_Race'>;
 
@@ -58,7 +59,7 @@ export default function RaceComponent({route, navigation}: Props) {
         <StyledSubtitle>Speed</StyledSubtitle>
         <StyledText>{data?.speed ?? 'speed not available'} piedi</StyledText>
         {/* TODO: converti piedi in metri */}
-        <StyledText>{data?.speed ?? 0} metri</StyledText>
+        <StyledText>{convertFootToMeters(data?.speed ?? 0)}</StyledText>
 
         <StyledLabeledValue
           label="Stature"
@@ -108,19 +109,6 @@ export default function RaceComponent({route, navigation}: Props) {
         )}
         <StyledSubtitle>Traits of the breed:</StyledSubtitle>
         <TraitsComponent input={input} />
-
-        {/* TODO: tabella di scelta per le abilità iniziali
-      
-      <StyledLabeledValue
-        label={'Available options:'}
-        value={data?.starting_proficiency_options?.choose ?? 0}
-      />
-      {data && data.starting_proficiency_options?.desc}
-      {data?.starting_proficiency_options?.from.options.map((option, index) => (
-        <Text key={index}>
-          {(option as ProficiencyReferenceOption).item.name}
-        </Text>
-      )) ?? <Text>Proficiency options not available</Text>} */}
 
         {/*INIZIO DESCRIZIONE (STRINGHE) la parte meno importante a livello implementativo. */}
         <StyledSubtitle>Race description:</StyledSubtitle>

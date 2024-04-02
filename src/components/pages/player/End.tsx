@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {HomeScreenProps} from '../../../routes/HomeProps';
 import {NewPlayerView} from '../../../views/NewPlayerView';
 import Realm from 'realm';
@@ -22,25 +22,31 @@ export const End = ({route}: Props) => {
     error: undefined,
   });
 
-  realm.write(() => {
-    const player = realm.create<Player>('Player', {
-      id: playerId,
-      ...userData,
+  useEffect(() => {
+    realm.write(() => {
+      const player = realm.create<Player>('Player', {
+        id: playerId,
+        ...userData,
+      });
+
+      if (!player) {
+        setState({loading: false, error: 'Error creating player'});
+      } else {
+        realm
+          .objectForPrimaryKey<Game>('Game', route.params.gameId)
+          ?.players.push(player);
+      }
+
+      setState({loading: false, error: undefined});
     });
-
-    if (!player) {
-      setState({loading: false, error: 'Error creating player'});
-    } else {
-      realm
-        .objectForPrimaryKey<Game>('Game', route.params.gameId)
-        ?.players.push(player);
-    }
-
-    setState({loading: false, error: undefined});
-  });
+  }, []);
 
   return (
-    <NewPlayerView title="End" loading={state.loading} error={state.error}>
+    <NewPlayerView
+      title="End"
+      loading={state.loading}
+      error={state.error}
+      errorOnPress={() => {}}>
       {/* TODO: Modal Success */}
     </NewPlayerView>
   );
