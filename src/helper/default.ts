@@ -26,9 +26,9 @@ export const defaultPlayer = (): PlayerModel => {
     money: Array<number>(5).fill(0),
     player_name: 'NPC',
     proficiencies: [],
-    ps: 12 + calculateModifier(ability_scores[2]), // TODO: punti salute
+    ps: 12 + calculateModifier(ability_scores[2]),
     race: 'dragonborn',
-    saving_throws: [], // FIXME: less
+    saving_throws: [],
     speed: 30,
     spells: [], //
     subclass: 'berserker',
