@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {useGetRacesByIndexQuery} from '../../../services/api';
 import {RacesRequest, TraitsRequest} from '../../../types/requests';
 import {StyledSubtitle} from '../../ui/texts/StyledSubtitle';
@@ -119,8 +119,18 @@ export default function Race({input}: Props) {
           label="The size of your species"
           value={data?.size_description ?? 'Height description not available'}
         />
+        <View style={styles.space} />
         <CheckSubrace input={input} />
       </View>
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  space: {
+    padding: 20, // Distanzia i bottoni l'uno dall'altro
+  },
+  little: {
+    padding: 10,
+  },
+});

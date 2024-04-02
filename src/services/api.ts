@@ -27,6 +27,8 @@ import {
   Subrace,
   Monster,
   MagicItem,
+  Subclass,
+  SubclassResourcesResponse,
 } from '../types/responses';
 
 import {
@@ -67,6 +69,8 @@ export const api = createApi({
     'Class',
     'SpellForClass',
     'SubClassesAvailable',
+    'Subclass',
+    'SubclassResources',
     'FeaturesForClass',
     'ResourcesByClassByLevel',
     'ProficienciesForClass',
@@ -85,6 +89,8 @@ export const api = createApi({
     'Monsters',
     'MagicSchool',
     'Features',
+    'Subclass',
+    'Magic-items',
   ],
   endpoints: builder => ({
     //le tengo ordinate x come andranno utilizzate (NON opzionale)
@@ -107,7 +113,7 @@ export const api = createApi({
       ResourceList,
       RacesRequestByIndex
     >({
-      query: ({index}) => `races/${index}/subraces'`,
+      query: ({index}) => `races/${index}/subraces`,
       providesTags: (result, error, {index}) => [{type: 'Subrace', id: index}],
     }),
     getSubRacesByIndexByRace: builder.query<Subrace, RacesRequestByIndex>({
@@ -417,14 +423,29 @@ export const api = createApi({
     getMagicArmor: builder.query<MagicItem, EquipmentItemRequestByIndex>({
       query: ({index}) => `magic-items/${index}`,
       providesTags: (result, error, {index}) => [
-        {type: 'MagicSchool', id: index},
+        {type: 'Magic-items', id: index},
+      ],
+    }),
+
+    getSubclass: builder.query<Subclass, SubclasstypesByIndex>({
+      query: ({index}) => `subclasses/${index}`,
+      providesTags: (result, error, {index}) => [{type: 'Subclass', id: index}],
+    }),
+
+    getSubclassResources: builder.query<
+      SubclassResourcesResponse,
+      SubclasstypesByIndex
+    >({
+      query: ({index}) => `subclasses/${index}/levels`,
+      providesTags: (result, error, {index}) => [
+        {type: 'SubclassResources', id: index},
       ],
     }),
 
     //MONSTERS
     getMonsterByIndex: builder.query<Monster, MonstersRequestByIndex>({
-      query: ({index}) => `monsters/${index}`,
-      providesTags: (result, error, {index}) => [{type: 'Monsters', id: index}],
+      query: ({index}) => `subclasses/${index}`,
+      providesTags: (result, error, {index}) => [{type: 'Subclass', id: index}],
     }),
 
     //non sono sicuro
@@ -486,4 +507,6 @@ export const {
   useGetMagicSchoolQuery,
   useGetFeaturesQuery,
   useGetMagicArmorQuery,
+  useGetSubclassQuery,
+  useGetSubclassResourcesQuery,
 } = api;

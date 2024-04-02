@@ -1368,13 +1368,23 @@ export type SpellWithPrerequisite = {
 
 export type Subclass = {
   __typename?: 'Subclass';
-  class: Class;
-  desc: string[];
-  index: string;
-  name: string;
-  spells?: SpellWithPrerequisite[] | null;
-  subclass_flavor: string;
+  class: Class; //OK
+  desc: string[]; //OK
+  index: string; //non serve
+  name: string; //OK
+  spells?: SpellWithPrerequisite[] | null; //??????OK??
+  subclass_flavor: string; //OK
   subclass_levels: Level[] | null;
+};
+
+export type SubclassResourcesResponse = SubclassResources[];
+
+export type SubclassResources = {
+  __typename?: 'Subclass';
+  level: number;
+  features: APIReference[];
+  class: APIReference;
+  subclass: APIReference;
 };
 
 export enum OrderByDirection {

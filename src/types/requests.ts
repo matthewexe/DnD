@@ -1740,6 +1740,7 @@ export type Subclasstypes =
   | 'lore'
   | 'open-hand'
   | 'thief';
+
 export type SubclasstypesByIndex = {
   index: Subclasstypes;
 };

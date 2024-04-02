@@ -1,8 +1,10 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {useGetCheckSubRacesByIndexByRaceQuery} from '../../../services/api';
-import {RacesRequest} from '../../../types/requests';
+import {RacesRequest, SubraceIndexRequest} from '../../../types/requests';
 import {StyledText} from '../../ui/texts/StyledText';
+import Subrace from './Subrace';
+import {StyledSubtitle} from '../../../components/ui/texts/StyledSubtitle';
 
 type Props = {
   input: RacesRequest;
@@ -14,7 +16,7 @@ export default function CheckSubrace({input}: Props) {
     useGetCheckSubRacesByIndexByRaceQuery({
       index: input,
     });
-
+  console.log(input);
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
   if (isFetching) return <Text>wait for response from the server</Text>;
@@ -28,6 +30,8 @@ export default function CheckSubrace({input}: Props) {
     return (
       <>
         {(!data || !data.results) && <StyledText>No Subrace found</StyledText>}
+        <StyledSubtitle>Subraces</StyledSubtitle>
+        <View style={styles.little} />
         {data && data.results && (
           <>
             {data && data.count && (
@@ -39,15 +43,27 @@ export default function CheckSubrace({input}: Props) {
               data.results &&
               data.results.map(choice => (
                 <>
-                  <StyledText>{choice.name}</StyledText>
+                  <StyledText>-{choice.name}</StyledText>
                 </>
               ))}
-            {/*  {data && 
-               data.results &&
-               data.results.map(choice => <Subrace input={choice.index} />)}*/}
+            <View style={styles.space} />
+            {data &&
+              data.results &&
+              data.results.map(choice => (
+                <Subrace input={choice.index as SubraceIndexRequest} />
+              ))}
           </>
         )}
       </>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  space: {
+    padding: 20, // Distanzia i bottoni l'uno dall'altro
+  },
+  little: {
+    padding: 10,
+  },
+});

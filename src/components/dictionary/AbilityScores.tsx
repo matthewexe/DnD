@@ -3,7 +3,6 @@ import {Text, View} from 'react-native';
 import {useGetAbilityScoreQuery} from '../../services/api';
 import {AbilityScoreRequest, SkillRequest} from '../../types/requests';
 import {StyledLabel} from '../ui/texts/LabeldValueStyle';
-import {StyledText} from '../ui/texts/StyledText';
 import SkillComponent from './Skills';
 import {PrimaryText} from '../ui/texts/PrimaryText';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';

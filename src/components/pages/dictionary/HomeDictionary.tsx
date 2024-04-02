@@ -123,6 +123,14 @@ export const HomeDictionary = ({navigation}: Props) => {
           />
 
           <DictionaryButton
+            text="Subclasses"
+            icon={require('@assets/Subclass.png')}
+            onPress={() => {
+              navigation.navigate('SubclassD');
+            }}
+          />
+
+          <DictionaryButton
             text="Subraces"
             icon={require('@assets/Subraces.png')}
             onPress={() => {

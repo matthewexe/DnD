@@ -46,9 +46,11 @@ export default function Subrace({input}: Props) {
         <StyledText key={index}>- {choice.name}</StyledText>
       ))}
       <View style={styles.container} />
-      <StyledText>
-        You can choose {data?.language_options?.choose} lenguages:
-      </StyledText>
+      {data && data.language_options && (
+        <StyledText>
+          You can choose {data?.language_options?.choose} lenguages:
+        </StyledText>
+      )}
       {data?.language_options?.from.options.map((choice, index) => (
         <StyledText key={index}>- {choice.item.name}</StyledText>
       ))}
