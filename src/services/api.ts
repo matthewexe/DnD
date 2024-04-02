@@ -174,7 +174,10 @@ export const api = createApi({
         {type: 'SubClassesAvailable', id: index},
       ],
     }),
-    getSubClassesforLevel: builder.query<Level, SubclasstypesByIndex>({
+    getSubClassesforLevel: builder.query<
+      SubclassResourcesResponse,
+      SubclasstypesByIndex
+    >({
       query: ({index}) => `subclasses/${index}/levels`,
       providesTags: (result, error, {index}) => [
         {type: 'SubClassesAvailable', id: index},

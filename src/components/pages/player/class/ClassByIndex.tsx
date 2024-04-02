@@ -100,6 +100,7 @@ export default function ClassComponent({route, navigation}: Props) {
           onSelectedValue={item => {
             userData.current.subclass = item as Subclasstypes;
           }}
+          level={userData.current.level}
         />
       </View>
       <View style={[{alignItems: 'center', padding: 30}]}>
