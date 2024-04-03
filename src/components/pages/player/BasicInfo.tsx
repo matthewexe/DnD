@@ -119,7 +119,7 @@ export const BasicInfo = ({navigation, route}: Props) => {
         }}
       />
       <SelectMenu
-        label="Character Race"
+        label="Character Race (Default: Dragonborn)"
         defaultValue={userData.current.race}
         onSelect={item => {
           userData.current.race = item.index;
@@ -127,7 +127,7 @@ export const BasicInfo = ({navigation, route}: Props) => {
         data={raceData?.results ?? []}
       />
       <SelectMenu
-        label="Character Class"
+        label="Character Class (Default: Barbarian)"
         defaultValue={userData.current.class}
         onSelect={item => {
           userData.current.class = item.index;

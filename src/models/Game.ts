@@ -50,8 +50,7 @@ export class Player extends Realm.Object<Player> {
   extra_proficiencies?: string[];
   ps!: number;
   hit_die!: number;
-  weapon!: Realm.List<Weapon>;
-  armor!: Realm.List<Armor>;
+  equipments!: Realm.List<Equipment>;
   spells!: Realm.List<SpellRequest>;
   traits!: Realm.List<TraitsRequest>;
   proficiencies!: Realm.List<string>;
@@ -83,8 +82,7 @@ export class Player extends Realm.Object<Player> {
       extra_proficiencies: 'string?[]',
       ps: 'int',
       hit_die: 'int',
-      weapon: 'Weapon[]',
-      armor: 'Armor[]',
+      equipments: 'Equipment[]',
       spells: 'string[]',
       traits: 'string[]',
       proficiencies: 'string[]',
@@ -101,28 +99,12 @@ export class Player extends Realm.Object<Player> {
   };
 }
 
-export class Armor extends Realm.Object<Armor> {
+export class Equipment extends Realm.Object<Equipment> {
   index!: EquipmentItemRequest;
   quantity!: number;
 
   static schema: ObjectSchema = {
-    name: 'Armor',
-    embedded: true,
-    properties: {
-      index: 'string',
-      //start edit
-      quantity: 'int',
-      //end edit
-    },
-  };
-}
-
-export class Weapon extends Realm.Object<Weapon> {
-  index!: EquipmentItemRequest;
-  quantity!: number;
-
-  static schema: ObjectSchema = {
-    name: 'Weapon',
+    name: 'Equipment',
     embedded: true,
     properties: {
       index: 'string',

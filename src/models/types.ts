@@ -37,8 +37,7 @@ export type PlayerModel = {
   extra_proficiencies?: string[];
   ps: number;
   hit_die: number;
-  weapon: WeaponModel[];
-  armor: ArmorModel[];
+  equipments: EquipmentModel[];
   spells: SpellRequest[];
   traits: TraitsRequest[];
   proficiencies: string[];
@@ -50,12 +49,7 @@ export type PlayerModel = {
   subrace: SubracesRequest;
 };
 
-export type ArmorModel = {
-  index: EquipmentItemRequest;
-  quantity: number;
-};
-
-export type WeaponModel = {
+export type EquipmentModel = {
   index: EquipmentItemRequest;
   quantity: number;
 };

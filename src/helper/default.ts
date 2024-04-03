@@ -13,7 +13,6 @@ export const defaultPlayer = (): PlayerModel => {
     ability_choices: [],
     ability_scores: ability_scores,
     alignment: 'chaotic-evil',
-    armor: [],
     background: '',
     ca: 0,
     character_name: 'NPC',
@@ -34,6 +33,6 @@ export const defaultPlayer = (): PlayerModel => {
     subclass: 'berserker',
     subrace: 'high-elf',
     traits: [],
-    weapon: [{index: 'greataxe', quantity: 1}],
+    equipments: [],
   };
 };
