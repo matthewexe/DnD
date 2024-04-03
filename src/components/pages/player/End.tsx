@@ -1,14 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {HomeScreenProps} from '../../../routes/HomeProps';
 import {NewPlayerView} from '../../../views/NewPlayerView';
 import Realm from 'realm';
 import 'react-native-get-random-values';
 import {useRealm} from '@realm/react';
 import {Game, Player} from '../../../models/Game';
+import {StyledSubtitle} from '../../ui/texts/StyledSubtitle';
+import {View} from 'react-native';
+import {snakeCaseToTitleCase} from '../../../helper/fieldConverter';
+import {StyledLabeledValue} from '../../ui/texts/StyledLabeledValue';
+import {StyledButton} from '../../ui/StyledButton';
 
 type Props = HomeScreenProps<'NewPLayer_End'>;
 
-export const End = ({route}: Props) => {
+export const End = ({route, navigation}: Props) => {
   const realm = useRealm();
 
   const userData = route.params.playerData;
@@ -18,16 +23,19 @@ export const End = ({route}: Props) => {
     loading: boolean;
     error: string | undefined;
   }>({
-    loading: true,
+    loading: false,
     error: undefined,
   });
 
-  useEffect(() => {
+  const createPlayer = () => {
+    setState({loading: true, error: undefined});
     realm.write(() => {
       const player = realm.create<Player>('Player', {
         id: playerId,
         ...userData,
       });
+
+      console.log(player);
 
       if (!player) {
         setState({loading: false, error: 'Error creating player'});
@@ -39,15 +47,78 @@ export const End = ({route}: Props) => {
 
       setState({loading: false, error: undefined});
     });
-  }, []);
+  };
 
   return (
     <NewPlayerView
       title="End"
       loading={state.loading}
       error={state.error}
-      errorOnPress={() => {}}>
-      {/* TODO: Modal Success */}
+      errorOnPress={() => {
+        navigation.navigate('ListGame');
+      }}>
+      <View>
+        <StyledSubtitle>Recap</StyledSubtitle>
+        <StyledLabeledValue
+          label="Name"
+          value={snakeCaseToTitleCase(userData.player_name)}
+        />
+        <StyledLabeledValue
+          label="Name"
+          value={snakeCaseToTitleCase(userData.character_name)}
+        />
+        <StyledLabeledValue
+          label="Class"
+          value={snakeCaseToTitleCase(userData.class)}
+        />
+        <StyledLabeledValue
+          label="Race"
+          value={snakeCaseToTitleCase(userData.race)}
+        />
+        <StyledLabeledValue
+          label="Background"
+          value={snakeCaseToTitleCase(userData.background)}
+        />
+        <StyledLabeledValue
+          label="Alignment"
+          value={snakeCaseToTitleCase(userData.alignment)}
+        />
+        <StyledLabeledValue
+          label="Experience Points"
+          value={snakeCaseToTitleCase(userData.experience.toString())}
+        />
+        <StyledLabeledValue
+          label="Level"
+          value={snakeCaseToTitleCase(userData.level.toString())}
+        />
+        <StyledLabeledValue
+          label="Hit Die"
+          value={snakeCaseToTitleCase(userData.hit_die.toString())}
+        />
+        <StyledLabeledValue
+          label="Subclass"
+          value={snakeCaseToTitleCase(userData.subclass)}
+        />
+        <StyledLabeledValue
+          label="Subrace"
+          value={snakeCaseToTitleCase(userData.subrace)}
+        />
+      </View>
+      <View>
+        <StyledButton
+          text="Create"
+          onPress={() => {
+            createPlayer();
+            navigation.navigate('ListGame');
+          }}
+        />
+        <StyledButton
+          text="Cancel"
+          onPress={() => {
+            navigation.navigate('ListGame');
+          }}
+        />
+      </View>
     </NewPlayerView>
   );
 };

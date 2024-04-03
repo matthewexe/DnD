@@ -165,7 +165,7 @@ export const BasicInfo = ({navigation, route}: Props) => {
               level_user = defaultPlayer().level;
             }
 
-            navigation.navigate('NewPlayer_Race', {
+            navigation.navigate('NewPlayer_AbilityScores', {
               gameId: gameId,
               playerData: {
                 ...userData.current,

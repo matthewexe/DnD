@@ -11,6 +11,10 @@ export type HomeParamList = {
   NewGame: undefined;
   DeleteGame: {gameId: Realm.BSON.ObjectId};
   NewPlayer_BasicInfo: {gameId: Realm.BSON.ObjectId};
+  NewPlayer_AbilityScores: {
+    gameId: Realm.BSON.ObjectId;
+    playerData: PlayerModel;
+  };
   NewPlayer_Race: {gameId: Realm.BSON.ObjectId; playerData: PlayerModel};
   NewPlayer_Class: {gameId: Realm.BSON.ObjectId; playerData: PlayerModel};
   NewPlayer_Equip: {gameId: Realm.BSON.ObjectId; playerData: PlayerModel};

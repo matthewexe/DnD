@@ -184,5 +184,3 @@ export namespace ProficiencyConverter {
     return result;
   }
 }
-
-export namespace APIIndexes {}
