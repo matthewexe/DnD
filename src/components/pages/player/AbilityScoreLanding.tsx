@@ -9,10 +9,12 @@ import {
   useGetSubRacesByIndexQuery,
 } from '../../../services/api';
 import {RacesRequest, SubraceIndexRequest} from '../../../types/requests';
-import {StyledTextInput} from '../../ui/StyledTextInput';
 import {InputText} from '../../ui/InputText';
 import {StyledSubtitle} from '../../ui/texts/StyledSubtitle';
 import {StyledText} from '../../ui/texts/StyledText';
+import {StyleSheet, View} from 'react-native';
+import {customTheme2} from '../../../constants/theme';
+import {calculateModifier} from '../../../helper/calculateModifier';
 
 type Props = HomeScreenProps<'NewPlayer_AbilityScores'>;
 
@@ -104,17 +106,32 @@ export const AbilityScoreLanding = ({navigation, route}: Props) => {
     <NewPlayerView title="Ability Scores" errorOnPress={() => {}}>
       <StyledButton text="Re-Roll" onPress={reroll} />
       {rolls.map((roll, index) => (
-        <InputText
-          label={labels[index]}
-          keyboardType="number-pad"
-          placeholder="10 + bonus"
-          value={
-            isNaN(roll + bonuses[index])
-              ? ''
-              : (roll + bonuses[index]).toString()
-          }
-          onChangeText={text => onChangeText(index, text)}
-        />
+        <View
+          style={[
+            styles.abilityContainer,
+            {flexDirection: 'column', width: 100},
+          ]}>
+          <StyledText>{labels[index]}</StyledText>
+          <View style={[styles.abilityContainer]}>
+            <InputText
+              style={[styles.abilityScoreInput]}
+              label={''}
+              keyboardType="number-pad"
+              placeholder="10 + bonus"
+              value={
+                isNaN(roll + bonuses[index])
+                  ? ''
+                  : (roll + bonuses[index]).toString()
+              }
+              onChangeText={text => onChangeText(index, text)}
+            />
+            <View style={[styles.modifierContainer]}>
+              <StyledText style={[styles.modifierText]}>
+                {isNaN(calculateModifier(roll)) ? '' : calculateModifier(roll)}
+              </StyledText>
+            </View>
+          </View>
+        </View>
       ))}
       <StyledSubtitle>Race Bonuses</StyledSubtitle>
       {raceData?.ability_bonuses.map(bonus => (
@@ -131,3 +148,33 @@ export const AbilityScoreLanding = ({navigation, route}: Props) => {
     </NewPlayerView>
   );
 };
+
+const styles = StyleSheet.create({
+  abilityContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  abilityScoreInput: {
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
+    width: 50,
+    paddingHorizontal: 15,
+  },
+  modifierContainer: {
+    height: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+  },
+  modifierText: {
+    padding: 10,
+    paddingHorizontal: 15,
+    borderWidth: 1,
+    borderRadius: 50,
+    borderColor: customTheme2.colors.primary,
+  },
+});
