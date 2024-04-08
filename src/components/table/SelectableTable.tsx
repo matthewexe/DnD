@@ -9,6 +9,7 @@ type TableProps = {
   max_selectbale: number;
   head: string[];
   data: string[][];
+  onValueChange?: (value: number[]) => void;
 };
 
 type RowProps = {
@@ -52,17 +53,28 @@ const Row = ({data, index, isChecked, canCheck = true, onSelect}: RowProps) => {
     </View>
   );
 };
-export const SelectableTable = ({head, data, max_selectbale}: TableProps) => {
+
+export const SelectableTable = ({
+  head,
+  data,
+  max_selectbale,
+  onValueChange,
+}: TableProps) => {
   const {colors} = useTheme();
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
 
   const onSelectedRow = (index: number) => {
-    console.log('Selected row:', selectedRows);
+    //Se la riga è gia stata selezionata viene rimossa
     if (selectedRows.includes(index)) {
-      setSelectedRows(selectedRows.filter(rowId => rowId !== index));
+      const indexArray = selectedRows.filter(rowId => rowId !== index);
+      setSelectedRows(indexArray);
+      onValueChange && onValueChange(indexArray);
     } else {
+      // La riga viene aggiunta solo se non è stato superato il numero massimo di righe selezionabili
       if (selectedRows.length < max_selectbale) {
-        setSelectedRows([...selectedRows, index]);
+        const indexArray = [...selectedRows, index];
+        setSelectedRows(indexArray);
+        onValueChange && onValueChange(indexArray);
       } else {
         // Optionally show an alert or notification that the max has been reached
         console.log('Maximum selection reached');

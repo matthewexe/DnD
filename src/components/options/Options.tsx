@@ -2,6 +2,8 @@ import React from 'react';
 import {StyledText} from '../ui/texts/StyledText';
 import {Pressable, StyleSheet, View} from 'react-native';
 import {customTheme2} from '../../constants/theme';
+import {EquipmentModel} from '../../models/types';
+import {EquipmentItemRequest} from '../../types/requests';
 
 export type CountedReference = {
   index: string;
@@ -12,15 +14,22 @@ export type CountedReference = {
 type Props = {
   options: CountedReference[];
   desc: string;
-  onSelection?: (index: string) => void;
+  onSelection?: (equip: EquipmentModel) => void;
 };
 
 export const Options = ({options, desc, onSelection}: Props) => {
   //   const;
-  const [selected, setSelected] = React.useState<number>(-1);
+  const [selected, setSelected] = React.useState<boolean[]>(
+    new Array<boolean>(options.length).fill(false),
+  );
   const onPress = (option: CountedReference, index: number) => {
-    setSelected(index);
-    onSelection?.(option.index);
+    setSelected(state =>
+      state.map((value, i) => (i === index ? !value : value)),
+    );
+    onSelection?.({
+      index: option.index as EquipmentItemRequest,
+      quantity: option.quantity,
+    });
   };
 
   return (
@@ -30,10 +39,7 @@ export const Options = ({options, desc, onSelection}: Props) => {
         {options.map((option, index) => (
           <View
             key={index}
-            style={[
-              styles.option,
-              index === selected ? styles.optionActive : {},
-            ]}>
+            style={[styles.option, selected[index] ? styles.optionActive : {}]}>
             <Pressable
               style={{flex: 1}}
               key={index}

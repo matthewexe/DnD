@@ -444,7 +444,7 @@ export const api = createApi({
 
     //MONSTERS
     getMonsterByIndex: builder.query<Monster, MonstersRequestByIndex>({
-      query: ({index}) => `subclasses/${index}`,
+      query: ({index}) => `monsters/${index}`,
       providesTags: (result, error, {index}) => [{type: 'Subclass', id: index}],
     }),
 

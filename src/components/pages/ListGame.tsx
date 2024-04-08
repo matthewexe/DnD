@@ -35,14 +35,6 @@ export const ListGame = ({navigation, route}: Props) => {
               route={route}
             />
           ))}
-          {games.map((game, index) => (
-            <GameCard
-              key={game.id.id.toString() + index}
-              gameId={game.id}
-              navigation={navigation}
-              route={route}
-            />
-          ))}
         </View>
       </ScrollView>
     </SafeAreaView>

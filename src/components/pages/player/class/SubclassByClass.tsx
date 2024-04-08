@@ -10,9 +10,14 @@ import SubclassForLevel from './SubclassForLevel';
 
 type Props = {
   input: ClassIndexRequest;
+  level: number;
   onSelectedValue: (value: string) => void;
 };
-export default function SubclassComponent({input, onSelectedValue}: Props) {
+export default function SubclassComponent({
+  input,
+  level,
+  onSelectedValue,
+}: Props) {
   const {data, error, isLoading, isFetching} =
     useGetSubClassesAvilableByIndexQuery({
       index: input,
@@ -40,7 +45,10 @@ export default function SubclassComponent({input, onSelectedValue}: Props) {
         />
       )}
       {selectedClass && (
-        <SubclassForLevel input={selectedClass as Subclasstypes} />
+        <SubclassForLevel
+          input={selectedClass as Subclasstypes}
+          level={level}
+        />
       )}
     </View>
   );

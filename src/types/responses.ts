@@ -1385,6 +1385,8 @@ export type SubclassResources = {
   features: APIReference[];
   class: APIReference;
   subclass: APIReference;
+  index: string;
+  url: string;
 };
 
 export enum OrderByDirection {

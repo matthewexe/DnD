@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Text, View} from 'react-native';
 import FeaturesByClassComponent from './FeaturesByClass';
 import ProficiencyByClassComponent from './ProficiencyByClass';
@@ -11,24 +11,43 @@ import {HomeScreenProps} from '../../../../routes/HomeProps';
 import {StyledLabeledValue} from '../../../ui/texts/StyledLabeledValue';
 import {StyledButton} from '../../../ui/StyledButton';
 import {NewPlayerView} from '../../../../views/NewPlayerView';
+import {SelectableTable} from '../../../table/SelectableTable';
+import {ProficiencyConverter} from '../../../../helper/fieldConverter';
 
 type Props = HomeScreenProps<'NewPlayer_Class'>;
 
 export default function ClassComponent({route, navigation}: Props) {
   const input = route.params.playerData.class as ClassIndexRequest;
   const userData = useRef(route.params.playerData);
+  const [proficiencyChoices, setProficiencyChoices] = React.useState<
+    ProficiencyConverter.NamedReference[][]
+  >([]);
 
-  console.log(input);
+  const proficiencies = useRef<string[][]>([]);
 
   const {data, error, isLoading, isFetching} = useGetClassByIndexQuery({
     index: input,
   });
 
+  useEffect(() => {
+    if (data) {
+      setProficiencyChoices(
+        data.proficiency_choices.map(choice =>
+          ProficiencyConverter.ProficiencyOptionsToIndex(choice.from.options),
+        ),
+      );
+    }
+  }, [data]);
+
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
   if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
-    <NewPlayerView title="Class">
+    <NewPlayerView
+      title="Class"
+      loading={false}
+      error={undefined}
+      errorOnPress={() => {}}>
       <View>
         <StyledLabeledValue
           label="Nome"
@@ -44,17 +63,29 @@ export default function ClassComponent({route, navigation}: Props) {
         ))}
 
         <StyledSubtitle>Abilità</StyledSubtitle>
-        <StyledText>Scegli le tue Abilità:</StyledText>
-        {/* TODO: tabella per scegliere le abilità
-        {data?.proficiency_choices?.map((choice, index) => (
-          <View>
-            <Text>Scegli al massimo {choice.choose} abilità</Text>
-            <Text>{choice.desc}</Text>
-            {choice.from.options.map((option, optionIndex) => (
-              <ProficiencyComponent option={option} />
-            ))}
-          </View>
-        ))} */}
+
+        {proficiencyChoices.map((choice, index) => {
+          return (
+            <>
+              <StyledText key={index}>
+                Scegli {data?.proficiency_choices[index].choose ?? 1} abilità
+                trà le seguenti:
+              </StyledText>
+              <SelectableTable
+                key={index}
+                head={['descrizione']}
+                data={choice.map(value => [value.name])}
+                max_selectbale={data?.proficiency_choices[index].choose ?? 1}
+                onValueChange={value => {
+                  proficiencies.current[index] = value.map(
+                    stringArr => proficiencyChoices[index][stringArr].index,
+                  );
+                  console.log(proficiencies.current);
+                }}
+              />
+            </>
+          );
+        })}
 
         <StyledSubtitle>Tiri salvezza:</StyledSubtitle>
         {data?.saving_throws?.map((choice, index) => (
@@ -66,32 +97,27 @@ export default function ClassComponent({route, navigation}: Props) {
         <StyledSubtitle>Sottoclassi:</StyledSubtitle>
         <SubclassComponent
           input={input}
-          onSelectedValue={item =>
-            (userData.current.subclass = item as Subclasstypes)
-          }
+          onSelectedValue={item => {
+            userData.current.subclass = item as Subclasstypes;
+          }}
+          level={userData.current.level}
         />
-
-        {/*Da Spostare nella pagina successiva */}
-        {/* <StyledSubtitle>Equipaggiamento iniziale:</StyledSubtitle>
-      {data?.starting_equipment?.map((choice, index) => (
-        <StyledText key={index}>
-          {choice.equipment.name} quantità:{choice.quantity}
-        </StyledText>
-      ))} */}
-        {/*<Text>Scegli ulteriore equipaggiamento:</Text>
-      {data?.starting_equipment_options?.map((choice, index) => (
-        <EquipmentOptionComponent choice={choice} />
-      ))} */}
       </View>
       <View style={[{alignItems: 'center', padding: 30}]}>
         <StyledButton
           text="Next"
-          onPress={() =>
+          onPress={() => {
+            proficiencies.current
+              .filter(item => item !== undefined)
+              .flat()
+              .forEach(item => {
+                userData.current.proficiencies.push(item);
+              });
             navigation.navigate('NewPlayer_Equip', {
               gameId: route.params.gameId,
               playerData: userData.current,
-            })
-          }
+            });
+          }}
         />
       </View>
     </NewPlayerView>

@@ -3,8 +3,7 @@ import {RealmProvider} from '@realm/react';
 import {
   Game as GameModel,
   Player as PlayerModel,
-  Armor as ArmorModel,
-  Weapon as WeaponModel,
+  Equipment as EquipmentModel,
 } from './src/models/Game';
 import {Provider} from 'react-redux';
 import {store} from './src/store';
@@ -13,8 +12,10 @@ import {customTheme2} from './src/constants/theme';
 import {RootScreen} from './src/screens/RootScreen';
 import 'react-native-gesture-handler';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {UtilPDF} from './src/utils/pdf';
 
 const App = () => {
+  new UtilPDF().init();
   // const head = ['Name'];
   // const data = [['John'], ['Doe']];
 
@@ -22,8 +23,8 @@ const App = () => {
     <GestureHandlerRootView style={{flex: 1}}>
       <RealmProvider
         path="dnd.db"
-        schema={[GameModel, PlayerModel, ArmorModel, WeaponModel]}
-        schemaVersion={4}>
+        schema={[GameModel, PlayerModel, EquipmentModel]}
+        schemaVersion={5}>
         <Provider store={store}>
           <NavigationContainer theme={customTheme2}>
             <RootScreen />

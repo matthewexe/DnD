@@ -10,7 +10,6 @@ import {StyledSubtitle} from '../../ui/texts/StyledSubtitle.tsx';
 // import {Loading} from './Loading.tsx';
 // TODO: LOADING/ERROR
 import StyledTitle from '../../ui/texts/StyledTitle.tsx';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {HomeScreenProps} from '../../../routes/HomeProps.ts';
 import {defaultPlayer} from '../../../helper/default.ts';
 import {levelFromXP, xpFromLevel} from '../../../utils/LevelAndXp.ts';
@@ -30,19 +29,18 @@ export const BasicInfo = ({navigation, route}: Props) => {
     error: classError,
   } = useGetEndpointResourceQuery('classes');
 
+  const {data: alignmentData, isLoading: isLoadingAlignment} =
+    useGetEndpointResourceQuery('alignments');
+
   const gameId = route.params.gameId;
   const userData = useRef(defaultPlayer());
   const [level, setLevel] = useState(userData.current.level.toString());
   const [experience, setExperience] = useState(
     userData.current.experience.toString(),
   );
+
   const levelTimeout = useRef<NodeJS.Timeout | null>(null);
   const experienceTimeout = useRef<NodeJS.Timeout | null>(null);
-
-  // if (isLoadingRace) {
-  //   return <Loading />;
-  // }
-  // TODO: Loading/Error
 
   const changeExperience = (value: string) => {
     clearTimeout(experienceTimeout.current as NodeJS.Timeout);
@@ -84,13 +82,12 @@ export const BasicInfo = ({navigation, route}: Props) => {
   }
 
   return (
-    <NewPlayerView title="Basic Info">
+    <NewPlayerView title="Basic Info" errorOnPress={() => {}}>
       <StyledSubtitle>Let's Begin</StyledSubtitle>
 
       <InputText
         label="Player Name"
-        placeholder="New Player"
-        value={userData.current.player_name}
+        placeholder="NPC"
         onChangeText={input => {
           userData.current.player_name = input;
         }}
@@ -99,7 +96,6 @@ export const BasicInfo = ({navigation, route}: Props) => {
         disabled={false}
         label="Character Name"
         placeholder="NPC"
-        value={userData.current.character_name}
         onChangeText={input => {
           userData.current.character_name = input;
         }}
@@ -123,30 +119,61 @@ export const BasicInfo = ({navigation, route}: Props) => {
         }}
       />
       <SelectMenu
-        label="Character Race"
+        label="Character Race (Default: Dragonborn)"
         defaultValue={userData.current.race}
         onSelect={item => {
-          userData.current.race = item.item;
+          userData.current.race = item.index;
         }}
         data={raceData?.results ?? []}
       />
       <SelectMenu
-        label="Character Class"
+        label="Character Class (Default: Barbarian)"
         defaultValue={userData.current.class}
         onSelect={item => {
           userData.current.class = item.index;
         }}
         data={classData?.results ?? []}
       />
-      {/* TODO: Aggiungi allineamento */}
+      <SelectMenu
+        label="Alignment"
+        defaultValue={userData.current.alignment}
+        onSelect={item => {
+          userData.current.alignment = item.index;
+        }}
+        data={alignmentData?.results ?? []}
+      />
       <View style={styles.rowStyle}>
         <StyledButton text="<   Cancel" onPress={navigation.goBack} />
         <StyledButton
           text="Next   >"
           onPress={() => {
-            navigation.navigate('NewPlayer_Race', {
+            let player_name = userData.current.player_name;
+
+            if (player_name === '') {
+              player_name = defaultPlayer().player_name;
+            }
+
+            let character_name = userData.current.character_name;
+            if (character_name === '') {
+              character_name = defaultPlayer().character_name;
+            }
+
+            let level_user = userData.current.level;
+            let experience_user = userData.current.experience;
+            if (level_user <= 0 || experience_user <= 0) {
+              experience_user = defaultPlayer().experience;
+              level_user = defaultPlayer().level;
+            }
+
+            navigation.navigate('NewPlayer_AbilityScores', {
               gameId: gameId,
-              playerData: userData.current,
+              playerData: {
+                ...userData.current,
+                player_name: player_name,
+                character_name: character_name,
+                level: level_user,
+                experience: experience_user,
+              },
             });
           }}
         />
@@ -154,8 +181,6 @@ export const BasicInfo = ({navigation, route}: Props) => {
     </NewPlayerView>
   );
 };
-
-// TODO: Adjust Navigation and params
 
 const styles = StyleSheet.create({
   rowStyle: {

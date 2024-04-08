@@ -8,7 +8,7 @@ type Props = TextProps;
 
 export const StyledText = (props: Props) => {
   return (
-    <Text {...props} style={styles.TextBox}>
+    <Text {...props} style={[styles.TextBox, props.style]}>
       {props.children}
     </Text>
   );

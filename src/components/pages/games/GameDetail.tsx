@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {HomeScreenProps} from '../../../routes/HomeProps';
 import {useQuery, useRealm} from '@realm/react';
 import {Game, Player} from '../../../models/Game';
@@ -18,17 +18,23 @@ export const GameDetail = ({navigation, route}: Props) => {
     return results.filtered('id == $0', gameId);
   })[0];
 
-  if (game === null) {
-    // TODO: Error Modal
-    return;
-  }
+  const [players, setPlayers] = useState<Player[]>(game.players.slice());
 
-  const deletePlayer = (playerId: Realm.BSON.ObjectId) => {
+  const deletePlayer = (playerId: Realm.BSON.ObjectId, index: number) => {
     realm.write(() => {
       const player = realm.objectForPrimaryKey<Player>('Player', playerId);
 
+      if (player === undefined) {
+        return;
+      }
+
+      setPlayers(players.filter((_, i) => i !== index));
       realm.delete(player);
     });
+  };
+
+  const deleteGame = () => {
+    navigation.navigate('DeleteGame', {gameId: gameId});
   };
 
   const addPlayer = () => {
@@ -44,10 +50,11 @@ export const GameDetail = ({navigation, route}: Props) => {
       <StyledSubtitle>{game.description}</StyledSubtitle>
       <View>
         <View>
+          <StyledButton text="Delete Game" onPress={deleteGame} />
           <StyledButton text="Add Player" onPress={addPlayer} />
         </View>
         <View>
-          {game.players.map((player, index) => {
+          {players.map((player, index) => {
             return (
               <View>
                 <View>
@@ -58,7 +65,7 @@ export const GameDetail = ({navigation, route}: Props) => {
                 </View>
                 <StyledButton
                   text="Delete"
-                  onPress={() => deletePlayer(player.id)}
+                  onPress={() => deletePlayer(player.id, index)}
                 />
               </View>
             );
