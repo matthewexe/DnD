@@ -17,7 +17,7 @@ export const HomeDictionary = ({navigation}: Props) => {
         <View style={styles.container}>
           <DictionaryButton
             text="Ability Scores"
-            icon={require('@assets/Ability.png')}
+            icon={require('@assets/ability.png')}
             style={{marginVertical: 5}}
             onPress={() => {
               navigation.navigate('AbilityScoresD');
@@ -25,7 +25,7 @@ export const HomeDictionary = ({navigation}: Props) => {
           />
           <DictionaryButton
             text="Alignaments"
-            icon={require('@assets/Alignament.png')}
+            icon={require('@assets/alignament.png')}
             style={{marginVertical: 5}}
             onPress={() => {
               navigation.navigate('AlignamentD');
@@ -33,42 +33,42 @@ export const HomeDictionary = ({navigation}: Props) => {
           />
           <DictionaryButton
             text="Armors"
-            icon={require('@assets/Armors.png')}
+            icon={require('@assets/armors.png')}
             onPress={() => {
               navigation.navigate('ArmorD');
             }}
           />
           <DictionaryButton
             text="Class"
-            icon={require('@assets/Class.png')}
+            icon={require('@assets/class_logo.png')}
             onPress={() => {
               navigation.navigate('ClassD');
             }}
           />
           <DictionaryButton
             text="Class Levels"
-            icon={require('@assets/Class.png')}
+            icon={require('@assets/class_logo.png')}
             onPress={() => {
               navigation.navigate('ClassLevelsD');
             }}
           />
           <DictionaryButton
             text="Conditions"
-            icon={require('@assets/Conditions.png')}
+            icon={require('@assets/conditions.png')}
             onPress={() => {
               navigation.navigate('ConditionD');
             }}
           />
           <DictionaryButton
             text="Damage Types"
-            icon={require('@assets/DamageTypes.png')}
+            icon={require('@assets/damage_types.png')}
             onPress={() => {
               navigation.navigate('DamegeTypeD');
             }}
           />
           <DictionaryButton
             text="Features"
-            icon={require('@assets/Features.png')}
+            icon={require('@assets/features.png')}
             onPress={() => {
               navigation.navigate('FeaturesD');
             }}
@@ -76,7 +76,7 @@ export const HomeDictionary = ({navigation}: Props) => {
 
           <DictionaryButton
             text="Languages"
-            icon={require('@assets/Languages.png')}
+            icon={require('@assets/languages.png')}
             onPress={() => {
               navigation.navigate('LanguagesD');
             }}
@@ -84,7 +84,7 @@ export const HomeDictionary = ({navigation}: Props) => {
 
           <DictionaryButton
             text="Magic Schools"
-            icon={require('@assets/MagicSchool.png')}
+            icon={require('@assets/magic_school.png')}
             onPress={() => {
               navigation.navigate('MagicSchoolD');
             }}
@@ -92,7 +92,7 @@ export const HomeDictionary = ({navigation}: Props) => {
 
           <DictionaryButton
             text="Monsters"
-            icon={require('@assets/Monsters.png')}
+            icon={require('@assets/monsters.png')}
             onPress={() => {
               navigation.navigate('MonstersD');
             }}
@@ -100,7 +100,7 @@ export const HomeDictionary = ({navigation}: Props) => {
 
           <DictionaryButton
             text="Multiclassing"
-            icon={require('@assets/Multiclassing.png')}
+            icon={require('@assets/multiclassing.png')}
             onPress={() => {
               navigation.navigate('MulticlassingD');
             }}
@@ -108,7 +108,7 @@ export const HomeDictionary = ({navigation}: Props) => {
 
           <DictionaryButton
             text="Races"
-            icon={require('@assets/Races.png')}
+            icon={require('@assets/races.png')}
             onPress={() => {
               navigation.navigate('RaceD');
             }}
@@ -116,7 +116,7 @@ export const HomeDictionary = ({navigation}: Props) => {
 
           <DictionaryButton
             text="Spells"
-            icon={require('@assets/Spells.png')}
+            icon={require('@assets/spells.png')}
             onPress={() => {
               navigation.navigate('SpellD');
             }}
@@ -124,7 +124,7 @@ export const HomeDictionary = ({navigation}: Props) => {
 
           <DictionaryButton
             text="Subclasses"
-            icon={require('@assets/Subclass.png')}
+            icon={require('@assets/subclass.png')}
             onPress={() => {
               navigation.navigate('SubclassD');
             }}
@@ -132,7 +132,7 @@ export const HomeDictionary = ({navigation}: Props) => {
 
           <DictionaryButton
             text="Subraces"
-            icon={require('@assets/Subraces.png')}
+            icon={require('@assets/subraces.png')}
             onPress={() => {
               navigation.navigate('SubraceD');
             }}
@@ -140,7 +140,7 @@ export const HomeDictionary = ({navigation}: Props) => {
 
           <DictionaryButton
             text="Weapons"
-            icon={require('@assets/Weapons.png')}
+            icon={require('@assets/weapons.png')}
             onPress={() => {
               navigation.navigate('WeaponD');
             }}

@@ -28,7 +28,7 @@ export const DictionaryMulticlassing = () => {
                 height: 200,
               }}>
               <Image
-                source={require('@assets/Multiclassing.png')} // Sostituisci con il percorso corretto
+                source={require('@assets/multiclassing.png')} // Sostituisci con il percorso corretto
                 style={{width: '100%', height: '100%', borderRadius: 60}} // Stili per l'immagine per farla adattare alla View
               />
             </View>

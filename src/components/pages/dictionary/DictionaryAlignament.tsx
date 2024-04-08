@@ -27,7 +27,7 @@ export const DictionaryAlignament = () => {
               height: 200,
             }}>
             <Image
-              source={require('@assets/Alignament.png')} // Sostituisci con il percorso corretto
+              source={require('@assets/alignament.png')} // Sostituisci con il percorso corretto
               style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
             />
           </View>

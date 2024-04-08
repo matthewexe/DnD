@@ -6,20 +6,68 @@
       "sha1": "53fe881e3de7bf394dac1b60a22c41bfa9610fea"
     },
     {
+      "path": "src/assets/ability.png",
+      "sha1": "8cf182bc37adaf7e6002edb56cefced1ebf714ae"
+    },
+    {
       "path": "src/assets/alignament.png",
       "sha1": "a2ed8d00a6e7ecd70b4a15380215247eef0b9003"
+    },
+    {
+      "path": "src/assets/armors.png",
+      "sha1": "26c868cea22d5a3405d7233f351148026c86e4bb"
     },
     {
       "path": "src/assets/class_logo.png",
       "sha1": "125bbd4d01361ed063502461401eca082768eb66"
     },
     {
+      "path": "src/assets/conditions.png",
+      "sha1": "a1f776977688b28d8f132ae46bc4ab86a41e2845"
+    },
+    {
       "path": "src/assets/damage_types.png",
       "sha1": "13ad5f0f33cf6a3e7a17475a15edccc5aafc01f9"
     },
     {
+      "path": "src/assets/features.png",
+      "sha1": "e12c46fdbb5adce91d3daf9eaa5235e0490b31c3"
+    },
+    {
+      "path": "src/assets/languages.png",
+      "sha1": "a554d6b7d044264ff79676e43d0982aaf4a31038"
+    },
+    {
+      "path": "src/assets/magic_school.png",
+      "sha1": "576ac9ce91ba3187e856ade53f0335615053ff1d"
+    },
+    {
+      "path": "src/assets/monsters.png",
+      "sha1": "5fac3942e8df72199a00434bd8c4d736c004d2b2"
+    },
+    {
+      "path": "src/assets/multiclassing.png",
+      "sha1": "5db9fbd1acccfd1b6ec855e13bdb6f4d2cdc6766"
+    },
+    {
       "path": "src/assets/player_structure.png",
       "sha1": "1cd8082cabe98ffe68b51d209309fa4c9b9d875a"
+    },
+    {
+      "path": "src/assets/races.png",
+      "sha1": "447ef8b89ef2e981f18879a35f9b5d326eb1f211"
+    },
+    {
+      "path": "src/assets/spells.png",
+      "sha1": "0a3b34805ac12b816b374e43035c2e1666762b06"
+    },
+    {
+      "path": "src/assets/subclass.png",
+      "sha1": "e95126f51261c71b5aee009fd62ec92e8fa7512b"
+    },
+    {
+      "path": "src/assets/subraces.png",
+      "sha1": "eacf5203e04ca741001ae63da821faf43d3d1aa8"
     },
     {
       "path": "src/assets/weapons.png",

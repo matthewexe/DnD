@@ -18,20 +18,20 @@ export const DictionaryHomeMonsters = ({navigation}: Props) => {
             borderRadius: 1000,
           }}>
           <Image
-            source={require('@assets/Monsters.png')} // Sostituisci con il percorso corretto
+            source={require('@assets/monsters.png')} // Sostituisci con il percorso corretto
             style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
           />
         </View>
         <DictionaryButton
           text="Monster by name"
-          icon={require('@assets/Monsters.png')}
+          icon={require('@assets/monsters.png')}
           onPress={() => {
             navigation.navigate('MonsterDByName');
           }}
         />
         <DictionaryButton
           text="Monster by levels"
-          icon={require('@assets/Monsters.png')}
+          icon={require('@assets/monsters.png')}
           onPress={() => {
             navigation.navigate('MonsterDByRange');
           }}

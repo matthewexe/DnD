@@ -36,7 +36,7 @@ export const DictionaryArmor = () => {
                 height: 200,
               }}>
               <Image
-                source={require('@assets/Armors.png')} // Sostituisci con il percorso corretto
+                source={require('@assets/armors.png')} // Sostituisci con il percorso corretto
                 style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
               />
             </View>

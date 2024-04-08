@@ -48,7 +48,7 @@ export const DictionaryClassByLevel = () => {
                 height: 200,
               }}>
               <Image
-                source={require('@assets/Class.png')}
+                source={require('@assets/class_logo.png')}
                 style={{width: '100%', height: '100%', borderRadius: 1000}}
               />
             </View>
@@ -60,13 +60,13 @@ export const DictionaryClassByLevel = () => {
 
               <MonsterLevelButton
                 text="-"
-                // icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
+                // icon={require('/home/mattia/documenti/dnd/src/assets/class_logo.png')}
                 onPress={handleSubtract}
               />
 
               <MonsterLevelButton
                 text="+"
-                // icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
+                // icon={require('/home/mattia/documenti/dnd/src/assets/class_logo.png')}
                 onPress={handlePlus}
               />
             </View>

@@ -135,7 +135,7 @@ export const DictionaryMonsterByLevel = () => {
                 height: 200,
               }}>
               <Image
-                source={require('@assets/Monsters.png')} // Sostituisci con il percorso corretto
+                source={require('@assets/monsters.png')} // Sostituisci con il percorso corretto
                 style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
               />
             </View>
@@ -148,12 +148,12 @@ export const DictionaryMonsterByLevel = () => {
 
             <MonsterLevelButton
               text="+"
-              // icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
+              // icon={require('/home/mattia/documenti/dnd/src/assets/class_logo.png')}
               onPress={handleStart}
             />
             <MonsterLevelButton
               text="-"
-              // icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
+              // icon={require('/home/mattia/documenti/dnd/src/assets/class_logo.png')}
               onPress={handleSubtractStart}
             />
           </View>
@@ -164,19 +164,19 @@ export const DictionaryMonsterByLevel = () => {
             </DescriptionText>
             <MonsterLevelButton
               text="+"
-              // icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
+              // icon={require('/home/mattia/documenti/dnd/src/assets/class_logo.png')}
               onPress={handleEnd}
             />
             <MonsterLevelButton
               text="-"
-              // icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
+              // icon={require('/home/mattia/documenti/dnd/src/assets/class_logo.png')}
               onPress={handleSubtractEnd}
             />
           </View>
           <View style={styles.buttonbox}>
             <DictionaryButton
               text="Submit"
-              // icon={require('/home/mattia/Documenti/DnD/src/assets/Class.png')}
+              // icon={require('/home/mattia/documenti/dnd/src/assets/class_logo.png')}
               onPress={handleSubmit}
             />
           </View>

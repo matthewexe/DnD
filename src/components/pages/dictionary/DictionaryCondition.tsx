@@ -29,7 +29,7 @@ export const DictionaryCondition = () => {
                 borderRadius: 1000,
               }}>
               <Image
-                source={require('@assets/Conditions.png')} // Sostituisci con il percorso corretto
+                source={require('@assets/conditions.png')} // Sostituisci con il percorso corretto
                 style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
               />
             </View>
