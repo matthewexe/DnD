@@ -113,7 +113,7 @@ export default function ClassComponent({route, navigation}: Props) {
               .forEach(item => {
                 userData.current.proficiencies.push(item);
               });
-            navigation.navigate('NewPlayer_Equip', {
+            navigation.navigate('NewPlayer_AbilityScores', {
               gameId: route.params.gameId,
               playerData: userData.current,
             });

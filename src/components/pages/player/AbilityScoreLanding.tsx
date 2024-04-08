@@ -145,6 +145,20 @@ export const AbilityScoreLanding = ({navigation, route}: Props) => {
           {bonus.ability_score.name}: {bonus.bonus}
         </StyledText>
       ))}
+      <StyledButton
+        text="Next"
+        onPress={() => {
+          navigation.navigate('NewPlayer_Equip', {
+            gameId: route.params.gameId,
+            playerData: {
+              ...userData.current,
+              ability_scores: refRolls.current.map(
+                (roll, index) => roll + refBonuses.current[index],
+              ),
+            },
+          });
+        }}
+      />
     </NewPlayerView>
   );
 };

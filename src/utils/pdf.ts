@@ -1,13 +1,19 @@
 import {PDFDocument} from 'pdf-lib';
 import fs from 'react-native-fs';
 import {calculateModifier} from '../helper/calculateModifier';
+import {getProfBonus} from 'helper/proficiencyBonus';
 
 export class UtilPDF {
   private pdf: PDFDocument;
   private failed: boolean;
   // TODO: assegnare ogni abilità del pdf
   private abilityChanger: {[key: string]: string[]} = {
-    DEX: ['ACRO'],
+    DEX: ['ACRO', 'STLTH'],
+    STR: ['ATH'],
+    CON: [],
+    INT: ['ARC', 'INV', 'NAT', 'REL', 'HIST'],
+    WIS: ['ANIM', 'INS', 'MED', 'PERC', 'SURV'],
+    CHA: ['DEC', 'INTI', 'PERF', 'PERS'],
   };
 
   public constructor() {
@@ -17,12 +23,10 @@ export class UtilPDF {
   /**
    *
    */
-  public async init(
-    filePath: string = 'src/assets/D&D 5e Scheda Personaggio.pdf',
-  ) {
+  public async init(filePath: string = 'custom/D&D 5e Scheda Personaggio.pdf') {
     this.failed = false;
     try {
-      let file = await fs.readFile(filePath);
+      let file = await fs.readFileAssets(filePath, 'base64');
       this.pdf = await PDFDocument.load(file);
       console.log(
         this.pdf
@@ -139,6 +143,17 @@ export class UtilPDF {
     if (!isNaN(modifier)) {
       modifierField.setText(modifier.toString());
     }
+
+    const abilityBonus = modifier;
+
+    this.abilityChanger[ability].forEach(abilityName => {
+      const abilityChangerField = form.getTextField(abilityName);
+      abilityChangerField.setText(abilityBonus.toString());
+    });
+
+    if (ability === 'WIS') {
+      // TODO: cambiare anche saggezza passiva
+    }
   }
 
   public setInspiration(inspiration: boolean[]) {
@@ -171,6 +186,53 @@ export class UtilPDF {
       );
       savingThrowCheck.check();
     }
+  }
+
+  public addEquipment(name: string, quantity: number | string) {
+    if (this.failed) return;
+    const form = this.pdf.getForm();
+    const equipmentField = form.getTextField('Equipment');
+    equipmentField.setText(
+      equipmentField.getText() + '\n' + quantity.toString(),
+    );
+  }
+
+  public setMoney(
+    type: 'COPPER' | 'SILVER' | 'ELECTRUM' | 'GOLD' | 'PLATINUM',
+    quantity: number | string,
+  ) {
+    if (this.failed) return;
+    const form = this.pdf.getForm();
+    const moneyField = form.getTextField(type[0].toUpperCase() + 'P');
+    moneyField.setText(quantity.toString());
+  }
+
+  public setTraits(traits: string[]) {
+    if (this.failed) return;
+    const form = this.pdf.getForm();
+    const traitsField = form.getTextField('Features and Traits');
+    traitsField.setText(traitsField.getText() + ', ' + traits.join(', '));
+  }
+
+  public setFeatures(features: string[]) {
+    if (this.failed) return;
+    const form = this.pdf.getForm();
+    const featuresField = form.getTextField('Features and Traits');
+    featuresField.setText(featuresField.getText() + ', ' + features.join(', '));
+  }
+
+  public setAdditionalTraits(traits: string[]) {
+    if (this.failed) return;
+    const form = this.pdf.getForm();
+    const traitsField = form.getTextField('Feats+Traits');
+    traitsField.setText(traitsField.getText() + ', ' + traits.join(', '));
+  }
+
+  public setAdditionalFeatures(features: string[]) {
+    if (this.failed) return;
+    const form = this.pdf.getForm();
+    const featuresField = form.getTextField('Feats+Traits');
+    featuresField.setText(featuresField.getText() + ', ' + features.join(', '));
   }
 
   public async save(filePath: string) {

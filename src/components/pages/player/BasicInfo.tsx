@@ -82,7 +82,11 @@ export const BasicInfo = ({navigation, route}: Props) => {
   }
 
   return (
-    <NewPlayerView title="Basic Info" errorOnPress={() => {}}>
+    <NewPlayerView
+      title="Basic Info"
+      loading={isLoadingRace || isLoadingClass || isLoadingAlignment}
+      error=""
+      errorOnPress={() => {}}>
       <StyledSubtitle>Let's Begin</StyledSubtitle>
 
       <InputText
@@ -165,7 +169,7 @@ export const BasicInfo = ({navigation, route}: Props) => {
               level_user = defaultPlayer().level;
             }
 
-            navigation.navigate('NewPlayer_AbilityScores', {
+            navigation.navigate('NewPlayer_Race', {
               gameId: gameId,
               playerData: {
                 ...userData.current,
