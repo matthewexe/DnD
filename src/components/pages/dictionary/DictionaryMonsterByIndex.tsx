@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {SelectMenu} from '../../ui/SelectMenu';
 import StyledTitle from '../../ui/texts/StyledTitle';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -17,6 +17,16 @@ export const DictionaryMonsterByIndex = () => {
         <ScrollView>
           <StyledTitle>Monsters By Names</StyledTitle>
           <View style={styles.container}>
+            <View
+              style={{
+                width: 200,
+                height: 200,
+              }}>
+              <Image
+                source={require('@assets/Monsters.png')} // Sostituisci con il percorso corretto
+                style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
+              />
+            </View>
             <SelectMenu
               label=""
               onSelect={item => {

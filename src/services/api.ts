@@ -5,7 +5,6 @@ import {
   Background as BackgroundResponse,
   Class as ClassResponse,
   ProficiencyReference as EquipmentResponse,
-  Feature as FeatureResponse,
   Language as LanguageResponse,
   Race as RaceResponse,
   ResourceList,
@@ -27,6 +26,9 @@ import {
   MagicSchool,
   Subrace,
   Monster,
+  MagicItem,
+  Subclass,
+  SubclassResourcesResponse,
 } from '../types/responses';
 
 import {
@@ -53,6 +55,7 @@ import {
   ConditionRequestByIndex,
   DamageTypeByIndexRequest,
   MagicSchoolByIndexRequest,
+  ArmorRequestByIndex,
 } from '../types/requests';
 
 export const api = createApi({
@@ -66,6 +69,8 @@ export const api = createApi({
     'Class',
     'SpellForClass',
     'SubClassesAvailable',
+    'Subclass',
+    'SubclassResources',
     'FeaturesForClass',
     'ResourcesByClassByLevel',
     'ProficienciesForClass',
@@ -84,6 +89,8 @@ export const api = createApi({
     'Monsters',
     'MagicSchool',
     'Features',
+    'Subclass',
+    'Magic-items',
   ],
   endpoints: builder => ({
     //le tengo ordinate x come andranno utilizzate (NON opzionale)
@@ -106,7 +113,7 @@ export const api = createApi({
       ResourceList,
       RacesRequestByIndex
     >({
-      query: ({index}) => `races/${index}/subraces'`,
+      query: ({index}) => `races/${index}/subraces`,
       providesTags: (result, error, {index}) => [{type: 'Subrace', id: index}],
     }),
     getSubRacesByIndexByRace: builder.query<Subrace, RacesRequestByIndex>({
@@ -130,22 +137,9 @@ export const api = createApi({
       ],
     }),
 
-    //Classi-Multiclassi?-Sottoclassi
-
     getClassByIndex: builder.query<ClassResponse, ClassRequest>({
       query: ({index}) => `classes/${index}`,
       providesTags: (result, error, {index}) => [{type: 'Class', id: index}],
-    }),
-
-    //QUESTA CREDO NON SERVA/SBAGLIATA, QUELLA DOPO È GIUSTA
-    getSpellCastingByIndex: builder.query<
-      ResourceList,
-      SpellCastingForClassRequest
-    >({
-      query: ({index}) => `classes/${index}/spellcasting`,
-      providesTags: (result, error, {index}) => [
-        {type: 'SpellForClass', id: index},
-      ],
     }),
 
     getSpellCastingByClass: builder.query<ClassSpellcasting, ClassRequest>({
@@ -170,8 +164,6 @@ export const api = createApi({
         {type: 'SpellForClass', id: index},
       ],
     }),
-
-    //getMulticlassing   --->manca lo mettiamo?
 
     getSubClassesAvilableByIndex: builder.query<
       SubclassByClassResponse,
@@ -256,7 +248,7 @@ export const api = createApi({
 
     //credo sia sbagliata, non trovo la response adeguata
     getFeaturesByIndexByLevel: builder.query<
-      FeatureResponse,
+      Feature,
       ClassLevelResourceRequest
     >({
       query: ({index, class_level}) =>
@@ -356,7 +348,7 @@ export const api = createApi({
         {type: 'EquipmentItem', id: index},
       ],
     }),
-    getArmor: builder.query<Armor, EquipmentItemRequestByIndex>({
+    getArmor: builder.query<Armor, ArmorRequestByIndex>({
       query: ({index}) => `equipment/${index}`,
       providesTags: (result, error, {index}) => [
         {type: 'EquipmentItem', id: index},
@@ -381,6 +373,10 @@ export const api = createApi({
 
     getEndpointResource: builder.query<ResourceList, string>({
       query: str => `/${str}/`,
+      providesTags: (result, error, str) => [{type: 'ResourceList', id: str}],
+    }),
+    getEquipmentResource: builder.query<EquipmentCategory, string>({
+      query: str => `/${str}`,
       providesTags: (result, error, str) => [{type: 'ResourceList', id: str}],
     }),
 
@@ -424,10 +420,32 @@ export const api = createApi({
       providesTags: (result, error, {index}) => [{type: 'Features', id: index}],
     }),
 
+    getMagicArmor: builder.query<MagicItem, EquipmentItemRequestByIndex>({
+      query: ({index}) => `magic-items/${index}`,
+      providesTags: (result, error, {index}) => [
+        {type: 'Magic-items', id: index},
+      ],
+    }),
+
+    getSubclass: builder.query<Subclass, SubclasstypesByIndex>({
+      query: ({index}) => `subclasses/${index}`,
+      providesTags: (result, error, {index}) => [{type: 'Subclass', id: index}],
+    }),
+
+    getSubclassResources: builder.query<
+      SubclassResourcesResponse,
+      SubclasstypesByIndex
+    >({
+      query: ({index}) => `subclasses/${index}/levels`,
+      providesTags: (result, error, {index}) => [
+        {type: 'SubclassResources', id: index},
+      ],
+    }),
+
     //MONSTERS
     getMonsterByIndex: builder.query<Monster, MonstersRequestByIndex>({
-      query: ({index}) => `monsters/${index}`,
-      providesTags: (result, error, {index}) => [{type: 'Monsters', id: index}],
+      query: ({index}) => `subclasses/${index}`,
+      providesTags: (result, error, {index}) => [{type: 'Subclass', id: index}],
     }),
 
     //non sono sicuro
@@ -453,7 +471,6 @@ export const {
   useGetTraitByIndexQuery,
   useGetTraitQuery,
   useGetClassByIndexQuery,
-  useGetSpellCastingByIndexQuery,
   useGetSpellCastingByClassQuery,
   useGetSubClassesAvilableByIndexQuery,
   useGetSubClassesforLevelQuery,
@@ -481,6 +498,7 @@ export const {
   useGetMonsterByLevelQuery,
   useGetSpellsQuery,
   useGetEndpointResourceQuery,
+  useGetEquipmentResourceQuery,
   //dictionary
   useGetMulticlassingQuery,
   useGetConditionQuery,
@@ -488,4 +506,7 @@ export const {
   useGetAbilityScoreQuery,
   useGetMagicSchoolQuery,
   useGetFeaturesQuery,
+  useGetMagicArmorQuery,
+  useGetSubclassQuery,
+  useGetSubclassResourcesQuery,
 } = api;

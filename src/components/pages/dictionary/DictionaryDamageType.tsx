@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SelectMenu} from '../../ui/SelectMenu';
 import {useGetEndpointResourceQuery} from '../../../services/api';
 import {DamageTypeRequest} from '../../../types/requests';
@@ -19,17 +19,27 @@ export const DictionaryDamageType = () => {
   return (
     <>
       <SafeAreaView style={styles.safeview}>
-        <StyledTitle>Damage Types</StyledTitle>
-        <View style={styles.container}>
-          <SelectMenu
-            label=""
-            onSelect={item => {
-              setDamageType(item.index);
-            }}
-            data={classData?.results ?? []}
-          />
-        </View>
         <ScrollView>
+          <StyledTitle>Damage Types</StyledTitle>
+          <View style={styles.container}>
+            <View
+              style={{
+                width: 200,
+                height: 200,
+              }}>
+              <Image
+                source={require('@assets/DamageTypes.png')} // Sostituisci con il percorso corretto
+                style={{width: '100%', height: '100%', borderRadius: 1000}} // Stili per l'immagine per farla adattare alla View
+              />
+            </View>
+            <SelectMenu
+              label=""
+              onSelect={item => {
+                setDamageType(item.index);
+              }}
+              data={classData?.results ?? []}
+            />
+          </View>
           <View style={styles.container}>
             <DamageTypeComponent input={damageTypeState} />
           </View>
@@ -45,6 +55,7 @@ const styles = StyleSheet.create({
   },
   container: {
     alignSelf: 'center',
+    alignItems: 'center',
     padding: 30,
     flexDirection: 'column', // o 'column' per bottoni verticali
     justifyContent: 'space-between', // Distribuisce uniformemente lo spazio

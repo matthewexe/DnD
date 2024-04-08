@@ -1,16 +1,12 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {
-  NativeStackScreenProps,
-  createNativeStackNavigator,
-} from '@react-navigation/native-stack';
-import {
-  ClassIndexRequest,
   ConditionRequest,
   DamageTypeRequest,
   MagicSchoolRequest,
 } from '../types/requests';
 import {Class} from '../types/responses';
 import {CompositeScreenProps} from '@react-navigation/native';
-import {RootTabScreenProps, RootTabParamList} from './RootParamList';
+import {RootTabScreenProps, RootParamList} from './RootProps';
 
 export type DictionaryStackParamList = {
   Dictionary: undefined;
@@ -18,6 +14,8 @@ export type DictionaryStackParamList = {
   AbilityScoresD: undefined;
   //--
   AlignamentD: undefined;
+  //--
+  ArmorD: undefined;
   //--
   ClassD: undefined;
   //--
@@ -33,13 +31,24 @@ export type DictionaryStackParamList = {
   //--
   FeaturesD: undefined;
   //--
+  MulticlassingD: undefined;
+  //--
   MonstersD: undefined;
   //--
   MonsterDByName: undefined;
   //--
   MonsterDByRange: undefined;
   //--
-
+  RaceD: undefined;
+  //--
+  SubraceD: undefined;
+  //--
+  WeaponD: undefined;
+  //--
+  SpellD: undefined;
+  //--
+  SubclassD: undefined;
+  //--
   DictionaryClassLevels: {
     classInfo: Class;
     classLevel: number;
@@ -60,5 +69,5 @@ export type DictionaryStackScreenProps<
   T extends keyof DictionaryStackParamList,
 > = CompositeScreenProps<
   NativeStackScreenProps<DictionaryStackParamList, T>,
-  RootTabScreenProps<keyof RootTabParamList>
+  RootTabScreenProps<keyof RootParamList>
 >;

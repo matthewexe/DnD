@@ -65,10 +65,10 @@ export const MonstersSpell = ({spell}: Props) => {
           <DescriptionText>{spell.usage.times}</DescriptionText>
         </PrimaryText>
       )}
-      <View style={styles.spece}></View>
-      <Text style={styles.primaryTextContainer}></Text>
+      <View style={styles.spece} />
+      <Text style={styles.primaryTextContainer} />
 
-      <View style={styles.spece}></View>
+      <View style={styles.spece} />
     </>
   );
 };

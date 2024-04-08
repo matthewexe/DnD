@@ -2,10 +2,8 @@ import React from 'react';
 import {MonsterSpellcasting} from '../../types/responses';
 import {DescriptionText} from '../ui/texts/DescriptionText';
 import {PrimaryText} from '../ui/texts/PrimaryText';
-import {MonsterDC} from './MonsterDc';
 import {MonstersSpell} from './MonstersSpell';
 import {StyledLabel} from '../ui/texts/LabeldValueStyle';
-import {View} from 'react-native';
 
 type Props = {
   spell: MonsterSpellcasting;
@@ -36,7 +34,7 @@ export const MonsterSpellCasting = ({spell}: Props) => {
         </PrimaryText>
       )}
       <DescriptionText>{'\n\n'}</DescriptionText>
-      {spell.spells && <StyledLabel label={'Spells:'} value={''}></StyledLabel>}
+      {spell.spells && <StyledLabel label={'Spells:'} value={''} />}
       {spell.spells &&
         spell.spells.map(choice => <MonstersSpell spell={choice} />)}
     </>

@@ -13,6 +13,14 @@ import {DictionaryFeatures} from '../components/pages/dictionary/DictionaryFeatu
 import {DictionaryHomeMonsters} from '../components/pages/dictionary/DictionaryHomeMonsters';
 import {DictionaryMonsterByIndex} from '../components/pages/dictionary/DictionaryMonsterByIndex';
 import {DictionaryMonsterByLevel} from '../components/pages/dictionary/DictionaryMonsterByLevel';
+import {DictionaryMulticlassing} from '../components/pages/dictionary/DictionaryMulticlassing';
+import {DictionaryRace} from '../components/pages/dictionary/DictionaryRace';
+import {DictionarySubrace} from '../components/pages/dictionary/DictionarySubrace';
+import {DictionaryClassByLevel} from '../components/pages/dictionary/DictionaryClassByLevel';
+import {DictionaryArmor} from '../components/pages/dictionary/DictionaryArmor';
+import {DictionaryWeapon} from '../components/pages/dictionary/DictionaryWeapon';
+import {DictionarySpell} from '../components/pages/dictionary/DictionarySpell';
+import {DictionarySubclass} from '../components/pages/dictionary/DictionarySubclass';
 
 const Stack = createNativeStackNavigator<DictionaryStackParamList>();
 
@@ -21,6 +29,7 @@ export function Dictionary() {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Dictionary" component={HomeDictionary} />
       <Stack.Screen name="ClassD" component={DictionaryClass} />
+      <Stack.Screen name="ClassLevelsD" component={DictionaryClassByLevel} />
       <Stack.Screen name="AlignamentD" component={DictionaryAlignament} />
       <Stack.Screen name="ConditionD" component={DictionaryCondition} />
       <Stack.Screen name="DamegeTypeD" component={DictionaryDamageType} />
@@ -29,6 +38,13 @@ export function Dictionary() {
       <Stack.Screen name="MagicSchoolD" component={DictionaryMagicSchool} />
       <Stack.Screen name="FeaturesD" component={DictionaryFeatures} />
       <Stack.Screen name="MonstersD" component={DictionaryHomeMonsters} />
+      <Stack.Screen name="MulticlassingD" component={DictionaryMulticlassing} />
+      <Stack.Screen name="RaceD" component={DictionaryRace} />
+      <Stack.Screen name="SubraceD" component={DictionarySubrace} />
+      <Stack.Screen name="ArmorD" component={DictionaryArmor} />
+      <Stack.Screen name="WeaponD" component={DictionaryWeapon} />
+      <Stack.Screen name="SpellD" component={DictionarySpell} />
+      <Stack.Screen name="SubclassD" component={DictionarySubclass} />
       <Stack.Screen
         name="MonsterDByName"
         component={DictionaryMonsterByIndex}

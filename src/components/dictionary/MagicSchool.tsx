@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {useGetMagicSchoolQuery} from '../../services/api';
 import {MagicSchoolRequest} from '../../types/requests';
 import {StyledLabel} from '../ui/texts/LabeldValueStyle';
@@ -29,9 +29,3 @@ export default function MagicSchoolComponent({input}: Props) {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 30,
-  },
-});
