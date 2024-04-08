@@ -85,7 +85,7 @@ export const BasicInfo = ({navigation, route}: Props) => {
     <NewPlayerView
       title="Basic Info"
       loading={isLoadingRace || isLoadingClass || isLoadingAlignment}
-      error=""
+      error={undefined}
       errorOnPress={() => {}}>
       <StyledSubtitle>Let's Begin</StyledSubtitle>
 

@@ -41,6 +41,10 @@ export const GameDetail = ({navigation, route}: Props) => {
     navigation.navigate('NewPlayer_BasicInfo', {gameId: gameId});
   };
 
+  const downloadCard = (id: Realm.Types.ObjectId) => {
+    navigation.navigate('PlayerCard', {playerId: id});
+  };
+
   return (
     <NewPlayerView
       title="GameDetail"
@@ -63,6 +67,10 @@ export const GameDetail = ({navigation, route}: Props) => {
                   </StyledText>
                   <Text>{player.character_name}</Text>
                 </View>
+                <StyledButton
+                  text="Download Card"
+                  onPress={() => downloadCard(player.id)}
+                />
                 <StyledButton
                   text="Delete"
                   onPress={() => deletePlayer(player.id, index)}
