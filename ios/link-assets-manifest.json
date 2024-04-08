@@ -1,0 +1,29 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/D&D 5e Scheda Personaggio.pdf",
+      "sha1": "53fe881e3de7bf394dac1b60a22c41bfa9610fea"
+    },
+    {
+      "path": "src/assets/alignament.png",
+      "sha1": "a2ed8d00a6e7ecd70b4a15380215247eef0b9003"
+    },
+    {
+      "path": "src/assets/class_logo.png",
+      "sha1": "125bbd4d01361ed063502461401eca082768eb66"
+    },
+    {
+      "path": "src/assets/damage_types.png",
+      "sha1": "13ad5f0f33cf6a3e7a17475a15edccc5aafc01f9"
+    },
+    {
+      "path": "src/assets/player_structure.png",
+      "sha1": "1cd8082cabe98ffe68b51d209309fa4c9b9d875a"
+    },
+    {
+      "path": "src/assets/weapons.png",
+      "sha1": "3f344340e63b3ab32e29f73ee3c779e496402ccc"
+    }
+  ]
+}

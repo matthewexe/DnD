@@ -12,8 +12,10 @@ import {customTheme2} from './src/constants/theme';
 import {RootScreen} from './src/screens/RootScreen';
 import 'react-native-gesture-handler';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {UtilPDF} from './src/utils/pdf';
 
 const App = () => {
+  new UtilPDF().init();
   // const head = ['Name'];
   // const data = [['John'], ['Doe']];
 
