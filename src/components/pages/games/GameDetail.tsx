@@ -3,7 +3,7 @@ import {HomeScreenProps} from '../../../routes/HomeProps';
 import {useQuery, useRealm} from '@realm/react';
 import {Game, Player} from '../../../models/Game';
 import {StyledSubtitle} from '../../ui/texts/StyledSubtitle';
-import {Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {StyledText} from '../../ui/texts/StyledText';
 import {StyledButton} from '../../ui/StyledButton';
 import {Realm} from '@realm/react';
@@ -53,28 +53,35 @@ export const GameDetail = ({navigation, route}: Props) => {
       errorOnPress={() => {}}>
       <StyledSubtitle>{game.description}</StyledSubtitle>
       <View>
-        <View>
+        <View style={[styles.containerButtons]}>
           <StyledButton text="Delete Game" onPress={deleteGame} />
           <StyledButton text="Add Player" onPress={addPlayer} />
         </View>
         <View>
           {players.map((player, index) => {
             return (
-              <View>
-                <View>
+              <View style={[styles.margin, styles.playerRow]}>
+                <View style={[styles.margin, styles.containerPlayerName]}>
                   <StyledText>
                     {index + 1}. {player.player_name}
                   </StyledText>
-                  <Text>{player.character_name}</Text>
+                  <StyledText style={[styles.characterName]}>
+                    {player.character_name}
+                  </StyledText>
                 </View>
-                <StyledButton
-                  text="Download Card"
-                  onPress={() => downloadCard(player.id)}
-                />
-                <StyledButton
-                  text="Delete"
-                  onPress={() => deletePlayer(player.id, index)}
-                />
+                <View style={[styles.margin, styles.containerPlayerButtons]}>
+                  <StyledButton
+                    text=""
+                    icon="file-pdf"
+                    onPress={() => downloadCard(player.id)}
+                    style={{marginRight: 10}}
+                  />
+                  <StyledButton
+                    text=""
+                    icon="trash"
+                    onPress={() => deletePlayer(player.id, index)}
+                  />
+                </View>
               </View>
             );
           })}
@@ -83,3 +90,31 @@ export const GameDetail = ({navigation, route}: Props) => {
     </NewPlayerView>
   );
 };
+
+const styles = StyleSheet.create({
+  margin: {
+    marginVertical: 5,
+  },
+  containerButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  playerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  containerPlayerName: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+  },
+  characterName: {
+    color: '#8c8c8c',
+    fontSize: 14,
+    marginLeft: 10,
+  },
+  containerPlayerButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+});

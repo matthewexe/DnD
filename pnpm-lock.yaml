@@ -35,9 +35,6 @@ dependencies:
   '@types/react-native-table-component':
     specifier: ^1.2.8
     version: 1.2.8(@babel/core@7.23.9)(@babel/preset-env@7.23.9)(react@18.2.0)
-  '@types/react-native-vector-icons':
-    specifier: ^6.4.18
-    version: 6.4.18
   axios:
     specifier: ^1.6.7
     version: 1.6.7
@@ -118,6 +115,9 @@ devDependencies:
   '@types/react':
     specifier: ^18.2.6
     version: 18.2.51
+  '@types/react-native-vector-icons':
+    specifier: ^6.4.18
+    version: 6.4.18
   '@types/react-test-renderer':
     specifier: ^18.0.0
     version: 18.0.7
@@ -2567,13 +2567,13 @@ packages:
     dependencies:
       '@types/react': 18.2.51
       '@types/react-native': 0.70.19
-    dev: false
+    dev: true
 
   /@types/react-native@0.70.19:
     resolution: {integrity: sha512-c6WbyCgWTBgKKMESj/8b4w+zWcZSsCforson7UdXtXMecG3MxCinYi6ihhrHVPyUrVzORsvEzK8zg32z4pK6Sg==}
     dependencies:
       '@types/react': 18.2.51
-    dev: false
+    dev: true
 
   /@types/react-test-renderer@18.0.7:
     resolution: {integrity: sha512-1+ANPOWc6rB3IkSnElhjv6VLlKg2dSv/OWClUyZimbLsQyBn8Js9Vtdsi3UICJ2rIQ3k2la06dkB+C92QfhKmg==}

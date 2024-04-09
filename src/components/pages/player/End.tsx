@@ -6,7 +6,7 @@ import 'react-native-get-random-values';
 import {useRealm} from '@realm/react';
 import {Game, Player} from '../../../models/Game';
 import {StyledSubtitle} from '../../ui/texts/StyledSubtitle';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {snakeCaseToTitleCase} from '../../../helper/fieldConverter';
 import {StyledLabeledValue} from '../../ui/texts/StyledLabeledValue';
 import {StyledButton} from '../../ui/StyledButton';
@@ -104,9 +104,10 @@ export const End = ({route, navigation}: Props) => {
           value={snakeCaseToTitleCase(userData.subrace)}
         />
       </View>
-      <View>
+      <View style={[styles.containerButtons]}>
         <StyledButton
           text="Create"
+          icon="check"
           onPress={() => {
             createPlayer();
             navigation.navigate('ListGame');
@@ -114,6 +115,7 @@ export const End = ({route, navigation}: Props) => {
         />
         <StyledButton
           text="Cancel"
+          icon="xmark"
           onPress={() => {
             navigation.navigate('ListGame');
           }}
@@ -122,3 +124,11 @@ export const End = ({route, navigation}: Props) => {
     </NewPlayerView>
   );
 };
+
+const styles = StyleSheet.create({
+  containerButtons: {
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+});

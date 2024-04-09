@@ -17,6 +17,7 @@ export const StyledText = (props: Props) => {
 const styles = StyleSheet.create({
   TextBox: {
     fontWeight: 'bold',
+    fontSize: 16,
     color: customTheme2.colors.text,
   },
 });

@@ -104,7 +104,14 @@ export const AbilityScoreLanding = ({navigation, route}: Props) => {
 
   return (
     <NewPlayerView title="Ability Scores" errorOnPress={() => {}}>
-      <StyledButton text="Re-Roll" onPress={reroll} />
+      <View style={[styles.containerButton]}>
+        <StyledButton
+          text="Re-Roll"
+          icon="dice"
+          iconSize={22}
+          onPress={reroll}
+        />
+      </View>
       {rolls.map((roll, index) => (
         <View
           style={[
@@ -145,20 +152,23 @@ export const AbilityScoreLanding = ({navigation, route}: Props) => {
           {bonus.ability_score.name}: {bonus.bonus}
         </StyledText>
       ))}
-      <StyledButton
-        text="Next"
-        onPress={() => {
-          navigation.navigate('NewPlayer_Equip', {
-            gameId: route.params.gameId,
-            playerData: {
-              ...userData.current,
-              ability_scores: refRolls.current.map(
-                (roll, index) => roll + refBonuses.current[index],
-              ),
-            },
-          });
-        }}
-      />
+      <View style={[styles.containerButton]}>
+        <StyledButton
+          text="Next"
+          icon="arrow-right"
+          onPress={() => {
+            navigation.navigate('NewPlayer_Equip', {
+              gameId: route.params.gameId,
+              playerData: {
+                ...userData.current,
+                ability_scores: refRolls.current.map(
+                  (roll, index) => roll + refBonuses.current[index],
+                ),
+              },
+            });
+          }}
+        />
+      </View>
     </NewPlayerView>
   );
 };
@@ -190,5 +200,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 50,
     borderColor: customTheme2.colors.primary,
+  },
+  containerButton: {
+    width: 120,
+    marginVertical: 20,
   },
 });

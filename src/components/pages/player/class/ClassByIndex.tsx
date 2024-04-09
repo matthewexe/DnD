@@ -106,6 +106,7 @@ export default function ClassComponent({route, navigation}: Props) {
       <View style={[{alignItems: 'center', padding: 30}]}>
         <StyledButton
           text="Next"
+          icon="arrow-right"
           onPress={() => {
             proficiencies.current
               .filter(item => item !== undefined)

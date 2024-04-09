@@ -27,9 +27,6 @@ export class UtilPDF {
     this.failed = false;
   }
 
-  /**
-   *
-   */
   public async init(
     filePath: string = 'custom/D&D 5e Scheda Personaggio.pdf',
   ): Promise<UtilPDF> {
@@ -96,6 +93,8 @@ export class UtilPDF {
     const form = this.pdf.getForm();
     const classField = form.getTextField('ClassLevel');
     classField.setText(`${className} ${level}`);
+    const hitDieTotalField = form.getTextField('HDTotal');
+    hitDieTotalField.setText(level.toString());
 
     return this;
   }
@@ -284,7 +283,11 @@ export class UtilPDF {
     }
     const form = this.pdf.getForm();
     const traitsField = form.getTextField('Features and Traits');
-    traitsField.setText(traitsField.getText() + ', ' + traits.join(', '));
+    traitsField.setText(
+      traitsField.getText() +
+        ', ' +
+        traits.filter(str => str !== undefined).join(', '),
+    );
 
     return this;
   }
@@ -295,7 +298,11 @@ export class UtilPDF {
     }
     const form = this.pdf.getForm();
     const featuresField = form.getTextField('Features and Traits');
-    featuresField.setText(featuresField.getText() + ', ' + features.join(', '));
+    featuresField.setText(
+      featuresField.getText() +
+        ', ' +
+        features.filter(str => str !== undefined).join(', '),
+    );
 
     return this;
   }
@@ -306,7 +313,11 @@ export class UtilPDF {
     }
     const form = this.pdf.getForm();
     const traitsField = form.getTextField('Feats+Traits');
-    traitsField.setText(traitsField.getText() + ', ' + traits.join(', '));
+    traitsField.setText(
+      traitsField.getText() +
+        ', ' +
+        traits.filter(str => str !== undefined).join(', '),
+    );
 
     return this;
   }
@@ -317,7 +328,74 @@ export class UtilPDF {
     }
     const form = this.pdf.getForm();
     const featuresField = form.getTextField('Feats+Traits');
-    featuresField.setText(featuresField.getText() + ', ' + features.join(', '));
+    featuresField.setText(
+      featuresField.getText() +
+        ', ' +
+        features.filter(str => str !== undefined).join(', '),
+    );
+
+    return this;
+  }
+
+  public setOtherProficiencies(proficiencies: string[]): UtilPDF {
+    if (this.failed) {
+      return this;
+    }
+    const form = this.pdf.getForm();
+    const proficienciesField = form.getTextField('ProficienciesLang');
+    proficienciesField.setText(
+      proficienciesField.getText() +
+        '\n' +
+        proficiencies.filter(str => str !== undefined).join(', '),
+    );
+
+    return this;
+  }
+
+  public setLanguages(languages: string[]): UtilPDF {
+    if (this.failed) {
+      return this;
+    }
+    const form = this.pdf.getForm();
+    const languagesField = form.getTextField('ProficienciesLang');
+    languagesField.setText(
+      languagesField.getText() +
+        '\n' +
+        languages.filter(str => str !== undefined).join(', '),
+    );
+
+    return this;
+  }
+
+  public setHitDie(hitDie: number | string): UtilPDF {
+    if (this.failed) {
+      return this;
+    }
+    const form = this.pdf.getForm();
+    const hitDieTotalField = form.getTextField('HD');
+    hitDieTotalField.setText(hitDie.toString());
+
+    return this;
+  }
+
+  public setHpActual(hp: number | string) {
+    if (this.failed) {
+      return this;
+    }
+    const form = this.pdf.getForm();
+    const hpActualField = form.getTextField('HPCurrent');
+    hpActualField.setText(hp.toString());
+
+    return this;
+  }
+
+  public setHpMax(hp: number | string) {
+    if (this.failed) {
+      return this;
+    }
+    const form = this.pdf.getForm();
+    const hpMaxField = form.getTextField('HPMax');
+    hpMaxField.setText(hp.toString());
 
     return this;
   }

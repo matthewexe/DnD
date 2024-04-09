@@ -146,10 +146,12 @@ export const BasicInfo = ({navigation, route}: Props) => {
         }}
         data={alignmentData?.results ?? []}
       />
+      {/* TODO: background input */}
       <View style={styles.rowStyle}>
         <StyledButton text="<   Cancel" onPress={navigation.goBack} />
         <StyledButton
-          text="Next   >"
+          text="Next"
+          icon="arrow-right"
           onPress={() => {
             let player_name = userData.current.player_name;
 
