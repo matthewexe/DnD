@@ -16,6 +16,7 @@ import {UtilPDF} from '../../../utils/pdf';
 import {getProfBonus} from '../../../helper/proficiencyBonus';
 import {hp, maxHp} from '../../../utils/hp';
 import {calculateModifier} from '../../../utils/calculateModifier';
+import FileViewer from 'react-native-file-viewer';
 
 type Props = HomeScreenProps<'PlayerCard'>;
 
@@ -24,29 +25,29 @@ export const DownloadScheda = ({route, navigation}: Props) => {
     collection.filtered('id = $0', route.params.playerId),
   )[0];
 
-  const {data: dataClass, loading: loadingClass} = useGetClassByIndexQuery({
+  const {data: dataClass, isLoading: loadingClass} = useGetClassByIndexQuery({
     index: userData.class,
   });
 
-  const {data: subclassData, loading: loadingSubclass} = useGetSubclassQuery({
+  const {data: subclassData, isLoading: loadingSubclass} = useGetSubclassQuery({
     index: userData.subclass,
   });
 
-  const {data: dataRace, loading: loadingRace} = useGetRacesByIndexQuery({
+  const {data: dataRace, isLoading: loadingRace} = useGetRacesByIndexQuery({
     index: userData.race,
   });
 
-  const {data: subraceData, loading: loadingSubrace} =
+  const {data: subraceData, isLoading: loadingSubrace} =
     useGetSubRacesByIndexQuery({
       index: userData.subrace,
     });
 
-  const {data: featuresData, loading: loadingFeatures} =
+  const {data: featuresData, isLoading: loadingFeatures} =
     useGetFeaturesByClassQuery({
       index: userData.class,
     });
 
-  const {data: traitsData, loading: loadingTraits} = useGetTraitByIndexQuery({
+  const {data: traitsData, isLoading: loadingTraits} = useGetTraitByIndexQuery({
     index: userData.race,
   });
 
@@ -122,8 +123,11 @@ export const DownloadScheda = ({route, navigation}: Props) => {
       }
 
       pdf.current
-        .save(`${UtilPDF.paths.downloads}/scheda.pdf`)
-        .then(() => {
+        .save(`${UtilPDF.paths.documents}/scheda.pdf`)
+        .then(content => {
+          FileViewer.open(`${UtilPDF.paths.documents}/scheda.pdf`, {
+            showOpenWithDialog: true,
+          });
           console.log('PDF saved');
         })
         .catch(err => {

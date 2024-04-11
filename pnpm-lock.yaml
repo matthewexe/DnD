@@ -50,6 +50,9 @@ dependencies:
   react-native-collapsible:
     specifier: ^1.6.1
     version: 1.6.1(react-native@0.73.3)(react@18.2.0)
+  react-native-file-viewer:
+    specifier: ^2.1.5
+    version: 2.1.5(react-native@0.73.3)
   react-native-fs:
     specifier: ^2.20.0
     version: 2.20.0(react-native@0.73.3)
@@ -6301,6 +6304,14 @@ packages:
       react-native: '*'
     dependencies:
       react: 18.2.0
+      react-native: 0.73.3(@babel/core@7.23.9)(@babel/preset-env@7.23.9)(react@18.2.0)
+    dev: false
+
+  /react-native-file-viewer@2.1.5(react-native@0.73.3):
+    resolution: {integrity: sha512-MGC6sx9jsqHdefhVQ6o0akdsPGpkXgiIbpygb2Sg4g4bh7v6K1cardLV1NwGB9A6u1yICOSDT/MOC//9Ez6EUg==}
+    peerDependencies:
+      react-native: '>=0.47'
+    dependencies:
       react-native: 0.73.3(@babel/core@7.23.9)(@babel/preset-env@7.23.9)(react@18.2.0)
     dev: false
 
