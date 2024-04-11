@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, TextProps} from 'react-native';
+import {StyleSheet, Text, TextProps} from 'react-native';
 import {customTheme2} from '../../../constants/theme';
 
 type Props = TextProps;
@@ -7,20 +7,22 @@ type Props = TextProps;
 export const StyledTitle = (props: Props) => {
   return (
     <>
-      <Text
-        {...props}
-        style={{
-          backgroundColor: customTheme2.colors.primary,
-          color: customTheme2.colors.text,
-          textAlign: 'center',
-          fontSize: 30,
-          fontWeight: 'bold',
-          padding: 10,
-        }}>
+      <Text {...props} style={[styles.default, props.style]}>
         {props.children}
       </Text>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  default: {
+    backgroundColor: customTheme2.colors.primary,
+    color: customTheme2.colors.text,
+    textAlign: 'center',
+    fontSize: 30,
+    fontWeight: 'bold',
+    padding: 10,
+  },
+});
 
 export default StyledTitle;

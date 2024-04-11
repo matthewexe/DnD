@@ -1,3 +1,4 @@
+import {customTheme2} from '../../constants/theme';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Modal, {ReactNativeModal} from 'react-native-modal';
@@ -5,48 +6,38 @@ import Modal, {ReactNativeModal} from 'react-native-modal';
 export class StyledModal extends ReactNativeModal {
   render() {
     return (
-      <View
-        style={{
-          width: '70%',
-          height: '80%',
-          alignSelf: 'center',
-          position: 'absolute',
-          top: '70%',
-        }}>
-        <Modal
-          {...this.props}
-          animationInTiming={480}
-          animationIn={'slideInUp'}
-          animationOutTiming={500}
-          animationOut={'slideOutDown'}
-          coverScreen={false} //per coprire l'intero schermo
-          isVisible={this.props.isVisible}
-          backdropColor="trasparent"
-          backdropOpacity={5}
-          style={styles.centered}>
+      <Modal
+        {...this.props}
+        animationInTiming={480}
+        animationIn={'slideInUp'}
+        animationOutTiming={500}
+        animationOut={'slideOutDown'}
+        coverScreen={false} //per coprire l'intero schermo
+        isVisible={this.props.isVisible}
+        backdropColor="trasparent"
+        backdropOpacity={5}
+        style={[styles.modalContainer]}>
+        <View style={[styles.innerContainer, this.props.style]}>
           {this.props.children}
-        </Modal>
-      </View>
+        </View>
+      </Modal>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  centered: {
-    borderWidth: 0,
-    borderRadius: 12,
-    backgroundColor: '#ffffff',
-    borderColor: 'white',
-
-    flex: 1,
-
-    shadowColor: '#ffffff',
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    shadowOpacity: 0.85,
-    shadowRadius: 4,
-    elevation: 26,
+  modalContainer: {
+    margin: 0,
+    height: '100%',
+    backgroundColor: customTheme2.colors.background + '50',
+    justifyContent: 'center',
+    paddingHorizontal: 50,
+  },
+  innerContainer: {
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    // borderRadius: 20,
+    borderRadius: 20,
+    backgroundColor: customTheme2.colors.card,
   },
 });

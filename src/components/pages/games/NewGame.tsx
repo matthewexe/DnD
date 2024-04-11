@@ -12,6 +12,7 @@ import Realm from 'realm';
 import 'react-native-get-random-values';
 import {HomeScreenProps} from '../../../routes/HomeProps';
 import {StyledModal} from '../../ui/StyledModal';
+import {StyledText} from '../../ui/texts/StyledText';
 
 type Props = HomeScreenProps<'NewGame'>;
 
@@ -68,15 +69,17 @@ export const NewGame = ({navigation}: Props) => {
   };
 
   return (
-    <NewPlayerView
-      title="New Game"
-      loading={state.loading}
-      error={state.error}
-      errorOnPress={() => {
-        navigation.navigate('ListGame');
-      }}>
-      <StyledModal isVisible={successModalVisible}>
-        <StyledTitle>Game created</StyledTitle>
+    <>
+      <StyledModal
+        isVisible={true}
+        style={{justifyContent: 'space-between', height: 200}}>
+        <StyledTitle
+          style={{borderTopLeftRadius: 12, borderTopRightRadius: 12}}>
+          Game created
+        </StyledTitle>
+        <View style={{padding: 20}}>
+          <StyledText>Game created successfully</StyledText>
+        </View>
         <StyledButton
           text="Ok"
           onPress={() => {
@@ -85,20 +88,38 @@ export const NewGame = ({navigation}: Props) => {
           }}
         />
       </StyledModal>
-      <View>
+      <NewPlayerView
+        title="New Game"
+        loading={state.loading}
+        error={state.error}
+        errorOnPress={() => {
+          navigation.navigate('ListGame');
+        }}>
         <View>
-          <StyledTextInput placeholder="Game Name" onChangeText={changeName} />
-          <StyledTextInput placeholder="Game Desc" onChangeText={changeDesc} />
+          <View>
+            <StyledText>Game Name:</StyledText>
+            <StyledTextInput
+              placeholder="Game Name"
+              onChangeText={changeName}
+            />
+            <StyledText>Game Description:</StyledText>
+            <StyledTextInput
+              placeholder="Game Desc"
+              onChangeText={changeDesc}
+              multiline
+              numberOfLines={4}
+            />
+          </View>
+          <View style={{marginTop: 20}}>
+            <StyledButton
+              text="Create Game"
+              onPress={() => {
+                createGame();
+              }}
+            />
+          </View>
         </View>
-        <View>
-          <StyledButton
-            text="Create Game"
-            onPress={() => {
-              createGame();
-            }}
-          />
-        </View>
-      </View>
-    </NewPlayerView>
+      </NewPlayerView>
+    </>
   );
 };
