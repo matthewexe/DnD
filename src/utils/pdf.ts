@@ -257,7 +257,7 @@ export class UtilPDF {
     const form = this.pdf.getForm();
     const equipmentField = form.getTextField('Equipment');
     equipmentField.setText(
-      equipmentField.getText() + '\n' + quantity.toString(),
+      (equipmentField.getText() ?? '') + '\n' + quantity.toString(),
     );
 
     return this;
@@ -284,7 +284,7 @@ export class UtilPDF {
     const form = this.pdf.getForm();
     const traitsField = form.getTextField('Features and Traits');
     traitsField.setText(
-      traitsField.getText() +
+      (traitsField.getText() ?? '') +
         ', ' +
         traits.filter(str => str !== undefined).join(', '),
     );
@@ -299,7 +299,7 @@ export class UtilPDF {
     const form = this.pdf.getForm();
     const featuresField = form.getTextField('Features and Traits');
     featuresField.setText(
-      featuresField.getText() +
+      (featuresField.getText() ?? '') +
         ', ' +
         features.filter(str => str !== undefined).join(', '),
     );
@@ -314,7 +314,7 @@ export class UtilPDF {
     const form = this.pdf.getForm();
     const traitsField = form.getTextField('Feats+Traits');
     traitsField.setText(
-      traitsField.getText() +
+      (traitsField.getText() ?? '') +
         ', ' +
         traits.filter(str => str !== undefined).join(', '),
     );
@@ -329,7 +329,7 @@ export class UtilPDF {
     const form = this.pdf.getForm();
     const featuresField = form.getTextField('Feats+Traits');
     featuresField.setText(
-      featuresField.getText() +
+      (featuresField.getText() ?? '') +
         ', ' +
         features.filter(str => str !== undefined).join(', '),
     );
@@ -344,7 +344,7 @@ export class UtilPDF {
     const form = this.pdf.getForm();
     const proficienciesField = form.getTextField('ProficienciesLang');
     proficienciesField.setText(
-      proficienciesField.getText() +
+      (proficienciesField.getText() ?? '') +
         '\n' +
         proficiencies.filter(str => str !== undefined).join(', '),
     );
@@ -359,7 +359,7 @@ export class UtilPDF {
     const form = this.pdf.getForm();
     const languagesField = form.getTextField('ProficienciesLang');
     languagesField.setText(
-      languagesField.getText() +
+      (languagesField.getText() ?? '') +
         '\n' +
         languages.filter(str => str !== undefined).join(', '),
     );
