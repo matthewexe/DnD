@@ -34,9 +34,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 50,
   },
   innerContainer: {
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // borderRadius: 20,
     borderRadius: 20,
     backgroundColor: customTheme2.colors.card,
   },
