@@ -10,14 +10,14 @@ type Props = PropsWithChildren<{
   title: React.ReactNode;
   loading?: boolean;
   error?: string | undefined;
-  errorOnPress: () => void;
+  errorOnPress?: () => void;
 }>;
 
 export const NewPlayerView = ({
   title,
   loading,
   error,
-  errorOnPress,
+  errorOnPress = () => {},
   children,
 }: Props) => {
   return (
