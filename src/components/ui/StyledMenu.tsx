@@ -9,7 +9,6 @@ type Props = SelectDropdownProps;
 export const StyledMenu = (props: Props) => {
   return (
     <SelectDropdown
-      {...props}
       rowTextStyle={{
         color: customTheme2.colors.text,
       }}
@@ -23,6 +22,7 @@ export const StyledMenu = (props: Props) => {
         color: customTheme2.colors.text,
       }}
       defaultButtonText="Select an option"
+      {...props}
     />
   );
 };

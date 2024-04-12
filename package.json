@@ -38,7 +38,8 @@
     "react-native-uuid": "^2.0.2",
     "react-native-vector-icons": "^10.0.3",
     "react-redux": "^9.1.0",
-    "realm": "^12.6.2"
+    "realm": "^12.6.2",
+    "translate-google-api": "^1.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

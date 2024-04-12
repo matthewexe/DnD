@@ -38,3 +38,8 @@ export type Game = {
   name: string;
   players: Player[];
 };
+
+export type Settings = {
+  language: string;
+  firsLog: boolean;
+};
