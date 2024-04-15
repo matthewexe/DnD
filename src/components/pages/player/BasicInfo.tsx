@@ -89,6 +89,7 @@ export const BasicInfo = ({navigation, route}: Props) => {
       errorOnPress={() => {}}>
       <StyledSubtitle>Let's Begin</StyledSubtitle>
 
+      {/* Player Name */}
       <InputText
         label="Player Name"
         placeholder="NPC"
@@ -96,6 +97,8 @@ export const BasicInfo = ({navigation, route}: Props) => {
           userData.current.player_name = input;
         }}
       />
+
+      {/* Character Name */}
       <InputText
         disabled={false}
         label="Character Name"
@@ -104,6 +107,17 @@ export const BasicInfo = ({navigation, route}: Props) => {
           userData.current.character_name = input;
         }}
       />
+      {/* Background */}
+      <InputText
+        label="Background"
+        placeholder="Background"
+        value={experience}
+        onChangeText={input => {
+          userData.current.background = input;
+        }}
+      />
+
+      {/* Character */}
       <InputText
         label="Character Level"
         placeholder="1"
@@ -122,6 +136,8 @@ export const BasicInfo = ({navigation, route}: Props) => {
           changeExperience(input);
         }}
       />
+
+      {/* Race */}
       <SelectMenu
         label="Character Race (Default: Dragonborn)"
         defaultValue={userData.current.race}
@@ -130,6 +146,8 @@ export const BasicInfo = ({navigation, route}: Props) => {
         }}
         data={raceData?.results ?? []}
       />
+
+      {/* Class */}
       <SelectMenu
         label="Character Class (Default: Barbarian)"
         defaultValue={userData.current.class}
@@ -138,6 +156,8 @@ export const BasicInfo = ({navigation, route}: Props) => {
         }}
         data={classData?.results ?? []}
       />
+
+      {/* Alignment */}
       <SelectMenu
         label="Alignment"
         defaultValue={userData.current.alignment}
@@ -146,9 +166,15 @@ export const BasicInfo = ({navigation, route}: Props) => {
         }}
         data={alignmentData?.results ?? []}
       />
-      {/* TODO: background input */}
+
+      {/* Buttons */}
       <View style={styles.rowStyle}>
-        <StyledButton text="<   Cancel" onPress={navigation.goBack} />
+        <StyledButton
+          text="Cancel"
+          icon="arrow-left"
+          iconPosition="left"
+          onPress={navigation.goBack}
+        />
         <StyledButton
           text="Next"
           icon="arrow-right"
@@ -194,6 +220,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     padding: 13,
-    margin: -3,
+    margin: 0,
+    marginVertical: 5,
   },
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {SelectDropdownProps} from 'react-native-select-dropdown';
 import {APIReference} from '../../types/responses';
 import {StyledMenu} from './StyledMenu';
@@ -13,7 +13,7 @@ type Props = SelectDropdownProps & {
 export const SelectMenu = (props: Props) => {
   const label = props.label;
   return (
-    <View>
+    <View style={[styles.container]}>
       <StyledText>{label}</StyledText>
       <StyledMenu
         rowTextForSelection={item => {
@@ -28,3 +28,10 @@ export const SelectMenu = (props: Props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    margin: 0,
+    marginVertical: 7,
+  },
+});

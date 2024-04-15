@@ -33,17 +33,17 @@ export const StyledButton = ({
           name={icon}
           size={iconSize}
           color={customTheme2.colors.text}
+          style={[{marginRight: 10}]}
           solid
         />
       )}
-      {text !== '' && (
-        <StyledText style={[{marginRight: 10}]}>{text}</StyledText>
-      )}
+      {text !== '' && <StyledText>{text}</StyledText>}
       {icon && iconPosition === 'right' && (
         <FontAwesome6
           name={icon}
           size={iconSize}
           color={customTheme2.colors.text}
+          style={[{marginLeft: 10}]}
           solid
         />
       )}
