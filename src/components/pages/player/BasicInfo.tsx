@@ -6,9 +6,6 @@ import {useGetEndpointResourceQuery} from '../../../services/api.ts';
 import {StyledButton} from '../../ui/StyledButton.tsx';
 import {StyleSheet} from 'react-native';
 import {StyledSubtitle} from '../../ui/texts/StyledSubtitle.tsx';
-// import {Error} from './Error';
-// import {Loading} from './Loading.tsx';
-// TODO: LOADING/ERROR
 import StyledTitle from '../../ui/texts/StyledTitle.tsx';
 import {HomeScreenProps} from '../../../routes/HomeProps.ts';
 import {defaultPlayer} from '../../../helper/default.ts';

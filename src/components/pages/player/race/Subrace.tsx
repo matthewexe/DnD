@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import {useGetSubRacesByIndexQuery} from '../../../../services/api';
-import {SubraceIndexRequest} from '../../../../types/requests';
+import {SubracesRequest} from '../../../../types/requests';
 import {TraitsRequest} from '../../../../types/requests';
 import RaceTrait from './Trait';
 import {StyledText} from '../../../ui/texts/StyledText';
@@ -9,7 +9,7 @@ import {StyledSubtitle} from '../../../ui/texts/StyledSubtitle';
 import {View} from 'react-native';
 
 type Props = {
-  input: SubraceIndexRequest;
+  input: SubracesRequest;
 };
 
 export default function Subrace({input}: Props) {

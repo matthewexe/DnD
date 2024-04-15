@@ -39,17 +39,15 @@ export default function RaceComponent({route, navigation}: Props) {
     }
   }, [data]);
 
-  if (error) return <Text>error in fetching</Text>;
-  if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) return <Text>wait for response from the server</Text>;
-  //input per verificare le sottorazze.
-
   return (
     <NewPlayerView
       title="Race"
-      loading={false}
-      error={undefined}
-      errorOnPress={() => {}}>
+      loading={isLoading || isFetching}
+      error={
+        error
+          ? 'Networking error. Check your connection or try later'
+          : undefined
+      }>
       <View>
         <StyledLabeledValue
           label="Name"
