@@ -1,7 +1,9 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 import {useGetProficienciesForClassByIndexQuery} from '../../../../services/api';
 import {ClassIndexRequest} from '../../../../types/requests';
+import {StyledSubtitle} from '../../../ui/texts/StyledSubtitle';
+import {StyledText} from '../../../ui/texts/StyledText';
 
 export default function ProficiencyByClassComponent({
   input,
@@ -13,16 +15,14 @@ export default function ProficiencyByClassComponent({
       index: input,
     });
 
-  if (error) return <Text>error in fetching</Text>;
-  if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
-    <>
-      <Text>Hai {data?.count} competenze:</Text>
+    <View>
+      <StyledSubtitle>Competenze</StyledSubtitle>
+      <StyledText>Hai {data?.count} competenze:</StyledText>
       {data?.results.map((choice, index) => (
-        <Text key={index}>{choice.name}</Text>
+        <StyledText key={index}>{choice.name}</StyledText>
       ))}
-    </>
+    </View>
   );
 }
 //NB: Non so ancora come utilizzare il campo url della map

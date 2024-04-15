@@ -33,7 +33,7 @@ export const StyledButton = ({
           name={icon}
           size={iconSize}
           color={customTheme2.colors.text}
-          style={[{marginRight: 10}]}
+          style={[{marginRight: text !== '' ? 10 : 0}]}
           solid
         />
       )}
@@ -43,7 +43,7 @@ export const StyledButton = ({
           name={icon}
           size={iconSize}
           color={customTheme2.colors.text}
-          style={[{marginLeft: 10}]}
+          style={[{marginLeft: text !== '' ? 10 : 0}]}
           solid
         />
       )}
