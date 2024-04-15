@@ -1,6 +1,6 @@
 import React from 'react';
 import {HomeScreenProps} from '../../../routes/HomeProps';
-import {useQuery, useRealm} from '@realm/react';
+import {useObject, useQuery, useRealm} from '@realm/react';
 import {Game} from '../../../models/Game';
 import {View} from 'react-native';
 import {LabeledValue} from '../../ui/LabeledValue';
@@ -13,9 +13,7 @@ export const DeleteGame = ({route, navigation}: Props) => {
   const realm = useRealm();
 
   const gameId = route.params.gameId;
-  const game = useQuery<Game>(Game, results => {
-    return results.filtered('id == $0', gameId);
-  })[0];
+  const game = useObject<Game>(Game, gameId);
 
   const errorStatus = () => {
     return undefined;

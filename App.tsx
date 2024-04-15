@@ -13,12 +13,12 @@ import {customTheme2} from './src/constants/theme';
 import {RootScreen} from './src/screens/RootScreen';
 import 'react-native-gesture-handler';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {UtilPDF} from './src/utils/pdf';
 import {PermissionsAndroid} from 'react-native';
 import Realm from 'realm';
 import {setProperty} from './src/store/settings';
 
 const App = () => {
+  const realmRef = useRef<Realm | null>(null);
   const pathDB = useRef<string>('dnd.db');
   const schemaDB = useRef([
     GameModel,
@@ -29,22 +29,16 @@ const App = () => {
 
   useEffect(() => {
     // Config DB
-    const initConfig = async () => {
-      // FIX
-      const realm = await Realm.open({
-        path: pathDB.current,
-        schema: schemaDB.current,
-      });
+    const initConfig = () => {
+      if (realmRef.current === null) return;
 
-      console.log(realm);
-
-      if (
-        realm.isEmpty ||
-        realm.objects<Settings>('Settings')[0] === undefined
-      ) {
-        console.log('First configuration');
-        realm.write(() => {
-          console.log(realm.create<Settings>('Settings', {}));
+      const dbSettings = realmRef.current?.objects<Settings>(Settings)[0];
+      if (dbSettings === undefined) {
+        console.log('first openeeed');
+        realmRef.current.write(() => {
+          realmRef.current.create<Settings>('Settings', {
+            language: 'English',
+          });
         });
       }
 
@@ -52,7 +46,7 @@ const App = () => {
       store.dispatch(
         setProperty({
           property: 'language',
-          value: realm.objects<Settings>('Settings')[0].language,
+          value: dbSettings?.language ?? 'English',
         }),
       );
     };
@@ -105,7 +99,8 @@ const App = () => {
       <RealmProvider
         path={pathDB.current}
         schema={schemaDB.current}
-        schemaVersion={5}>
+        schemaVersion={6}
+        realmRef={realmRef}>
         <Provider store={store}>
           <NavigationContainer theme={customTheme2}>
             <RootScreen />

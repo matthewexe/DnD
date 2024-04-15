@@ -1,13 +1,10 @@
 import React, {useRef, useState} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import StyledTitle from '../../ui/texts/StyledTitle';
 import {StyledTextInput} from '../../ui/StyledTextInput';
 import {View} from 'react-native';
 import {StyledButton} from '../../ui/StyledButton';
 import {NewPlayerView} from '../../../views/NewPlayerView';
 import {useRealm} from '@realm/react';
-import {Game} from '../../../models/Game';
-import {GameModel} from '../../../models/types';
 import Realm from 'realm';
 import 'react-native-get-random-values';
 import {HomeScreenProps} from '../../../routes/HomeProps';
@@ -25,11 +22,6 @@ export const NewGame = ({navigation}: Props) => {
   const realm = useRealm();
 
   const [successModalVisible, setSuccessModalVisible] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | undefined>(undefined);
-
-  const [gameName, setGameName] = useState('');
-  const [gameDesc, setGameDesc] = useState('');
 
   const data = useRef({
     name: '',
@@ -60,18 +52,16 @@ export const NewGame = ({navigation}: Props) => {
 
   const changeName = (name: string) => {
     data.current.name = name;
-    setGameName(name);
   };
 
   const changeDesc = (desc: string) => {
     data.current.description = desc;
-    setGameDesc(desc);
   };
 
   return (
     <>
       <StyledModal
-        isVisible={true}
+        isVisible={successModalVisible}
         style={{justifyContent: 'space-between', height: 200}}>
         <StyledTitle
           style={{borderTopLeftRadius: 12, borderTopRightRadius: 12}}>

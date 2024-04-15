@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {HomeScreenProps} from '../../../routes/HomeProps';
-import {useQuery, useRealm} from '@realm/react';
+import {useObject, useQuery, useRealm} from '@realm/react';
 import {Game, Player} from '../../../models/Game';
 import {StyledSubtitle} from '../../ui/texts/StyledSubtitle';
 import {StyleSheet, View} from 'react-native';
@@ -14,11 +14,9 @@ type Props = HomeScreenProps<'GameDetail'>;
 export const GameDetail = ({navigation, route}: Props) => {
   const realm = useRealm();
   const gameId = route.params.gameId;
-  const game = useQuery<Game>(Game, results => {
-    return results.filtered('id == $0', gameId);
-  })[0];
+  const game = useObject<Game>(Game, gameId);
 
-  const [players, setPlayers] = useState<Player[]>(game.players.slice());
+  const [players, setPlayers] = useState<Player[]>(game?.players.slice() ?? []);
 
   const deletePlayer = (playerId: Realm.BSON.ObjectId, index: number) => {
     realm.write(() => {
@@ -51,7 +49,7 @@ export const GameDetail = ({navigation, route}: Props) => {
       loading={false}
       error={game === undefined ? 'Errore nel recupero del game' : undefined}
       errorOnPress={() => {}}>
-      <StyledSubtitle>{game.description}</StyledSubtitle>
+      <StyledSubtitle>{game?.description ?? ''}</StyledSubtitle>
       <View>
         <View style={[styles.containerButtons]}>
           <StyledButton text="Delete Game" onPress={deleteGame} />

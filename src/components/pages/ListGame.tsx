@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {HomeScreenProps} from '../../routes/HomeProps';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import StyledTitle from '../ui/texts/StyledTitle';
@@ -7,11 +7,13 @@ import {Game} from '../../models/Game';
 import {GameCard} from './games/GameCard';
 import {StyledSubtitle} from '../ui/texts/StyledSubtitle';
 import {StyledButton} from '../ui/StyledButton';
+import {Settings} from '../../models/Settings';
 
 type Props = HomeScreenProps<'ListGame'>;
 
 export const ListGame = ({navigation, route}: Props) => {
   const games = useQuery<Game>(Game);
+  const settings = useQuery<Settings>(Settings);
 
   return (
     <SafeAreaView>
