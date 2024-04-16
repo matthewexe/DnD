@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Text, View} from 'react-native';
 import Features from './Features';
 import {useGetSubClassesforLevelQuery} from '../../../../services/api';
 import {Subclasstypes, FeaturesRequest} from '../../../../types/requests';
-import {LabeledValue} from '../../../ui/LabeledValue';
-import {StyledText} from '../../../ui/texts/StyledText';
 import {StyledAccordionItem} from '../../../ui/StyledAccordion';
+import FontAwesome6Icon from 'react-native-vector-icons/FontAwesome6';
 
 type Props = {
   input: Subclasstypes;
@@ -19,16 +18,25 @@ export default function SubclassForLevel({input, level}: Props) {
   if (error) return <Text>error in fetching</Text>;
   if (isLoading) return <Text>loading...</Text>;
   if (isFetching) <Text>attendi risposta dal server</Text>;
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <View>
       {data &&
         data
           .filter(item => item.level <= level)
           .map(item => (
-            <StyledAccordionItem title={`Livello ${item.level}`}>
+            <StyledAccordionItem
+              title={`Livello ${item.level}`}
+              icon={collapsed => {
+                const name = collapsed ? 'plus' : 'xmark';
+                return <FontAwesome6Icon name={name} size={16} />;
+              }}>
               {item.features.map(choice => (
                 <View>
-                  <StyledText>{choice.name}</StyledText>
                   <Features input={choice.index as FeaturesRequest} />
                 </View>
               ))}
