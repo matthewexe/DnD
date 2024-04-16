@@ -39,14 +39,11 @@ export default function ClassComponent({route, navigation}: Props) {
     }
   }, [data]);
 
-  if (error) return <Text>error in fetching</Text>;
-  if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
   return (
     <NewPlayerView
       title="Class"
-      loading={false}
-      error={undefined}
+      loading={isLoading || isFetching}
+      error={error ? 'Networking error' : undefined}
       errorOnPress={() => {}}>
       <View>
         <StyledLabeledValue

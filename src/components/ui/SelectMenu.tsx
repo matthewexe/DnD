@@ -4,6 +4,8 @@ import {SelectDropdownProps} from 'react-native-select-dropdown';
 import {APIReference} from '../../types/responses';
 import {StyledMenu} from './StyledMenu';
 import {StyledText} from './texts/StyledText';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store';
 
 type Props = SelectDropdownProps & {
   label: string;
@@ -12,6 +14,7 @@ type Props = SelectDropdownProps & {
 
 export const SelectMenu = (props: Props) => {
   const label = props.label;
+
   return (
     <View style={[styles.container]}>
       <StyledText>{label}</StyledText>

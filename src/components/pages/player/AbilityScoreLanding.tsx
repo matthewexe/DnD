@@ -12,7 +12,7 @@ import {RacesRequest, SubraceIndexRequest} from '../../../types/requests';
 import {InputText} from '../../ui/InputText';
 import {StyledSubtitle} from '../../ui/texts/StyledSubtitle';
 import {StyledText} from '../../ui/texts/StyledText';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TextInput, View} from 'react-native';
 import {customTheme2} from '../../../constants/theme';
 import {calculateModifier} from '../../../helper/calculateModifier';
 
@@ -103,7 +103,9 @@ export const AbilityScoreLanding = ({navigation, route}: Props) => {
   };
 
   return (
-    <NewPlayerView title="Ability Scores" errorOnPress={() => {}}>
+    <NewPlayerView
+      title="Ability Scores"
+      loading={isLoadingRace || isLoadingSubrace}>
       <View style={[styles.containerButton]}>
         <StyledButton
           text="Re-Roll"
@@ -112,34 +114,52 @@ export const AbilityScoreLanding = ({navigation, route}: Props) => {
           onPress={reroll}
         />
       </View>
-      {rolls.map((roll, index) => (
-        <View
-          style={[
-            styles.abilityContainer,
-            {flexDirection: 'column', width: 100},
-          ]}>
-          <StyledText>{labels[index]}</StyledText>
-          <View style={[styles.abilityContainer]}>
-            <InputText
-              style={[styles.abilityScoreInput]}
-              label={''}
-              keyboardType="number-pad"
-              placeholder="10 + bonus"
-              value={
-                isNaN(roll + bonuses[index])
-                  ? ''
-                  : (roll + bonuses[index]).toString()
-              }
-              onChangeText={text => onChangeText(index, text)}
-            />
-            <View style={[styles.modifierContainer]}>
-              <StyledText style={[styles.modifierText]}>
-                {isNaN(calculateModifier(roll)) ? '' : calculateModifier(roll)}
-              </StyledText>
+      <View
+        style={[
+          {justifyContent: 'center', flexDirection: 'row', flexWrap: 'wrap'},
+        ]}>
+        {rolls.map((roll, index) => (
+          <View
+            style={[
+              styles.abilityContainer,
+              {flexDirection: 'column', margin: 10},
+            ]}>
+            <StyledText>{labels[index]}</StyledText>
+            <View style={[styles.abilityContainer]}>
+              {/* <InputText
+                style={[styles.abilityScoreInput]}
+                label={''}
+                keyboardType="number-pad"
+                placeholder="10 + bonus"
+                value={
+                  isNaN(roll + bonuses[index])
+                    ? ''
+                    : (roll + bonuses[index]).toString()
+                }
+                onChangeText={text => onChangeText(index, text)}
+              /> */}
+              <TextInput
+                style={[styles.abilityScoreInput]}
+                textAlign="center"
+                keyboardType="number-pad"
+                placeholder="10 + bonus"
+                value={
+                  isNaN(roll + bonuses[index])
+                    ? ''
+                    : (roll + bonuses[index]).toString()
+                }
+                onChangeText={text => onChangeText(index, text)}></TextInput>
+              <View style={[styles.modifierContainer]}>
+                <StyledText style={[styles.modifierText]}>
+                  {isNaN(calculateModifier(roll))
+                    ? ''
+                    : calculateModifier(roll)}
+                </StyledText>
+              </View>
             </View>
           </View>
-        </View>
-      ))}
+        ))}
+      </View>
       <StyledSubtitle>Race Bonuses</StyledSubtitle>
       {raceData?.ability_bonuses.map(bonus => (
         <StyledText>
@@ -181,12 +201,13 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   abilityScoreInput: {
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
-    borderBottomLeftRadius: 50,
-    borderBottomRightRadius: 50,
-    width: 50,
-    paddingHorizontal: 15,
+    borderRadius: 50,
+    minWidth: 30,
+    maxWidth: 50,
+    padding: 'auto',
+    borderColor: customTheme2.colors.primary,
+    borderWidth: 1,
+    fontSize: 20,
   },
   modifierContainer: {
     height: '100%',

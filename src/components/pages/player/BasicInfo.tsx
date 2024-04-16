@@ -26,8 +26,11 @@ export const BasicInfo = ({navigation, route}: Props) => {
     error: classError,
   } = useGetEndpointResourceQuery('classes');
 
-  const {data: alignmentData, isLoading: isLoadingAlignment} =
-    useGetEndpointResourceQuery('alignments');
+  const {
+    data: alignmentData,
+    isLoading: isLoadingAlignment,
+    error: alignmentError,
+  } = useGetEndpointResourceQuery('alignments');
 
   const gameId = route.params.gameId;
   const userData = useRef(defaultPlayer());
@@ -68,22 +71,15 @@ export const BasicInfo = ({navigation, route}: Props) => {
     }
   };
 
-  if (raceError || classError) {
-    return (
-      <View>
-        <Text />
-        <StyledTitle>Watch out!</StyledTitle>
-        <Text>An Error has occured</Text>
-      </View>
-    );
-  }
-
   return (
     <NewPlayerView
       title="Basic Info"
       loading={isLoadingRace || isLoadingClass || isLoadingAlignment}
-      error={undefined}
-      errorOnPress={() => {}}>
+      error={
+        raceError || classError || alignmentError
+          ? 'Networking error. Check your connection or try later'
+          : undefined
+      }>
       <StyledSubtitle>Let's Begin</StyledSubtitle>
 
       {/* Player Name */}

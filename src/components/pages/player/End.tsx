@@ -110,14 +110,14 @@ export const End = ({route, navigation}: Props) => {
           icon="check"
           onPress={() => {
             createPlayer();
-            navigation.navigate('GameDetail', {gameId: route.params.gameId});
+            navigation.navigate('ListGame');
           }}
         />
         <StyledButton
           text="Cancel"
           icon="xmark"
           onPress={() => {
-            navigation.navigate('GameDetail', {gameId: route.params.gameId});
+            navigation.navigate('ListGame');
           }}
         />
       </View>

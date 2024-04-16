@@ -13,6 +13,9 @@ type Props = TextProps & {
   onPress: (event: GestureResponderEvent) => void;
   message: string;
 };
+
+// FIXME: this component shows bad
+
 export const Error = (props: Props) => {
   return (
     <View style={{flex: 1}}>
