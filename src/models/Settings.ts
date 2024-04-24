@@ -1,13 +1,13 @@
 import Realm from 'realm';
-import {Language} from '../types/languages';
+import {Language, LanguageCode} from '../types/languages';
 
 export class Settings extends Realm.Object<Settings> {
-  language: Language = 'English';
+  language: LanguageCode = 'en';
 
   static schema: Realm.ObjectSchema = {
     name: 'Settings',
     properties: {
-      language: {type: 'string', default: 'English'},
+      language: {type: 'string', default: 'en'},
     },
   };
 }

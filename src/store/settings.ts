@@ -1,15 +1,15 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {Language} from '../types/languages';
+import {Language, LanguageCode} from '../types/languages';
 
 // Define the state interface
 interface SettingsState {
-  language: Language;
+  language: LanguageCode;
   // ...
 }
 
 // Define the initial state
 const initialState: SettingsState = {
-  language: 'English',
+  language: 'en',
   // ...
 };
 
@@ -20,7 +20,10 @@ const settingsSlice = createSlice({
   reducers: {
     setProperty: (
       state,
-      action: PayloadAction<{property: keyof SettingsState; value: Language}>,
+      action: PayloadAction<{
+        property: keyof SettingsState;
+        value: LanguageCode;
+      }>,
     ) => {
       state.language = action.payload.value;
     },

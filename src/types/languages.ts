@@ -1,3 +1,5 @@
+import {LanguageCode as Codes} from 'react-native-translator';
+
 export type Language =
   | 'Afrikaans'
   | 'Albanian'
@@ -64,223 +66,77 @@ export type Language =
   | 'Welsh'
   | 'Yiddish';
 
-export type LanguageCode =
-  | 'af'
-  | 'sq'
-  | 'am'
-  | 'ar'
-  | 'hy'
-  | 'az'
-  | 'eu'
-  | 'be'
-  | 'bn'
-  | 'bs'
-  | 'bg'
-  | 'ca'
-  | 'ceb'
-  | 'ny'
-  | 'zh-cn'
-  | 'zh-tw'
-  | 'co'
-  | 'hr'
-  | 'cs'
-  | 'da'
-  | 'nl'
-  | 'en'
-  | 'eo'
-  | 'et'
-  | 'tl'
-  | 'fi'
-  | 'fr'
-  | 'fy'
-  | 'gl'
-  | 'ka'
-  | 'de'
-  | 'el'
-  | 'gu'
-  | 'ht'
-  | 'ha'
-  | 'haw'
-  | 'iw'
-  | 'hi'
-  | 'hmn'
-  | 'hu'
-  | 'is'
-  | 'ig'
-  | 'id'
-  | 'ga'
-  | 'it'
-  | 'ja'
-  | 'jw'
-  | 'kn'
-  | 'kk'
-  | 'km'
-  | 'ko'
-  | 'ku'
-  | 'ky'
-  | 'lo'
-  | 'la'
-  | 'lv'
-  | 'lt'
-  | 'lb'
-  | 'mk'
-  | 'mg'
-  | 'ms'
-  | 'ml'
-  | 'mt'
-  | 'mi'
-  | 'mr'
-  | 'mn'
-  | 'my'
-  | 'ne'
-  | 'no'
-  | 'ps'
-  | 'fa'
-  | 'pl'
-  | 'pt'
-  | 'ma'
-  | 'ro'
-  | 'ru'
-  | 'sm'
-  | 'gd'
-  | 'sr'
-  | 'st'
-  | 'sn'
-  | 'sd'
-  | 'si'
-  | 'sk'
-  | 'sl'
-  | 'so'
-  | 'es'
-  | 'su'
-  | 'sw'
-  | 'sv'
-  | 'tg'
-  | 'ta'
-  | 'te'
-  | 'th'
-  | 'tr'
-  | 'uk'
-  | 'ur'
-  | 'ug'
-  | 'uz'
-  | 'vi'
-  | 'cy'
-  | 'xh'
-  | 'yi'
-  | 'yo'
-  | 'zu';
+export type LanguageCode = Codes<'google'>;
 
-const languages: Record<Language, LanguageCode> = Object.freeze({
-  Afrikaans: 'af',
-  Albanian: 'sq',
-  Amharic: 'am',
-  Arabic: 'ar',
-  Armenian: 'hy',
-  Azerbaijani: 'az',
-  Basque: 'eu',
-  Belarusian: 'be',
-  Bengali: 'bn',
-  Bosnian: 'bs',
-  Bulgarian: 'bg',
-  Catalan: 'ca',
-  Cebuano: 'ceb',
-  Chichewa: 'ny',
-  'Chinese Simplified': 'zh-cn',
-  'Chinese Traditional': 'zh-tw',
-  Corsican: 'co',
-  Croatian: 'hr',
-  Czech: 'cs',
-  Danish: 'da',
-  Dutch: 'nl',
-  English: 'en',
-  Esperanto: 'eo',
-  Estonian: 'et',
-  Filipino: 'tl',
-  Finnish: 'fi',
-  French: 'fr',
-  Frisian: 'fy',
-  Galician: 'gl',
-  Georgian: 'ka',
-  German: 'de',
-  Greek: 'el',
-  Gujarati: 'gu',
-  'Haitian Creole': 'ht',
-  Hausa: 'ha',
-  Hawaiian: 'haw',
-  Hebrew: 'iw',
-  Hindi: 'hi',
-  Hmong: 'hmn',
-  Hungarian: 'hu',
-  Icelandic: 'is',
-  Igbo: 'ig',
-  Indonesian: 'id',
-  Irish: 'ga',
-  Italian: 'it',
-  Japanese: 'ja',
-  Javanese: 'jw',
-  Kannada: 'kn',
-  Kazakh: 'kk',
-  Khmer: 'km',
-  Korean: 'ko',
-  'Kurdish (Kurmanji)': 'ku',
-  Kyrgyz: 'ky',
-  Lao: 'lo',
-  Latin: 'la',
-  Latvian: 'lv',
-  Lithuanian: 'lt',
-  Luxembourgish: 'lb',
-  Macedonian: 'mk',
-  Malagasy: 'mg',
-  Malay: 'ms',
-  Malayalam: 'ml',
-  Maltese: 'mt',
-  Maori: 'mi',
-  Marathi: 'mr',
-  Mongolian: 'mn',
-  'Myanmar (Burmese)': 'my',
-  Nepali: 'ne',
-  Norwegian: 'no',
-  Pashto: 'ps',
-  Persian: 'fa',
-  Polish: 'pl',
-  Portuguese: 'pt',
-  Punjabi: 'ma',
-  Romanian: 'ro',
-  Russian: 'ru',
-  Samoan: 'sm',
-  'Scots Gaelic': 'gd',
-  Serbian: 'sr',
-  Sesotho: 'st',
-  Shona: 'sn',
-  Sindhi: 'sd',
-  Sinhala: 'si',
-  Slovak: 'sk',
-  Slovenian: 'sl',
-  Somali: 'so',
-  Spanish: 'es',
-  Sundanese: 'su',
-  Swahili: 'sw',
-  Swedish: 'sv',
-  Tajik: 'tg',
-  Tamil: 'ta',
-  Telugu: 'te',
-  Thai: 'th',
-  Turkish: 'tr',
-  Ukrainian: 'uk',
-  Urdu: 'ur',
-  Uyghur: 'ug',
-  Uzbek: 'uz',
-  Vietnamese: 'vi',
-  Welsh: 'cy',
-  Xhosa: 'xh',
-  Yiddish: 'yi',
-  Yoruba: 'yo',
-  Zulu: 'zu',
+const languages: Record<LanguageCode, Language> = Object.freeze({
+  af: 'Afrikaans',
+  ga: 'Irish',
+  sq: 'Albanian',
+  it: 'Italian',
+  ar: 'Arabic',
+  ja: 'Japanese',
+  az: 'Azerbaijani',
+  kn: 'Kannada',
+  eu: 'Basque',
+  ko: 'Korean',
+  bn: 'Bengali',
+  la: 'Latin',
+  be: 'Belarusian',
+  lv: 'Latvian',
+  bg: 'Bulgarian',
+  lt: 'Lithuanian',
+  ca: 'Catalan',
+  mk: 'Macedonian',
+  'zh-CN': 'Chinese Simplified',
+  ms: 'Malay',
+  'zh-TW': 'Chinese Traditional',
+  mt: 'Maltese',
+  hr: 'Croatian',
+  no: 'Norwegian',
+  cs: 'Czech',
+  fa: 'Persian',
+  da: 'Danish',
+  pl: 'Polish',
+  nl: 'Dutch',
+  pt: 'Portuguese',
+  en: 'English',
+  ro: 'Romanian',
+  eo: 'Esperanto',
+  ru: 'Russian',
+  et: 'Estonian',
+  sr: 'Serbian',
+  tl: 'Filipino',
+  sk: 'Slovak',
+  fi: 'Finnish',
+  sl: 'Slovenian',
+  fr: 'French',
+  es: 'Spanish',
+  gl: 'Galician',
+  sw: 'Swahili',
+  ka: 'Georgian',
+  sv: 'Swedish',
+  de: 'German',
+  ta: 'Tamil',
+  el: 'Greek',
+  te: 'Telugu',
+  gu: 'Gujarati',
+  th: 'Thai',
+  ht: 'Haitian',
+  tr: 'Turkish',
+  iw: 'Hebrew',
+  uk: 'Ukrainian',
+  hi: 'Hindi',
+  ur: 'Urdu',
+  hu: 'Hungarian',
+  vi: 'Vietnamese',
+  is: 'Icelandic',
+  cy: 'Welsh',
+  id: 'Indonesian',
+  yi: 'Yiddish',
 });
 
-export function getLanguageCode(language: Language): LanguageCode {
-  return languages[language];
+export function getLanguage(languageCode: LanguageCode): Language {
+  return languages[languageCode];
 }
 
 export function getLanguages() {

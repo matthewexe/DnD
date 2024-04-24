@@ -14,13 +14,13 @@ export const Settings = () => {
   const realm = useRealm();
 
   const {language} = useSelector((state: RootState) => state.settings);
-  const [languages, setLanguages] = useState<[string, LanguageCode][]>(
+  const [languages, setLanguages] = useState<[string, Language][]>(
     getLanguages(),
   );
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const updateLanguage = (language: Language) => {
+  const updateLanguage = (language: LanguageCode) => {
     console.log(language);
     // Update DB
     realm.write(() => {
@@ -45,8 +45,8 @@ export const Settings = () => {
         data={languages}
         onSelect={item => updateLanguage(item[0])}
         defaultButtonText={language}
-        rowTextForSelection={item => item[0]}
-        buttonTextAfterSelection={item => item[0]}
+        rowTextForSelection={item => item[1]}
+        buttonTextAfterSelection={item => item[1]}
         search
       />
     </NewPlayerView>
