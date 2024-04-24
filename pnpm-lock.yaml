@@ -80,21 +80,24 @@ dependencies:
   react-native-table-component:
     specifier: ^1.2.2
     version: 1.2.2
+  react-native-translator:
+    specifier: ^1.1.6
+    version: 1.1.6(react-native-webview@13.8.6)
   react-native-uuid:
     specifier: ^2.0.2
     version: 2.0.2
   react-native-vector-icons:
     specifier: ^10.0.3
     version: 10.0.3
+  react-native-webview:
+    specifier: ^13.8.6
+    version: 13.8.6(react-native@0.73.3)(react@18.2.0)
   react-redux:
     specifier: ^9.1.0
     version: 9.1.0(@types/react@18.2.51)(react-native@0.73.3)(react@18.2.0)(redux@5.0.1)
   realm:
     specifier: ^12.6.2
     version: 12.6.2(react-native@0.73.3)
-  translate-google-api:
-    specifier: ^1.0.4
-    version: 1.0.4
 
 devDependencies:
   '@babel/core':
@@ -2955,15 +2958,6 @@ packages:
     resolution: {integrity: sha512-j1QzY8iPNPG4o4xmO3ptzpRxTciqD3MgEHtifP/YnJpIo58Xu+ne4BejlbkuaLfXn/nz6HFiw29bLpj2PNMdGg==}
     engines: {node: '>= 0.4'}
     dev: true
-
-  /axios@0.20.0:
-    resolution: {integrity: sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==}
-    deprecated: Critical security vulnerability fixed in v0.21.1. For more information, see https://github.com/axios/axios/pull/3410
-    dependencies:
-      follow-redirects: 1.15.5
-    transitivePeerDependencies:
-      - debug
-    dev: false
 
   /axios@1.6.7:
     resolution: {integrity: sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==}
@@ -6427,6 +6421,14 @@ packages:
     resolution: {integrity: sha512-7bbsi5431iWcjj3toASh8lFHGi6AG/+MTd4M7GuksXKxx/CFs/Qwv1Ys7D2wgyuYKe3hxWNfSVrteFj0tOYXYw==}
     dev: false
 
+  /react-native-translator@1.1.6(react-native-webview@13.8.6):
+    resolution: {integrity: sha512-g50MjwHjAwp1Pd2qkU3O4KmrzLv5nqlL4EpwYJUecTUE8/BrLP/+n0ktUZ0Zi6a/nwhO+xgMZ7R49XoQZz7yUg==}
+    peerDependencies:
+      react-native-webview: '*'
+    dependencies:
+      react-native-webview: 13.8.6(react-native@0.73.3)(react@18.2.0)
+    dev: false
+
   /react-native-uuid@2.0.2:
     resolution: {integrity: sha512-5ypj/hV58P+6VREdjkW0EudSibsH3WdqDERoHKnD9syFWjF+NfRWWrJb2sa3LIwI5zpzMvUiabs+DX40WHpEMw==}
     engines: {node: '>=10.0.0', npm: '>=6.0.0'}
@@ -6438,6 +6440,18 @@ packages:
     dependencies:
       prop-types: 15.8.1
       yargs: 16.2.0
+    dev: false
+
+  /react-native-webview@13.8.6(react-native@0.73.3)(react@18.2.0):
+    resolution: {integrity: sha512-jtZ9OgB2AN6rhDwto6dNL3PtOtl/SI4VN93pZEPbMLvRjqHfxiUrilGllL5fKAXq5Ry5FJyfUi82A4Ii8olZ7A==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
+    dependencies:
+      escape-string-regexp: 2.0.0
+      invariant: 2.2.4
+      react: 18.2.0
+      react-native: 0.73.3(@babel/core@7.23.9)(@babel/preset-env@7.23.9)(react@18.2.0)
     dev: false
 
   /react-native@0.73.3(@babel/core@7.23.9)(@babel/preset-env@7.23.9)(react@18.2.0):
@@ -7225,14 +7239,6 @@ packages:
 
   /tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
-
-  /translate-google-api@1.0.4:
-    resolution: {integrity: sha512-KVXmo4+64/H1vIbnzf2zNiJ2JLeEB3jrEnNRP2EFNAGNqna/5bmw/Cps3pCHu0n3BzTOoWh9u6wFvrRYdzQ6Iw==}
-    dependencies:
-      axios: 0.20.0
-    transitivePeerDependencies:
-      - debug
-    dev: false
 
   /tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}

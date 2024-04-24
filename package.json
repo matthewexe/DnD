@@ -35,11 +35,12 @@
     "react-native-screens": "^3.29.0",
     "react-native-select-dropdown": "^3.4.0",
     "react-native-table-component": "^1.2.2",
+    "react-native-translator": "^1.1.6",
     "react-native-uuid": "^2.0.2",
     "react-native-vector-icons": "^10.0.3",
+    "react-native-webview": "^13.8.6",
     "react-redux": "^9.1.0",
-    "realm": "^12.6.2",
-    "translate-google-api": "^1.0.4"
+    "realm": "^12.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
