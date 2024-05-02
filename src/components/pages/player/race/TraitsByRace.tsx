@@ -10,8 +10,8 @@ export default function TraitsComponent({input}: {input: RaceIndexRequest}) {
   });
 
   if (error) return <Text>error in fetching</Text>;
-  if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) return <Text>wait for response from the server</Text>;
+  if (isLoading || isFetching) return <Text>loading...</Text>;
+
   return (
     <>
       {data?.results.map((item, index) => (

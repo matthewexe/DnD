@@ -15,8 +15,7 @@ export default function Features({input}: Props) {
     });
 
   if (error) return <Text>error in fetching</Text>;
-  if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isLoading || isFetching) return <Text>loading...</Text>;
   return (
     <>
       <StyledLabeledValue

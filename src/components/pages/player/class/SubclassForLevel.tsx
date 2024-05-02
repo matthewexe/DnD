@@ -16,8 +16,7 @@ export default function SubclassForLevel({input, level}: Props) {
   });
 
   if (error) return <Text>error in fetching</Text>;
-  if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isLoading || isFetching) return <Text>loading...</Text>;
 
   useEffect(() => {
     console.log(data);
@@ -30,7 +29,7 @@ export default function SubclassForLevel({input, level}: Props) {
           .filter(item => item.level <= level)
           .map(item => (
             <StyledAccordionItem
-              title={`Livello ${item.level}`}
+              title={`Level ${item.level}`}
               icon={collapsed => {
                 const name = collapsed ? 'plus' : 'xmark';
                 return <FontAwesome6Icon name={name} size={16} />;

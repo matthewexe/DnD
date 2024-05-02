@@ -28,15 +28,14 @@ export default function SubclassComponent({
   );
 
   if (error) return <Text>error in fetching</Text>;
-  if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isLoading || isFetching) return <Text>loading...</Text>;
+
   return (
     <View>
-      <StyledSubtitle>Sottoclasse</StyledSubtitle>
-      <StyledText>Possibili scelte: {data?.count}</StyledText>
+      <StyledText>You can choose {data?.count} subclasses</StyledText>
       {data && data.results && (
         <SelectMenu
-          label="Scegli la tua sottoclasse"
+          label="Choose your subclass"
           data={data.results}
           onSelect={(item: APIReference) => {
             setSelectedClass(item.index);

@@ -47,26 +47,24 @@ export default function ClassComponent({route, navigation}: Props) {
       errorOnPress={() => {}}>
       <View>
         <StyledLabeledValue
-          label="Nome"
+          label="Name"
           value={data?.name ?? 'classe non disponibile'}
         />
         <StyledLabeledValue
-          label={'Dado Vita'}
+          label={'Hit die'}
           value={data?.hit_die.toString() ?? 'mancante'}
         />
-        <StyledSubtitle>Abilità di base:</StyledSubtitle>
+        <StyledSubtitle>Proficiencies</StyledSubtitle>
         {data?.proficiencies?.map((choice, index) => (
           <StyledText key={index}>{choice.name}</StyledText>
         ))}
-
-        <StyledSubtitle>Abilità</StyledSubtitle>
 
         {proficiencyChoices.map((choice, index) => {
           return (
             <>
               <StyledText key={index}>
-                Scegli {data?.proficiency_choices[index].choose ?? 1} abilità
-                trà le seguenti:
+                Choose {data?.proficiency_choices[index].choose ?? 1} abilities
+                from the following options:
               </StyledText>
               <SelectableTable
                 key={index}
@@ -84,14 +82,14 @@ export default function ClassComponent({route, navigation}: Props) {
           );
         })}
 
-        <StyledSubtitle>Tiri salvezza:</StyledSubtitle>
+        <StyledSubtitle>Saving throws</StyledSubtitle>
         {data?.saving_throws?.map((choice, index) => (
           <StyledText key={index}>{choice.name}</StyledText>
         ))}
 
         <FeaturesByClassComponent input={input} />
         <ProficiencyByClassComponent input={input} />
-        <StyledSubtitle>Sottoclassi:</StyledSubtitle>
+        <StyledSubtitle>Subclasses</StyledSubtitle>
         <SubclassComponent
           input={input}
           onSelectedValue={item => {

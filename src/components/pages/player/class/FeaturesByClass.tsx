@@ -16,12 +16,12 @@ export default function FeaturesByClassComponent({
   });
 
   if (error) return <Text>error in fetching</Text>;
-  if (isLoading) return <Text>loading...</Text>;
-  if (isFetching) <Text>attendi risposta dal server</Text>;
+  if (isLoading || isFetching) return <Text>loading...</Text>;
+
   return (
     <View>
-      <StyledSubtitle>Caratteristiche</StyledSubtitle>
-      <StyledText>Hai disponibili {data?.count} caratteristiche</StyledText>
+      <StyledSubtitle>Features</StyledSubtitle>
+      <StyledText>There are {data?.count} available features</StyledText>
       {data?.results.map((choice, index) => (
         <>
           <Features input={choice.index as FeaturesRequest} />

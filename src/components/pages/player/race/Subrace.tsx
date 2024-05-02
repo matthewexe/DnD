@@ -20,12 +20,10 @@ export default function Subrace({input}: Props) {
   if (error) {
     return <Text>error in fetching</Text>;
   }
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <Text>loading...</Text>;
   }
-  if (isFetching) {
-    return <Text>wait for response from the server</Text>;
-  }
+
   return (
     <>
       <StyledSubtitle>The subrace {data?.name} has available:</StyledSubtitle>

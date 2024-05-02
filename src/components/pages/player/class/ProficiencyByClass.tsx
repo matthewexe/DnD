@@ -17,8 +17,8 @@ export default function ProficiencyByClassComponent({
 
   return (
     <View>
-      <StyledSubtitle>Competenze</StyledSubtitle>
-      <StyledText>Hai {data?.count} competenze:</StyledText>
+      <StyledSubtitle>Proficienies</StyledSubtitle>
+      <StyledText>You have {data?.count} proficiencies:</StyledText>
       {data?.results.map((choice, index) => (
         <StyledText key={index}>{choice.name}</StyledText>
       ))}
