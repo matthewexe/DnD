@@ -17,6 +17,7 @@ import {getProfBonus} from '../../../helper/proficiencyBonus';
 import {hp, maxHp} from '../../../utils/hp';
 import {calculateModifier} from '../../../utils/calculateModifier';
 import FileViewer from 'react-native-file-viewer';
+import {ActivityIndicator, View} from 'react-native';
 
 type Props = HomeScreenProps<'PlayerCard'>;
 
@@ -127,7 +128,7 @@ export const DownloadScheda = ({route, navigation}: Props) => {
         .then(content => {
           FileViewer.open(`${UtilPDF.paths.documents}/scheda.pdf`, {
             showOpenWithDialog: true,
-          });
+          }).finally(() => navigation.pop());
           console.log('PDF saved');
         })
         .catch(err => {
@@ -152,7 +153,10 @@ export const DownloadScheda = ({route, navigation}: Props) => {
 
   return (
     <NewPlayerView title="Player Card" errorOnPress={() => {}}>
-      <StyledText>Player card</StyledText>
+      <View>
+        <StyledText>We are generating your PDF...</StyledText>
+        <ActivityIndicator size="large" />
+      </View>
     </NewPlayerView>
   );
 };
