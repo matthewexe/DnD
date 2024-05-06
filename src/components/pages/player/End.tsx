@@ -60,11 +60,11 @@ export const End = ({route, navigation}: Props) => {
       <View>
         <StyledSubtitle>Recap</StyledSubtitle>
         <StyledLabeledValue
-          label="Name"
+          label="Player Name"
           value={snakeCaseToTitleCase(userData.player_name)}
         />
         <StyledLabeledValue
-          label="Name"
+          label="Character Name"
           value={snakeCaseToTitleCase(userData.character_name)}
         />
         <StyledLabeledValue

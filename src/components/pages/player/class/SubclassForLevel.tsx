@@ -18,10 +18,6 @@ export default function SubclassForLevel({input, level}: Props) {
   if (error) return <Text>error in fetching</Text>;
   if (isLoading || isFetching) return <Text>loading...</Text>;
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
     <View>
       {data &&

@@ -60,10 +60,13 @@ export const GameDetail = ({navigation, route}: Props) => {
             return (
               <View style={[styles.margin, styles.playerRow]}>
                 <View style={[styles.margin, styles.containerPlayerName]}>
-                  <StyledText>
+                  <StyledText numberOfLines={1} ellipsizeMode="tail">
                     {index + 1}. {player.player_name}
                   </StyledText>
-                  <StyledText style={[styles.characterName]}>
+                  <StyledText
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                    style={[styles.characterName]}>
                     {player.character_name}
                   </StyledText>
                 </View>
@@ -105,6 +108,8 @@ const styles = StyleSheet.create({
   containerPlayerName: {
     flexDirection: 'row',
     alignItems: 'flex-end',
+    flexWrap: 'wrap',
+    maxWidth: '74%',
   },
   characterName: {
     color: '#8c8c8c',

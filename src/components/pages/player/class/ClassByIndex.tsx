@@ -37,6 +37,7 @@ export default function ClassComponent({route, navigation}: Props) {
         ),
       );
     }
+    console.log('refresh class by index');
   }, [data]);
 
   return (

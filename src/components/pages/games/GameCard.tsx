@@ -22,7 +22,9 @@ export const GameCard = ({gameId, navigation}: Props) => {
     <View style={[styles.container]}>
       <Pressable onPress={onPress} style={{flex: 1}}>
         <View style={[styles.title]}>
-          <StyledText>{game?.name}</StyledText>
+          <StyledText numberOfLines={1} ellipsizeMode="tail">
+            {game?.name}
+          </StyledText>
         </View>
         <View style={[styles.content]}>
           <StyledText numberOfLines={6} ellipsizeMode="tail">
