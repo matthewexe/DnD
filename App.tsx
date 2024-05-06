@@ -5,7 +5,6 @@ import {
   Player as PlayerModel,
   Equipment as EquipmentModel,
 } from './src/models/Game';
-import {Settings, Settings as SettingsModel} from './src/models/Settings';
 import {Provider} from 'react-redux';
 import {store} from './src/store';
 import {NavigationContainer} from '@react-navigation/native';
@@ -15,44 +14,13 @@ import 'react-native-gesture-handler';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {PermissionsAndroid} from 'react-native';
 import Realm from 'realm';
-import {setProperty} from './src/store/settings';
 
 const App = () => {
   const realmRef = useRef<Realm | null>(null);
   const pathDB = useRef<string>('dnd.db');
-  const schemaDB = useRef([
-    GameModel,
-    PlayerModel,
-    EquipmentModel,
-    SettingsModel,
-  ]);
+  const schemaDB = useRef([GameModel, PlayerModel, EquipmentModel]);
 
   useEffect(() => {
-    // Config DB
-    const initConfig = () => {
-      if (realmRef.current === null) return;
-
-      const dbSettings = realmRef.current?.objects<Settings>(Settings)[0];
-      if (dbSettings === undefined) {
-        console.log('first openeeed');
-        realmRef.current.write(() => {
-          realmRef.current.create<Settings>('Settings', {
-            language: 'English',
-          });
-        });
-      }
-
-      // Loading config
-      store.dispatch(
-        setProperty({
-          property: 'language',
-          value: dbSettings?.language ?? 'English',
-        }),
-      );
-    };
-
-    initConfig();
-
     // Android Permissions
     const grantedWritePermission = PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
@@ -99,12 +67,11 @@ const App = () => {
       <RealmProvider
         path={pathDB.current}
         schema={schemaDB.current}
-        schemaVersion={6}
+        schemaVersion={7}
         realmRef={realmRef}>
         <Provider store={store}>
           <NavigationContainer theme={customTheme2}>
             <RootScreen />
-            {/* <Test /> */}
           </NavigationContainer>
         </Provider>
       </RealmProvider>
