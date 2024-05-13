@@ -114,15 +114,6 @@ export const DownloadScheda = ({route, navigation}: Props) => {
           ),
         );
 
-      for (
-        let index = 0;
-        index < Math.min(5, userData.equipments.length);
-        index++
-      ) {
-        const equipment = userData.equipments[index];
-        pdf.current.addEquipment(equipment.index, equipment.quantity);
-      }
-
       pdf.current
         .save(`${UtilPDF.paths.documents}/scheda.pdf`)
         .then(content => {

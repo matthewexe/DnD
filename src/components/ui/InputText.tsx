@@ -1,9 +1,6 @@
-import React, {PropsWithChildren} from 'react';
+import React from 'react';
 import {Text, TextInputProps, View} from 'react-native';
 import {StyledTextInput} from './StyledTextInput';
-import {useState} from 'react';
-import {fontFamilies} from '../constants/fonts';
-import {customTheme2} from '../../constants/theme';
 
 type Props = TextInputProps & {
   /**

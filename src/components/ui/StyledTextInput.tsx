@@ -11,7 +11,7 @@ export const StyledTextInput = (props: Props) => {
       {...props}
       placeholderTextColor={customTheme2.colors.border}
       cursorColor={customTheme2.colors.notification}
-      selectionColor={customTheme2.colors.background}
+      selectionColor={customTheme2.colors.notification}
       style={[styles.inputBox, props.style]}>
       {props.children}
     </TextInput>

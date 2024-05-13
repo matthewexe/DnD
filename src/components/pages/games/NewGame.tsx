@@ -10,6 +10,7 @@ import 'react-native-get-random-values';
 import {HomeScreenProps} from '../../../routes/HomeProps';
 import {StyledModal} from '../../ui/StyledModal';
 import {StyledText} from '../../ui/texts/StyledText';
+import {current} from '@reduxjs/toolkit';
 
 type Props = HomeScreenProps<'NewGame'>;
 
@@ -36,9 +37,15 @@ export const NewGame = ({navigation}: Props) => {
   const createGame = () => {
     console.log('Creating game');
     realm.write(() => {
+      let name = data.current.name;
+
+      if (name.trim() === '') {
+        name = 'Game';
+      }
+
       const result = realm.create('Game', {
         id: new Realm.BSON.ObjectId(),
-        name: data.current.name,
+        name: name,
         description: data.current.description,
       });
 

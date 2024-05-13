@@ -104,7 +104,6 @@ export const BasicInfo = ({navigation, route}: Props) => {
       <InputText
         label="Background"
         placeholder="Background"
-        value={experience}
         onChangeText={input => {
           userData.current.background = input;
         }}
